@@ -17,7 +17,7 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 ---
 
 ### 🚀 Milestone 2: Architecture Modularization & Custom Hooks (In Progress)
-- [ ] Extract `useVehicleFilter` hook to decouple search/filter logic from `App.tsx`
+- [x] Extract `useVehicleFilter` hook to decouple search/filter logic from `App.tsx`
 - [ ] Extract `useWatchlist` hook with sync across browser tabs
 - [ ] Extract `useCarComparison` hook with limit checks and persistent draft
 
