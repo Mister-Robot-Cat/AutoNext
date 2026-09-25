@@ -1,7 +1,8 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Vehicle, FilterState, Currency, Language } from './types/vehicle';
+import { Vehicle, Currency, Language } from './types/vehicle';
 import { MOCK_VEHICLES } from './data/mockVehicles';
 import { TRANSLATIONS, formatPrice } from './utils/i18n';
+import { useVehicleFilter } from './hooks/useVehicleFilter';
 import { Navbar } from './components/Navbar';
 import { FilterBar } from './components/FilterBar';
 import { CarCard } from './components/CarCard';
@@ -71,83 +72,19 @@ export function App() {
   const [aiPrompt, setAiPrompt] = useState('');
   const [aiActivePreset, setAiActivePreset] = useState('Baku tıxaclarında az yandıran hibrid və ya elektrik maşın');
 
-  // Filter state
-  const [filters, setFilters] = useState<FilterState>({
-    searchQuery: '',
-    make: '',
-    model: '',
-    minPrice: 0,
-    maxPrice: 250000,
-    minYear: 2010,
-    maxYear: 2026,
-    bodyType: 'all',
-    fuelType: 'all',
-    transmission: 'all',
-    drivetrain: 'all',
-    city: '',
-    verifiedOnly: false,
-    greatDealOnly: false,
-    creditOnly: false,
-    barterOnly: false,
-    sortBy: 'recommended',
+  // Vehicle Search & Filter Engine Custom Hook
+  const {
+    filters,
+    setFilters,
+    resetFilters,
+    uniqueMakes,
+    uniqueModels,
+    uniqueCities,
+    filteredVehicles,
+  } = useVehicleFilter(vehicles, {
+    isFavoritesFilterActive,
+    favoriteIds,
   });
-
-  // Extract unique makes, models, cities
-  const uniqueMakes = useMemo(() => Array.from(new Set(vehicles.map((v) => v.make))).sort(), [vehicles]);
-  const uniqueModels = useMemo(() => {
-    if (!filters.make) return [];
-    return Array.from(new Set(vehicles.filter((v) => v.make === filters.make).map((v) => v.model))).sort();
-  }, [vehicles, filters.make]);
-  const uniqueCities = useMemo(() => Array.from(new Set(vehicles.map((v) => v.city))).sort(), [vehicles]);
-
-  // Filter logic
-  const filteredVehicles = useMemo(() => {
-    return vehicles.filter((car) => {
-      // Search text query
-      if (filters.searchQuery) {
-        const query = filters.searchQuery.toLowerCase();
-        const matches = 
-          car.title.toLowerCase().includes(query) ||
-          car.make.toLowerCase().includes(query) ||
-          car.model.toLowerCase().includes(query) ||
-          car.city.toLowerCase().includes(query) ||
-          car.vin.toLowerCase().includes(query);
-        if (!matches) return false;
-      }
-
-      // Make
-      if (filters.make && car.make !== filters.make) return false;
-
-      // Model
-      if (filters.model && car.model !== filters.model) return false;
-
-      // Body Type
-      if (filters.bodyType !== 'all' && car.bodyType !== filters.bodyType) return false;
-
-      // Fuel Type
-      if (filters.fuelType !== 'all' && car.fuelType !== filters.fuelType) return false;
-
-      // City
-      if (filters.city && car.city !== filters.city) return false;
-
-      // Toggles
-      if (isFavoritesFilterActive && !favoriteIds.includes(car.id)) return false;
-      if (filters.verifiedOnly && !car.isVerified) return false;
-      if (filters.greatDealOnly && car.valuation.status !== 'great_deal') return false;
-      if (filters.creditOnly && !car.isCreditAvailable) return false;
-
-      return true;
-    }).sort((a, b) => {
-      if (filters.sortBy === 'price_asc') return a.priceAzn - b.priceAzn;
-      if (filters.sortBy === 'price_desc') return b.priceAzn - a.priceAzn;
-      if (filters.sortBy === 'mileage_asc') return a.mileageKm - b.mileageKm;
-      if (filters.sortBy === 'year_desc') return b.year - a.year;
-      // Recommended: featured first, then great deals
-      if (a.isFeatured && !b.isFeatured) return -1;
-      if (!a.isFeatured && b.isFeatured) return 1;
-      return 0;
-    });
-  }, [vehicles, filters, isFavoritesFilterActive, favoriteIds]);
 
   // Comparison Handlers
   const toggleCompare = (car: Vehicle) => {
@@ -311,27 +248,7 @@ export function App() {
               Zəhmət olmasa axtarış parametrlərini genişləndirin və ya filtrləri sıfırlayın.
             </p>
             <button
-              onClick={() =>
-                setFilters({
-                  searchQuery: '',
-                  make: '',
-                  model: '',
-                  minPrice: 0,
-                  maxPrice: 250000,
-                  minYear: 2010,
-                  maxYear: 2026,
-                  bodyType: 'all',
-                  fuelType: 'all',
-                  transmission: 'all',
-                  drivetrain: 'all',
-                  city: '',
-                  verifiedOnly: false,
-                  greatDealOnly: false,
-                  creditOnly: false,
-                  barterOnly: false,
-                  sortBy: 'recommended',
-                })
-              }
+              onClick={resetFilters}
               className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold"
             >
               Bütün filtrləri sıfırla
