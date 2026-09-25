@@ -12,7 +12,8 @@ import {
   Sparkles,
   ChevronLeft,
   ChevronRight,
-  Eye
+  Eye,
+  Heart
 } from 'lucide-react';
 
 interface CarCardProps {
@@ -20,7 +21,9 @@ interface CarCardProps {
   currency: Currency;
   lang: Language;
   isCompared: boolean;
+  isFavorite?: boolean;
   onToggleCompare: (vehicle: Vehicle) => void;
+  onToggleFavorite?: (vehicle: Vehicle) => void;
   onSelect: (vehicle: Vehicle) => void;
 }
 
@@ -29,7 +32,9 @@ export const CarCard: React.FC<CarCardProps> = ({
   currency,
   lang,
   isCompared,
+  isFavorite = false,
   onToggleCompare,
+  onToggleFavorite,
   onSelect,
 }) => {
   const t = TRANSLATIONS[lang];
@@ -78,22 +83,42 @@ export const CarCard: React.FC<CarCardProps> = ({
             )}
           </div>
 
-          {/* Compare toggle button */}
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              onToggleCompare(vehicle);
-            }}
-            className={`pointer-events-auto p-1.5 rounded-xl backdrop-blur-md border transition-all ${
-              isCompared
-                ? 'bg-blue-600 text-white border-blue-400 shadow-md shadow-blue-500/30'
-                : 'bg-slate-900/70 text-slate-300 border-slate-700 hover:bg-slate-800'
-            }`}
-            title={isCompared ? t.removeFromCompare : t.addToCompare}
-          >
-            {isCompared ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-          </button>
+          <div className="flex items-center gap-1.5">
+            {onToggleFavorite && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onToggleFavorite(vehicle);
+                }}
+                className={`pointer-events-auto p-1.5 rounded-xl backdrop-blur-md border transition-all ${
+                  isFavorite
+                    ? 'bg-rose-500/20 text-rose-400 border-rose-500/50 shadow-md shadow-rose-500/20'
+                    : 'bg-slate-900/70 text-slate-300 border-slate-700 hover:text-rose-400 hover:bg-slate-800'
+                }`}
+                title={isFavorite ? 'Bəyənilənlərdən çıxar' : 'Bəyənilənlərə əlavə et'}
+              >
+                <Heart className={`w-4 h-4 ${isFavorite ? 'fill-rose-500 text-rose-500' : ''}`} />
+              </button>
+            )}
+
+            {/* Compare toggle button */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                onToggleCompare(vehicle);
+              }}
+              className={`pointer-events-auto p-1.5 rounded-xl backdrop-blur-md border transition-all ${
+                isCompared
+                  ? 'bg-blue-600 text-white border-blue-400 shadow-md shadow-blue-500/30'
+                  : 'bg-slate-900/70 text-slate-300 border-slate-700 hover:bg-slate-800'
+              }`}
+              title={isCompared ? t.removeFromCompare : t.addToCompare}
+            >
+              {isCompared ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+            </button>
+          </div>
         </div>
 
         {/* Image Slider Controls */}

@@ -7,8 +7,7 @@ import {
   Calculator, 
   Layers, 
   PlusCircle, 
-  Globe, 
-  Coins 
+  Heart 
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -17,6 +16,9 @@ interface NavbarProps {
   lang: Language;
   setLang: (l: Language) => void;
   comparedVehicles: Vehicle[];
+  favoritesCount: number;
+  isFavoritesFilterActive: boolean;
+  onToggleFavoritesFilter: () => void;
   onOpenCompare: () => void;
   onOpenCalculator: () => void;
   onOpenAiAdvisor: () => void;
@@ -29,6 +31,9 @@ export const Navbar: React.FC<NavbarProps> = ({
   lang,
   setLang,
   comparedVehicles,
+  favoritesCount,
+  isFavoritesFilterActive,
+  onToggleFavoritesFilter,
   onOpenCompare,
   onOpenCalculator,
   onOpenAiAdvisor,
@@ -93,6 +98,25 @@ export const Navbar: React.FC<NavbarProps> = ({
             {comparedVehicles.length > 0 && (
               <span className="px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-blue-500 text-white">
                 {comparedVehicles.length}
+              </span>
+            )}
+          </button>
+
+          {/* Favorites (Watchlist) Trigger */}
+          <button
+            onClick={onToggleFavoritesFilter}
+            className={`relative flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs sm:text-sm font-medium transition-all ${
+              isFavoritesFilterActive
+                ? 'bg-rose-500/20 border-rose-500/50 text-rose-400 shadow-sm shadow-rose-500/20'
+                : 'bg-slate-900 border-slate-800 text-slate-300 hover:bg-slate-800 hover:text-rose-400'
+            }`}
+            title="Bəyənilən avtomobillər"
+          >
+            <Heart className={`w-4 h-4 ${favoritesCount > 0 ? 'text-rose-400 fill-rose-500/30' : 'text-slate-400'}`} />
+            <span className="hidden lg:inline">Seçilmişlər</span>
+            {favoritesCount > 0 && (
+              <span className="px-1.5 py-0.2 rounded-full text-[10px] font-bold bg-rose-500 text-white">
+                {favoritesCount}
               </span>
             )}
           </button>

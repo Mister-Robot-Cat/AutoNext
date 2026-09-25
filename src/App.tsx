@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Vehicle, FilterState, Currency, Language } from './types/vehicle';
 import { MOCK_VEHICLES } from './data/mockVehicles';
 import { TRANSLATIONS, formatPrice } from './utils/i18n';
@@ -35,6 +35,30 @@ export function App() {
   const [vehicles, setVehicles] = useState<Vehicle[]>(MOCK_VEHICLES);
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
   const [comparedVehicleIds, setComparedVehicleIds] = useState<string[]>([]);
+
+  // Favorites (Watchlist) persisted state
+  const [favoriteIds, setFavoriteIds] = useState<string[]>(() => {
+    try {
+      return JSON.parse(localStorage.getItem('autonext_favorites') || '[]');
+    } catch {
+      return [];
+    }
+  });
+  const [isFavoritesFilterActive, setIsFavoritesFilterActive] = useState(false);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('autonext_favorites', JSON.stringify(favoriteIds));
+    } catch (e) {
+      console.warn('LocalStorage save error:', e);
+    }
+  }, [favoriteIds]);
+
+  const toggleFavorite = (car: Vehicle) => {
+    setFavoriteIds((prev) =>
+      prev.includes(car.id) ? prev.filter((id) => id !== car.id) : [...prev, car.id]
+    );
+  };
 
   // Modal visibility states
   const [isCompareOpen, setIsCompareOpen] = useState(false);
@@ -107,6 +131,7 @@ export function App() {
       if (filters.city && car.city !== filters.city) return false;
 
       // Toggles
+      if (isFavoritesFilterActive && !favoriteIds.includes(car.id)) return false;
       if (filters.verifiedOnly && !car.isVerified) return false;
       if (filters.greatDealOnly && car.valuation.status !== 'great_deal') return false;
       if (filters.creditOnly && !car.isCreditAvailable) return false;
@@ -122,7 +147,7 @@ export function App() {
       if (!a.isFeatured && b.isFeatured) return 1;
       return 0;
     });
-  }, [vehicles, filters]);
+  }, [vehicles, filters, isFavoritesFilterActive, favoriteIds]);
 
   // Comparison Handlers
   const toggleCompare = (car: Vehicle) => {
@@ -171,6 +196,9 @@ export function App() {
         lang={lang}
         setLang={setLang}
         comparedVehicles={comparedVehicles}
+        favoritesCount={favoriteIds.length}
+        isFavoritesFilterActive={isFavoritesFilterActive}
+        onToggleFavoritesFilter={() => setIsFavoritesFilterActive((prev) => !prev)}
         onOpenCompare={() => setIsCompareOpen(true)}
         onOpenCalculator={() => {
           setLoanCarTarget(null);
@@ -266,6 +294,8 @@ export function App() {
                 currency={currency}
                 lang={lang}
                 isCompared={comparedVehicleIds.includes(car.id)}
+                isFavorite={favoriteIds.includes(car.id)}
+                onToggleFavorite={toggleFavorite}
                 onToggleCompare={toggleCompare}
                 onSelect={setSelectedVehicle}
               />
