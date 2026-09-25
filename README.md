@@ -1,126 +1,134 @@
-# 🚗 AutoNext — Next-Gen Smart Automotive Marketplace
+# 🚗 AutoNext Pro — Autonomous Automotive Marketplace & Intelligence Platform
 
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/Mister-Robot-Cat/AutoNext)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React_19-20232A?style=flat&logo=react&logoColor=61DAFB)](https://react.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
 
-> **AutoNext** is an intelligent, transparent automotive marketplace and car valuation platform built specifically to solve the long-standing UX, transparency, and pricing issues of traditional classifieds like **Turbo.az** in Azerbaijan.
+**AutoNext Pro** is a high-performance, next-generation automotive marketplace and valuation ecosystem designed and developed by [@Mister-Robot-Cat](https://github.com/Mister-Robot-Cat). It combines machine learning price intelligence, an interactive digital damage inspection framework, multi-criteria comparison engine, and localized real-time auto-financing.
 
 ---
 
-## ⚡ Why AutoNext? (AutoNext vs. Turbo.az)
+## ✨ Core Innovations & Engineering Highlights
 
-| Feature | 🔴 Traditional Classifieds (Turbo.az) | 🟢 AutoNext Pro |
-| :--- | :--- | :--- |
-| **Pricing Intelligence** | ❌ Arbitrary seller pricing, no fair-value guidance | ✅ **AI Fair-Price Valuation Engine** (indicates % below/above Baku market average) |
-| **Car Comparison** | ❌ None. Users must open 15 separate tabs | ✅ **Live Side-by-Side Comparison Matrix** (compares specs, highlights winners in green) |
-| **Damage & Paint Inspection** | ❌ Vague text descriptions ("vuruğu yoxdur") | ✅ **Digital Damage & Inspection Map** (interactive body parts showing paint/repairs) |
-| **Loan & Financing** | ❌ Rough external links or outdated estimates | ✅ **Built-in Bank Financing Calculator** (real Kapital Bank, ABB, Unibank rates in AZN) |
-| **AI Advisor** | ❌ None | ✅ **GPT-Powered Car Matchmaker** (finds cars by lifestyle, fuel economy & budget) |
-| **Currency Support** | ⚠️ Mostly single-currency with manual conversions | ✅ **Instant Multi-Currency Switcher** (AZN ₼, USD $, EUR €) |
-| **Modern UX/UI** | ❌ Cluttered 2010-era design with banner ads | ✅ **Sleek, dark glassmorphic interface**, zero clutter, mobile-first responsive |
-| **Languages** | ⚠️ Limited multi-lingual navigation | ✅ Full **Azərbaycan (AZ)**, **English (EN)**, **Русский (RU)** localization |
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│                          AutoNext Pro Platform                         │
+├──────────────────┬──────────────────┬──────────────────┬───────────────┤
+│   AI Valuation   │ Comparison Matrix│  Inspection Map  │ Auto-Finance  │
+│    (AutoValue)   │  (Multi-Vehicle) │  (Paint/Damage)  │ (Bank Rates)  │
+└──────────────────┴──────────────────┴──────────────────┴───────────────┘
+```
 
----
+### 1. 🤖 AutoValue™ AI Pricing Engine
+- **Fair-Price Classification:** Analyzes real-time historical market datasets, vehicle specifications, mileage, and condition scores.
+- **Dynamic Valuation Badges:** 
+  - `Great Deal` (Below market median by 5-15%)
+  - `Good Deal` (Below market median by 2-5%)
+  - `Fair Market Price` (Within standard deviation)
+  - `Overpriced` (Above historical averages)
+- **Confidence Scoring:** Real-time AI confidence index based on listing sample density and feature verification.
 
-## 🌟 Key Features
+### 2. 📊 Multi-Vehicle Comparison Matrix
+- **Side-by-Side Analysis:** Live side-by-side comparison of up to 4 vehicles simultaneously.
+- **Automated Advantage Highlighting:** Intelligently tags top performers for:
+  - Optimal price per model year
+  - Maximum horsepower & powertrain output
+  - Lowest fuel consumption (L/100km or EV equivalents)
+  - Lowest verified odometer mileage
+  - Verified bodywork status
 
-### 1. 🤖 AI Market Price Valuation
-Every vehicle is automatically evaluated against real-time Baku historical sales data. Buyers immediately see badges such as:
-- **Great Deal** (e.g. *7.5% below market*)
-- **Good Deal**
-- **Fair Market Price**
-- **Overpriced** with confidence rating.
+### 3. 🛡️ InspectScan™ Digital Damage & Paint Map
+- **Granular Panel Checklist:** Interactive visual breakdown of 11 critical exterior structural zones (hood, bumpers, doors, fenders, roof, trunk).
+- **Condition Tiers:**
+  - `Factory Paint` (Zavod / Bezkraska)
+  - `Cosmetic Paint` (Minor surface scratch touch-ups)
+  - `Replaced Part` (OEM / aftermarket panel replacement)
+  - `Damage Flagged` (Requires body shop inspection)
 
-### 2. 📊 Side-by-Side Vehicle Comparison Matrix
-Select up to 4 vehicles simultaneously. The comparison engine automatically identifies and highlights:
-- Lowest price per year
-- Highest horsepower (hp)
-- Lowest fuel consumption (L / 100km)
-- Lowest verified mileage
-- Detailed paint and damage comparison
+### 4. 🏦 Integrated Auto-Loan & Leasing Engine
+- **Real Bank Programs:** Integrated loan formulas with real terms from Kapital Bank, ABB, and Unibank.
+- **Instant Financial Projections:** Dynamic monthly payment calculations, total interest paid, bank commissions, and minimum income thresholds.
 
-### 3. 🔍 Interactive Digital Damage Map
-Inspect vehicles with complete peace of mind. Every listing contains an interactive breakdown of critical vehicle panels (hood, bumpers, doors, roof, fenders) with condition classifications:
-- `Zavod rəngi` (Original factory paint)
-- `Kosmetik rəng` (Cosmetic paint / minor scratches)
-- `Dəyişilib` (Replaced part)
-- `Zədəlidir` (Needs repair)
-
-### 4. 🏦 Real-time Bank Auto-Loan Calculator
-Calculate actual monthly payments in AZN directly inside vehicle details:
-- Integrated rates from **Kapital Bank**, **ABB**, and **Unibank**.
-- Adjustable down payment (15% to 80%) and loan terms (12 to 60 months).
-- Accurate breakdown of principal, bank interest, commission, and required minimum income.
-
-### 5. 💡 AI Car Matchmaker & Advisor
-Users can ask natural questions like *"Find me an economical hybrid SUV under 40,000 AZN"* and receive curated vehicle recommendations with full technical justification.
+### 5. 🌐 Multi-Currency & Full Trilingual Localization
+- **Currencies:** Seamless instant toggle between **AZN (₼)**, **USD ($)**, and **EUR (€)** with automatic rate conversion.
+- **Languages:** Comprehensive native support for **Azərbaycan dili (AZ)**, **English (EN)**, and **Русский (RU)**.
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Architecture & Tech Stack
 
-- **Framework:** React 19 + TypeScript
-- **Bundler & Tooling:** Vite 8
-- **Styling:** Tailwind CSS + Custom Glassmorphism Theme
-- **Icons:** Lucide React
-- **CI/CD:** GitHub Actions (Automated build, lint verification & scheduled maintenance workflows)
+- **Client Runtime:** React 19 + TypeScript (Strict typing enabled)
+- **Styling Architecture:** Tailwind CSS with modern glassmorphism design system
+- **Build System:** Vite 8 (Ultra-fast HMR and optimized production bundling)
+- **Icons & Visuals:** Lucide React
+- **Code Quality:** Oxlint + TypeScript Compiler
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Quick Start
 
-### Prerequisites
-- Node.js (v18 or higher, v22 recommended)
-- npm or yarn
-
-### Installation
+### 1. Clone & Install
 
 ```bash
-# Clone the repository
 git clone https://github.com/Mister-Robot-Cat/AutoNext.git
-
-# Navigate to project folder
 cd AutoNext
-
-# Install dependencies
 npm install
+```
 
-# Start local development server
+### 2. Development Mode
+
+```bash
 npm run dev
 ```
 
-Visit `http://localhost:5173` in your browser.
+Open `http://localhost:5173` to explore the application.
 
-### Production Build
+### 3. Production Build
 
 ```bash
 npm run build
 ```
 
----
-
-## 🗺️ Roadmap
-
-- [x] Scaffolding with React 19, Vite, Tailwind CSS & TypeScript
-- [x] Domain models for vehicles, inspection reports, price valuations & loans
-- [x] Azerbaijan localized vehicle dataset (Baku, Ganja, Sumgait dealerships)
-- [x] Multi-currency converter (AZN, USD, EUR) & i18n localization (AZ, EN, RU)
-- [x] AI Fair-Price evaluation badge system
-- [x] Side-by-side vehicle comparison tool
-- [x] Local bank financing & leasing calculator
-- [x] Digital damage & paint inspection map
-- [x] AI automotive matchmaker advisor
-- [x] Automated CI/CD and scheduled market health workflow
-- [ ] Backend API integration with real-time Azerbaijan VIN databases
-- [ ] 360-degree interactive vehicle exterior viewer
+Generates optimized, production-ready static assets in `dist/`.
 
 ---
 
-## 📄 License
+## 📁 Project Structure
 
-This project is licensed under the MIT License — feel free to use and expand!
-Developed with passion by [@Mister-Robot-Cat](https://github.com/Mister-Robot-Cat).
+```text
+autonext/
+├── public/                 # Static assets and icons
+├── src/
+│   ├── assets/             # Brand logos & imagery
+│   ├── components/
+│   │   ├── CarCard.tsx           # Interactive car card with gallery preview
+│   │   ├── CarComparator.tsx     # Side-by-side comparison matrix
+│   │   ├── CarDetailModal.tsx    # Detailed inspection & seller view
+│   │   ├── FairPriceBadge.tsx    # AI price status badge
+│   │   ├── FilterBar.tsx         # Multi-criteria search & quick toggles
+│   │   ├── LoanCalculatorModal.tsx # Bank financing calculator
+│   │   └── Navbar.tsx            # Navigation, currency & language switchers
+│   ├── data/
+│   │   └── mockVehicles.ts       # Comprehensive automotive dataset
+│   ├── types/
+│   │   └── vehicle.ts            # Domain TypeScript models
+│   ├── utils/
+│   │   └── i18n.ts               # Multi-language & currency utilities
+│   ├── App.tsx                   # Master platform layout & state orchestration
+│   ├── index.css                 # Base theme & Tailwind imports
+│   └── main.tsx                  # Application entry point
+├── package.json
+├── tsconfig.json
+└── vite.config.ts
+```
+
+---
+
+## 👤 Author
+
+Developed by **[@Mister-Robot-Cat](https://github.com/Mister-Robot-Cat)**.
+
+All rights reserved © 2026 AutoNext Pro.

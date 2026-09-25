@@ -190,7 +190,7 @@ export function App() {
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 shadow-inner backdrop-blur-md">
             <span className="flex h-2 w-2 rounded-full bg-blue-500 animate-pulse" />
             <span className="text-xs font-semibold text-slate-200">
-              Turbo.az-dan daha şəffaf, sürətli və ağıllı
+              Ağıllı Süni İntellekt ilə Təchiz Olunmuş Avtomobil Ekosistemi
             </span>
           </div>
 
@@ -545,7 +545,7 @@ export function App() {
             <div className="flex items-center justify-between border-b border-slate-800 pb-4">
               <div>
                 <h3 className="text-xl font-black text-white">Yeni Elan Yerləşdir</h3>
-                <p className="text-xs text-slate-400">Turbo.az-dan fərqli olaraq AutoNext maşınınız üçün real bazar qiymətini təyin edir</p>
+                <p className="text-xs text-slate-400">AutoNext alqoritmləri avtomobiliniz üçün real bazar qiymətini avtomatik hesablayır</p>
               </div>
               <button
                 onClick={() => setIsCreateListingOpen(false)}

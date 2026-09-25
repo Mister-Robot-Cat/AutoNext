@@ -45,7 +45,7 @@ export const CarComparator: React.FC<CarComparatorProps> = ({
             <div>
               <h2 className="text-xl font-black text-white">Avtomobillərin Canlı Müqayisəsi</h2>
               <p className="text-xs text-slate-400">
-                Turbo.az-dan fərqli olaraq xüsusiyyətləri yan-yana müqayisə edin və ən üstün variantı seçin
+                Avtomobil xüsusiyyətlərini yan-yana təhlil edin və ən optimal variantı seçin
               </p>
             </div>
           </div>
