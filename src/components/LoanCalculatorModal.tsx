@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Vehicle, Currency, Language } from '../types/vehicle';
 import { formatPrice, TRANSLATIONS } from '../utils/i18n';
 import { BANK_PROGRAMS } from '../data/mockVehicles';
+import { calculateCarLoan } from '../utils/pricing';
 import { X, Calculator, Building2, Check, ArrowRight } from 'lucide-react';
 
 interface LoanCalculatorModalProps {
@@ -26,17 +27,20 @@ export const LoanCalculatorModal: React.FC<LoanCalculatorModalProps> = ({
 
   const selectedBank = BANK_PROGRAMS[selectedBankIndex];
 
-  // Calculations
-  const downPaymentAmount = Math.round(carPrice * (downPaymentPercent / 100));
-  const principal = carPrice - downPaymentAmount;
-  const monthlyRate = selectedBank.annualInterestRate / 100 / 12;
-  const monthlyPayment = Math.round(
-    (principal * (monthlyRate * Math.pow(1 + monthlyRate, termMonths))) /
-      (Math.pow(1 + monthlyRate, termMonths) - 1)
+  // Calculations using pure verified utility
+  const {
+    downPaymentAmount,
+    principal,
+    monthlyPayment,
+    totalInterest,
+    bankCommission,
+  } = calculateCarLoan(
+    carPrice,
+    downPaymentPercent,
+    termMonths,
+    selectedBank.annualInterestRate,
+    selectedBank.commissionPercent
   );
-  const totalRepayment = monthlyPayment * termMonths;
-  const totalInterest = totalRepayment - principal;
-  const bankCommission = Math.round(principal * (selectedBank.commissionPercent / 100));
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200">
