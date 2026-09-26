@@ -28,6 +28,7 @@ interface CarDetailModalProps {
   lang: Language;
   onClose: () => void;
   onOpenLoanForCar: (vehicle: Vehicle) => void;
+  onOpenVinHistory: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -36,6 +37,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   lang,
   onClose,
   onOpenLoanForCar,
+  onOpenVinHistory,
 }) => {
   if (!vehicle) return null;
   const t = TRANSLATIONS[lang];
@@ -163,6 +165,16 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                 >
                   <Calculator className="w-4 h-4" />
                   <span>Kreditlə aylıq: ≈ {formatPrice(Math.round(vehicle.priceAzn * 0.024), currency)} / ay</span>
+                </button>
+
+                {/* VIN History Report Shortcut */}
+                <button
+                  type="button"
+                  onClick={() => onOpenVinHistory(vehicle)}
+                  className="w-full py-2.5 px-4 rounded-xl bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 border border-blue-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all"
+                >
+                  <FileCheck className="w-4 h-4" />
+                  <span>VIN Tarixçəsi & Yürüş Hesabatı</span>
                 </button>
               </div>
 
