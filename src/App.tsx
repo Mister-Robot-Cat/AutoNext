@@ -9,6 +9,7 @@ import { CarCard } from './components/CarCard';
 import { CarDetailModal } from './components/CarDetailModal';
 import { CarComparator } from './components/CarComparator';
 import { LoanCalculatorModal } from './components/LoanCalculatorModal';
+import { VinHistoryModal } from './components/VinHistoryModal';
 import { 
   Sparkles, 
   Layers, 
@@ -65,6 +66,7 @@ export function App() {
   const [isCompareOpen, setIsCompareOpen] = useState(false);
   const [isLoanModalOpen, setIsLoanModalOpen] = useState(false);
   const [loanCarTarget, setLoanCarTarget] = useState<Vehicle | null>(null);
+  const [vinTargetCar, setVinTargetCar] = useState<Vehicle | null>(null);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -311,6 +313,16 @@ export function App() {
           setLoanCarTarget(car);
           setIsLoanModalOpen(true);
         }}
+        onOpenVinHistory={(car) => {
+          setVinTargetCar(car);
+        }}
+      />
+
+      {/* VIN History Report Modal */}
+      <VinHistoryModal
+        vehicle={vinTargetCar}
+        lang={lang}
+        onClose={() => setVinTargetCar(null)}
       />
 
       {/* Car Comparator Modal */}

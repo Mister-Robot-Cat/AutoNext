@@ -105,3 +105,40 @@ export interface BankLoanProgram {
   annualInterestRate: number; // e.g. 14%
   commissionPercent: number;
 }
+
+export interface OdometerReading {
+  date: string;
+  mileageKm: number;
+  source: string;
+}
+
+export interface ServiceRecord {
+  id: string;
+  date: string;
+  title: string;
+  mileageKm: number;
+  description: string;
+  verifiedBy: string;
+}
+
+export interface TechnicalInspection {
+  date: string;
+  result: 'passed' | 'warning';
+  notes: string;
+}
+
+export interface VinHistoryReport {
+  vin: string;
+  vehicleTitle: string;
+  originCountry: string;
+  manufactureYear: number;
+  importDate?: string;
+  customsCleared: boolean;
+  theftRecord: boolean;
+  accidentCount: number;
+  previousOwnersCount: number;
+  odometerReadings: OdometerReading[];
+  serviceHistory: ServiceRecord[];
+  technicalInspections: TechnicalInspection[];
+  overallStatus: 'clean' | 'minor_issues' | 'warning';
+}
