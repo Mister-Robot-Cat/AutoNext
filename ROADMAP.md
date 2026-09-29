@@ -26,7 +26,7 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 ### 🎨 Milestone 3: Interactive Visual Experiences
 - [x] 360° exterior vehicle rotation simulator (interactive dragging or slider)
 - [ ] High-resolution fullscreen lightbox image viewer with zoom
-- [ ] Real-time price depreciation curve chart (SVG/Canvas based)
+- [x] Real-time price depreciation curve chart (SVG/Canvas based)
 
 ---
 

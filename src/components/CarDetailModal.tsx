@@ -24,6 +24,7 @@ import {
   Image as ImageIcon
 } from 'lucide-react';
 import { CarRotationViewer } from './CarRotationViewer';
+import { PriceDepreciationChart } from './PriceDepreciationChart';
 
 interface CarDetailModalProps {
   vehicle: Vehicle | null;
@@ -377,6 +378,9 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
               </div>
             )}
           </div>
+
+          {/* Price Depreciation & Resale Trajectory Forecast */}
+          <PriceDepreciationChart vehicle={vehicle} currency={currency} lang={lang} />
 
           {/* Description */}
           <div className="p-5 rounded-2xl bg-slate-950/60 border border-slate-800 space-y-2">
