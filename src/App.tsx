@@ -3,6 +3,7 @@ import { Vehicle, Currency, Language } from './types/vehicle';
 import { MOCK_VEHICLES } from './data/mockVehicles';
 import { TRANSLATIONS, formatPrice } from './utils/i18n';
 import { useVehicleFilter } from './hooks/useVehicleFilter';
+import { useWatchlist } from './hooks/useWatchlist';
 import { Navbar } from './components/Navbar';
 import { FilterBar } from './components/FilterBar';
 import { CarCard } from './components/CarCard';
@@ -38,29 +39,12 @@ export function App() {
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
   const [comparedVehicleIds, setComparedVehicleIds] = useState<string[]>([]);
 
-  // Favorites (Watchlist) persisted state
-  const [favoriteIds, setFavoriteIds] = useState<string[]>(() => {
-    try {
-      return JSON.parse(localStorage.getItem('autonext_favorites') || '[]');
-    } catch {
-      return [];
-    }
-  });
-  const [isFavoritesFilterActive, setIsFavoritesFilterActive] = useState(false);
-
-  useEffect(() => {
-    try {
-      localStorage.setItem('autonext_favorites', JSON.stringify(favoriteIds));
-    } catch (e) {
-      console.warn('LocalStorage save error:', e);
-    }
-  }, [favoriteIds]);
-
-  const toggleFavorite = (car: Vehicle) => {
-    setFavoriteIds((prev) =>
-      prev.includes(car.id) ? prev.filter((id) => id !== car.id) : [...prev, car.id]
-    );
-  };
+  const {
+    favoriteIds,
+    isFavoritesFilterActive,
+    setIsFavoritesFilterActive,
+    toggleFavorite,
+  } = useWatchlist();
 
   // Modal visibility states
   const [isCompareOpen, setIsCompareOpen] = useState(false);
