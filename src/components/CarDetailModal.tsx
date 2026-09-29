@@ -19,8 +19,11 @@ import {
   ChevronLeft,
   ChevronRight,
   Share2,
-  FileCheck
+  FileCheck,
+  Rotate3d,
+  Image as ImageIcon
 } from 'lucide-react';
+import { CarRotationViewer } from './CarRotationViewer';
 
 interface CarDetailModalProps {
   vehicle: Vehicle | null;
@@ -44,6 +47,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
 
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
+  const [viewMode, setViewMode] = useState<'gallery' | '360'>('gallery');
 
   const damagePartDetails = vehicle.damageReport.find((p) => p.partId === selectedDamagePart);
 
@@ -86,45 +90,80 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             {/* Gallery Column (7 cols) */}
             <div className="lg:col-span-7 space-y-3">
-              <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800">
-                <img
-                  src={vehicle.images[activeImage] || vehicle.images[0]}
-                  alt={vehicle.title}
-                  className="w-full h-full object-cover"
-                />
+              {/* Mode Switcher Tabs */}
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setViewMode('gallery')}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border transition-all ${
+                    viewMode === 'gallery'
+                      ? 'bg-blue-600 text-white border-blue-500 shadow-md shadow-blue-500/25'
+                      : 'bg-slate-950/60 text-slate-400 border-slate-800 hover:text-white hover:bg-slate-900'
+                  }`}
+                >
+                  <ImageIcon className="w-3.5 h-3.5" />
+                  <span>Foto Qalereya</span>
+                </button>
 
-                {vehicle.images.length > 1 && (
-                  <>
-                    <button
-                      onClick={() => setActiveImage((prev) => (prev - 1 + vehicle.images.length) % vehicle.images.length)}
-                      className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-slate-950/70 hover:bg-slate-900 text-white"
-                    >
-                      <ChevronLeft className="w-5 h-5" />
-                    </button>
-                    <button
-                      onClick={() => setActiveImage((prev) => (prev + 1) % vehicle.images.length)}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-slate-950/70 hover:bg-slate-900 text-white"
-                    >
-                      <ChevronRight className="w-5 h-5" />
-                    </button>
-                  </>
-                )}
+                <button
+                  type="button"
+                  onClick={() => setViewMode('360')}
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border transition-all ${
+                    viewMode === '360'
+                      ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white border-cyan-400 shadow-md shadow-cyan-500/25'
+                      : 'bg-slate-950/60 text-slate-400 border-slate-800 hover:text-cyan-400 hover:bg-slate-900'
+                  }`}
+                >
+                  <Rotate3d className="w-3.5 h-3.5" />
+                  <span>360° Studio Baxışı</span>
+                </button>
               </div>
 
-              {/* Thumbnails */}
-              <div className="flex gap-2 overflow-x-auto pb-1">
-                {vehicle.images.map((img, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setActiveImage(idx)}
-                    className={`w-20 h-14 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 ${
-                      activeImage === idx ? 'border-blue-500 scale-95' : 'border-transparent opacity-60 hover:opacity-100'
-                    }`}
-                  >
-                    <img src={img} alt="thumb" className="w-full h-full object-cover" />
-                  </button>
-                ))}
-              </div>
+              {viewMode === '360' ? (
+                <CarRotationViewer vehicle={vehicle} />
+              ) : (
+                <>
+                  <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800">
+                    <img
+                      src={vehicle.images[activeImage] || vehicle.images[0]}
+                      alt={vehicle.title}
+                      className="w-full h-full object-cover"
+                    />
+
+                    {vehicle.images.length > 1 && (
+                      <>
+                        <button
+                          onClick={() => setActiveImage((prev) => (prev - 1 + vehicle.images.length) % vehicle.images.length)}
+                          className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-slate-950/70 hover:bg-slate-900 text-white"
+                        >
+                          <ChevronLeft className="w-5 h-5" />
+                        </button>
+                        <button
+                          onClick={() => setActiveImage((prev) => (prev + 1) % vehicle.images.length)}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-slate-950/70 hover:bg-slate-900 text-white"
+                        >
+                          <ChevronRight className="w-5 h-5" />
+                        </button>
+                      </>
+                    )}
+                  </div>
+
+                  {/* Thumbnails */}
+                  <div className="flex gap-2 overflow-x-auto pb-1">
+                    {vehicle.images.map((img, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => setActiveImage(idx)}
+                        className={`w-20 h-14 rounded-lg overflow-hidden border-2 transition-all flex-shrink-0 ${
+                          activeImage === idx ? 'border-blue-500 scale-95' : 'border-transparent opacity-60 hover:opacity-100'
+                        }`}
+                      >
+                        <img src={img} alt="thumb" className="w-full h-full object-cover" />
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
 
             {/* Price & Seller Column (5 cols) */}
