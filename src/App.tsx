@@ -4,6 +4,7 @@ import { MOCK_VEHICLES } from './data/mockVehicles';
 import { TRANSLATIONS, formatPrice } from './utils/i18n';
 import { useVehicleFilter } from './hooks/useVehicleFilter';
 import { useWatchlist } from './hooks/useWatchlist';
+import { useCarComparison } from './hooks/useCarComparison';
 import { Navbar } from './components/Navbar';
 import { FilterBar } from './components/FilterBar';
 import { CarCard } from './components/CarCard';
@@ -37,7 +38,16 @@ export function App() {
   // Vehicles state
   const [vehicles, setVehicles] = useState<Vehicle[]>(MOCK_VEHICLES);
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
-  const [comparedVehicleIds, setComparedVehicleIds] = useState<string[]>([]);
+
+  // Car Comparison Custom Hook
+  const {
+    comparedVehicleIds,
+    comparedVehicles,
+    toggleCompare,
+    removeComparedVehicle,
+    clearComparison,
+    limit: compareLimit,
+  } = useCarComparison(vehicles);
 
   const {
     favoriteIds,
@@ -71,29 +81,6 @@ export function App() {
     isFavoritesFilterActive,
     favoriteIds,
   });
-
-  // Comparison Handlers
-  const toggleCompare = (car: Vehicle) => {
-    setComparedVehicleIds((prev) => {
-      if (prev.includes(car.id)) {
-        return prev.filter((id) => id !== car.id);
-      }
-      if (prev.length >= 4) {
-        alert('Maksimum 4 avtomobili eyni anda müqayisə edə bilərsiniz.');
-        return prev;
-      }
-      return [...prev, car.id];
-    });
-  };
-
-  const comparedVehicles = useMemo(
-    () => vehicles.filter((v) => comparedVehicleIds.includes(v.id)),
-    [vehicles, comparedVehicleIds]
-  );
-
-  const removeComparedVehicle = (id: string) => {
-    setComparedVehicleIds((prev) => prev.filter((carId) => carId !== id));
-  };
 
   // AI Filtered recommendations
   const aiRecommendations = useMemo(() => {
@@ -270,7 +257,7 @@ export function App() {
 
           <div className="flex items-center gap-2 flex-shrink-0">
             <button
-              onClick={() => setComparedVehicleIds([])}
+              onClick={clearComparison}
               className="text-xs text-slate-400 hover:text-white px-2"
             >
               Təmizlə
