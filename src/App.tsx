@@ -8,6 +8,7 @@ import { useCarComparison } from './hooks/useCarComparison';
 import { Navbar } from './components/Navbar';
 import { FilterBar } from './components/FilterBar';
 import { CarCard } from './components/CarCard';
+import { CarCardSkeleton } from './components/CarCardSkeleton';
 import { CarDetailModal } from './components/CarDetailModal';
 import { CarComparator } from './components/CarComparator';
 import { LoanCalculatorModal } from './components/LoanCalculatorModal';
@@ -38,6 +39,15 @@ export function App() {
   // Vehicles state
   const [vehicles, setVehicles] = useState<Vehicle[]>(MOCK_VEHICLES);
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Simulate network loading
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Car Comparison Custom Hook
   const {
@@ -195,7 +205,13 @@ export function App() {
         />
 
         {/* Vehicle Grid */}
-        {filteredVehicles.length > 0 ? (
+        {isLoading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <CarCardSkeleton key={`skeleton-${i}`} />
+            ))}
+          </div>
+        ) : filteredVehicles.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredVehicles.map((car) => (
               <CarCard
