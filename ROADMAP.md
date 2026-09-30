@@ -38,6 +38,6 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 ---
 
 ### 🧪 Milestone 5: Testing & Performance Optimization
-- [ ] Comprehensive Vitest unit tests for `FilterBar` logic & search ranking
+- [x] Comprehensive Vitest unit tests for `FilterBar` logic & search ranking
 - [x] Skeleton loaders for image gallery and car card loading states
 - [x] Lighthouse 95+ score optimization (image preloading, dynamic bundle chunking)
