@@ -33,6 +33,8 @@ export interface SellerInfo {
   rating: number; // 1-5
   reviewsCount: number;
   verifiedIdentity: boolean;
+  responseTimeMinutes?: number;
+  responseRate?: number;
   memberSinceYear: number;
   city: string;
   avatarUrl?: string;

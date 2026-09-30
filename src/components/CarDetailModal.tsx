@@ -252,7 +252,12 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                       {vehicle.seller.name.charAt(0)}
                     </div>
                     <div>
-                      <h4 className="font-bold text-white text-sm">{vehicle.seller.name}</h4>
+                      <div className="flex items-center gap-2">
+                        <h4 className="font-bold text-white text-sm">{vehicle.seller.name}</h4>
+                        {vehicle.seller.verifiedIdentity && (
+                          <ShieldCheck className="w-3.5 h-3.5 text-blue-400" />
+                        )}
+                      </div>
                       <p className="text-xs text-slate-400">
                         {vehicle.seller.type === 'official_dealer'
                           ? 'Rəsmi Diler'
@@ -260,6 +265,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                           ? 'Avtosalon'
                           : 'Şəxsi satıcı'} • {vehicle.seller.memberSinceYear}-ci ildən
                       </p>
+                      {vehicle.seller.responseTimeMinutes !== undefined && (
+                        <div className="flex items-center gap-1.5 mt-1.5">
+                          <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                            ~{vehicle.seller.responseTimeMinutes} dəq cavab sürəti
+                          </span>
+                          {vehicle.seller.responseRate && (
+                            <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                              Göstərici: {Math.round(vehicle.seller.responseRate * 100)}%
+                            </span>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
 
