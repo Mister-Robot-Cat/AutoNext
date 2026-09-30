@@ -21,10 +21,12 @@ import {
   Share2,
   FileCheck,
   Rotate3d,
-  Image as ImageIcon
+  Image as ImageIcon,
+  ZoomIn
 } from 'lucide-react';
 import { CarRotationViewer } from './CarRotationViewer';
 import { PriceDepreciationChart } from './PriceDepreciationChart';
+import { LightboxViewer } from './LightboxViewer';
 
 interface CarDetailModalProps {
   vehicle: Vehicle | null;
@@ -49,11 +51,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'gallery' | '360'>('gallery');
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   const damagePartDetails = vehicle.damageReport.find((p) => p.partId === selectedDamagePart);
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200">
+      {isLightboxOpen && (
+        <LightboxViewer
+          images={vehicle.images}
+          initialIndex={activeImage}
+          onClose={() => setIsLightboxOpen(false)}
+        />
+      )}
       <div 
         className="relative w-full max-w-5xl bg-slate-900 border border-slate-800 rounded-3xl shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
@@ -124,24 +134,40 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                 <CarRotationViewer vehicle={vehicle} />
               ) : (
                 <>
-                  <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800">
+                  <div 
+                    className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 cursor-pointer group"
+                    onClick={() => setIsLightboxOpen(true)}
+                  >
                     <img
                       src={vehicle.images[activeImage] || vehicle.images[0]}
                       alt={vehicle.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                     />
+
+                    {/* Magnify Icon Overlay */}
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="p-3 rounded-full bg-black/60 text-white/90 backdrop-blur-sm">
+                        <ZoomIn className="w-6 h-6" />
+                      </div>
+                    </div>
 
                     {vehicle.images.length > 1 && (
                       <>
                         <button
-                          onClick={() => setActiveImage((prev) => (prev - 1 + vehicle.images.length) % vehicle.images.length)}
-                          className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-slate-950/70 hover:bg-slate-900 text-white"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setActiveImage((prev) => (prev - 1 + vehicle.images.length) % vehicle.images.length);
+                          }}
+                          className="absolute left-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-slate-950/70 hover:bg-slate-900 text-white z-10"
                         >
                           <ChevronLeft className="w-5 h-5" />
                         </button>
                         <button
-                          onClick={() => setActiveImage((prev) => (prev + 1) % vehicle.images.length)}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-slate-950/70 hover:bg-slate-900 text-white"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setActiveImage((prev) => (prev + 1) % vehicle.images.length);
+                          }}
+                          className="absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full bg-slate-950/70 hover:bg-slate-900 text-white z-10"
                         >
                           <ChevronRight className="w-5 h-5" />
                         </button>
