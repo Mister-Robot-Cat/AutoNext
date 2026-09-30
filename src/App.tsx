@@ -9,10 +9,10 @@ import { Navbar } from './components/Navbar';
 import { FilterBar } from './components/FilterBar';
 import { CarCard } from './components/CarCard';
 import { CarCardSkeleton } from './components/CarCardSkeleton';
-import { CarDetailModal } from './components/CarDetailModal';
-import { CarComparator } from './components/CarComparator';
-import { LoanCalculatorModal } from './components/LoanCalculatorModal';
-import { VinHistoryModal } from './components/VinHistoryModal';
+const CarDetailModal = React.lazy(() => import('./components/CarDetailModal').then(m => ({ default: m.CarDetailModal })));
+const CarComparator = React.lazy(() => import('./components/CarComparator').then(m => ({ default: m.CarComparator })));
+const LoanCalculatorModal = React.lazy(() => import('./components/LoanCalculatorModal').then(m => ({ default: m.LoanCalculatorModal })));
+const VinHistoryModal = React.lazy(() => import('./components/VinHistoryModal').then(m => ({ default: m.VinHistoryModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -289,56 +289,58 @@ export function App() {
         </div>
       )}
 
-      {/* Car Detail Modal */}
-      <CarDetailModal
-        vehicle={selectedVehicle}
-        currency={currency}
-        lang={lang}
-        onClose={() => setSelectedVehicle(null)}
-        onOpenLoanForCar={(car) => {
-          setSelectedVehicle(null);
-          setLoanCarTarget(car);
-          setIsLoanModalOpen(true);
-        }}
-        onOpenVinHistory={(car) => {
-          setVinTargetCar(car);
-        }}
-      />
-
-      {/* VIN History Report Modal */}
-      <VinHistoryModal
-        vehicle={vinTargetCar}
-        lang={lang}
-        onClose={() => setVinTargetCar(null)}
-      />
-
-      {/* Car Comparator Modal */}
-      {isCompareOpen && (
-        <CarComparator
-          vehicles={comparedVehicles}
+      <React.Suspense fallback={null}>
+        {/* Car Detail Modal */}
+        <CarDetailModal
+          vehicle={selectedVehicle}
           currency={currency}
           lang={lang}
-          onRemoveVehicle={removeComparedVehicle}
-          onClose={() => setIsCompareOpen(false)}
-          onSelectVehicle={(v) => {
-            setIsCompareOpen(false);
-            setSelectedVehicle(v);
+          onClose={() => setSelectedVehicle(null)}
+          onOpenLoanForCar={(car) => {
+            setSelectedVehicle(null);
+            setLoanCarTarget(car);
+            setIsLoanModalOpen(true);
+          }}
+          onOpenVinHistory={(car) => {
+            setVinTargetCar(car);
           }}
         />
-      )}
 
-      {/* Loan Calculator Modal */}
-      {isLoanModalOpen && (
-        <LoanCalculatorModal
-          initialVehicle={loanCarTarget}
-          currency={currency}
+        {/* VIN History Report Modal */}
+        <VinHistoryModal
+          vehicle={vinTargetCar}
           lang={lang}
-          onClose={() => {
-            setIsLoanModalOpen(false);
-            setLoanCarTarget(null);
-          }}
+          onClose={() => setVinTargetCar(null)}
         />
-      )}
+
+        {/* Car Comparator Modal */}
+        {isCompareOpen && (
+          <CarComparator
+            vehicles={comparedVehicles}
+            currency={currency}
+            lang={lang}
+            onRemoveVehicle={removeComparedVehicle}
+            onClose={() => setIsCompareOpen(false)}
+            onSelectVehicle={(v) => {
+              setIsCompareOpen(false);
+              setSelectedVehicle(v);
+            }}
+          />
+        )}
+
+        {/* Loan Calculator Modal */}
+        {isLoanModalOpen && (
+          <LoanCalculatorModal
+            initialVehicle={loanCarTarget}
+            currency={currency}
+            lang={lang}
+            onClose={() => {
+              setIsLoanModalOpen(false);
+              setLoanCarTarget(null);
+            }}
+          />
+        )}
+      </React.Suspense>
 
       {/* AI Advisor Modal */}
       {isAiModalOpen && (

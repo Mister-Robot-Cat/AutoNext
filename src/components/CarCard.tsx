@@ -60,6 +60,8 @@ export const CarCard: React.FC<CarCardProps> = ({
         <img
           src={vehicle.images[currentImageIndex] || vehicle.images[0]}
           alt={vehicle.title}
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
 
