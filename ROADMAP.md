@@ -20,6 +20,7 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Extract `useVehicleFilter` hook to decouple search/filter logic from `App.tsx`
 - [x] Extract `useWatchlist` hook with sync across browser tabs
 - [x] Extract `useCarComparison` hook with limit checks and persistent draft
+- [x] Extract `useLoanCalculator` hook to clean up Modal logic
 
 ---
 

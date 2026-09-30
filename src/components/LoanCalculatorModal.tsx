@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Vehicle, Currency, Language } from '../types/vehicle';
 import { formatPrice, TRANSLATIONS } from '../utils/i18n';
 import { BANK_PROGRAMS } from '../data/mockVehicles';
-import { calculateCarLoan } from '../utils/pricing';
 import { X, Calculator, Building2, Check, ArrowRight } from 'lucide-react';
+import { useLoanCalculator } from '../hooks/useLoanCalculator';
 
 interface LoanCalculatorModalProps {
   initialVehicle?: Vehicle | null;
@@ -20,27 +20,26 @@ export const LoanCalculatorModal: React.FC<LoanCalculatorModalProps> = ({
 }) => {
   const t = TRANSLATIONS[lang];
 
-  const [carPrice, setCarPrice] = useState<number>(initialVehicle ? initialVehicle.priceAzn : 50000);
-  const [downPaymentPercent, setDownPaymentPercent] = useState<number>(25);
-  const [termMonths, setTermMonths] = useState<number>(36);
-  const [selectedBankIndex, setSelectedBankIndex] = useState<number>(0);
+  const {
+    carPrice,
+    setCarPrice,
+    downPaymentPercent,
+    setDownPaymentPercent,
+    termMonths,
+    setTermMonths,
+    selectedBankIndex,
+    setSelectedBankIndex,
+    selectedBank,
+    calculation,
+  } = useLoanCalculator({ initialPriceAzn: initialVehicle?.priceAzn });
 
-  const selectedBank = BANK_PROGRAMS[selectedBankIndex];
-
-  // Calculations using pure verified utility
   const {
     downPaymentAmount,
     principal,
     monthlyPayment,
     totalInterest,
     bankCommission,
-  } = calculateCarLoan(
-    carPrice,
-    downPaymentPercent,
-    termMonths,
-    selectedBank.annualInterestRate,
-    selectedBank.commissionPercent
-  );
+  } = calculation;
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200">
