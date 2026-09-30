@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Vehicle, Currency, Language } from './types/vehicle';
+import { Vehicle, Currency, Language, SellerInfo } from './types/vehicle';
 import { MOCK_VEHICLES } from './data/mockVehicles';
 import { TRANSLATIONS, formatPrice } from './utils/i18n';
 import { useVehicleFilter } from './hooks/useVehicleFilter';
@@ -13,6 +13,7 @@ const CarDetailModal = React.lazy(() => import('./components/CarDetailModal').th
 const CarComparator = React.lazy(() => import('./components/CarComparator').then(m => ({ default: m.CarComparator })));
 const LoanCalculatorModal = React.lazy(() => import('./components/LoanCalculatorModal').then(m => ({ default: m.LoanCalculatorModal })));
 const VinHistoryModal = React.lazy(() => import('./components/VinHistoryModal').then(m => ({ default: m.VinHistoryModal })));
+const DealershipProfileModal = React.lazy(() => import('./components/DealershipProfileModal').then(m => ({ default: m.DealershipProfileModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -71,6 +72,7 @@ export function App() {
   const [isLoanModalOpen, setIsLoanModalOpen] = useState(false);
   const [loanCarTarget, setLoanCarTarget] = useState<Vehicle | null>(null);
   const [vinTargetCar, setVinTargetCar] = useState<Vehicle | null>(null);
+  const [dealershipTarget, setDealershipTarget] = useState<SellerInfo | null>(null);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -304,6 +306,9 @@ export function App() {
           onOpenVinHistory={(car) => {
             setVinTargetCar(car);
           }}
+          onOpenDealership={(seller) => {
+            setDealershipTarget(seller);
+          }}
         />
 
         {/* VIN History Report Modal */}
@@ -338,6 +343,24 @@ export function App() {
               setIsLoanModalOpen(false);
               setLoanCarTarget(null);
             }}
+          />
+        )}
+
+        {/* Dealership Profile Modal */}
+        {dealershipTarget && (
+          <DealershipProfileModal
+            seller={dealershipTarget}
+            currency={currency}
+            lang={lang}
+            onClose={() => setDealershipTarget(null)}
+            onSelectVehicle={(v) => {
+              setDealershipTarget(null);
+              setSelectedVehicle(v);
+            }}
+            favoriteIds={favoriteIds}
+            comparedVehicleIds={comparedVehicleIds}
+            onToggleFavorite={toggleFavorite}
+            onToggleCompare={toggleCompare}
           />
         )}
       </React.Suspense>

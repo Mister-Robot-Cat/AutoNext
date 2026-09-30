@@ -35,6 +35,7 @@ interface CarDetailModalProps {
   onClose: () => void;
   onOpenLoanForCar: (vehicle: Vehicle) => void;
   onOpenVinHistory: (vehicle: Vehicle) => void;
+  onOpenDealership?: (seller: any) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -44,6 +45,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onClose,
   onOpenLoanForCar,
   onOpenVinHistory,
+  onOpenDealership,
 }) => {
   if (!vehicle) return null;
   const t = TRANSLATIONS[lang];
@@ -247,13 +249,16 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
               {/* Seller Information */}
               <div className="p-5 rounded-2xl bg-slate-950/60 border border-slate-800 space-y-4">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-11 h-11 rounded-full bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400 font-bold text-lg">
+                  <div 
+                    className={`flex items-center gap-3 ${onOpenDealership ? 'cursor-pointer group' : ''}`}
+                    onClick={() => onOpenDealership && onOpenDealership(vehicle.seller)}
+                  >
+                    <div className="w-11 h-11 rounded-full bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400 font-bold text-lg group-hover:bg-blue-600/40 transition-colors">
                       {vehicle.seller.name.charAt(0)}
                     </div>
                     <div>
                       <div className="flex items-center gap-2">
-                        <h4 className="font-bold text-white text-sm">{vehicle.seller.name}</h4>
+                        <h4 className="font-bold text-white text-sm group-hover:text-blue-400 transition-colors">{vehicle.seller.name}</h4>
                         {vehicle.seller.verifiedIdentity && (
                           <ShieldCheck className="w-3.5 h-3.5 text-blue-400" />
                         )}

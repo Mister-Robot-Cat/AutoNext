@@ -32,7 +32,7 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 
 ### 🔍 Milestone 4: Trust & Transparency Verification
 - [x] VIN Vehicle History Timeline (CARFAX / AutoCheck equivalent with odometer graph)
-- [ ] Verified Dealership Profile pages (Toyota Abşeron, Baku Prestige, Autolux)
+- [x] Verified Dealership Profile pages (Toyota Abşeron, Baku Prestige, Autolux)
 - [x] Seller contact response time badges & verification checks
 
 ---
