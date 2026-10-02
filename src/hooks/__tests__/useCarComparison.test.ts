@@ -98,11 +98,11 @@ describe('useCarComparison', () => {
 
   it('should gracefully handle invalid JSON in localStorage', () => {
     localStorage.setItem(STORAGE_KEY, 'invalid-json');
-    const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
+    const consoleSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
     
     const { result } = renderHook(() => useCarComparison(mockVehicles));
     expect(result.current.comparedVehicleIds).toEqual([]);
-    expect(consoleSpy).toHaveBeenCalledWith('Failed to parse compare draft from local storage');
+    expect(consoleSpy).toHaveBeenCalledWith('Error reading localStorage key "autonext_compare_draft":', expect.any(SyntaxError));
     
     consoleSpy.mockRestore();
   });

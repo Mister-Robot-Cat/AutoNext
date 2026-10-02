@@ -1,26 +1,12 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useMemo } from 'react';
 import { Vehicle } from '../types/vehicle';
+import { useLocalStorage } from './useLocalStorage';
 
 const MAX_COMPARE_LIMIT = 4;
 const STORAGE_KEY = 'autonext_compare_draft';
 
 export function useCarComparison(vehicles: Vehicle[]) {
-  const [comparedVehicleIds, setComparedVehicleIds] = useState<string[]>(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        return JSON.parse(saved);
-      }
-    } catch (e) {
-      console.error('Failed to parse compare draft from local storage');
-    }
-    return [];
-  });
-
-  // Sync with LocalStorage
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(comparedVehicleIds));
-  }, [comparedVehicleIds]);
+  const [comparedVehicleIds, setComparedVehicleIds] = useLocalStorage<string[]>(STORAGE_KEY, []);
 
   const toggleCompare = (car: Vehicle) => {
     setComparedVehicleIds((prev) => {
