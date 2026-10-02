@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FilterState, BodyType, FuelType, Language } from '../types/vehicle';
 import { TRANSLATIONS } from '../utils/i18n';
+import { useDebounce } from '../hooks/useDebounce';
 import { 
   Search, 
   RotateCcw, 
@@ -38,8 +39,24 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   lang,
 }) => {
   const t = TRANSLATIONS[lang];
+  const [localSearch, setLocalSearch] = useState(filters.searchQuery);
+  const debouncedSearch = useDebounce(localSearch, 300);
+
+  useEffect(() => {
+    setLocalSearch(filters.searchQuery);
+  }, [filters.searchQuery]);
+
+  useEffect(() => {
+    setFilters((prev) => {
+      if (prev.searchQuery !== debouncedSearch) {
+        return { ...prev, searchQuery: debouncedSearch };
+      }
+      return prev;
+    });
+  }, [debouncedSearch, setFilters]);
 
   const handleReset = () => {
+    setLocalSearch('');
     setFilters({
       searchQuery: '',
       make: '',
@@ -68,8 +85,8 @@ export const FilterBar: React.FC<FilterBarProps> = ({
         <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
         <input
           type="text"
-          value={filters.searchQuery}
-          onChange={(e) => setFilters((prev) => ({ ...prev, searchQuery: e.target.value }))}
+          value={localSearch}
+          onChange={(e) => setLocalSearch(e.target.value)}
           placeholder={t.searchPlaceholder}
           className="w-full pl-12 pr-4 py-3.5 bg-slate-950/70 border border-slate-700/80 rounded-2xl text-slate-100 placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all text-sm sm:text-base"
         />
