@@ -5,6 +5,7 @@ import { TRANSLATIONS, formatPrice } from './utils/i18n';
 import { useVehicleFilter } from './hooks/useVehicleFilter';
 import { useWatchlist } from './hooks/useWatchlist';
 import { useCarComparison } from './hooks/useCarComparison';
+import { usePreferences } from './hooks/usePreferences';
 import { Navbar } from './components/Navbar';
 import { FilterBar } from './components/FilterBar';
 import { CarCard } from './components/CarCard';
@@ -33,8 +34,7 @@ import {
 } from 'lucide-react';
 
 export function App() {
-  const [currency, setCurrency] = useState<Currency>('AZN');
-  const [lang, setLang] = useState<Language>('az');
+  const { currency, setCurrency, lang, setLang } = usePreferences();
   const t = TRANSLATIONS[lang];
 
   // Vehicles state
