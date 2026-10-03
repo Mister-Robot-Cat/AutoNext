@@ -24,6 +24,7 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Extract `useLocalStorage` hook to standardize persistent state & cross-tab syncing
 - [x] Extract `usePreferences` hook to persist language & currency preferences across sessions
 - [x] Extract `useShare` hook to enable native Web Share API with clipboard fallback
+- [x] Create `useRecentlyViewed` hook to track recently viewed cars with limit
 
 ---
 
