@@ -63,6 +63,7 @@ export const LoanCalculatorModal: React.FC<LoanCalculatorModalProps> = ({
 
           <button
             onClick={onClose}
+            aria-label="Close calculator"
             className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors"
           >
             <X className="w-5 h-5" />
