@@ -45,5 +45,6 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Vitest unit tests for `useWatchlist` hook
 - [x] Vitest unit tests for `CarCard` component
 - [x] Vitest unit tests for `PriceDepreciationChart` component
+- [x] Vitest unit tests for `Navbar` component
 - [x] Skeleton loaders for image gallery and car card loading states
 - [x] Lighthouse 95+ score optimization (image preloading, dynamic bundle chunking)
