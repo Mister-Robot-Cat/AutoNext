@@ -27,6 +27,7 @@ import {
 import { CarRotationViewer } from './CarRotationViewer';
 import { PriceDepreciationChart } from './PriceDepreciationChart';
 import { LightboxViewer } from './LightboxViewer';
+import { useShare } from '../hooks/useShare';
 
 interface CarDetailModalProps {
   vehicle: Vehicle | null;
@@ -54,6 +55,18 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'gallery' | '360'>('gallery');
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+
+  const { share, isShared } = useShare();
+  
+  const handleShare = () => {
+    if (vehicle) {
+      share(
+        `${vehicle.make} ${vehicle.model} ${vehicle.year}`,
+        `Check out this ${vehicle.make} ${vehicle.model} for ${formatPrice(vehicle.priceAzn, currency)}!`,
+        window.location.href
+      );
+    }
+  };
 
   const damagePartDetails = vehicle.damageReport.find((p) => p.partId === selectedDamagePart);
 
@@ -88,6 +101,17 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
           </div>
 
           <div className="flex items-center gap-2">
+            <button
+              onClick={handleShare}
+              title={isShared ? "Copied to clipboard!" : "Share"}
+              className={`p-2 rounded-xl transition-colors ${
+                isShared 
+                  ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                  : 'bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white'
+              }`}
+            >
+              {isShared ? <CheckCircle className="w-5 h-5" /> : <Share2 className="w-5 h-5" />}
+            </button>
             <button
               onClick={onClose}
               className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors"
