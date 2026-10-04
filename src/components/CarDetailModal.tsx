@@ -48,9 +48,6 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenVinHistory,
   onOpenDealership,
 }) => {
-  if (!vehicle) return null;
-  const t = TRANSLATIONS[lang];
-
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'gallery' | '360'>('gallery');
@@ -58,6 +55,8 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
 
   const { share, isShared } = useShare();
   
+  if (!vehicle) return null;
+  const t = TRANSLATIONS[lang];
   const handleShare = () => {
     if (vehicle) {
       share(

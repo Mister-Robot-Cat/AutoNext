@@ -28,11 +28,11 @@ export function DealershipProfileModal({
   onToggleFavorite = () => {},
   onToggleCompare = () => {}
 }: DealershipProfileModalProps) {
-  if (!seller) return null;
-
   const dealerVehicles = useMemo(() => {
-    return MOCK_VEHICLES.filter(v => v.seller.id === seller.id);
-  }, [seller.id]);
+    return seller ? MOCK_VEHICLES.filter(v => v.seller.id === seller.id) : [];
+  }, [seller?.id]);
+
+  if (!seller) return null;
 
   const isOfficial = seller.type === 'official_dealer' || seller.type === 'autocenter';
 
