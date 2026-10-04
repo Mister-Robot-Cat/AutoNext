@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Vehicle, Currency, Language } from '../types/vehicle';
 import { formatPrice, TRANSLATIONS } from '../utils/i18n';
 import { FairPriceBadge } from './FairPriceBadge';
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { 
   Fuel, 
   Gauge, 
@@ -39,6 +40,9 @@ export const CarCard: React.FC<CarCardProps> = ({
 }) => {
   const t = TRANSLATIONS[lang];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const entry = useIntersectionObserver(cardRef, { freezeOnceVisible: true, threshold: 0.1 });
+  const isVisible = !!entry?.isIntersecting;
 
   const nextImage = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -52,8 +56,11 @@ export const CarCard: React.FC<CarCardProps> = ({
 
   return (
     <div 
+      ref={cardRef}
       onClick={() => onSelect(vehicle)}
-      className="group relative bg-slate-900/80 border border-slate-800/80 hover:border-blue-500/50 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 flex flex-col cursor-pointer"
+      className={`group relative bg-slate-900/80 border border-slate-800/80 hover:border-blue-500/50 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-500 flex flex-col cursor-pointer ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+      }`}
     >
       {/* Image Gallery Container */}
       <div className="relative aspect-[16/10] overflow-hidden bg-slate-950">

@@ -54,3 +54,4 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Vitest unit tests for `CarRotationViewer` component
 - [x] Skeleton loaders for image gallery and car card loading states
 - [x] Lighthouse 95+ score optimization (image preloading, dynamic bundle chunking)
+- [x] Scroll fade-in animations via `useIntersectionObserver` for micro-interaction polish
