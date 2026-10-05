@@ -6,6 +6,7 @@ import { useVehicleFilter } from './hooks/useVehicleFilter';
 import { useWatchlist } from './hooks/useWatchlist';
 import { useCarComparison } from './hooks/useCarComparison';
 import { usePreferences } from './hooks/usePreferences';
+import { useRecentlyViewed } from './hooks/useRecentlyViewed';
 import { Navbar } from './components/Navbar';
 import { FilterBar } from './components/FilterBar';
 import { CarCard } from './components/CarCard';
@@ -30,7 +31,8 @@ import {
   SlidersHorizontal,
   Flame,
   CheckCircle2,
-  Car
+  Car,
+  Clock
 } from 'lucide-react';
 
 export function App() {
@@ -66,6 +68,12 @@ export function App() {
     setIsFavoritesFilterActive,
     toggleFavorite,
   } = useWatchlist();
+
+  const { recentlyViewedIds, addRecentlyViewed, clearRecentlyViewed } = useRecentlyViewed();
+
+  const recentlyViewedVehicles = useMemo(() => {
+    return recentlyViewedIds.map(id => vehicles.find(v => v.id === id)).filter(Boolean) as Vehicle[];
+  }, [recentlyViewedIds, vehicles]);
 
   // Modal visibility states
   const [isCompareOpen, setIsCompareOpen] = useState(false);
@@ -225,7 +233,10 @@ export function App() {
                 isFavorite={favoriteIds.includes(car.id)}
                 onToggleFavorite={toggleFavorite}
                 onToggleCompare={toggleCompare}
-                onSelect={setSelectedVehicle}
+                onSelect={(v) => {
+                  setSelectedVehicle(v);
+                  addRecentlyViewed(v.id);
+                }}
               />
             ))}
           </div>
@@ -597,6 +608,43 @@ export function App() {
             </div>
           </div>
         </div>
+      )}
+
+      {/* Recently Viewed Section */}
+      {recentlyViewedVehicles.length > 0 && !isLoading && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-8 border-t border-slate-800/80 w-full overflow-hidden">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-bold text-white flex items-center gap-2">
+              <Clock className="w-5 h-5 text-blue-400" />
+              {lang === 'az' ? 'Son baxılanlar' : lang === 'en' ? 'Recently Viewed' : 'Недавно просмотренные'}
+            </h2>
+            <button 
+              onClick={clearRecentlyViewed}
+              className="text-xs font-semibold text-slate-400 hover:text-red-400 transition-colors"
+            >
+              {lang === 'az' ? 'Tarixçəni təmizlə' : lang === 'en' ? 'Clear history' : 'Очистить историю'}
+            </button>
+          </div>
+          <div className="flex gap-4 overflow-x-auto pb-4 snap-x">
+            {recentlyViewedVehicles.map(car => (
+              <div key={`recent-${car.id}`} className="min-w-[280px] sm:min-w-[300px] snap-start shrink-0">
+                <CarCard
+                  vehicle={car}
+                  currency={currency}
+                  lang={lang}
+                  isCompared={comparedVehicleIds.includes(car.id)}
+                  isFavorite={favoriteIds.includes(car.id)}
+                  onToggleFavorite={toggleFavorite}
+                  onToggleCompare={toggleCompare}
+                  onSelect={(v) => {
+                    setSelectedVehicle(v);
+                    addRecentlyViewed(v.id);
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        </section>
       )}
 
       {/* Footer */}
