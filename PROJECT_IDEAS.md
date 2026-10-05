@@ -17,3 +17,7 @@ This document outlines upcoming project concepts that the GitHub Growth Agent wi
 **Description:** Essential utilities for processing Azerbaijani text.
 - **Core Features:** Cyrillic to Latin transliteration; SEO-friendly `slugify` that correctly handles `ə ğ ı ö ü ç ş`; linguistically accurate `upper()` and `lower()` functions specifically for `I/ı` and `İ/i` (which standard Python `str.upper()` fails on); and converting numerical amounts to written Azerbaijani words (e.g., for currency/manats).
 - **Market Niche:** Current alternatives are extremely sparse, with only one old package (`azconvert` with ~3 stars) and an outdated slugifier from 2018.
+
+
+4. lexify (Bot)
+- A new bot project (e.g., Telegram bot). Needs to be scaffolded and developed.
