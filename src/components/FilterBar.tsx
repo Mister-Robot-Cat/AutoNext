@@ -8,7 +8,8 @@ import {
   ShieldCheck, 
   Percent, 
   Zap, 
-  SlidersHorizontal 
+  SlidersHorizontal,
+  X
 } from 'lucide-react';
 
 interface FilterBarProps {
@@ -54,6 +55,26 @@ export const FilterBar: React.FC<FilterBarProps> = ({
       return prev;
     });
   }, [debouncedSearch, setFilters]);
+
+  const activeFilters: { label: string; onRemove: () => void }[] = [];
+
+  if (filters.make) {
+    activeFilters.push({ label: filters.make, onRemove: () => setFilters((prev) => ({ ...prev, make: '', model: '' })) });
+  }
+  if (filters.model) {
+    activeFilters.push({ label: filters.model, onRemove: () => setFilters((prev) => ({ ...prev, model: '' })) });
+  }
+  if (filters.city) {
+    activeFilters.push({ label: filters.city, onRemove: () => setFilters((prev) => ({ ...prev, city: '' })) });
+  }
+  if (filters.bodyType !== 'all') {
+    const bt = BODY_TYPES.find((b) => b.id === filters.bodyType);
+    if (bt) activeFilters.push({ label: lang === 'en' ? bt.labelEn : bt.labelAz, onRemove: () => setFilters((prev) => ({ ...prev, bodyType: 'all' })) });
+  }
+  if (filters.fuelType !== 'all') {
+    const fuelMap: Record<string, string> = { petrol: 'Benzin', hybrid: 'Hibrid', electric: 'Elektrik', diesel: 'Dizel' };
+    activeFilters.push({ label: fuelMap[filters.fuelType] || filters.fuelType, onRemove: () => setFilters((prev) => ({ ...prev, fuelType: 'all' })) });
+  }
 
   const handleReset = () => {
     setLocalSearch('');
@@ -189,6 +210,24 @@ export const FilterBar: React.FC<FilterBarProps> = ({
           </select>
         </div>
       </div>
+
+      {/* Active Filters Pills */}
+      {activeFilters.length > 0 && (
+        <div className="flex flex-wrap items-center gap-2 mb-4">
+          <span className="text-xs font-semibold text-slate-500 uppercase mr-1">{lang === 'en' ? 'Active Filters:' : 'Aktiv filtrlər:'}</span>
+          {activeFilters.map((af, idx) => (
+            <span key={idx} className="flex items-center gap-1.5 px-2.5 py-1 bg-slate-800/80 text-slate-300 text-xs rounded-lg border border-slate-700/50">
+              {af.label}
+              <button onClick={af.onRemove} className="text-slate-500 hover:text-slate-200 transition-colors">
+                <X className="w-3.5 h-3.5" />
+              </button>
+            </span>
+          ))}
+          <button onClick={handleReset} className="text-xs text-blue-400 hover:text-blue-300 ml-2 transition-colors font-medium">
+            {t.resetFilters}
+          </button>
+        </div>
+      )}
 
       {/* Quick Toggles: Great Deal, Verified, Credit */}
       <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-800">
