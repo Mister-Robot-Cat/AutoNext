@@ -56,3 +56,4 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Lighthouse 95+ score optimization (image preloading, dynamic bundle chunking)
 - [x] Scroll fade-in animations via `useIntersectionObserver` for micro-interaction polish
 - [x] Vitest unit tests for `DealershipProfileModal` component
+- [x] Vitest unit tests for `CarDetailModal` component
