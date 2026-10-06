@@ -27,6 +27,7 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Create `useRecentlyViewed` hook to track recently viewed cars with limit
 - [x] Extract `useSavedSearches` hook to allow users to save and quickly load filter configurations
 - [x] Extract `useMediaQuery` hook to enable responsive conditional rendering
+- [x] Extract `useClickOutside` hook to manage dropdown and modal closures
 
 ---
 
@@ -64,3 +65,4 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Vitest unit tests for `useSavedSearches` hook
 - [x] Vitest unit tests for `CarCardSkeleton` component
 - [x] Add `usePagination` hook and `Pagination` component to limit vehicle grid rendering
+- [x] Vitest unit tests for `useClickOutside` hook
