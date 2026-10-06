@@ -13,6 +13,7 @@ import { FilterBar } from './components/FilterBar';
 import { CarCard } from './components/CarCard';
 import { CarCardSkeleton } from './components/CarCardSkeleton';
 import { Pagination } from './components/Pagination';
+import { ScrollToTop } from './components/ScrollToTop';
 const CarDetailModal = React.lazy(() => import('./components/CarDetailModal').then(m => ({ default: m.CarDetailModal })));
 const CarComparator = React.lazy(() => import('./components/CarComparator').then(m => ({ default: m.CarComparator })));
 const LoanCalculatorModal = React.lazy(() => import('./components/LoanCalculatorModal').then(m => ({ default: m.LoanCalculatorModal })));
@@ -699,6 +700,8 @@ export function App() {
           </div>
         </div>
       </footer>
+
+      <ScrollToTop />
     </div>
   );
 }
