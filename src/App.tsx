@@ -7,10 +7,12 @@ import { useWatchlist } from './hooks/useWatchlist';
 import { useCarComparison } from './hooks/useCarComparison';
 import { usePreferences } from './hooks/usePreferences';
 import { useRecentlyViewed } from './hooks/useRecentlyViewed';
+import { usePagination } from './hooks/usePagination';
 import { Navbar } from './components/Navbar';
 import { FilterBar } from './components/FilterBar';
 import { CarCard } from './components/CarCard';
 import { CarCardSkeleton } from './components/CarCardSkeleton';
+import { Pagination } from './components/Pagination';
 const CarDetailModal = React.lazy(() => import('./components/CarDetailModal').then(m => ({ default: m.CarDetailModal })));
 const CarComparator = React.lazy(() => import('./components/CarComparator').then(m => ({ default: m.CarComparator })));
 const LoanCalculatorModal = React.lazy(() => import('./components/LoanCalculatorModal').then(m => ({ default: m.LoanCalculatorModal })));
@@ -101,6 +103,23 @@ export function App() {
     isFavoritesFilterActive,
     favoriteIds,
   });
+
+  const {
+    currentPage,
+    pageSize,
+    totalPages,
+    goToPage
+  } = usePagination({ totalItems: filteredVehicles.length, initialPageSize: 12 });
+
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    goToPage(1);
+  }, [filters]);
+
+  const paginatedVehicles = useMemo(() => {
+    const startIndex = (currentPage - 1) * pageSize;
+    return filteredVehicles.slice(startIndex, startIndex + pageSize);
+  }, [filteredVehicles, currentPage, pageSize]);
 
   // AI Filtered recommendations
   const aiRecommendations = useMemo(() => {
@@ -222,24 +241,35 @@ export function App() {
             ))}
           </div>
         ) : filteredVehicles.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredVehicles.map((car) => (
-              <CarCard
-                key={car.id}
-                vehicle={car}
-                currency={currency}
-                lang={lang}
-                isCompared={comparedVehicleIds.includes(car.id)}
-                isFavorite={favoriteIds.includes(car.id)}
-                onToggleFavorite={toggleFavorite}
-                onToggleCompare={toggleCompare}
-                onSelect={(v) => {
-                  setSelectedVehicle(v);
-                  addRecentlyViewed(v.id);
-                }}
-              />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {paginatedVehicles.map((car) => (
+                <CarCard
+                  key={car.id}
+                  vehicle={car}
+                  currency={currency}
+                  lang={lang}
+                  isCompared={comparedVehicleIds.includes(car.id)}
+                  isFavorite={favoriteIds.includes(car.id)}
+                  onToggleFavorite={toggleFavorite}
+                  onToggleCompare={toggleCompare}
+                  onSelect={(v) => {
+                    setSelectedVehicle(v);
+                    addRecentlyViewed(v.id);
+                  }}
+                />
+              ))}
+            </div>
+            
+            <Pagination 
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={(p) => {
+                goToPage(p);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+            />
+          </>
         ) : (
           <div className="py-20 text-center space-y-4 bg-slate-900/40 rounded-3xl border border-slate-800">
             <div className="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center mx-auto text-slate-500">
