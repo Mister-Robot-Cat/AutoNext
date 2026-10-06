@@ -34,6 +34,7 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] High-resolution fullscreen lightbox image viewer with zoom
 - [x] Real-time price depreciation curve chart (SVG/Canvas based)
 - [x] Add `ScrollToTop` component for quick navigation and micro-interaction polish
+- [x] Add `Tooltip` component for rich UI micro-interactions
 
 ---
 
