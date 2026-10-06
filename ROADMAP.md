@@ -26,6 +26,7 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Extract `useShare` hook to enable native Web Share API with clipboard fallback
 - [x] Create `useRecentlyViewed` hook to track recently viewed cars with limit
 - [x] Extract `useSavedSearches` hook to allow users to save and quickly load filter configurations
+- [x] Extract `useMediaQuery` hook to enable responsive conditional rendering
 
 ---
 
