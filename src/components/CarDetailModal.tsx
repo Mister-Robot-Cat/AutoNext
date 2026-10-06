@@ -28,6 +28,8 @@ import { CarRotationViewer } from './CarRotationViewer';
 import { PriceDepreciationChart } from './PriceDepreciationChart';
 import { LightboxViewer } from './LightboxViewer';
 import { useShare } from '../hooks/useShare';
+import { useScrollLock } from '../hooks/useScrollLock';
+import { useKeyPress } from '../hooks/useKeyPress';
 
 interface CarDetailModalProps {
   vehicle: Vehicle | null;
@@ -54,6 +56,9 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   const { share, isShared } = useShare();
+  
+  useScrollLock(!!vehicle);
+  useKeyPress('Escape', onClose);
   
   if (!vehicle) return null;
   const t = TRANSLATIONS[lang];

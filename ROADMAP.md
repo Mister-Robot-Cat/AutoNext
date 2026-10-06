@@ -28,6 +28,8 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Extract `useSavedSearches` hook to allow users to save and quickly load filter configurations
 - [x] Extract `useMediaQuery` hook to enable responsive conditional rendering
 - [x] Extract `useClickOutside` hook to manage dropdown and modal closures
+- [x] Extract `useScrollLock` hook to prevent body scrolling when modals are open
+- [x] Extract `useKeyPress` hook for global keyboard shortcuts (e.g. Escape to close modals)
 
 ---
 

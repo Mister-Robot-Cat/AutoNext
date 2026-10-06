@@ -16,6 +16,9 @@ import {
   Calendar
 } from 'lucide-react';
 
+import { useScrollLock } from '../hooks/useScrollLock';
+import { useKeyPress } from '../hooks/useKeyPress';
+
 interface VinHistoryModalProps {
   vehicle: Vehicle | null;
   lang: Language;
@@ -27,6 +30,9 @@ export const VinHistoryModal: React.FC<VinHistoryModalProps> = ({
   lang,
   onClose,
 }) => {
+  useScrollLock(!!vehicle);
+  useKeyPress('Escape', onClose);
+
   if (!vehicle) return null;
 
   const report = generateVinReport(vehicle);

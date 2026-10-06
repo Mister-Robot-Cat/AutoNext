@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut } from 'lucide-react';
+import { useKeyPress } from '../hooks/useKeyPress';
+import { useScrollLock } from '../hooks/useScrollLock';
 
 interface LightboxViewerProps {
   images: string[];
@@ -11,20 +13,7 @@ export const LightboxViewer: React.FC<LightboxViewerProps> = ({ images, initialI
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [scale, setScale] = useState(1);
 
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-      if (e.key === 'ArrowRight') handleNext();
-      if (e.key === 'ArrowLeft') handlePrev();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    // Prevent background scrolling
-    document.body.style.overflow = 'hidden';
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'auto';
-    };
-  }, [currentIndex, onClose]);
+  useScrollLock(true);
 
   const handleNext = () => {
     setScale(1);
@@ -39,6 +28,10 @@ export const LightboxViewer: React.FC<LightboxViewerProps> = ({ images, initialI
   const toggleZoom = () => {
     setScale((prev) => (prev === 1 ? 2.5 : 1));
   };
+
+  useKeyPress('Escape', onClose);
+  useKeyPress('ArrowRight', handleNext);
+  useKeyPress('ArrowLeft', handlePrev);
 
   return (
     <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex flex-col animate-in fade-in duration-200">

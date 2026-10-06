@@ -3,6 +3,8 @@ import { SellerInfo, Vehicle, Currency, Language } from '../types/vehicle';
 import { MOCK_VEHICLES } from '../data/mockVehicles';
 import { CarCard } from './CarCard';
 import { X, ShieldCheck, MapPin, Calendar, Star, Clock, Phone, MessageCircle, BadgeCheck } from 'lucide-react';
+import { useScrollLock } from '../hooks/useScrollLock';
+import { useKeyPress } from '../hooks/useKeyPress';
 
 interface DealershipProfileModalProps {
   seller: SellerInfo | null;
@@ -28,6 +30,9 @@ export function DealershipProfileModal({
   onToggleFavorite = () => {},
   onToggleCompare = () => {}
 }: DealershipProfileModalProps) {
+  useScrollLock(!!seller);
+  useKeyPress('Escape', onClose);
+
   const dealerVehicles = useMemo(() => {
     return seller ? MOCK_VEHICLES.filter(v => v.seller.id === seller.id) : [];
   }, [seller?.id]);

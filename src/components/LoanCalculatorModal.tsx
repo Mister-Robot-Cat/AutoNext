@@ -4,6 +4,8 @@ import { formatPrice, TRANSLATIONS } from '../utils/i18n';
 import { BANK_PROGRAMS } from '../data/mockVehicles';
 import { X, Calculator, Building2, Check, ArrowRight } from 'lucide-react';
 import { useLoanCalculator } from '../hooks/useLoanCalculator';
+import { useScrollLock } from '../hooks/useScrollLock';
+import { useKeyPress } from '../hooks/useKeyPress';
 
 interface LoanCalculatorModalProps {
   initialVehicle?: Vehicle | null;
@@ -18,6 +20,9 @@ export const LoanCalculatorModal: React.FC<LoanCalculatorModalProps> = ({
   lang,
   onClose,
 }) => {
+  useScrollLock(true);
+  useKeyPress('Escape', onClose);
+
   const t = TRANSLATIONS[lang];
 
   const {
