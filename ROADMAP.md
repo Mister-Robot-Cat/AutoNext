@@ -68,3 +68,4 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Vitest unit tests for `CarCardSkeleton` component
 - [x] Add `usePagination` hook and `Pagination` component to limit vehicle grid rendering
 - [x] Vitest unit tests for `useClickOutside` hook
+- [x] Add `ImageWithFallback` component for broken images and smooth loading

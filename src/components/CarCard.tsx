@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Vehicle, Currency, Language } from '../types/vehicle';
 import { formatPrice, TRANSLATIONS } from '../utils/i18n';
 import { FairPriceBadge } from './FairPriceBadge';
+import { ImageWithFallback } from './ImageWithFallback';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { 
   Fuel, 
@@ -64,7 +65,7 @@ export const CarCard: React.FC<CarCardProps> = ({
     >
       {/* Image Gallery Container */}
       <div className="relative aspect-[16/10] overflow-hidden bg-slate-950">
-        <img
+        <ImageWithFallback
           src={vehicle.images[currentImageIndex] || vehicle.images[0]}
           alt={vehicle.title}
           loading="lazy"
