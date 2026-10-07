@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
 import { useLocalStorage } from './useLocalStorage';
+import { toastManager } from './useToast';
 
 export function useRecentlyViewed(limit: number = 10) {
   const [recentlyViewedIds, setRecentlyViewedIds] = useLocalStorage<string[]>('autonext_recently_viewed', []);
@@ -15,6 +16,7 @@ export function useRecentlyViewed(limit: number = 10) {
 
   const clearRecentlyViewed = useCallback(() => {
     setRecentlyViewedIds([]);
+    toastManager.add('Baxış tarixçəsi təmizləndi', 'info');
   }, [setRecentlyViewedIds]);
 
   return {

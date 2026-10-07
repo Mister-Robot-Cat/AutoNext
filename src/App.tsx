@@ -14,6 +14,8 @@ import { CarCard } from './components/CarCard';
 import { CarCardSkeleton } from './components/CarCardSkeleton';
 import { Pagination } from './components/Pagination';
 import { ScrollToTop } from './components/ScrollToTop';
+import { ToastContainer } from './components/ToastContainer';
+import { toastManager } from './hooks/useToast';
 const CarDetailModal = React.lazy(() => import('./components/CarDetailModal').then(m => ({ default: m.CarDetailModal })));
 const CarComparator = React.lazy(() => import('./components/CarComparator').then(m => ({ default: m.CarComparator })));
 const LoanCalculatorModal = React.lazy(() => import('./components/LoanCalculatorModal').then(m => ({ default: m.LoanCalculatorModal })));
@@ -629,7 +631,7 @@ export function App() {
 
               <button
                 onClick={() => {
-                  alert('Elanınız uğurla yerləşdirildi və moderasiyaya göndərildi!');
+                  toastManager.add('Elanınız uğurla yerləşdirildi və moderasiyaya göndərildi!', 'success');
                   setIsCreateListingOpen(false);
                 }}
                 className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 text-white font-bold transition-all shadow-lg shadow-blue-600/20"
@@ -701,6 +703,7 @@ export function App() {
         </div>
       </footer>
 
+      <ToastContainer />
       <ScrollToTop />
     </div>
   );

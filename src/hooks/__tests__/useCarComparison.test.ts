@@ -2,6 +2,7 @@ import { renderHook, act } from '@testing-library/react';
 import { useCarComparison } from '../useCarComparison';
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { Vehicle } from '../../types/vehicle';
+import { toastManager } from '../useToast';
 
 const STORAGE_KEY = 'autonext_compare_draft';
 
@@ -62,14 +63,17 @@ describe('useCarComparison', () => {
 
   it('should prevent adding more than limit vehicles', () => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(['car1', 'car2', 'car3', 'car4']));
+    const toastSpy = vi.spyOn(toastManager, 'add').mockImplementation(() => 'test-id');
+
     const { result } = renderHook(() => useCarComparison(mockVehicles));
     
     act(() => {
       result.current.toggleCompare(mockVehicles[4]);
     });
     
-    expect(window.alert).toHaveBeenCalledWith(`Maksimum ${result.current.limit} avtomobili eyni anda müqayisə edə bilərsiniz.`);
+    expect(toastSpy).toHaveBeenCalledWith(`Maksimum ${result.current.limit} avtomobili eyni anda müqayisə edə bilərsiniz.`, 'warning');
     expect(result.current.comparedVehicleIds).toEqual(['car1', 'car2', 'car3', 'car4']);
+    toastSpy.mockRestore();
   });
 
   it('should explicitly remove a compared vehicle', () => {
