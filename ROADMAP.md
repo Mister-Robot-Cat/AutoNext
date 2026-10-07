@@ -71,7 +71,7 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Add `ImageWithFallback` component for broken images and smooth loading
 
 ### ?? Milestone 6: User Experience & Accessibility
-- [ ] Implement 'useTheme' hook for Dark/Light mode toggling with localStorage persistence
-- [ ] Add 'ToastNotification' component and 'useToast' hook for user feedback
-- [ ] Implement 'useGeolocation' hook to sort dealerships/cars by proximity
+- [x] Implement 'useTheme' hook for Dark/Light mode toggling with localStorage persistence
+- [x] Add 'ToastNotification' component and 'useToast' hook for user feedback
+- [x] Implement 'useGeolocation' hook to sort dealerships/cars by proximity
 - [ ] Add global Error Boundaries for graceful failure handling

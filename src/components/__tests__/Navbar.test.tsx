@@ -11,6 +11,8 @@ describe('Navbar Component', () => {
     setCurrency: vi.fn(),
     lang: 'en' as Language,
     setLang: vi.fn(),
+    theme: 'system' as const,
+    onToggleTheme: vi.fn(),
     comparedVehicles: [] as Vehicle[],
     favoritesCount: 0,
     isFavoritesFilterActive: false,

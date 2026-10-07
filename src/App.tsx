@@ -39,9 +39,11 @@ import {
   Car,
   Clock
 } from 'lucide-react';
+import { useTheme } from './hooks/useTheme';
 
 export function App() {
   const { currency, setCurrency, lang, setLang } = usePreferences();
+  const { theme, toggleTheme } = useTheme();
   const t = TRANSLATIONS[lang];
 
   // Vehicles state
@@ -147,6 +149,8 @@ export function App() {
         setCurrency={setCurrency}
         lang={lang}
         setLang={setLang}
+        theme={theme}
+        onToggleTheme={toggleTheme}
         comparedVehicles={comparedVehicles}
         favoritesCount={favoriteIds.length}
         isFavoritesFilterActive={isFavoritesFilterActive}

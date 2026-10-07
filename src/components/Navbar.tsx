@@ -7,7 +7,9 @@ import {
   Calculator, 
   Layers, 
   PlusCircle, 
-  Heart 
+  Heart,
+  Sun,
+  Moon
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -15,6 +17,8 @@ interface NavbarProps {
   setCurrency: (c: Currency) => void;
   lang: Language;
   setLang: (l: Language) => void;
+  theme: 'light' | 'dark' | 'system';
+  onToggleTheme: () => void;
   comparedVehicles: Vehicle[];
   favoritesCount: number;
   isFavoritesFilterActive: boolean;
@@ -30,6 +34,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   setCurrency,
   lang,
   setLang,
+  theme,
+  onToggleTheme,
   comparedVehicles,
   favoritesCount,
   isFavoritesFilterActive,
@@ -137,6 +143,15 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
             ))}
           </div>
+
+          {/* Theme Toggle */}
+          <button
+            onClick={onToggleTheme}
+            className="flex items-center justify-center w-8 h-8 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-amber-400 hover:border-amber-500/30 transition-all"
+            title={lang === 'az' ? 'MTvzunu dTyiY' : lang === 'en' ? 'Toggle theme' : 'D!D<DD1D,,O ,DD<C'}
+          >
+            {theme === 'dark' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
+          </button>
 
           {/* Language Switcher */}
           <div className="flex items-center bg-slate-900 border border-slate-800 rounded-xl p-1 text-xs">
