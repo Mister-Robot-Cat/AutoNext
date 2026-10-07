@@ -76,3 +76,6 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Add 'ToastNotification' component and 'useToast' hook for user feedback
 - [x] Implement 'useGeolocation' hook to sort dealerships/cars by proximity
 - [x] Add global Error Boundaries for graceful failure handling
+
+### ?? Milestone 7: Advanced Utilities & Enhancements
+- [ ] Add `useCopyToClipboard` hook to allow users to quickly copy VINs, share links, and seller contacts
