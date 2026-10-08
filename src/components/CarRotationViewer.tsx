@@ -6,6 +6,7 @@ import {
   DEFAULT_HOTSPOTS, 
   RotationHotspot 
 } from '../utils/rotation';
+import { useIdle } from '../hooks/useIdle';
 import { 
   Rotate3d, 
   Play, 
@@ -46,14 +47,17 @@ export const CarRotationViewer: React.FC<CarRotationViewerProps> = ({ vehicle })
   const totalFrames = frames.length;
   const currentAngle = getAngleDegrees(currentFrame, totalFrames);
 
+
   // Auto-play rotation timer
+  const isIdle = useIdle(5000); // Pause rotation after 5 seconds of inactivity
+
   useEffect(() => {
-    if (!isPlaying) return;
+    if (!isPlaying || isIdle) return;
     const interval = setInterval(() => {
       setCurrentFrame((prev) => (prev + 1) % totalFrames);
     }, 400);
     return () => clearInterval(interval);
-  }, [isPlaying, totalFrames]);
+  }, [isPlaying, isIdle, totalFrames]);
 
   // Mouse Drag Handlers
   const handleMouseDown = (e: React.MouseEvent) => {

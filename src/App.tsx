@@ -13,6 +13,7 @@ import { FilterBar } from './components/FilterBar';
 import { CarCard } from './components/CarCard';
 import { CarCardSkeleton } from './components/CarCardSkeleton';
 import { Pagination } from './components/Pagination';
+import { EmptyState } from './components/EmptyState';
 import { ScrollToTop } from './components/ScrollToTop';
 import { ToastContainer } from './components/ToastContainer';
 import { toastManager } from './hooks/useToast';
@@ -278,21 +279,13 @@ export function App() {
             />
           </>
         ) : (
-          <div className="py-20 text-center space-y-4 bg-slate-900/40 rounded-3xl border border-slate-800">
-            <div className="w-16 h-16 rounded-full bg-slate-800 flex items-center justify-center mx-auto text-slate-500">
-              <Car className="w-8 h-8" />
-            </div>
-            <h3 className="text-lg font-bold text-white">Axtarışa uyğun elan tapılmadı</h3>
-            <p className="text-sm text-slate-400 max-w-md mx-auto">
-              Zəhmət olmasa axtarış parametrlərini genişləndirin və ya filtrləri sıfırlayın.
-            </p>
-            <button
-              onClick={resetFilters}
-              className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold"
-            >
-              Bütün filtrləri sıfırla
-            </button>
-          </div>
+          <EmptyState
+            icon={Car}
+            title={lang === 'az' ? 'Axtarışa uyğun elan tapılmadı' : lang === 'ru' ? 'Подходящих объявлений не найдено' : 'No matching vehicles found'}
+            description={lang === 'az' ? 'Zəhmət olmasa axtarış parametrlərini genişləndirin və ya filtrləri sıfırlayın.' : lang === 'ru' ? 'Пожалуйста, расширьте параметры поиска или сбросьте фильтры.' : 'Please broaden your search parameters or reset the filters.'}
+            actionLabel={TRANSLATIONS[lang].resetFilters}
+            onAction={resetFilters}
+          />
         )}
       </main>
 

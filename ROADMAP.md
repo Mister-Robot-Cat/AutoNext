@@ -80,3 +80,4 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 ### âœ… Milestone 7: Advanced Utilities & Enhancements
 - [x] Add `useCopyToClipboard` hook to allow users to quickly copy VINs, share links, and seller contacts
 - [x] Add `useThrottle` hook to limit update frequency for performance optimization
+- [x] Add `useIdle` hook to detect user inactivity and optimize performance (e.g., pausing carousels or 360° viewers)
