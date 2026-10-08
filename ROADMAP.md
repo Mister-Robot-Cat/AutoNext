@@ -90,3 +90,4 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Extract generic Button component with variants, sizes, and loading state
 
 - [x] Extract generic `Badge` component with variants and sizes
+- [x] Extract generic `Alert` component with variants and closable state
