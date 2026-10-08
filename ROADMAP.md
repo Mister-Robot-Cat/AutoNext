@@ -82,5 +82,5 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Add `useThrottle` hook to limit update frequency for performance optimization
 - [x] Add `useIdle` hook to detect user inactivity and optimize performance (e.g., pausing carousels or 360� viewers)
 - [x] Add Vitest unit tests for ToastContainer component
-- [ ] Add useWindowSize hook to track window dimensions for responsive canvas/SVG elements
+- [x] Add useWindowSize hook to track window dimensions for responsive canvas/SVG elements
 - [x] Add `Accordion` component and Vitest unit tests for interactive UI components
