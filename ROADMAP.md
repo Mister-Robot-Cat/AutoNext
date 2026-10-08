@@ -92,3 +92,5 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Extract generic `Alert` component with variants and closable state
 - [x] Extract generic `Input` component with labels, error states, and icon support
 - [x] Extract generic `Spinner` component with variants and sizes
+- [x] Extract generic `Card` component for layout structure with Vitest unit tests
+- [x] Extract generic `Switch` component for toggle inputs with Vitest unit tests
