@@ -88,6 +88,7 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 
 ### ??? Milestone 8: Reusable UI Components
 - [x] Extract generic Button component with variants, sizes, and loading state
-
 - [x] Extract generic `Badge` component with variants and sizes
 - [x] Extract generic `Alert` component with variants and closable state
+- [x] Extract generic `Input` component with labels, error states, and icon support
+- [x] Extract generic `Spinner` component with variants and sizes
