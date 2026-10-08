@@ -84,3 +84,8 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Add Vitest unit tests for ToastContainer component
 - [x] Add useWindowSize hook to track window dimensions for responsive canvas/SVG elements
 - [x] Add `Accordion` component and Vitest unit tests for interactive UI components
+- [x] Add `Tabs` component and Vitest unit tests for better content organization
+
+### ??? Milestone 8: Reusable UI Components
+- [x] Extract generic Button component with variants, sizes, and loading state
+
