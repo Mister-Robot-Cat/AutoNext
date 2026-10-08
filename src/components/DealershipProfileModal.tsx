@@ -5,6 +5,8 @@ import { CarCard } from './CarCard';
 import { X, ShieldCheck, MapPin, Calendar, Star, Clock, Phone, MessageCircle, BadgeCheck } from 'lucide-react';
 import { useScrollLock } from '../hooks/useScrollLock';
 import { useKeyPress } from '../hooks/useKeyPress';
+import { useCopyToClipboard } from '../hooks/useCopyToClipboard';
+import { Copy, Check } from 'lucide-react';
 
 interface DealershipProfileModalProps {
   seller: SellerInfo | null;
@@ -32,6 +34,7 @@ export function DealershipProfileModal({
 }: DealershipProfileModalProps) {
   useScrollLock(!!seller);
   useKeyPress('Escape', onClose);
+  const [copiedPhone, copyPhone] = useCopyToClipboard();
 
   const dealerVehicles = useMemo(() => {
     return seller ? MOCK_VEHICLES.filter(v => v.seller.id === seller.id) : [];
@@ -108,12 +111,24 @@ export function DealershipProfileModal({
                       <MessageCircle className="w-4 h-4" /> WhatsApp
                     </a>
                   )}
-                  <a
-                    href={`tel:${seller.phone.replace(/\s/g, '')}`}
-                    className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/20 transition-all font-semibold text-sm flex items-center gap-2"
-                  >
-                    <Phone className="w-4 h-4" /> Zəng Et
-                  </a>
+                  <div className="flex bg-blue-600 rounded-xl overflow-hidden shadow-lg shadow-blue-600/20">
+                    <a
+                      href={`tel:${seller.phone.replace(/\s/g, '')}`}
+                      className="px-4 py-2 hover:bg-blue-500 text-white transition-all font-semibold text-sm flex items-center gap-2"
+                    >
+                      <Phone className="w-4 h-4" /> Zəng Et
+                    </a>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        copyPhone(seller.phone);
+                      }}
+                      className="px-3 bg-blue-700/50 hover:bg-blue-500 text-white transition-colors border-l border-blue-500/30 flex items-center justify-center"
+                      title="Nömrəni kopyala"
+                    >
+                      {copiedPhone === seller.phone ? <Check className="w-4 h-4 text-emerald-300" /> : <Copy className="w-4 h-4" />}
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

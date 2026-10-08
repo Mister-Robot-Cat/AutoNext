@@ -18,6 +18,8 @@ import {
 
 import { useScrollLock } from '../hooks/useScrollLock';
 import { useKeyPress } from '../hooks/useKeyPress';
+import { useCopyToClipboard } from '../hooks/useCopyToClipboard';
+import { Copy, Check } from 'lucide-react';
 
 interface VinHistoryModalProps {
   vehicle: Vehicle | null;
@@ -32,6 +34,7 @@ export const VinHistoryModal: React.FC<VinHistoryModalProps> = ({
 }) => {
   useScrollLock(!!vehicle);
   useKeyPress('Escape', onClose);
+  const [copiedVin, copyVin] = useCopyToClipboard();
 
   if (!vehicle) return null;
 
@@ -57,9 +60,23 @@ export const VinHistoryModal: React.FC<VinHistoryModalProps> = ({
                   Təsdiqlənib
                 </span>
               </div>
-              <p className="text-xs text-slate-400 font-mono mt-0.5">
-                VIN: <span className="text-white font-bold">{report.vin}</span> • {report.vehicleTitle}
-              </p>
+              <div className="text-xs text-slate-400 font-mono mt-0.5 flex items-center gap-1.5 flex-wrap">
+                <span>VIN:</span>
+                <div className="flex items-center gap-1 group/vin">
+                  <span className="text-white font-bold">{report.vin}</span>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      copyVin(report.vin);
+                    }}
+                    title="Copy VIN"
+                    className="p-1 rounded opacity-0 group-hover/vin:opacity-100 focus:opacity-100 hover:bg-slate-800 transition-all text-slate-400 hover:text-white"
+                  >
+                    {copiedVin === report.vin ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                  </button>
+                </div>
+                <span>• {report.vehicleTitle}</span>
+              </div>
             </div>
           </div>
 

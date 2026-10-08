@@ -30,6 +30,8 @@ import { LightboxViewer } from './LightboxViewer';
 import { useShare } from '../hooks/useShare';
 import { useScrollLock } from '../hooks/useScrollLock';
 import { useKeyPress } from '../hooks/useKeyPress';
+import { useCopyToClipboard } from '../hooks/useCopyToClipboard';
+import { Copy, Check } from 'lucide-react';
 
 interface CarDetailModalProps {
   vehicle: Vehicle | null;
@@ -56,6 +58,8 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   const { share, isShared } = useShare();
+  const [copiedVin, copyVin] = useCopyToClipboard();
+  const [copiedPhone, copyPhone] = useCopyToClipboard();
   
   useScrollLock(!!vehicle);
   useKeyPress('Escape', onClose);
@@ -99,9 +103,23 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                 </span>
               )}
             </div>
-            <p className="text-xs text-slate-400 mt-0.5">
-              VIN: <span className="font-mono text-slate-300 font-semibold">{vehicle.vin}</span> • {vehicle.city} • Elan #{vehicle.id}
-            </p>
+            <div className="text-xs text-slate-400 mt-0.5 flex items-center gap-1.5 flex-wrap">
+              <span>VIN:</span>
+              <div className="flex items-center gap-1 group/vin">
+                <span className="font-mono text-slate-300 font-semibold">{vehicle.vin}</span>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    copyVin(vehicle.vin);
+                  }}
+                  title="Copy VIN"
+                  className="p-1 rounded opacity-0 group-hover/vin:opacity-100 focus:opacity-100 hover:bg-slate-800 transition-all text-slate-400 hover:text-white"
+                >
+                  {copiedVin === vehicle.vin ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                </button>
+              </div>
+              <span>• {vehicle.city} • Elan #{vehicle.id}</span>
+            </div>
           </div>
 
           <div className="flex items-center gap-2">
@@ -322,13 +340,25 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
 
                 {/* Action Buttons */}
                 <div className="grid grid-cols-2 gap-2">
-                  <a
-                    href={`tel:${vehicle.seller.phone}`}
-                    className="flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold transition-all shadow-lg shadow-blue-600/20"
-                  >
-                    <Phone className="w-4 h-4" />
-                    <span>Zəng et</span>
-                  </a>
+                  <div className="flex bg-blue-600 rounded-xl overflow-hidden shadow-lg shadow-blue-600/20 group/phone">
+                    <a
+                      href={`tel:${vehicle.seller.phone}`}
+                      className="flex-1 flex items-center justify-center gap-2 py-3 px-3 hover:bg-blue-500 text-white text-sm font-semibold transition-all"
+                    >
+                      <Phone className="w-4 h-4" />
+                      <span>{vehicle.seller.phone}</span>
+                    </a>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        copyPhone(vehicle.seller.phone);
+                      }}
+                      className="px-3 bg-blue-700/50 hover:bg-blue-500 text-white transition-colors border-l border-blue-500/30 flex items-center justify-center"
+                      title="Nömrəni kopyala"
+                    >
+                      {copiedPhone === vehicle.seller.phone ? <Check className="w-4 h-4 text-emerald-300" /> : <Copy className="w-4 h-4" />}
+                    </button>
+                  </div>
                   {vehicle.seller.whatsapp && (
                     <a
                       href={`https://wa.me/${vehicle.seller.whatsapp}?text=${encodeURIComponent(`Salam, AutoNext-dəki ${vehicle.title} elanı ilə bağlı yazıram.`)}`}
