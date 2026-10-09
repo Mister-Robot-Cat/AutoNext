@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Vehicle, Currency, Language } from '../types/vehicle';
 import { formatPrice, TRANSLATIONS } from '../utils/i18n';
 import { FairPriceBadge } from './FairPriceBadge';
+import { Avatar } from './Avatar';
 import { 
   X, 
   Phone, 
@@ -299,9 +300,13 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                     className={`flex items-center gap-3 ${onOpenDealership ? 'cursor-pointer group' : ''}`}
                     onClick={() => onOpenDealership && onOpenDealership(vehicle.seller)}
                   >
-                    <div className="w-11 h-11 rounded-full bg-blue-600/20 border border-blue-500/40 flex items-center justify-center text-blue-400 font-bold text-lg group-hover:bg-blue-600/40 transition-colors">
-                      {vehicle.seller.name.charAt(0)}
-                    </div>
+                    <Avatar 
+                      initials={vehicle.seller.name.charAt(0)} 
+                      src={vehicle.seller.avatarUrl}
+                      alt={vehicle.seller.name}
+                      size="md"
+                      className="border border-blue-500/40 text-blue-400 bg-blue-600/20 group-hover:bg-blue-600/40 transition-colors"
+                    />
                     <div>
                       <div className="flex items-center gap-2">
                         <h4 className="font-bold text-white text-sm group-hover:text-blue-400 transition-colors">{vehicle.seller.name}</h4>

@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { SellerInfo, Vehicle, Currency, Language } from '../types/vehicle';
 import { MOCK_VEHICLES } from '../data/mockVehicles';
 import { CarCard } from './CarCard';
+import { Avatar } from './Avatar';
 import { X, ShieldCheck, MapPin, Calendar, Star, Clock, Phone, MessageCircle, BadgeCheck } from 'lucide-react';
 import { useScrollLock } from '../hooks/useScrollLock';
 import { useKeyPress } from '../hooks/useKeyPress';
@@ -64,13 +65,12 @@ export function DealershipProfileModal({
         <div className="px-4 sm:px-8 pb-6 border-b border-slate-800 relative bg-slate-900 flex-shrink-0">
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 -mt-12 sm:-mt-16 mb-4">
             <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl bg-slate-800 border-4 border-slate-900 shadow-xl flex-shrink-0 overflow-hidden flex items-center justify-center relative">
-              {seller.avatarUrl ? (
-                <img src={seller.avatarUrl} alt={seller.name} className="w-full h-full object-cover" />
-              ) : (
-                <span className="text-4xl sm:text-5xl font-black text-slate-600">
-                  {seller.name.charAt(0)}
-                </span>
-              )}
+              <Avatar
+                src={seller.avatarUrl}
+                initials={seller.name.charAt(0)}
+                alt={seller.name}
+                className="w-full h-full !rounded-2xl text-4xl sm:text-5xl"
+              />
               {seller.verifiedIdentity && (
                 <div className="absolute -bottom-1 -right-1 bg-blue-500 rounded-full p-1 border-2 border-slate-900">
                   <ShieldCheck className="w-4 h-4 text-white" />
