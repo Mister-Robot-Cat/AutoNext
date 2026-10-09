@@ -3,7 +3,7 @@ import { Skeleton } from './Skeleton';
 
 export const CarCardSkeleton: React.FC = () => {
   return (
-    <div className="bg-slate-900/80 border border-slate-800/80 rounded-2xl overflow-hidden shadow-lg flex flex-col h-full" data-testid="car-card-skeleton">
+    <div className="bg-slate-900/80 border border-slate-800/80 rounded-2xl overflow-hidden shadow-lg flex flex-col h-full animate-pulse" data-testid="car-card-skeleton">
       {/* Image Gallery Skeleton */}
       <Skeleton variant="rectangular" className="relative aspect-[16/10] w-full" />
 
