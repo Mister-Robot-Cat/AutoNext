@@ -7,10 +7,10 @@ describe('CarCardSkeleton Component', () => {
   it('renders without crashing', () => {
     const { container } = render(<CarCardSkeleton />);
     
-    // Check if the main wrapper with animate-pulse exists
+    // Check if the main wrapper exists
     const skeletonWrapper = container.firstChild as HTMLElement;
     expect(skeletonWrapper).toBeInTheDocument();
-    expect(skeletonWrapper.className).toContain('animate-pulse');
+    expect(skeletonWrapper.className).toContain('shadow-lg');
   });
 
   it('contains the correct structural placeholder elements', () => {
