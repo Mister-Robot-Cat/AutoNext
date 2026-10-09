@@ -95,3 +95,5 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Extract generic `Card` component for layout structure with Vitest unit tests
 - [x] Extract generic `Switch` component for toggle inputs with Vitest unit tests
 - [x] Extract generic `Checkbox` component with Vitest unit tests
+- [x] Extract generic `Radio` component with Vitest unit tests
+- [x] Extract generic `Select` component with Vitest unit tests
