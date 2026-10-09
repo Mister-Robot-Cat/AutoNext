@@ -17,10 +17,10 @@ describe('useCopyToClipboard', () => {
 
   it('should copy text to clipboard and update state', async () => {
     const mockWriteText = vi.fn().mockResolvedValue(undefined);
-    Object.assign(navigator, {
-      clipboard: {
-        writeText: mockWriteText,
-      },
+    Object.defineProperty(navigator, 'clipboard', {
+      value: { writeText: mockWriteText },
+      configurable: true,
+      writable: true
     });
 
     const { result } = renderHook(() => useCopyToClipboard());
@@ -34,15 +34,19 @@ describe('useCopyToClipboard', () => {
     expect(mockWriteText).toHaveBeenCalledWith('test string');
     expect(result.current[0]).toBe('test string');
 
-    Object.assign(navigator, { clipboard: originalClipboard });
+    Object.defineProperty(navigator, 'clipboard', {
+      value: originalClipboard,
+      configurable: true,
+      writable: true
+    });
   });
 
   it('should handle copy failure gracefully', async () => {
     const mockWriteText = vi.fn().mockRejectedValue(new Error('Copy failed'));
-    Object.assign(navigator, {
-      clipboard: {
-        writeText: mockWriteText,
-      },
+    Object.defineProperty(navigator, 'clipboard', {
+      value: { writeText: mockWriteText },
+      configurable: true,
+      writable: true
     });
 
     const consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
@@ -60,7 +64,11 @@ describe('useCopyToClipboard', () => {
     expect(consoleWarnSpy).toHaveBeenCalled();
 
     consoleWarnSpy.mockRestore();
-    Object.assign(navigator, { clipboard: originalClipboard });
+    Object.defineProperty(navigator, 'clipboard', {
+      value: originalClipboard,
+      configurable: true,
+      writable: true
+    });
   });
 
   it('should warn and fail if clipboard is not supported', async () => {
