@@ -102,3 +102,5 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Extract generic `Progress` component with Vitest unit tests
 - [x] Extract generic `Skeleton` component for loading states with Vitest unit tests
 - [x] Extract generic `Drawer` component (slide-out panel) with Vitest unit tests
+- [x] Extract generic `Modal` component (dialog wrapper) with Vitest unit tests
+- [x] Extract generic `Breadcrumbs` component for navigation with Vitest unit tests
