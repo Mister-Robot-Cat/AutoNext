@@ -97,3 +97,4 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Extract generic `Checkbox` component with Vitest unit tests
 - [x] Extract generic `Radio` component with Vitest unit tests
 - [x] Extract generic `Select` component with Vitest unit tests
+- [x] Extract generic `Textarea` component with Vitest unit tests
