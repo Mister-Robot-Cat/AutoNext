@@ -110,3 +110,7 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Extract generic Slider component with Vitest tests
 - [x] Extract generic `Dropdown` component with Vitest unit tests
 - [x] Extract generic `Rating` component with Vitest unit tests
+
+### 📈 Milestone 10: Advanced Image Galleries & Viewing
+- [x] Extract generic `Carousel` component for vehicle image galleries with swipe support and Vitest tests
+- [x] Extract generic `Tag` component with Vitest unit tests
