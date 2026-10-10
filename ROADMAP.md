@@ -104,3 +104,9 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Extract generic `Drawer` component (slide-out panel) with Vitest unit tests
 - [x] Extract generic `Modal` component (dialog wrapper) with Vitest unit tests
 - [x] Extract generic `Breadcrumbs` component for navigation with Vitest unit tests
+
+### 🧩 Milestone 9: Advanced UI Components
+- [x] Extract generic Table component with Vitest tests
+- [x] Extract generic Slider component with Vitest tests
+
+- [x] Extract generic `Dropdown` component with Vitest unit tests
