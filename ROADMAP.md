@@ -1,4 +1,4 @@
-# 🗺️ AutoNext Engineering Roadmap & Evolution Backlog
+﻿# 🗺️ AutoNext Engineering Roadmap & Evolution Backlog
 
 This backlog is actively maintained and executed by the **GitHub Growth Agent** to drive continuous, high-quality development.
 
@@ -124,3 +124,5 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 
 ### ?? Milestone 12: Data Visualization & Reporting
 - [x] Extract generic StatCard component for dashboard metrics with Vitest tests
+
+- [x] Extract generic Popover component with Vitest tests
