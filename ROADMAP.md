@@ -117,4 +117,5 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 
 ### ?? Milestone 11: Complex Form Components
 - [x] Extract generic Stepper component for multi-step forms with Vitest tests
+- [x] Extract generic FileUpload component with drag and drop
 
