@@ -3,6 +3,7 @@ import { SellerInfo, Vehicle, Currency, Language } from '../types/vehicle';
 import { MOCK_VEHICLES } from '../data/mockVehicles';
 import { CarCard } from './CarCard';
 import { Avatar } from './Avatar';
+import { Rating } from './Rating';
 import { X, ShieldCheck, MapPin, Calendar, Star, Clock, Phone, MessageCircle, BadgeCheck } from 'lucide-react';
 import { useScrollLock } from '../hooks/useScrollLock';
 import { useKeyPress } from '../hooks/useKeyPress';
@@ -94,8 +95,10 @@ export function DealershipProfileModal({
                     <span className="flex items-center gap-1">
                       <Calendar className="w-3.5 h-3.5" /> AutoNext üzvü: {seller.memberSinceYear}
                     </span>
-                    <span className="flex items-center gap-1 text-emerald-400">
-                      <Star className="w-3.5 h-3.5 fill-current" /> {seller.rating} ({seller.reviewsCount} rəy)
+                    <span className="flex items-center gap-1">
+                      <Rating value={seller.rating} readOnly size="sm" allowHalf />
+                      <span className="ml-1 font-medium text-white">{seller.rating}</span> 
+                      <span className="text-slate-400">({seller.reviewsCount} rəy)</span>
                     </span>
                   </div>
                 </div>

@@ -108,5 +108,5 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 ### 🧩 Milestone 9: Advanced UI Components
 - [x] Extract generic Table component with Vitest tests
 - [x] Extract generic Slider component with Vitest tests
-
 - [x] Extract generic `Dropdown` component with Vitest unit tests
+- [x] Extract generic `Rating` component with Vitest unit tests
