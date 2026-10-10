@@ -100,6 +100,7 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Extract generic `Textarea` component with Vitest unit tests
 - [x] Extract generic `Avatar` component with Vitest unit tests
 - [x] Extract generic `Progress` component with Vitest unit tests
+- [x] Extract generic `ToggleGroup` component with Vitest unit tests
 - [x] Extract generic `Skeleton` component for loading states with Vitest unit tests
 - [x] Extract generic `Drawer` component (slide-out panel) with Vitest unit tests
 - [x] Extract generic `Modal` component (dialog wrapper) with Vitest unit tests
@@ -120,3 +121,6 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Extract generic FileUpload component with drag and drop
 
 - [x] Extract generic Autocomplete component for search and selection with Vitest tests
+
+### ?? Milestone 12: Data Visualization & Reporting
+- [x] Extract generic StatCard component for dashboard metrics with Vitest tests
