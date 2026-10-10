@@ -114,3 +114,7 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 ### 📈 Milestone 10: Advanced Image Galleries & Viewing
 - [x] Extract generic `Carousel` component for vehicle image galleries with swipe support and Vitest tests
 - [x] Extract generic `Tag` component with Vitest unit tests
+
+### ?? Milestone 11: Complex Form Components
+- [x] Extract generic Stepper component for multi-step forms with Vitest tests
+
