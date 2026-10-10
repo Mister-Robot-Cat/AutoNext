@@ -6,14 +6,14 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export interface TimelineItemProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
+export type TimelineItemProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> & {
   title: React.ReactNode;
   description?: React.ReactNode;
   time?: React.ReactNode;
   icon?: React.ReactNode;
   isActive?: boolean;
   isLast?: boolean;
-}
+};
 
 export function TimelineItem({
   title,

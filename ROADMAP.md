@@ -119,3 +119,4 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Extract generic Stepper component for multi-step forms with Vitest tests
 - [x] Extract generic FileUpload component with drag and drop
 
+- [x] Extract generic Autocomplete component for search and selection with Vitest tests
