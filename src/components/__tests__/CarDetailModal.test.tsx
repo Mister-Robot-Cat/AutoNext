@@ -204,4 +204,10 @@ describe('CarDetailModal', () => {
     // Should show details
     expect(screen.getByText('Minor scratch')).toBeInTheDocument();
   });
+
+  it('renders AI valuation confidence gauge', () => {
+    renderModal();
+    expect(screen.getByTestId('valuation-confidence-gauge')).toBeInTheDocument();
+    expect(screen.getByText('Dəqiqlik')).toBeInTheDocument();
+  });
 });

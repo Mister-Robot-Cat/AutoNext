@@ -9,7 +9,7 @@ import {
   MessageCircle, 
   ShieldCheck, 
   Calendar, 
-  Gauge, 
+  Gauge as GaugeIcon, 
   Fuel, 
   Settings, 
   Compass, 
@@ -25,6 +25,7 @@ import {
   Image as ImageIcon,
   ZoomIn
 } from 'lucide-react';
+import { Gauge } from './Gauge';
 import { CarRotationViewer } from './CarRotationViewer';
 import { PriceDepreciationChart } from './PriceDepreciationChart';
 import { LightboxViewer } from './LightboxViewer';
@@ -263,13 +264,28 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                 </div>
 
                 {/* AI Price Insight Card */}
-                <div className="p-3 rounded-xl bg-blue-950/30 border border-blue-800/40 text-xs text-blue-200 flex items-start gap-2">
-                  <TrendingDown className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <span className="font-semibold text-emerald-400">Bazar Analitikası: </span>
-                    Bakı üzrə orta qiymət {formatPrice(vehicle.valuation.avgMarketPriceAzn, currency)} təşkil edir.
-                    Bu avtomobil bazardan <strong>{Math.abs(vehicle.valuation.percentageDiff)}%</strong> sərfəlidir.
+                <div className="p-3 rounded-xl bg-blue-950/30 border border-blue-800/40 text-xs text-blue-200 flex items-center justify-between gap-3">
+                  <div className="flex items-start gap-2">
+                    <TrendingDown className="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <span className="font-semibold text-emerald-400">Bazar Analitikası: </span>
+                      Bakı üzrə orta qiymət {formatPrice(vehicle.valuation.avgMarketPriceAzn, currency)} təşkil edir.
+                      Bu avtomobil bazardan <strong>{Math.abs(vehicle.valuation.percentageDiff)}%</strong> sərfəlidir.
+                    </div>
                   </div>
+                  {vehicle.valuation.confidenceScore !== undefined && (
+                    <div className="flex-shrink-0" data-testid="valuation-confidence-gauge" title={`AI Dəqiqlik dərəcəsi: ${vehicle.valuation.confidenceScore}%`}>
+                      <Gauge
+                        value={vehicle.valuation.confidenceScore}
+                        size={56}
+                        thickness={6}
+                        type="half"
+                        autoColor
+                        unit="%"
+                        label="Dəqiqlik"
+                      />
+                    </div>
+                  )}
                 </div>
 
                 {/* Loan Shortcut */}
@@ -393,7 +409,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
             <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800">
               <span className="text-[10px] uppercase text-slate-500 font-bold block mb-1">Yürüş</span>
               <div className="flex items-center gap-1.5 text-sm font-bold text-white">
-                <Gauge className="w-4 h-4 text-emerald-400" />
+                <GaugeIcon className="w-4 h-4 text-emerald-400" />
                 <span>{vehicle.mileageKm.toLocaleString()} km</span>
               </div>
             </div>
@@ -409,7 +425,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
             <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800">
               <span className="text-[10px] uppercase text-slate-500 font-bold block mb-1">Güc</span>
               <div className="flex items-center gap-1.5 text-sm font-bold text-white">
-                <Gauge className="w-4 h-4 text-purple-400" />
+                <GaugeIcon className="w-4 h-4 text-purple-400" />
                 <span>{vehicle.powerHp} a.g.</span>
               </div>
             </div>

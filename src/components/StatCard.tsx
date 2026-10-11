@@ -1,5 +1,6 @@
 import React from 'react';
 import { Sparkline } from './Sparkline';
+import { Gauge } from './Gauge';
 
 export interface StatCardProps {
   title: string;
@@ -11,6 +12,7 @@ export interface StatCardProps {
     direction: 'up' | 'down' | 'neutral';
   };
   sparklineData?: number[];
+  gaugeValue?: number;
   className?: string;
 }
 
@@ -20,6 +22,7 @@ export const StatCard: React.FC<StatCardProps> = ({
   icon,
   trend,
   sparklineData,
+  gaugeValue,
   className = '',
 }) => {
   return (
@@ -56,6 +59,18 @@ export const StatCard: React.FC<StatCardProps> = ({
               fill
               autoColorTrend
               showLastPoint
+            />
+          </div>
+        )}
+        {gaugeValue !== undefined && (!sparklineData || sparklineData.length === 0) && (
+          <div className="flex-shrink-0" data-testid="stat-gauge">
+            <Gauge
+              value={gaugeValue}
+              size={54}
+              thickness={7}
+              type="half"
+              autoColor
+              showValue={false}
             />
           </div>
         )}

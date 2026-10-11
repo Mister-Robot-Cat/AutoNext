@@ -80,4 +80,15 @@ describe('StatCard', () => {
     );
     expect(screen.getByTestId('stat-sparkline')).toBeInTheDocument();
   });
+
+  it('renders Gauge when gaugeValue is provided', () => {
+    render(
+      <StatCard 
+        title="Fair Price Confidence" 
+        value="94%" 
+        gaugeValue={94} 
+      />
+    );
+    expect(screen.getByTestId('stat-gauge')).toBeInTheDocument();
+  });
 });
