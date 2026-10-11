@@ -216,4 +216,24 @@ describe('CarDetailModal', () => {
     expect(screen.getByTestId('market-price-distribution')).toBeInTheDocument();
     expect(screen.getByText('Bazar Qiymət Paylanması & Təhlili')).toBeInTheDocument();
   });
+
+  it('triggers onOpenPriceHistory when price history shortcut button is clicked', () => {
+    const onOpenPriceHistoryMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenPriceHistory={onOpenPriceHistoryMock}
+      />
+    );
+
+    const priceHistoryBtn = screen.getByTestId('price-history-shortcut-btn');
+    expect(priceHistoryBtn).toBeInTheDocument();
+    fireEvent.click(priceHistoryBtn);
+    expect(onOpenPriceHistoryMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });

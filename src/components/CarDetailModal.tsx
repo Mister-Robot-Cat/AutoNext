@@ -24,7 +24,8 @@ import {
   Rotate3d,
   Image as ImageIcon,
   ZoomIn,
-  BarChart3
+  BarChart3,
+  History
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -45,6 +46,7 @@ interface CarDetailModalProps {
   onOpenLoanForCar: (vehicle: Vehicle) => void;
   onOpenVinHistory: (vehicle: Vehicle) => void;
   onOpenDealership?: (seller: any) => void;
+  onOpenPriceHistory?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -55,6 +57,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenLoanForCar,
   onOpenVinHistory,
   onOpenDealership,
+  onOpenPriceHistory,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -68,6 +71,18 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   useScrollLock(!!vehicle);
   useKeyPress('Escape', onClose);
   
+  const priceDistributionData = useMemo(() => {
+    if (!vehicle) return [];
+    return generateVehiclePriceDistribution({
+      currentPrice: vehicle.priceAzn,
+      avgPrice: vehicle.valuation.avgMarketPriceAzn,
+      minPrice: vehicle.valuation.minMarketPriceAzn,
+      maxPrice: vehicle.valuation.maxMarketPriceAzn,
+      bucketsCount: 5,
+      currencySymbol: currency === 'USD' ? '$' : currency === 'EUR' ? '€' : '₼',
+    });
+  }, [vehicle, currency]);
+
   if (!vehicle) return null;
   const t = TRANSLATIONS[lang];
   const handleShare = () => {
@@ -81,17 +96,6 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   };
 
   const damagePartDetails = vehicle.damageReport.find((p) => p.partId === selectedDamagePart);
-
-  const priceDistributionData = useMemo(() => {
-    return generateVehiclePriceDistribution({
-      currentPrice: vehicle.priceAzn,
-      avgPrice: vehicle.valuation.avgMarketPriceAzn,
-      minPrice: vehicle.valuation.minMarketPriceAzn,
-      maxPrice: vehicle.valuation.maxMarketPriceAzn,
-      bucketsCount: 5,
-      currencySymbol: currency === 'USD' ? '$' : currency === 'EUR' ? '€' : '₼',
-    });
-  }, [vehicle.priceAzn, vehicle.valuation, currency]);
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200">
@@ -320,6 +324,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   <FileCheck className="w-4 h-4" />
                   <span>VIN Tarixçəsi & Yürüş Hesabatı</span>
                 </button>
+
+                {/* Price History & Trends Shortcut */}
+                {onOpenPriceHistory && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenPriceHistory(vehicle)}
+                    data-testid="price-history-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-purple-600/10 hover:bg-purple-600/20 text-purple-400 border border-purple-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all"
+                  >
+                    <History className="w-4 h-4" />
+                    <span>Qiymət Tarixçəsi & Bazar Dinamikası</span>
+                  </button>
+                )}
               </div>
 
               {/* Seller Information */}
