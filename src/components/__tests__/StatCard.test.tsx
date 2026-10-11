@@ -69,4 +69,15 @@ describe('StatCard', () => {
     );
     expect(container.firstChild).toHaveClass('custom-class-123');
   });
+
+  it('renders Sparkline when sparklineData is provided', () => {
+    render(
+      <StatCard 
+        title="Market Demand" 
+        value="1,450" 
+        sparklineData={[12, 18, 14, 25, 30]} 
+      />
+    );
+    expect(screen.getByTestId('stat-sparkline')).toBeInTheDocument();
+  });
 });
