@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Vehicle, Currency, Language } from '../types/vehicle';
-import { formatPrice, TRANSLATIONS } from '../utils/i18n';
+import { formatPrice } from '../utils/i18n';
 import { BANK_PROGRAMS } from '../data/mockVehicles';
-import { X, Calculator, Building2, Check, ArrowRight } from 'lucide-react';
+import { X, Calculator, ArrowRight, Table } from 'lucide-react';
 import { useLoanCalculator } from '../hooks/useLoanCalculator';
 import { useScrollLock } from '../hooks/useScrollLock';
 import { useKeyPress } from '../hooks/useKeyPress';
+import { LoanAmortizationModal } from './LoanAmortizationModal';
 
 interface LoanCalculatorModalProps {
   initialVehicle?: Vehicle | null;
@@ -23,7 +24,7 @@ export const LoanCalculatorModal: React.FC<LoanCalculatorModalProps> = ({
   useScrollLock(true);
   useKeyPress('Escape', onClose);
 
-  const t = TRANSLATIONS[lang];
+  const [isAmortizationOpen, setIsAmortizationOpen] = useState(false);
 
   const {
     carPrice,
@@ -193,9 +194,34 @@ export const LoanCalculatorModal: React.FC<LoanCalculatorModalProps> = ({
               <span>* Hesablama təxminidir və bank tərəfindən təsdiq tələb edir.</span>
               <span className="text-emerald-400 font-semibold">Tələb olunan min. gəlir: ≈ {formatPrice(monthlyPayment * 2, currency)}</span>
             </div>
+
+            <button
+              type="button"
+              onClick={() => setIsAmortizationOpen(true)}
+              data-testid="open-amortization-btn"
+              className="w-full py-2.5 px-4 rounded-xl bg-blue-600/15 hover:bg-blue-600/25 border border-blue-500/40 text-blue-400 hover:text-blue-300 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-sm"
+            >
+              <Table className="w-4 h-4" />
+              <span>Amortizasiya Cədvəli & Qrafik</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
           </div>
         </div>
       </div>
+
+      {/* Amortization Matrix Breakdown Modal */}
+      <LoanAmortizationModal
+        isOpen={isAmortizationOpen}
+        onClose={() => setIsAmortizationOpen(false)}
+        currency={currency}
+        lang={lang}
+        carPrice={carPrice}
+        downPaymentPercent={downPaymentPercent}
+        termMonths={termMonths}
+        annualInterestRate={selectedBank.annualInterestRate}
+        bankName={selectedBank.bankName}
+        vehicleTitle={initialVehicle?.title}
+      />
     </div>
   );
 };

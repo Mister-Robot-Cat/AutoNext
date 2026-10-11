@@ -72,4 +72,17 @@ describe('LoanCalculatorModal', () => {
     // There might be two elements with '24 ay', the button and the header label
     expect(screen.getAllByText(/24 ay/i).length).toBeGreaterThan(0);
   });
+
+  it('opens loan amortization breakdown modal when amortization button is clicked', () => {
+    render(<LoanCalculatorModal currency="AZN" lang="az" onClose={vi.fn()} />);
+
+    const openAmortizationBtn = screen.getByTestId('open-amortization-btn');
+    expect(openAmortizationBtn).toBeInTheDocument();
+
+    fireEvent.click(openAmortizationBtn);
+
+    // Should now show the LoanAmortizationModal dialog
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+    expect(screen.getByText('Kredit Amortizasiya Cədvəli & Qrafik')).toBeInTheDocument();
+  });
 });
