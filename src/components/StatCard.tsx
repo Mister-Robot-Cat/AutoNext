@@ -1,6 +1,7 @@
 import React from 'react';
 import { Sparkline } from './Sparkline';
 import { Gauge } from './Gauge';
+import { BarChart, BarChartDataPoint } from './BarChart';
 
 export interface StatCardProps {
   title: string;
@@ -13,6 +14,7 @@ export interface StatCardProps {
   };
   sparklineData?: number[];
   gaugeValue?: number;
+  barChartData?: BarChartDataPoint[];
   className?: string;
 }
 
@@ -23,6 +25,7 @@ export const StatCard: React.FC<StatCardProps> = ({
   trend,
   sparklineData,
   gaugeValue,
+  barChartData,
   className = '',
 }) => {
   return (
@@ -71,6 +74,18 @@ export const StatCard: React.FC<StatCardProps> = ({
               type="half"
               autoColor
               showValue={false}
+            />
+          </div>
+        )}
+        {barChartData && barChartData.length > 0 && (!sparklineData || sparklineData.length === 0) && gaugeValue === undefined && (
+          <div className="flex-shrink-0" data-testid="stat-barchart">
+            <BarChart
+              data={barChartData}
+              width={84}
+              height={28}
+              showLabels={false}
+              showGrid={false}
+              barRadius={2}
             />
           </div>
         )}

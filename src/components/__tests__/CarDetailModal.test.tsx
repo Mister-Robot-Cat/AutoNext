@@ -210,4 +210,10 @@ describe('CarDetailModal', () => {
     expect(screen.getByTestId('valuation-confidence-gauge')).toBeInTheDocument();
     expect(screen.getByText('Dəqiqlik')).toBeInTheDocument();
   });
+
+  it('renders market price distribution bar chart', () => {
+    renderModal();
+    expect(screen.getByTestId('market-price-distribution')).toBeInTheDocument();
+    expect(screen.getByText('Bazar Qiymət Paylanması & Təhlili')).toBeInTheDocument();
+  });
 });

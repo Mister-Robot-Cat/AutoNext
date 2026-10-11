@@ -127,4 +127,10 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Extract generic Popover component with Vitest tests
 - [x] Extract generic Sparkline component for trend visualization with Vitest tests
 - [x] Extract generic Gauge component for score and valuation meters with Vitest tests
-- [ ] Extract generic BarChart component for vehicle market price distributions with Vitest tests
+- [x] Extract generic BarChart component for vehicle market price distributions with Vitest tests
+
+---
+
+### ⚡ Milestone 13: Advanced Automotive Insights & Discovery
+- [ ] Implement `PriceHistoryModal` with interactive historical price trends and Vitest tests
+- [ ] Implement vehicle loan amortization matrix breakdown with Vitest tests

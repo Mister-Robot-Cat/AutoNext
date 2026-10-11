@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Vehicle, Currency, Language } from '../types/vehicle';
 import { formatPrice, TRANSLATIONS } from '../utils/i18n';
 import { FairPriceBadge } from './FairPriceBadge';
@@ -23,9 +23,11 @@ import {
   FileCheck,
   Rotate3d,
   Image as ImageIcon,
-  ZoomIn
+  ZoomIn,
+  BarChart3
 } from 'lucide-react';
 import { Gauge } from './Gauge';
+import { BarChart, generateVehiclePriceDistribution } from './BarChart';
 import { CarRotationViewer } from './CarRotationViewer';
 import { PriceDepreciationChart } from './PriceDepreciationChart';
 import { LightboxViewer } from './LightboxViewer';
@@ -79,6 +81,17 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   };
 
   const damagePartDetails = vehicle.damageReport.find((p) => p.partId === selectedDamagePart);
+
+  const priceDistributionData = useMemo(() => {
+    return generateVehiclePriceDistribution({
+      currentPrice: vehicle.priceAzn,
+      avgPrice: vehicle.valuation.avgMarketPriceAzn,
+      minPrice: vehicle.valuation.minMarketPriceAzn,
+      maxPrice: vehicle.valuation.maxMarketPriceAzn,
+      bucketsCount: 5,
+      currencySymbol: currency === 'USD' ? '$' : currency === 'EUR' ? '€' : '₼',
+    });
+  }, [vehicle.priceAzn, vehicle.valuation, currency]);
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200">
@@ -509,6 +522,45 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
 
           {/* Price Depreciation & Resale Trajectory Forecast */}
           <PriceDepreciationChart vehicle={vehicle} currency={currency} lang={lang} />
+
+          {/* Vehicle Market Price Distribution */}
+          <div className="p-5 rounded-2xl bg-slate-950/60 border border-slate-800 space-y-3" data-testid="market-price-distribution">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <BarChart3 className="w-4 h-4 text-emerald-400" />
+                <h3 className="font-bold text-white text-sm sm:text-base">Bazar Qiymət Paylanması & Təhlili</h3>
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                  AI Market Analizi
+                </span>
+              </div>
+              <div className="text-xs text-slate-400">
+                Orta bazar qiyməti: <strong className="text-white">{formatPrice(vehicle.valuation.avgMarketPriceAzn, currency)}</strong>
+              </div>
+            </div>
+            <p className="text-xs text-slate-400">
+              Eyni model və il kateqoriyasındakı aktiv elanların qiymət diapazonu. Yaşıl xüsusi nişan cari avtomobilin mövqeyini göstərir.
+            </p>
+            <div className="pt-2">
+              <BarChart
+                data={priceDistributionData}
+                height={170}
+                showGrid
+                showValues
+                showLabels
+                valueFormatter={(val) => `${val} elan`}
+                referenceLines={[
+                  {
+                    value: Math.round(
+                      priceDistributionData.reduce((acc, p) => acc + p.value, 0) /
+                        (priceDistributionData.length || 1)
+                    ),
+                    label: 'Orta sıxlıq',
+                    color: '#f59e0b',
+                  },
+                ]}
+              />
+            </div>
+          </div>
 
           {/* Description */}
           <div className="p-5 rounded-2xl bg-slate-950/60 border border-slate-800 space-y-2">

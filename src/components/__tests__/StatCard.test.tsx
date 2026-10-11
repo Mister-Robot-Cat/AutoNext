@@ -91,4 +91,19 @@ describe('StatCard', () => {
     );
     expect(screen.getByTestId('stat-gauge')).toBeInTheDocument();
   });
+
+  it('renders BarChart when barChartData is provided', () => {
+    render(
+      <StatCard
+        title="Price Distribution"
+        value="85 Elan"
+        barChartData={[
+          { label: '50-60k', value: 12 },
+          { label: '60-70k', value: 25, highlighted: true },
+          { label: '70-80k', value: 8 },
+        ]}
+      />
+    );
+    expect(screen.getByTestId('stat-barchart')).toBeInTheDocument();
+  });
 });
