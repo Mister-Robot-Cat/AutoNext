@@ -236,4 +236,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(priceHistoryBtn);
     expect(onOpenPriceHistoryMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenTcoForecast when TCO forecaster shortcut button is clicked', () => {
+    const onOpenTcoForecastMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenTcoForecast={onOpenTcoForecastMock}
+      />
+    );
+
+    const tcoBtn = screen.getByTestId('tco-forecaster-shortcut-btn');
+    expect(tcoBtn).toBeInTheDocument();
+    fireEvent.click(tcoBtn);
+    expect(onOpenTcoForecastMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });

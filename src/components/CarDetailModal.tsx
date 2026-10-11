@@ -25,7 +25,8 @@ import {
   Image as ImageIcon,
   ZoomIn,
   BarChart3,
-  History
+  History,
+  Coins
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -47,6 +48,7 @@ interface CarDetailModalProps {
   onOpenVinHistory: (vehicle: Vehicle) => void;
   onOpenDealership?: (seller: any) => void;
   onOpenPriceHistory?: (vehicle: Vehicle) => void;
+  onOpenTcoForecast?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -58,6 +60,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenVinHistory,
   onOpenDealership,
   onOpenPriceHistory,
+  onOpenTcoForecast,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -335,6 +338,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <History className="w-4 h-4" />
                     <span>Qiymət Tarixçəsi & Bazar Dinamikası</span>
+                  </button>
+                )}
+
+                {/* 5-Year TCO Forecaster Shortcut */}
+                {onOpenTcoForecast && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenTcoForecast(vehicle)}
+                    data-testid="tco-forecaster-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all"
+                  >
+                    <Coins className="w-4 h-4" />
+                    <span>5 İllik Sahiblik Xərci (TCO) Proqnozu</span>
                   </button>
                 )}
               </div>
