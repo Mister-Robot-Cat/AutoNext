@@ -27,7 +27,8 @@ import {
   BarChart3,
   History,
   Coins,
-  ArrowLeftRight
+  ArrowLeftRight,
+  ClipboardCheck
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -51,6 +52,7 @@ interface CarDetailModalProps {
   onOpenPriceHistory?: (vehicle: Vehicle) => void;
   onOpenTcoForecast?: (vehicle: Vehicle) => void;
   onOpenTradeInValuation?: (vehicle: Vehicle) => void;
+  onOpenInspection?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -64,6 +66,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenPriceHistory,
   onOpenTcoForecast,
   onOpenTradeInValuation,
+  onOpenInspection,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -367,6 +370,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <ArrowLeftRight className="w-4 h-4" />
                     <span>Trade-In & Barter Qiymətləndirməsi</span>
+                  </button>
+                )}
+
+                {/* 150-Point Pre-Purchase Inspection & OBD-II Shortcut */}
+                {onOpenInspection && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenInspection(vehicle)}
+                    data-testid="inspection-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all"
+                  >
+                    <ClipboardCheck className="w-4 h-4" />
+                    <span>150-Nöqtəli Diaqnostika & OBD-II Simulyatoru</span>
                   </button>
                 )}
               </div>

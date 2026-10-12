@@ -25,6 +25,7 @@ const DealershipProfileModal = React.lazy(() => import('./components/DealershipP
 const PriceHistoryModal = React.lazy(() => import('./components/PriceHistoryModal').then(m => ({ default: m.PriceHistoryModal })));
 const TcoForecasterModal = React.lazy(() => import('./components/TcoForecasterModal').then(m => ({ default: m.TcoForecasterModal })));
 const TradeInModal = React.lazy(() => import('./components/TradeInModal').then(m => ({ default: m.TradeInModal })));
+const InspectionModal = React.lazy(() => import('./components/InspectionModal').then(m => ({ default: m.InspectionModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -95,6 +96,7 @@ export function App() {
   const [priceHistoryTargetCar, setPriceHistoryTargetCar] = useState<Vehicle | null>(null);
   const [tcoTargetCar, setTcoTargetCar] = useState<Vehicle | null>(null);
   const [tradeInTargetCar, setTradeInTargetCar] = useState<Vehicle | null>(null);
+  const [inspectionTargetCar, setInspectionTargetCar] = useState<Vehicle | null>(null);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -362,6 +364,9 @@ export function App() {
           onOpenTradeInValuation={(car) => {
             setTradeInTargetCar(car);
           }}
+          onOpenInspection={(car) => {
+            setInspectionTargetCar(car);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -398,6 +403,15 @@ export function App() {
           currency={currency}
           lang={lang}
           onClose={() => setTradeInTargetCar(null)}
+        />
+
+        {/* 150-Point Pre-Purchase Inspection & OBD-II Diagnostics Modal */}
+        <InspectionModal
+          isOpen={!!inspectionTargetCar}
+          vehicle={inspectionTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => setInspectionTargetCar(null)}
         />
 
         {/* Car Comparator Modal */}

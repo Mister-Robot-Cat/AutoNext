@@ -276,4 +276,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(tradeInBtn);
     expect(onOpenTradeInValuationMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenInspection when inspection shortcut button is clicked', () => {
+    const onOpenInspectionMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenInspection={onOpenInspectionMock}
+      />
+    );
+
+    const inspectionBtn = screen.getByTestId('inspection-shortcut-btn');
+    expect(inspectionBtn).toBeInTheDocument();
+    fireEvent.click(inspectionBtn);
+    expect(onOpenInspectionMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
