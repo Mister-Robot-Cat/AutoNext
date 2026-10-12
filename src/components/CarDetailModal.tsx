@@ -28,7 +28,8 @@ import {
   History,
   Coins,
   ArrowLeftRight,
-  ClipboardCheck
+  ClipboardCheck,
+  Scale
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -53,6 +54,7 @@ interface CarDetailModalProps {
   onOpenTcoForecast?: (vehicle: Vehicle) => void;
   onOpenTradeInValuation?: (vehicle: Vehicle) => void;
   onOpenInspection?: (vehicle: Vehicle) => void;
+  onOpenCustomsCalculator?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -67,6 +69,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenTcoForecast,
   onOpenTradeInValuation,
   onOpenInspection,
+  onOpenCustomsCalculator,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -383,6 +386,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <ClipboardCheck className="w-4 h-4" />
                     <span>150-Nöqtəli Diaqnostika & OBD-II Simulyatoru</span>
+                  </button>
+                )}
+
+                {/* Customs Import Tariff & Duty Calculator Shortcut */}
+                {onOpenCustomsCalculator && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenCustomsCalculator(vehicle)}
+                    data-testid="customs-calculator-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all"
+                  >
+                    <Scale className="w-4 h-4" />
+                    <span>İdxal Gömrük Rüsumu & Vergi Kalkulyatoru</span>
                   </button>
                 )}
               </div>

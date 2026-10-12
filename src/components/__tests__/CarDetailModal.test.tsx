@@ -296,4 +296,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(inspectionBtn);
     expect(onOpenInspectionMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenCustomsCalculator when customs calculator shortcut button is clicked', () => {
+    const onOpenCustomsCalculatorMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenCustomsCalculator={onOpenCustomsCalculatorMock}
+      />
+    );
+
+    const customsBtn = screen.getByTestId('customs-calculator-shortcut-btn');
+    expect(customsBtn).toBeInTheDocument();
+    fireEvent.click(customsBtn);
+    expect(onOpenCustomsCalculatorMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });

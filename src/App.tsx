@@ -26,6 +26,7 @@ const PriceHistoryModal = React.lazy(() => import('./components/PriceHistoryModa
 const TcoForecasterModal = React.lazy(() => import('./components/TcoForecasterModal').then(m => ({ default: m.TcoForecasterModal })));
 const TradeInModal = React.lazy(() => import('./components/TradeInModal').then(m => ({ default: m.TradeInModal })));
 const InspectionModal = React.lazy(() => import('./components/InspectionModal').then(m => ({ default: m.InspectionModal })));
+const CustomsCalculatorModal = React.lazy(() => import('./components/CustomsCalculatorModal').then(m => ({ default: m.CustomsCalculatorModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -97,6 +98,7 @@ export function App() {
   const [tcoTargetCar, setTcoTargetCar] = useState<Vehicle | null>(null);
   const [tradeInTargetCar, setTradeInTargetCar] = useState<Vehicle | null>(null);
   const [inspectionTargetCar, setInspectionTargetCar] = useState<Vehicle | null>(null);
+  const [customsTargetCar, setCustomsTargetCar] = useState<Vehicle | null>(null);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -367,6 +369,9 @@ export function App() {
           onOpenInspection={(car) => {
             setInspectionTargetCar(car);
           }}
+          onOpenCustomsCalculator={(car) => {
+            setCustomsTargetCar(car);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -412,6 +417,15 @@ export function App() {
           currency={currency}
           lang={lang}
           onClose={() => setInspectionTargetCar(null)}
+        />
+
+        {/* Import Customs Duty and DGK Tariff Calculator Modal */}
+        <CustomsCalculatorModal
+          isOpen={!!customsTargetCar}
+          initialVehicle={customsTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => setCustomsTargetCar(null)}
         />
 
         {/* Car Comparator Modal */}
