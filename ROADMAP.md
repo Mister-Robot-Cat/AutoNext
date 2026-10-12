@@ -147,6 +147,6 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 
 ### 📄 Milestone 15: Legal Agreements & Transaction Security
 - [x] Add bilingual vehicle bill of sale & purchase contract generator (Notariat alqı-satqı müqaviləsi) with Vitest tests
-- [ ] Add compulsory & KASKO insurance premium estimator with policy comparison and Vitest tests
+- [x] Add compulsory & KASKO insurance premium estimator with policy comparison and Vitest tests
 - [ ] Add seller identity and digital escrow deposit holding simulator with Vitest tests
 

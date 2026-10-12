@@ -31,7 +31,8 @@ import {
   ClipboardCheck,
   Scale,
   ShieldAlert,
-  FileText
+  FileText,
+  Umbrella
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -59,6 +60,7 @@ interface CarDetailModalProps {
   onOpenCustomsCalculator?: (vehicle: Vehicle) => void;
   onOpenLienRegistry?: (vehicle: Vehicle) => void;
   onOpenBillOfSale?: (vehicle: Vehicle) => void;
+  onOpenInsuranceCalculator?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -76,6 +78,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenCustomsCalculator,
   onOpenLienRegistry,
   onOpenBillOfSale,
+  onOpenInsuranceCalculator,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -431,6 +434,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <FileText className="w-4 h-4" />
                     <span>Rəsmi Alqı-Satqı Müqaviləsi (Notariat)</span>
+                  </button>
+                )}
+
+                {/* Compulsory & KASKO Insurance Premium Estimator Shortcut */}
+                {onOpenInsuranceCalculator && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenInsuranceCalculator(vehicle)}
+                    data-testid="insurance-calculator-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-sky-500/10 hover:bg-sky-500/20 text-sky-400 border border-sky-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all"
+                  >
+                    <Umbrella className="w-4 h-4" />
+                    <span>İcbari & KASKO Sığorta Hesablayıcı</span>
                   </button>
                 )}
               </div>

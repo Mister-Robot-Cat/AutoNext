@@ -29,6 +29,7 @@ const InspectionModal = React.lazy(() => import('./components/InspectionModal').
 const CustomsCalculatorModal = React.lazy(() => import('./components/CustomsCalculatorModal').then(m => ({ default: m.CustomsCalculatorModal })));
 const LienRegistryModal = React.lazy(() => import('./components/LienRegistryModal').then(m => ({ default: m.LienRegistryModal })));
 const BillOfSaleModal = React.lazy(() => import('./components/BillOfSaleModal').then(m => ({ default: m.BillOfSaleModal })));
+const InsuranceCalculatorModal = React.lazy(() => import('./components/InsuranceCalculatorModal').then(m => ({ default: m.InsuranceCalculatorModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -105,6 +106,7 @@ export function App() {
   const [customsTargetCar, setCustomsTargetCar] = useState<Vehicle | null>(null);
   const [lienTargetCar, setLienTargetCar] = useState<Vehicle | null>(null);
   const [billOfSaleTargetCar, setBillOfSaleTargetCar] = useState<Vehicle | null>(null);
+  const [insuranceTargetCar, setInsuranceTargetCar] = useState<Vehicle | null>(null);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -405,6 +407,9 @@ export function App() {
           onOpenBillOfSale={(car) => {
             setBillOfSaleTargetCar(car);
           }}
+          onOpenInsuranceCalculator={(car) => {
+            setInsuranceTargetCar(car);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -476,6 +481,15 @@ export function App() {
           currency={currency}
           lang={lang}
           onClose={() => setBillOfSaleTargetCar(null)}
+        />
+
+        {/* Compulsory & KASKO Motor Insurance Calculator & Policy Generator Modal */}
+        <InsuranceCalculatorModal
+          isOpen={!!insuranceTargetCar}
+          vehicle={insuranceTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => setInsuranceTargetCar(null)}
         />
 
         {/* Car Comparator Modal */}
