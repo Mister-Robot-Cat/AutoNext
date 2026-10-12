@@ -256,4 +256,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(tcoBtn);
     expect(onOpenTcoForecastMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenTradeInValuation when trade-in shortcut button is clicked', () => {
+    const onOpenTradeInValuationMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenTradeInValuation={onOpenTradeInValuationMock}
+      />
+    );
+
+    const tradeInBtn = screen.getByTestId('trade-in-shortcut-btn');
+    expect(tradeInBtn).toBeInTheDocument();
+    fireEvent.click(tradeInBtn);
+    expect(onOpenTradeInValuationMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });

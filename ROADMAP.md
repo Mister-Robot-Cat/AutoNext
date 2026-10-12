@@ -134,5 +134,10 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 ### ⚡ Milestone 13: Advanced Automotive Insights & Discovery
 - [x] Implement `PriceHistoryModal` with interactive historical price trends and Vitest tests
 - [x] Implement vehicle loan amortization matrix breakdown with Vitest tests
-- [x] Implement total cost of ownership (TCO) 5-year forecaster with Vitest tests
-- [ ] Add trade-in valuation estimator module with Vitest tests
+- [x] Add trade-in valuation estimator module with Vitest tests
+
+---
+
+### 🛡️ Milestone 14: Buyer Protection & Inspection Diagnostics
+- [ ] Add comprehensive pre-purchase vehicle inspection (OBD-II / 150-point checklist) simulator with Vitest tests
+- [ ] Add import customs duty and excise tax calculator (DGK / Dövlət Gömrük Komitəsi tariff engine) with Vitest tests

@@ -26,7 +26,8 @@ import {
   ZoomIn,
   BarChart3,
   History,
-  Coins
+  Coins,
+  ArrowLeftRight
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -49,6 +50,7 @@ interface CarDetailModalProps {
   onOpenDealership?: (seller: any) => void;
   onOpenPriceHistory?: (vehicle: Vehicle) => void;
   onOpenTcoForecast?: (vehicle: Vehicle) => void;
+  onOpenTradeInValuation?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -61,6 +63,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenDealership,
   onOpenPriceHistory,
   onOpenTcoForecast,
+  onOpenTradeInValuation,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -351,6 +354,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Coins className="w-4 h-4" />
                     <span>5 İllik Sahiblik Xərci (TCO) Proqnozu</span>
+                  </button>
+                )}
+
+                {/* Trade-In & Barter Valuation Shortcut */}
+                {onOpenTradeInValuation && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenTradeInValuation(vehicle)}
+                    data-testid="trade-in-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-teal-500/10 hover:bg-teal-500/20 text-teal-400 border border-teal-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all"
+                  >
+                    <ArrowLeftRight className="w-4 h-4" />
+                    <span>Trade-In & Barter Qiymətləndirməsi</span>
                   </button>
                 )}
               </div>

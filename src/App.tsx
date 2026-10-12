@@ -24,6 +24,7 @@ const VinHistoryModal = React.lazy(() => import('./components/VinHistoryModal').
 const DealershipProfileModal = React.lazy(() => import('./components/DealershipProfileModal').then(m => ({ default: m.DealershipProfileModal })));
 const PriceHistoryModal = React.lazy(() => import('./components/PriceHistoryModal').then(m => ({ default: m.PriceHistoryModal })));
 const TcoForecasterModal = React.lazy(() => import('./components/TcoForecasterModal').then(m => ({ default: m.TcoForecasterModal })));
+const TradeInModal = React.lazy(() => import('./components/TradeInModal').then(m => ({ default: m.TradeInModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -93,6 +94,7 @@ export function App() {
   const [dealershipTarget, setDealershipTarget] = useState<SellerInfo | null>(null);
   const [priceHistoryTargetCar, setPriceHistoryTargetCar] = useState<Vehicle | null>(null);
   const [tcoTargetCar, setTcoTargetCar] = useState<Vehicle | null>(null);
+  const [tradeInTargetCar, setTradeInTargetCar] = useState<Vehicle | null>(null);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -357,6 +359,9 @@ export function App() {
           onOpenTcoForecast={(car) => {
             setTcoTargetCar(car);
           }}
+          onOpenTradeInValuation={(car) => {
+            setTradeInTargetCar(car);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -384,6 +389,15 @@ export function App() {
           currency={currency}
           lang={lang}
           onClose={() => setTcoTargetCar(null)}
+        />
+
+        {/* Trade-In & Barter Valuation Estimator Modal */}
+        <TradeInModal
+          isOpen={!!tradeInTargetCar}
+          targetVehicle={tradeInTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => setTradeInTargetCar(null)}
         />
 
         {/* Car Comparator Modal */}
