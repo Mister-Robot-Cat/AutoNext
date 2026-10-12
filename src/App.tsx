@@ -30,6 +30,7 @@ const CustomsCalculatorModal = React.lazy(() => import('./components/CustomsCalc
 const LienRegistryModal = React.lazy(() => import('./components/LienRegistryModal').then(m => ({ default: m.LienRegistryModal })));
 const BillOfSaleModal = React.lazy(() => import('./components/BillOfSaleModal').then(m => ({ default: m.BillOfSaleModal })));
 const InsuranceCalculatorModal = React.lazy(() => import('./components/InsuranceCalculatorModal').then(m => ({ default: m.InsuranceCalculatorModal })));
+const EscrowSimulatorModal = React.lazy(() => import('./components/EscrowSimulatorModal').then(m => ({ default: m.EscrowSimulatorModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -107,6 +108,7 @@ export function App() {
   const [lienTargetCar, setLienTargetCar] = useState<Vehicle | null>(null);
   const [billOfSaleTargetCar, setBillOfSaleTargetCar] = useState<Vehicle | null>(null);
   const [insuranceTargetCar, setInsuranceTargetCar] = useState<Vehicle | null>(null);
+  const [escrowTargetCar, setEscrowTargetCar] = useState<Vehicle | null>(null);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -410,6 +412,9 @@ export function App() {
           onOpenInsuranceCalculator={(car) => {
             setInsuranceTargetCar(car);
           }}
+          onOpenEscrowSimulator={(car) => {
+            setEscrowTargetCar(car);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -490,6 +495,15 @@ export function App() {
           currency={currency}
           lang={lang}
           onClose={() => setInsuranceTargetCar(null)}
+        />
+
+        {/* Seller Identity & Digital Escrow Deposit Holding Simulator Modal */}
+        <EscrowSimulatorModal
+          isOpen={!!escrowTargetCar}
+          vehicle={escrowTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => setEscrowTargetCar(null)}
         />
 
         {/* Car Comparator Modal */}

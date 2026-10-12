@@ -61,6 +61,7 @@ interface CarDetailModalProps {
   onOpenLienRegistry?: (vehicle: Vehicle) => void;
   onOpenBillOfSale?: (vehicle: Vehicle) => void;
   onOpenInsuranceCalculator?: (vehicle: Vehicle) => void;
+  onOpenEscrowSimulator?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -79,6 +80,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenLienRegistry,
   onOpenBillOfSale,
   onOpenInsuranceCalculator,
+  onOpenEscrowSimulator,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -447,6 +449,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Umbrella className="w-4 h-4" />
                     <span>İcbari & KASKO Sığorta Hesablayıcı</span>
+                  </button>
+                )}
+
+                {/* Seller Identity & Digital Escrow Deposit Holding Simulator Shortcut */}
+                {onOpenEscrowSimulator && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenEscrowSimulator(vehicle)}
+                    data-testid="escrow-simulator-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all"
+                  >
+                    <ShieldCheck className="w-4 h-4" />
+                    <span>Satıcı Yoxlanışı & Rəqəmsal Beh (Escrow)</span>
                   </button>
                 )}
               </div>

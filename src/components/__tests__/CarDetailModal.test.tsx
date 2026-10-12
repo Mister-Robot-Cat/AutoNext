@@ -376,4 +376,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(insBtn);
     expect(onOpenInsuranceMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenEscrowSimulator when escrow simulator shortcut button is clicked', () => {
+    const onOpenEscrowMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenEscrowSimulator={onOpenEscrowMock}
+      />
+    );
+
+    const escrowBtn = screen.getByTestId('escrow-simulator-shortcut-btn');
+    expect(escrowBtn).toBeInTheDocument();
+    fireEvent.click(escrowBtn);
+    expect(onOpenEscrowMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
