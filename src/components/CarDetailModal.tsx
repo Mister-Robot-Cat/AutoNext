@@ -30,7 +30,8 @@ import {
   ArrowLeftRight,
   ClipboardCheck,
   Scale,
-  ShieldAlert
+  ShieldAlert,
+  FileText
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -57,6 +58,7 @@ interface CarDetailModalProps {
   onOpenInspection?: (vehicle: Vehicle) => void;
   onOpenCustomsCalculator?: (vehicle: Vehicle) => void;
   onOpenLienRegistry?: (vehicle: Vehicle) => void;
+  onOpenBillOfSale?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -73,6 +75,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenInspection,
   onOpenCustomsCalculator,
   onOpenLienRegistry,
+  onOpenBillOfSale,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -415,6 +418,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <ShieldAlert className="w-4 h-4" />
                     <span>DİN Axtarış & Girov Reyestri Yoxlanışı</span>
+                  </button>
+                )}
+
+                {/* Vehicle Bill of Sale & Purchase Contract Generator Shortcut */}
+                {onOpenBillOfSale && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenBillOfSale(vehicle)}
+                    data-testid="bill-of-sale-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all"
+                  >
+                    <FileText className="w-4 h-4" />
+                    <span>Rəsmi Alqı-Satqı Müqaviləsi (Notariat)</span>
                   </button>
                 )}
               </div>

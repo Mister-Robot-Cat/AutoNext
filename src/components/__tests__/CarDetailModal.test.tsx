@@ -336,4 +336,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(lienBtn);
     expect(onOpenLienRegistryMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenBillOfSale when bill of sale shortcut button is clicked', () => {
+    const onOpenBillOfSaleMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenBillOfSale={onOpenBillOfSaleMock}
+      />
+    );
+
+    const billOfSaleBtn = screen.getByTestId('bill-of-sale-shortcut-btn');
+    expect(billOfSaleBtn).toBeInTheDocument();
+    fireEvent.click(billOfSaleBtn);
+    expect(onOpenBillOfSaleMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });

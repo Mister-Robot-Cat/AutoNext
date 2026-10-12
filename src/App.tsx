@@ -28,6 +28,7 @@ const TradeInModal = React.lazy(() => import('./components/TradeInModal').then(m
 const InspectionModal = React.lazy(() => import('./components/InspectionModal').then(m => ({ default: m.InspectionModal })));
 const CustomsCalculatorModal = React.lazy(() => import('./components/CustomsCalculatorModal').then(m => ({ default: m.CustomsCalculatorModal })));
 const LienRegistryModal = React.lazy(() => import('./components/LienRegistryModal').then(m => ({ default: m.LienRegistryModal })));
+const BillOfSaleModal = React.lazy(() => import('./components/BillOfSaleModal').then(m => ({ default: m.BillOfSaleModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -45,7 +46,8 @@ import {
   CheckCircle2,
   Car,
   Clock,
-  Scale
+  Scale,
+  FileText
 } from 'lucide-react';
 import { useTheme } from './hooks/useTheme';
 
@@ -102,6 +104,7 @@ export function App() {
   const [inspectionTargetCar, setInspectionTargetCar] = useState<Vehicle | null>(null);
   const [customsTargetCar, setCustomsTargetCar] = useState<Vehicle | null>(null);
   const [lienTargetCar, setLienTargetCar] = useState<Vehicle | null>(null);
+  const [billOfSaleTargetCar, setBillOfSaleTargetCar] = useState<Vehicle | null>(null);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -239,14 +242,23 @@ export function App() {
             </div>
           </div>
 
-          {/* Quick Access to Customs Duty Calculator */}
-          <div className="pt-2 flex justify-center">
+          {/* Quick Access to Customs Duty Calculator & Notariat Bill of Sale */}
+          <div className="pt-2 flex flex-wrap justify-center gap-2.5">
             <button
               onClick={() => setCustomsTargetCar(vehicles[0] || null)}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-cyan-500/30 hover:border-cyan-500/60 text-cyan-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-cyan-500/10 group cursor-pointer"
             >
               <Scale className="w-4 h-4 text-cyan-400 group-hover:rotate-12 transition-transform" />
-              <span>DGK Gömrük & Aksiz Kalkulyatoru (2026 Rəsmi Tarifləri)</span>
+              <span>DGK Gömrük & Aksiz Kalkulyatoru</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
+
+            <button
+              onClick={() => setBillOfSaleTargetCar(vehicles[0] || null)}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-indigo-500/30 hover:border-indigo-500/60 text-indigo-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-indigo-500/10 group cursor-pointer"
+            >
+              <FileText className="w-4 h-4 text-indigo-400 group-hover:rotate-12 transition-transform" />
+              <span>Notariat Alqı-Satqı Müqaviləsi Generatoru</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
           </div>
@@ -390,6 +402,9 @@ export function App() {
           onOpenLienRegistry={(car) => {
             setLienTargetCar(car);
           }}
+          onOpenBillOfSale={(car) => {
+            setBillOfSaleTargetCar(car);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -452,6 +467,15 @@ export function App() {
           vehicle={lienTargetCar}
           lang={lang}
           onClose={() => setLienTargetCar(null)}
+        />
+
+        {/* Vehicle Bill of Sale & Notary Purchase Contract Generator Modal */}
+        <BillOfSaleModal
+          isOpen={!!billOfSaleTargetCar}
+          vehicle={billOfSaleTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => setBillOfSaleTargetCar(null)}
         />
 
         {/* Car Comparator Modal */}
