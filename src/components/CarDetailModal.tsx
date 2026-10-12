@@ -29,7 +29,8 @@ import {
   Coins,
   ArrowLeftRight,
   ClipboardCheck,
-  Scale
+  Scale,
+  ShieldAlert
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -55,6 +56,7 @@ interface CarDetailModalProps {
   onOpenTradeInValuation?: (vehicle: Vehicle) => void;
   onOpenInspection?: (vehicle: Vehicle) => void;
   onOpenCustomsCalculator?: (vehicle: Vehicle) => void;
+  onOpenLienRegistry?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -70,6 +72,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenTradeInValuation,
   onOpenInspection,
   onOpenCustomsCalculator,
+  onOpenLienRegistry,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -399,6 +402,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Scale className="w-4 h-4" />
                     <span>İdxal Gömrük Rüsumu & Vergi Kalkulyatoru</span>
+                  </button>
+                )}
+
+                {/* Stolen Vehicle & Bank Lien Registry Shortcut */}
+                {onOpenLienRegistry && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenLienRegistry(vehicle)}
+                    data-testid="lien-registry-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all"
+                  >
+                    <ShieldAlert className="w-4 h-4" />
+                    <span>DİN Axtarış & Girov Reyestri Yoxlanışı</span>
                   </button>
                 )}
               </div>

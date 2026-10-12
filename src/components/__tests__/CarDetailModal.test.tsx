@@ -316,4 +316,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(customsBtn);
     expect(onOpenCustomsCalculatorMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenLienRegistry when lien registry shortcut button is clicked', () => {
+    const onOpenLienRegistryMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenLienRegistry={onOpenLienRegistryMock}
+      />
+    );
+
+    const lienBtn = screen.getByTestId('lien-registry-shortcut-btn');
+    expect(lienBtn).toBeInTheDocument();
+    fireEvent.click(lienBtn);
+    expect(onOpenLienRegistryMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });

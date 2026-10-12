@@ -138,8 +138,15 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 
 ---
 
-### 🛡️ Milestone 14: Buyer Protection & Inspection Diagnostics
+### 🛡️ Milestone 14: Buyer Protection & Inspection Diagnostics (Completed)
 - [x] Add comprehensive pre-purchase vehicle inspection (OBD-II / 150-point checklist) simulator with Vitest tests
 - [x] Add import customs duty and excise tax calculator (DGK / Dövlət Gömrük Komitəsi tariff engine) with Vitest tests
-- [ ] Add stolen vehicle and lien registry verification mock database with Vitest tests
+- [x] Add stolen vehicle and lien registry verification mock database with Vitest tests
+
+---
+
+### 📄 Milestone 15: Legal Agreements & Transaction Security
+- [ ] Add bilingual vehicle bill of sale & purchase contract generator (Notariat alqı-satqı müqaviləsi) with Vitest tests
+- [ ] Add compulsory & KASKO insurance premium estimator with policy comparison and Vitest tests
+- [ ] Add seller identity and digital escrow deposit holding simulator with Vitest tests
 

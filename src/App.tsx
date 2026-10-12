@@ -27,6 +27,7 @@ const TcoForecasterModal = React.lazy(() => import('./components/TcoForecasterMo
 const TradeInModal = React.lazy(() => import('./components/TradeInModal').then(m => ({ default: m.TradeInModal })));
 const InspectionModal = React.lazy(() => import('./components/InspectionModal').then(m => ({ default: m.InspectionModal })));
 const CustomsCalculatorModal = React.lazy(() => import('./components/CustomsCalculatorModal').then(m => ({ default: m.CustomsCalculatorModal })));
+const LienRegistryModal = React.lazy(() => import('./components/LienRegistryModal').then(m => ({ default: m.LienRegistryModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -43,7 +44,8 @@ import {
   Flame,
   CheckCircle2,
   Car,
-  Clock
+  Clock,
+  Scale
 } from 'lucide-react';
 import { useTheme } from './hooks/useTheme';
 
@@ -99,6 +101,7 @@ export function App() {
   const [tradeInTargetCar, setTradeInTargetCar] = useState<Vehicle | null>(null);
   const [inspectionTargetCar, setInspectionTargetCar] = useState<Vehicle | null>(null);
   const [customsTargetCar, setCustomsTargetCar] = useState<Vehicle | null>(null);
+  const [lienTargetCar, setLienTargetCar] = useState<Vehicle | null>(null);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -234,6 +237,18 @@ export function App() {
               </div>
               <p className="text-slate-300 text-xs">Kapital, ABB və Unibank faizləri ilə dərhal aylıq ödəniş</p>
             </div>
+          </div>
+
+          {/* Quick Access to Customs Duty Calculator */}
+          <div className="pt-2 flex justify-center">
+            <button
+              onClick={() => setCustomsTargetCar(vehicles[0] || null)}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-cyan-500/30 hover:border-cyan-500/60 text-cyan-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-cyan-500/10 group cursor-pointer"
+            >
+              <Scale className="w-4 h-4 text-cyan-400 group-hover:rotate-12 transition-transform" />
+              <span>DGK Gömrük & Aksiz Kalkulyatoru (2026 Rəsmi Tarifləri)</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </div>
         </div>
       </section>
@@ -372,6 +387,9 @@ export function App() {
           onOpenCustomsCalculator={(car) => {
             setCustomsTargetCar(car);
           }}
+          onOpenLienRegistry={(car) => {
+            setLienTargetCar(car);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -426,6 +444,14 @@ export function App() {
           currency={currency}
           lang={lang}
           onClose={() => setCustomsTargetCar(null)}
+        />
+
+        {/* Stolen Vehicle & Bank Lien Registry Verification Modal */}
+        <LienRegistryModal
+          isOpen={!!lienTargetCar}
+          vehicle={lienTargetCar}
+          lang={lang}
+          onClose={() => setLienTargetCar(null)}
         />
 
         {/* Car Comparator Modal */}
