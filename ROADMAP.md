@@ -192,3 +192,14 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Add comprehensive mock traffic violation database (`src/data/mockFinesData.ts`) covering speeding radars (Traffistar SR590, MultaRadar CD), red lights, yellow bus lane encroachment, mobile phone/seatbelt cameras, and expired inspection ANPR gates
 - [x] Official BDYP "Cərimə Borcunun Olmaması Haqqında Arayış" (Clean Record Certificate) generator with security verification code, validity period, and printable/downloadable format
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/fines.test.ts` and `src/components/__tests__/TrafficFinesModal.test.tsx`) covering calculations, discounts, points scale, payment simulation, and modal interactions
+
+---
+
+### 🚨 Milestone 21: Official 24/7 Roadside Assistance, Emergency Towing & Mobile Dispatch Network (156 Evakuator Xidməti & Təcili Yol Köməyi) (Completed)
+- [x] Add Official 24/7 Roadside Assistance & Emergency Towing Network Modal (`RoadsideAssistanceModal.tsx`) with instant callout simulator, live GPS telemetry radar, driver card, and official e-voucher
+- [x] Implement roadside assistance calculation & fleet dispatch engine (`src/utils/roadsideAssistance.ts`) covering flatbed towing, heavy manipulator cranes, booster jumpstart, on-site puncture vulcanization, emergency 10L fuel delivery, non-destructive lockout bypass, and sand/mud winch extraction
+- [x] Add multi-tier location tariff calculation engine with 8km base coverage, per-km excess rates across 16 authentic Azerbaijan districts/corridors (Baku central, Absheron, Sumgayit, Shamakhi & Guba highway routes), vehicle body weight multipliers (SUV, Minivan, Commercial), and 30% night surge (22:00-07:00)
+- [x] Add comprehensive mock roadside assistance database (`src/data/mockRoadsideData.ts`) covering 5 strategic depot bases in Baku & Absheron, 7 certified fleet tow trucks & mobile service vans with authentic Azerbaijani license plates (`99-EV-156`, `77-EV-156`), driver profiles, and sample active dispatches
+- [x] Official electronic receipt & assistance voucher generator with unique reference code (`SOS-156-BAKU-XXXX`), security verification code, itemized VAT breakdown, and printable/copyable layout
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/roadsideAssistance.test.ts` and `src/components/__tests__/RoadsideAssistanceModal.test.tsx`) covering cost formulas, night detection, truck allocation, nearest depot resolution, tracking simulation, and modal interactions
+

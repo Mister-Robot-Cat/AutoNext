@@ -36,6 +36,7 @@ const RecallRegistryModal = React.lazy(() => import('./components/RecallRegistry
 const TechnicalInspectionModal = React.lazy(() => import('./components/TechnicalInspectionModal').then(m => ({ default: m.TechnicalInspectionModal })));
 const VehicleRegistrationModal = React.lazy(() => import('./components/VehicleRegistrationModal').then(m => ({ default: m.VehicleRegistrationModal })));
 const TrafficFinesModal = React.lazy(() => import('./components/TrafficFinesModal').then(m => ({ default: m.TrafficFinesModal })));
+const RoadsideAssistanceModal = React.lazy(() => import('./components/RoadsideAssistanceModal').then(m => ({ default: m.RoadsideAssistanceModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -57,7 +58,8 @@ import {
   Scale,
   FileText,
   AlertTriangle,
-  Building2
+  Building2,
+  Truck
 } from 'lucide-react';
 import { useTheme } from './hooks/useTheme';
 
@@ -122,6 +124,7 @@ export function App() {
   const [technicalInspectionTargetCar, setTechnicalInspectionTargetCar] = useState<Vehicle | null>(null);
   const [registrationTargetCar, setRegistrationTargetCar] = useState<Vehicle | null>(null);
   const [trafficFinesTargetCar, setTrafficFinesTargetCar] = useState<Vehicle | null>(null);
+  const [roadsideTargetCar, setRoadsideTargetCar] = useState<Vehicle | null>(null);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -308,6 +311,16 @@ export function App() {
               <span>BDYP Radar Cərimələri & AsanPay</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
+
+            <button
+              onClick={() => setRoadsideTargetCar(vehicles[0] || null)}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-amber-500/30 hover:border-amber-500/60 text-amber-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-amber-500/10 group cursor-pointer"
+              data-testid="hero-roadside-assistance-btn"
+            >
+              <Truck className="w-4 h-4 text-amber-400 group-hover:rotate-12 transition-transform" />
+              <span>156 Evakuasiya & Təcili Yol Köməyi</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </div>
         </div>
       </section>
@@ -473,6 +486,9 @@ export function App() {
           onOpenTrafficFines={(car) => {
             setTrafficFinesTargetCar(car);
           }}
+          onOpenRoadsideAssistance={(car) => {
+            setRoadsideTargetCar(car);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -614,6 +630,15 @@ export function App() {
           currency={currency}
           lang={lang}
           onClose={() => setTrafficFinesTargetCar(null)}
+        />
+
+        {/* 156 Roadside Assistance & Emergency Towing Network Modal */}
+        <RoadsideAssistanceModal
+          isOpen={!!roadsideTargetCar}
+          vehicle={roadsideTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => setRoadsideTargetCar(null)}
         />
 
         {/* Car Comparator Modal */}

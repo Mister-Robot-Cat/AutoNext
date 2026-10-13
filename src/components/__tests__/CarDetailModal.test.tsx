@@ -496,6 +496,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(trafficFinesBtn);
     expect(onOpenTrafficFinesMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenRoadsideAssistance when roadside assistance shortcut button is clicked', () => {
+    const onOpenRoadsideAssistanceMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenRoadsideAssistance={onOpenRoadsideAssistanceMock}
+      />
+    );
+
+    const roadsideBtn = screen.getByTestId('roadside-assistance-shortcut-btn');
+    expect(roadsideBtn).toBeInTheDocument();
+    fireEvent.click(roadsideBtn);
+    expect(onOpenRoadsideAssistanceMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
 
 
