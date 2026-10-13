@@ -31,6 +31,7 @@ const LienRegistryModal = React.lazy(() => import('./components/LienRegistryModa
 const BillOfSaleModal = React.lazy(() => import('./components/BillOfSaleModal').then(m => ({ default: m.BillOfSaleModal })));
 const InsuranceCalculatorModal = React.lazy(() => import('./components/InsuranceCalculatorModal').then(m => ({ default: m.InsuranceCalculatorModal })));
 const EscrowSimulatorModal = React.lazy(() => import('./components/EscrowSimulatorModal').then(m => ({ default: m.EscrowSimulatorModal })));
+const ServicePassportModal = React.lazy(() => import('./components/ServicePassportModal').then(m => ({ default: m.ServicePassportModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -109,6 +110,7 @@ export function App() {
   const [billOfSaleTargetCar, setBillOfSaleTargetCar] = useState<Vehicle | null>(null);
   const [insuranceTargetCar, setInsuranceTargetCar] = useState<Vehicle | null>(null);
   const [escrowTargetCar, setEscrowTargetCar] = useState<Vehicle | null>(null);
+  const [servicePassportTargetCar, setServicePassportTargetCar] = useState<Vehicle | null>(null);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -415,6 +417,9 @@ export function App() {
           onOpenEscrowSimulator={(car) => {
             setEscrowTargetCar(car);
           }}
+          onOpenServicePassport={(car) => {
+            setServicePassportTargetCar(car);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -504,6 +509,15 @@ export function App() {
           currency={currency}
           lang={lang}
           onClose={() => setEscrowTargetCar(null)}
+        />
+
+        {/* Digital Service Passport & Maintenance Schedule Planner Modal */}
+        <ServicePassportModal
+          isOpen={!!servicePassportTargetCar}
+          vehicle={servicePassportTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => setServicePassportTargetCar(null)}
         />
 
         {/* Car Comparator Modal */}

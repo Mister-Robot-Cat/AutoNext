@@ -150,3 +150,11 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Add compulsory & KASKO insurance premium estimator with policy comparison and Vitest tests
 - [x] Add seller identity and digital escrow deposit holding simulator with Vitest tests
 
+---
+
+### 🔧 Milestone 16: Vehicle Ownership & Maintenance Lifecycle (Completed)
+- [x] Add Digital Service Passport & Maintenance Schedule Planner (`ServicePassportModal.tsx`) with intervals, dealer vs certified shop cost estimator, overdue tracking, and Vitest tests
+- [x] Implement vehicle maintenance schedule calculation engine (`src/utils/servicePassport.ts`) with mileage-based triggers, wear-and-tear degradation, localized service costs in AZN/USD/EUR, and Vitest tests
+- [x] Add comprehensive mock service history records and official dealer service database (`src/data/mockServiceRecords.ts`) with dealer stamps, technician notes, and parts breakdown
+
+

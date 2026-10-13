@@ -396,4 +396,25 @@ describe('CarDetailModal', () => {
     fireEvent.click(escrowBtn);
     expect(onOpenEscrowMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenServicePassport when service passport shortcut button is clicked', () => {
+    const onOpenPassportMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenServicePassport={onOpenPassportMock}
+      />
+    );
+
+    const passportBtn = screen.getByTestId('service-passport-shortcut-btn');
+    expect(passportBtn).toBeInTheDocument();
+    fireEvent.click(passportBtn);
+    expect(onOpenPassportMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
+
