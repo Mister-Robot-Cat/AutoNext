@@ -66,6 +66,7 @@ interface CarDetailModalProps {
   onOpenEscrowSimulator?: (vehicle: Vehicle) => void;
   onOpenServicePassport?: (vehicle: Vehicle) => void;
   onOpenRecallRegistry?: (vehicle: Vehicle) => void;
+  onOpenTechnicalInspection?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -87,6 +88,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenEscrowSimulator,
   onOpenServicePassport,
   onOpenRecallRegistry,
+  onOpenTechnicalInspection,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -494,6 +496,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <AlertTriangle className="w-4 h-4" />
                     <span>Təhlükəsizlik və Geri Çağırış (Safety Recalls)</span>
+                  </button>
+                )}
+
+                {/* Official BDYP State Technical Inspection & E-Talon Shortcut */}
+                {onOpenTechnicalInspection && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenTechnicalInspection(vehicle)}
+                    data-testid="technical-inspection-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-sky-500/10 hover:bg-sky-500/20 text-sky-400 border border-sky-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all"
+                  >
+                    <ShieldCheck className="w-4 h-4" />
+                    <span>Dövlət Texniki Baxışı & E-Talon (DYP)</span>
                   </button>
                 )}
               </div>

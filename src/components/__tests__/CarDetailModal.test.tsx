@@ -436,5 +436,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(recallBtn);
     expect(onOpenRecallMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenTechnicalInspection when technical inspection shortcut button is clicked', () => {
+    const onOpenInspectionMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenTechnicalInspection={onOpenInspectionMock}
+      />
+    );
+
+    const inspectionBtn = screen.getByTestId('technical-inspection-shortcut-btn');
+    expect(inspectionBtn).toBeInTheDocument();
+    fireEvent.click(inspectionBtn);
+    expect(onOpenInspectionMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
+
 

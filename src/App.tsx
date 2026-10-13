@@ -33,6 +33,7 @@ const InsuranceCalculatorModal = React.lazy(() => import('./components/Insurance
 const EscrowSimulatorModal = React.lazy(() => import('./components/EscrowSimulatorModal').then(m => ({ default: m.EscrowSimulatorModal })));
 const ServicePassportModal = React.lazy(() => import('./components/ServicePassportModal').then(m => ({ default: m.ServicePassportModal })));
 const RecallRegistryModal = React.lazy(() => import('./components/RecallRegistryModal').then(m => ({ default: m.RecallRegistryModal })));
+const TechnicalInspectionModal = React.lazy(() => import('./components/TechnicalInspectionModal').then(m => ({ default: m.TechnicalInspectionModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -114,6 +115,7 @@ export function App() {
   const [escrowTargetCar, setEscrowTargetCar] = useState<Vehicle | null>(null);
   const [servicePassportTargetCar, setServicePassportTargetCar] = useState<Vehicle | null>(null);
   const [recallTargetCar, setRecallTargetCar] = useState<Vehicle | null>(null);
+  const [technicalInspectionTargetCar, setTechnicalInspectionTargetCar] = useState<Vehicle | null>(null);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -436,6 +438,9 @@ export function App() {
           onOpenRecallRegistry={(car) => {
             setRecallTargetCar(car);
           }}
+          onOpenTechnicalInspection={(car) => {
+            setTechnicalInspectionTargetCar(car);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -543,6 +548,15 @@ export function App() {
           currency={currency}
           lang={lang}
           onClose={() => setRecallTargetCar(null)}
+        />
+
+        {/* Official State Roadworthiness & Technical Inspection (DYP) Modal */}
+        <TechnicalInspectionModal
+          isOpen={!!technicalInspectionTargetCar}
+          vehicle={technicalInspectionTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => setTechnicalInspectionTargetCar(null)}
         />
 
         {/* Car Comparator Modal */}

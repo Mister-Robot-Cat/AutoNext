@@ -165,4 +165,14 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Add comprehensive mock manufacturer recall database (`src/data/mockRecallDatabase.ts`) covering vehicle models, recall bulletins (brakes, battery, powertrain, software), and official authorized service repair centers
 - [x] Comprehensive Vitest unit tests for recall calculation engine and `RecallRegistryModal` component
 
+---
+
+### 🏛️ Milestone 18: State Roadworthiness & Technical Inspection (DYP Texniki Baxış) System (Completed)
+- [x] Add State Roadworthiness & Electronic Diagnostic Talon (`TechnicalInspectionModal.tsx`) with BDYP E-Talon generation, validity countdown, and automated photo-radar penalty alert
+- [x] Implement official legal inspection schedule & fees engine (`src/utils/technicalInspection.ts`) adhering to Article 30 of the Law on Road Traffic (0-4 yr exemption, 4-10 yr biennial, 10+ yr annual intervals, and multi-currency state duties)
+- [x] Build comprehensive laboratory diagnostic simulator with brake force balance, exhaust gas analysis (CO%, HC ppm, lambda ratio, zero-emission EV check), and safety gear audit
+- [x] Add official BDYP Inspection Centers database (`src/data/mockTechnicalInspection.ts`) and interactive queue booking system with live wait times and voucher generation
+- [x] Comprehensive Vitest unit test suite covering legal rules, calculations, talon generation, booking engine, and modal interactions
+
+
 
