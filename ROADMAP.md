@@ -157,4 +157,12 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Implement vehicle maintenance schedule calculation engine (`src/utils/servicePassport.ts`) with mileage-based triggers, wear-and-tear degradation, localized service costs in AZN/USD/EUR, and Vitest tests
 - [x] Add comprehensive mock service history records and official dealer service database (`src/data/mockServiceRecords.ts`) with dealer stamps, technician notes, and parts breakdown
 
+---
+
+### 🛡️ Milestone 17: Vehicle Safety Recalls & Technical Service Bulletins (TSB) Registry (Completed)
+- [x] Add Manufacturer Safety Recall & TSB Registry (`RecallRegistryModal.tsx`) with VIN-based campaign verification, recall severity scoring, and dealer booking simulator
+- [x] Implement recall audit engine (`src/utils/recalls.ts`) with defect risk analysis, remedy tracking, and clearance status verification
+- [x] Add comprehensive mock manufacturer recall database (`src/data/mockRecallDatabase.ts`) covering vehicle models, recall bulletins (brakes, battery, powertrain, software), and official authorized service repair centers
+- [x] Comprehensive Vitest unit tests for recall calculation engine and `RecallRegistryModal` component
+
 

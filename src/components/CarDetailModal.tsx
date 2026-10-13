@@ -33,7 +33,8 @@ import {
   ShieldAlert,
   FileText,
   Umbrella,
-  BookOpenCheck
+  BookOpenCheck,
+  AlertTriangle
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -64,6 +65,7 @@ interface CarDetailModalProps {
   onOpenInsuranceCalculator?: (vehicle: Vehicle) => void;
   onOpenEscrowSimulator?: (vehicle: Vehicle) => void;
   onOpenServicePassport?: (vehicle: Vehicle) => void;
+  onOpenRecallRegistry?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -84,6 +86,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenInsuranceCalculator,
   onOpenEscrowSimulator,
   onOpenServicePassport,
+  onOpenRecallRegistry,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -478,6 +481,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <BookOpenCheck className="w-4 h-4" />
                     <span>Rəqəmsal Servis Pasportu & Qulluq Planı</span>
+                  </button>
+                )}
+
+                {/* Official Manufacturer Safety Recall & TSB Registry Shortcut */}
+                {onOpenRecallRegistry && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenRecallRegistry(vehicle)}
+                    data-testid="recall-registry-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all"
+                  >
+                    <AlertTriangle className="w-4 h-4" />
+                    <span>Təhlükəsizlik və Geri Çağırış (Safety Recalls)</span>
                   </button>
                 )}
               </div>
