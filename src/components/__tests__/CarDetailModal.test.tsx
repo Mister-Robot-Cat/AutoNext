@@ -476,6 +476,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(registrationBtn);
     expect(onOpenRegistrationMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenTrafficFines when traffic fines shortcut button is clicked', () => {
+    const onOpenTrafficFinesMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenTrafficFines={onOpenTrafficFinesMock}
+      />
+    );
+
+    const trafficFinesBtn = screen.getByTestId('traffic-fines-shortcut-btn');
+    expect(trafficFinesBtn).toBeInTheDocument();
+    fireEvent.click(trafficFinesBtn);
+    expect(onOpenTrafficFinesMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
 
 

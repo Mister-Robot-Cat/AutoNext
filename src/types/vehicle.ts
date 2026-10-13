@@ -44,6 +44,7 @@ export interface Vehicle {
   id: string;
   title: string;
   vin: string;
+  plateNumber?: string;
   make: string;
   model: string;
   generation?: string;

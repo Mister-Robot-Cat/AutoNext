@@ -40,6 +40,7 @@ export interface LienRegistryModalProps {
   initialVehicle?: Vehicle | null;
   lang: Language;
   onClose: () => void;
+  onOpenTrafficFines?: (plateNumber: string) => void;
 }
 
 const TRANSLATIONS = {
@@ -168,6 +169,7 @@ export const LienRegistryModal: React.FC<LienRegistryModalProps> = ({
   initialVehicle = null,
   lang,
   onClose,
+  onOpenTrafficFines,
 }) => {
   const targetCar = vehicle || initialVehicle || null;
   const t = TRANSLATIONS[lang] || TRANSLATIONS.az;
@@ -527,6 +529,17 @@ export const LienRegistryModal: React.FC<LienRegistryModalProps> = ({
                       ? '0 AZN aktiv MMX cərimə borcu yoxdur'
                       : `${rec?.unpaidFinesCount} cərimə: ₼${rec?.unpaidFinesAmountAzn}`}
                   </p>
+                  {onOpenTrafficFines && rec && rec.unpaidFinesCount > 0 && (
+                    <button
+                      type="button"
+                      onClick={() => onOpenTrafficFines(rec.plateNumber)}
+                      data-testid="gate-fines-inspect-btn"
+                      className="mt-1 text-[10px] text-rose-400 hover:text-rose-300 font-semibold underline flex items-center gap-1 cursor-pointer"
+                    >
+                      <span>MMX Cərimələrini Aç & Ödə</span>
+                      <ExternalLink className="w-2.5 h-2.5" />
+                    </button>
+                  )}
                 </div>
               </div>
 

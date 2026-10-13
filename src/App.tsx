@@ -35,10 +35,12 @@ const ServicePassportModal = React.lazy(() => import('./components/ServicePasspo
 const RecallRegistryModal = React.lazy(() => import('./components/RecallRegistryModal').then(m => ({ default: m.RecallRegistryModal })));
 const TechnicalInspectionModal = React.lazy(() => import('./components/TechnicalInspectionModal').then(m => ({ default: m.TechnicalInspectionModal })));
 const VehicleRegistrationModal = React.lazy(() => import('./components/VehicleRegistrationModal').then(m => ({ default: m.VehicleRegistrationModal })));
+const TrafficFinesModal = React.lazy(() => import('./components/TrafficFinesModal').then(m => ({ default: m.TrafficFinesModal })));
 import { 
   Sparkles, 
   Layers, 
   ShieldCheck, 
+  ShieldAlert,
   TrendingDown, 
   Calculator, 
   ArrowRight, 
@@ -119,6 +121,7 @@ export function App() {
   const [recallTargetCar, setRecallTargetCar] = useState<Vehicle | null>(null);
   const [technicalInspectionTargetCar, setTechnicalInspectionTargetCar] = useState<Vehicle | null>(null);
   const [registrationTargetCar, setRegistrationTargetCar] = useState<Vehicle | null>(null);
+  const [trafficFinesTargetCar, setTrafficFinesTargetCar] = useState<Vehicle | null>(null);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -295,6 +298,16 @@ export function App() {
               <span>BDYP Qeydiyyat & Texpasport</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
+
+            <button
+              onClick={() => setTrafficFinesTargetCar(vehicles[0] || null)}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-rose-500/30 hover:border-rose-500/60 text-rose-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-rose-500/10 group cursor-pointer"
+              data-testid="hero-traffic-fines-btn"
+            >
+              <ShieldAlert className="w-4 h-4 text-rose-400 group-hover:rotate-12 transition-transform" />
+              <span>BDYP Radar Cərimələri & AsanPay</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </div>
         </div>
       </section>
@@ -457,6 +470,9 @@ export function App() {
           onOpenRegistration={(car) => {
             setRegistrationTargetCar(car);
           }}
+          onOpenTrafficFines={(car) => {
+            setTrafficFinesTargetCar(car);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -519,6 +535,13 @@ export function App() {
           vehicle={lienTargetCar}
           lang={lang}
           onClose={() => setLienTargetCar(null)}
+          onOpenTrafficFines={(plate) => {
+            const found = vehicles.find((v) => v.plateNumber === plate) || {
+              ...vehicles[0],
+              plateNumber: plate,
+            };
+            setTrafficFinesTargetCar(found);
+          }}
         />
 
         {/* Vehicle Bill of Sale & Notary Purchase Contract Generator Modal */}
@@ -582,6 +605,15 @@ export function App() {
           currency={currency}
           lang={lang}
           onClose={() => setRegistrationTargetCar(null)}
+        />
+
+        {/* Official BDYP State Traffic Fines & MMX Radar Protocols Modal */}
+        <TrafficFinesModal
+          isOpen={!!trafficFinesTargetCar}
+          vehicle={trafficFinesTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => setTrafficFinesTargetCar(null)}
         />
 
         {/* Car Comparator Modal */}

@@ -69,6 +69,7 @@ interface CarDetailModalProps {
   onOpenRecallRegistry?: (vehicle: Vehicle) => void;
   onOpenTechnicalInspection?: (vehicle: Vehicle) => void;
   onOpenRegistration?: (vehicle: Vehicle) => void;
+  onOpenTrafficFines?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -92,6 +93,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenRecallRegistry,
   onOpenTechnicalInspection,
   onOpenRegistration,
+  onOpenTrafficFines,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -525,6 +527,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Building2 className="w-4 h-4" />
                     <span>BDYP Qeydiyyat & Texpasport Rəsmiləşdirilməsi</span>
+                  </button>
+                )}
+
+                {/* Official BDYP State Traffic Fines & MMX Protocols Shortcut */}
+                {onOpenTrafficFines && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenTrafficFines(vehicle)}
+                    data-testid="traffic-fines-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <ShieldAlert className="w-4 h-4" />
+                    <span>BDYP Radar Cərimələri & AsanPay (MMX)</span>
                   </button>
                 )}
               </div>
