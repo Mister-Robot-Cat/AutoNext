@@ -34,6 +34,7 @@ const EscrowSimulatorModal = React.lazy(() => import('./components/EscrowSimulat
 const ServicePassportModal = React.lazy(() => import('./components/ServicePassportModal').then(m => ({ default: m.ServicePassportModal })));
 const RecallRegistryModal = React.lazy(() => import('./components/RecallRegistryModal').then(m => ({ default: m.RecallRegistryModal })));
 const TechnicalInspectionModal = React.lazy(() => import('./components/TechnicalInspectionModal').then(m => ({ default: m.TechnicalInspectionModal })));
+const VehicleRegistrationModal = React.lazy(() => import('./components/VehicleRegistrationModal').then(m => ({ default: m.VehicleRegistrationModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -53,7 +54,8 @@ import {
   Clock,
   Scale,
   FileText,
-  AlertTriangle
+  AlertTriangle,
+  Building2
 } from 'lucide-react';
 import { useTheme } from './hooks/useTheme';
 
@@ -116,6 +118,7 @@ export function App() {
   const [servicePassportTargetCar, setServicePassportTargetCar] = useState<Vehicle | null>(null);
   const [recallTargetCar, setRecallTargetCar] = useState<Vehicle | null>(null);
   const [technicalInspectionTargetCar, setTechnicalInspectionTargetCar] = useState<Vehicle | null>(null);
+  const [registrationTargetCar, setRegistrationTargetCar] = useState<Vehicle | null>(null);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -282,6 +285,16 @@ export function App() {
               <span>İstehsalçı Geri Çağırış Reyestri</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
+
+            <button
+              onClick={() => setRegistrationTargetCar(vehicles[0] || null)}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-sky-500/30 hover:border-sky-500/60 text-sky-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-sky-500/10 group cursor-pointer"
+              data-testid="hero-registration-btn"
+            >
+              <Building2 className="w-4 h-4 text-sky-400 group-hover:rotate-12 transition-transform" />
+              <span>BDYP Qeydiyyat & Texpasport</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </div>
         </div>
       </section>
@@ -441,6 +454,9 @@ export function App() {
           onOpenTechnicalInspection={(car) => {
             setTechnicalInspectionTargetCar(car);
           }}
+          onOpenRegistration={(car) => {
+            setRegistrationTargetCar(car);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -557,6 +573,15 @@ export function App() {
           currency={currency}
           lang={lang}
           onClose={() => setTechnicalInspectionTargetCar(null)}
+        />
+
+        {/* Official State Vehicle Re-registration & Plate Registry (BDYP) Modal */}
+        <VehicleRegistrationModal
+          isOpen={!!registrationTargetCar}
+          vehicle={registrationTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => setRegistrationTargetCar(null)}
         />
 
         {/* Car Comparator Modal */}

@@ -34,7 +34,8 @@ import {
   FileText,
   Umbrella,
   BookOpenCheck,
-  AlertTriangle
+  AlertTriangle,
+  Building2
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -67,6 +68,7 @@ interface CarDetailModalProps {
   onOpenServicePassport?: (vehicle: Vehicle) => void;
   onOpenRecallRegistry?: (vehicle: Vehicle) => void;
   onOpenTechnicalInspection?: (vehicle: Vehicle) => void;
+  onOpenRegistration?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -89,6 +91,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenServicePassport,
   onOpenRecallRegistry,
   onOpenTechnicalInspection,
+  onOpenRegistration,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -509,6 +512,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <ShieldCheck className="w-4 h-4" />
                     <span>Dövlət Texniki Baxışı & E-Talon (DYP)</span>
+                  </button>
+                )}
+
+                {/* Official BDYP State Re-registration & Plate Registry Shortcut */}
+                {onOpenRegistration && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenRegistration(vehicle)}
+                    data-testid="registration-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all"
+                  >
+                    <Building2 className="w-4 h-4" />
+                    <span>BDYP Qeydiyyat & Texpasport Rəsmiləşdirilməsi</span>
                   </button>
                 )}
               </div>

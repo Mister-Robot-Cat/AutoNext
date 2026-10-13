@@ -174,5 +174,15 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Add official BDYP Inspection Centers database (`src/data/mockTechnicalInspection.ts`) and interactive queue booking system with live wait times and voucher generation
 - [x] Comprehensive Vitest unit test suite covering legal rules, calculations, talon generation, booking engine, and modal interactions
 
+---
+
+### 🏛️ Milestone 19: Vehicle State Re-Registration & License Plate Registry (BDYP Qeydiyyat & Texpasport) (Completed)
+- [x] Add Official State Vehicle Re-Registration & License Plate Registry (`VehicleRegistrationModal.tsx`) with plate visualizer, VIP number tier estimator, and ASAN/BDYP appointment booking
+- [x] Implement legal state duties and ownership transfer engine (`src/utils/registration.ts`) adhering to the Law of Azerbaijan on State Duties (Texpasport replacement fee, standard vs VIP plate tariffs, EV/hybrid tax exemptions, and notary archiving fees)
+- [x] Add comprehensive mock BDYP Registration Divisions database (`src/data/mockRegistrationData.ts`) covering Baku Zabrat, Qobu, Sumgayit, and Ganja regional hubs with live appointment slots and document checklist requirements
+- [x] Interactive Azerbaijan license plate visualizer component with authentic blue EU/AZ strip, national flag, microchip indicator, and dynamic plate customization
+- [x] Comprehensive Vitest unit test suite covering legal calculations, fee breakdowns, plate tariff validation, appointment generation, and modal interactions
+
+
 
 

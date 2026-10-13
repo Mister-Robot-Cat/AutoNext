@@ -456,6 +456,27 @@ describe('CarDetailModal', () => {
     fireEvent.click(inspectionBtn);
     expect(onOpenInspectionMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenRegistration when registration shortcut button is clicked', () => {
+    const onOpenRegistrationMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenRegistration={onOpenRegistrationMock}
+      />
+    );
+
+    const registrationBtn = screen.getByTestId('registration-shortcut-btn');
+    expect(registrationBtn).toBeInTheDocument();
+    fireEvent.click(registrationBtn);
+    expect(onOpenRegistrationMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
+
 
 
