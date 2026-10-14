@@ -118,4 +118,14 @@ describe('Navbar Component', () => {
     fireEvent.click(parkingBtn);
     expect(onOpenParking).toHaveBeenCalledTimes(1);
   });
+
+  it('renders and calls onOpenFuelStations when provided', () => {
+    const onOpenFuelStations = vi.fn();
+    render(<Navbar {...defaultProps} onOpenFuelStations={onOpenFuelStations} />);
+
+    const fuelBtn = screen.getByTestId('navbar-fuel-stations-btn');
+    expect(fuelBtn).toBeInTheDocument();
+    fireEvent.click(fuelBtn);
+    expect(onOpenFuelStations).toHaveBeenCalledTimes(1);
+  });
 });

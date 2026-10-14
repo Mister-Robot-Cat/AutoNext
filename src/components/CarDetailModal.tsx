@@ -74,6 +74,7 @@ interface CarDetailModalProps {
   onOpenTrafficFines?: (vehicle: Vehicle) => void;
   onOpenRoadsideAssistance?: (vehicle: Vehicle) => void;
   onOpenEvCharging?: (vehicle: Vehicle) => void;
+  onOpenFuelStations?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -100,6 +101,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenTrafficFines,
   onOpenRoadsideAssistance,
   onOpenEvCharging,
+  onOpenFuelStations,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -572,6 +574,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Zap className="w-4 h-4" />
                     <span>Azərişıq & TokBaku Elektromobil Doldurma Şəbəkəsi</span>
+                  </button>
+                )}
+
+                {/* SOCAR & Azpetrol Fuel Station Radar Shortcut */}
+                {onOpenFuelStations && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenFuelStations(vehicle)}
+                    data-testid="fuel-stations-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Fuel className="w-4 h-4" />
+                    <span>SOCAR & Azpetrol Yanacaq Radarı və Səyahət Xərci</span>
                   </button>
                 )}
               </div>

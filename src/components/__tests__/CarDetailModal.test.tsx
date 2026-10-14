@@ -536,6 +536,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(evBtn);
     expect(onOpenEvChargingMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenFuelStations when fuel station shortcut button is clicked', () => {
+    const onOpenFuelStationsMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenFuelStations={onOpenFuelStationsMock}
+      />
+    );
+
+    const fuelBtn = screen.getByTestId('fuel-stations-shortcut-btn');
+    expect(fuelBtn).toBeInTheDocument();
+    fireEvent.click(fuelBtn);
+    expect(onOpenFuelStationsMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
 
 

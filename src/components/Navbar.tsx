@@ -11,7 +11,8 @@ import {
   Sun,
   Moon,
   Zap,
-  CircleParking
+  CircleParking,
+  Fuel
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -31,6 +32,7 @@ interface NavbarProps {
   onOpenCreateListing: () => void;
   onOpenEvCharging?: () => void;
   onOpenParking?: () => void;
+  onOpenFuelStations?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -50,6 +52,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenCreateListing,
   onOpenEvCharging,
   onOpenParking,
+  onOpenFuelStations,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -78,6 +81,19 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Feature Actions */}
         <div className="flex items-center gap-2 sm:gap-3">
+          {/* Fuel Station Radar Button */}
+          {onOpenFuelStations && (
+            <button
+              onClick={onOpenFuelStations}
+              data-testid="navbar-fuel-stations-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="SOCAR & Azpetrol Yanacaq Radarı və Tarif Şurası"
+            >
+              <Fuel className="w-4 h-4 text-amber-400" />
+              <span className="hidden xl:inline">Yanacaq Radarı</span>
+            </button>
+          )}
+
           {/* AzParking Radar Button */}
           {onOpenParking && (
             <button

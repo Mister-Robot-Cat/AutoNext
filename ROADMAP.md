@@ -223,3 +223,15 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Official electronic AzParking parking receipt and talon generator with unique reference code (`AZPARK-2026-XXXX`), security verification code, barcode telemetry, and printable layout
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/azParking.test.ts` and `src/components/__tests__/AzParkingModal.test.tsx`) covering tariffs, exemptions, grace periods, SMS command formatting, session simulation, ticket generation, and modal interactions
 
+---
+
+### ⛽ Milestone 24: Fuel Station Network & Smart Trip Fuel Calculator (SOCAR, Azpetrol & Tarif Şurası Rəsmi Yanacaq Şəbəkəsi və Səyahət Xərci Simulyatoru) (Completed)
+- [x] Add Official Fuel Station Radar & Smart Trip Fuel Calculator Modal (`FuelStationModal.tsx`) with Station Radar, Intercity Route Cost Simulator, Full Tank & Banking Cashback Engine, E-Fuel Fiscal Voucher, and Official Tarif Şurası Price Matrix
+- [x] Implement official State Tariff Council (Tarif Şurası) price engine & route calculation formulas (`src/utils/fuelStations.ts`) covering Aİ-92 (1.10 AZN), Dizel (1.00 AZN), Aİ-95 Premium (1.60 AZN), Aİ-98 Super (2.30 AZN), CNG (0.45 AZN/m³), LPG (0.65 AZN), dynamic AC/passenger/traffic/cargo consumption multipliers, and CO2 emissions
+- [x] Implement Azerbaijan Tax Ministry 18% VAT & 17.5% cashless "ƏDV Geri Al" consumer refund calculator alongside banking partner cashback rates (Birbank 5%, TamKart 4%, Leobank 3%, SOCAR Club 1.5%, Azpetrol Qırmızı Kart 1.0%)
+- [x] Add comprehensive mock fuel stations database (`src/data/mockFuelStations.ts`) covering 12 strategic stations in Baku (Heydar Aliyev Ave, Babek Ave, Tbilisi Ave, Nobel Ave, Airport Highway, Ziya Bunyadov) and regional highways (M1 Sumgayit km 45, M2 Kurdamir km 168, M3 Salyan km 62, M4 Shamakhi pass km 88) with 24/7 hours, fuel inventory, and amenities
+- [x] Add 6 authentic Azerbaijan intercity highway transit corridors with distance, duration, elevation, and recommended waypoint fuel stations (Baku-Ganja, Baku-Quba, Baku-Shaki, Baku-Shusha, Baku-Lankaran, Baku City Commute)
+- [x] Official electronic fiscal fuel receipt & voucher generator with unique reference code (`SOCAR-AZ-2026-XXXX` / `AZPETROL-AZ-2026-XXXX`), security hash, barcode telemetry, VAT & cashback breakdown, and printable layout
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/fuelStations.test.ts` and `src/components/__tests__/FuelStationModal.test.tsx`) covering calculations, tariffs, multipliers, refunds, cashback, filters, voucher generation, and modal interactions
+
+

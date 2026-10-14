@@ -39,6 +39,7 @@ const TrafficFinesModal = React.lazy(() => import('./components/TrafficFinesModa
 const RoadsideAssistanceModal = React.lazy(() => import('./components/RoadsideAssistanceModal').then(m => ({ default: m.RoadsideAssistanceModal })));
 const EvChargingModal = React.lazy(() => import('./components/EvChargingModal').then(m => ({ default: m.EvChargingModal })));
 const AzParkingModal = React.lazy(() => import('./components/AzParkingModal').then(m => ({ default: m.AzParkingModal })));
+const FuelStationModal = React.lazy(() => import('./components/FuelStationModal').then(m => ({ default: m.FuelStationModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -62,7 +63,8 @@ import {
   AlertTriangle,
   Building2,
   Truck,
-  CircleParking
+  CircleParking,
+  Fuel
 } from 'lucide-react';
 import { useTheme } from './hooks/useTheme';
 
@@ -132,6 +134,8 @@ export function App() {
   const [isEvModalOpen, setIsEvModalOpen] = useState(false);
   const [parkingTargetCar, setParkingTargetCar] = useState<Vehicle | null>(null);
   const [isParkingModalOpen, setIsParkingModalOpen] = useState(false);
+  const [fuelStationTargetCar, setFuelStationTargetCar] = useState<Vehicle | null>(null);
+  const [isFuelStationModalOpen, setIsFuelStationModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -213,6 +217,10 @@ export function App() {
         onOpenParking={() => {
           setParkingTargetCar(vehicles[0] || null);
           setIsParkingModalOpen(true);
+        }}
+        onOpenFuelStations={() => {
+          setFuelStationTargetCar(vehicles[0] || null);
+          setIsFuelStationModalOpen(true);
         }}
       />
 
@@ -360,6 +368,19 @@ export function App() {
             >
               <CircleParking className="w-4 h-4 text-sky-400 group-hover:rotate-12 transition-transform" />
               <span>AYNA AzParking Radarı</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
+
+            <button
+              onClick={() => {
+                setFuelStationTargetCar(vehicles[0] || null);
+                setIsFuelStationModalOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-amber-500/30 hover:border-amber-500/60 text-amber-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-amber-500/10 group cursor-pointer"
+              data-testid="hero-fuel-stations-btn"
+            >
+              <Fuel className="w-4 h-4 text-amber-400 group-hover:rotate-12 transition-transform" />
+              <span>SOCAR & Azpetrol Yanacaq Radarı</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
           </div>
@@ -534,6 +555,10 @@ export function App() {
             setEvChargingTargetCar(car);
             setIsEvModalOpen(true);
           }}
+          onOpenFuelStations={(car) => {
+            setFuelStationTargetCar(car);
+            setIsFuelStationModalOpen(true);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -707,6 +732,18 @@ export function App() {
           onClose={() => {
             setIsParkingModalOpen(false);
             setParkingTargetCar(null);
+          }}
+        />
+
+        {/* SOCAR & Azpetrol Fuel Station Radar & Tarif Şurası Modal */}
+        <FuelStationModal
+          isOpen={isFuelStationModalOpen || !!fuelStationTargetCar}
+          vehicle={fuelStationTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => {
+            setIsFuelStationModalOpen(false);
+            setFuelStationTargetCar(null);
           }}
         />
 
