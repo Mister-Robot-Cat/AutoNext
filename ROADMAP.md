@@ -213,3 +213,13 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Official TokBaku / Azərişıq electronic charging voucher & receipt generator with unique session reference (`TB-AZ-2026-XXXX`), VAT breakdown, and printable/copyable layout
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/evCharging.test.ts` and `src/components/__tests__/EvChargingModal.test.tsx`) covering formulas, BMS curves, currency conversions, route reachability, station filters, simulation lifecycle, and modal interactions
 
+---
+
+### 🅿️ Milestone 23: Official Smart City Parking Radar & AYNA AzParking Tariff Engine (AzParking Dövlət Parklanma Sistemi & Şəhər Parklanma Radar) (Completed)
+- [x] Add Official Smart City Parking Locator & AYNA AzParking Tariff Engine Modal (`AzParkingModal.tsx`) with Parking Radar, Smart Tariff Calculator, Live Session Simulator, E-Receipt & Parking Talon, and Resident Permit Eligibility Checker
+- [x] Implement official statutory parking tariff calculation & exemption engine (`src/utils/azParking.ts`) adhering to AYNA regulations (Zone 1: 1.00 AZN, Zone 2: 0.70 AZN, Zone 3: 0.40 AZN, Zone 4: 0.20 AZN, 15-minute grace period, free Sunday exemption, 22:00-07:00 night window exemption, EV green incentive, and multi-currency conversions)
+- [x] Build official AzParking SMS command generator (`1181` shortcode) formatted as `<PLATE> <ZONE_CODE> <HOURS>` with one-click clipboard copying
+- [x] Add comprehensive mock Baku parking lots database (`src/data/mockParkingData.ts`) covering 12 strategic lots across Sabail, Nasimi, Yasamal, Narimanov, Khatai, Nizami, and Binaqadi districts with live capacity, occupancy percentages, CCTV, and EV charger bays
+- [x] Official electronic AzParking parking receipt and talon generator with unique reference code (`AZPARK-2026-XXXX`), security verification code, barcode telemetry, and printable layout
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/azParking.test.ts` and `src/components/__tests__/AzParkingModal.test.tsx`) covering tariffs, exemptions, grace periods, SMS command formatting, session simulation, ticket generation, and modal interactions
+

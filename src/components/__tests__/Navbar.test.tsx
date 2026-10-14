@@ -108,4 +108,14 @@ describe('Navbar Component', () => {
     fireEvent.click(favoritesBtn);
     expect(defaultProps.onToggleFavoritesFilter).toHaveBeenCalled();
   });
+
+  it('renders and calls onOpenParking when provided', () => {
+    const onOpenParking = vi.fn();
+    render(<Navbar {...defaultProps} onOpenParking={onOpenParking} />);
+
+    const parkingBtn = screen.getByTestId('navbar-parking-btn');
+    expect(parkingBtn).toBeInTheDocument();
+    fireEvent.click(parkingBtn);
+    expect(onOpenParking).toHaveBeenCalledTimes(1);
+  });
 });

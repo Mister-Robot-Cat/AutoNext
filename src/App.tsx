@@ -38,6 +38,7 @@ const VehicleRegistrationModal = React.lazy(() => import('./components/VehicleRe
 const TrafficFinesModal = React.lazy(() => import('./components/TrafficFinesModal').then(m => ({ default: m.TrafficFinesModal })));
 const RoadsideAssistanceModal = React.lazy(() => import('./components/RoadsideAssistanceModal').then(m => ({ default: m.RoadsideAssistanceModal })));
 const EvChargingModal = React.lazy(() => import('./components/EvChargingModal').then(m => ({ default: m.EvChargingModal })));
+const AzParkingModal = React.lazy(() => import('./components/AzParkingModal').then(m => ({ default: m.AzParkingModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -60,7 +61,8 @@ import {
   FileText,
   AlertTriangle,
   Building2,
-  Truck
+  Truck,
+  CircleParking
 } from 'lucide-react';
 import { useTheme } from './hooks/useTheme';
 
@@ -128,6 +130,8 @@ export function App() {
   const [roadsideTargetCar, setRoadsideTargetCar] = useState<Vehicle | null>(null);
   const [evChargingTargetCar, setEvChargingTargetCar] = useState<Vehicle | null>(null);
   const [isEvModalOpen, setIsEvModalOpen] = useState(false);
+  const [parkingTargetCar, setParkingTargetCar] = useState<Vehicle | null>(null);
+  const [isParkingModalOpen, setIsParkingModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -205,6 +209,10 @@ export function App() {
         onOpenEvCharging={() => {
           setEvChargingTargetCar(vehicles.find(v => v.fuelType === 'electric') || null);
           setIsEvModalOpen(true);
+        }}
+        onOpenParking={() => {
+          setParkingTargetCar(vehicles[0] || null);
+          setIsParkingModalOpen(true);
         }}
       />
 
@@ -339,6 +347,19 @@ export function App() {
             >
               <Zap className="w-4 h-4 text-emerald-400 group-hover:rotate-12 transition-transform" />
               <span>Azərişıq & TokBaku EV Şəbəkəsi</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
+
+            <button
+              onClick={() => {
+                setParkingTargetCar(vehicles[0] || null);
+                setIsParkingModalOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-sky-500/30 hover:border-sky-500/60 text-sky-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-sky-500/10 group cursor-pointer"
+              data-testid="hero-az-parking-btn"
+            >
+              <CircleParking className="w-4 h-4 text-sky-400 group-hover:rotate-12 transition-transform" />
+              <span>AYNA AzParking Radarı</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
           </div>
@@ -674,6 +695,18 @@ export function App() {
           onClose={() => {
             setIsEvModalOpen(false);
             setEvChargingTargetCar(null);
+          }}
+        />
+
+        {/* AYNA AzParking Smart City Parking Locator & Tariff Engine Modal */}
+        <AzParkingModal
+          isOpen={isParkingModalOpen || !!parkingTargetCar}
+          vehicle={parkingTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => {
+            setIsParkingModalOpen(false);
+            setParkingTargetCar(null);
           }}
         />
 

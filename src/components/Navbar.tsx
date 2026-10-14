@@ -10,7 +10,8 @@ import {
   Heart,
   Sun,
   Moon,
-  Zap
+  Zap,
+  CircleParking
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -29,6 +30,7 @@ interface NavbarProps {
   onOpenAiAdvisor: () => void;
   onOpenCreateListing: () => void;
   onOpenEvCharging?: () => void;
+  onOpenParking?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -47,6 +49,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenAiAdvisor,
   onOpenCreateListing,
   onOpenEvCharging,
+  onOpenParking,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -75,6 +78,19 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Feature Actions */}
         <div className="flex items-center gap-2 sm:gap-3">
+          {/* AzParking Radar Button */}
+          {onOpenParking && (
+            <button
+              onClick={onOpenParking}
+              data-testid="navbar-parking-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-sky-500/10 hover:bg-sky-500/20 text-sky-400 border border-sky-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="AYNA AzParking Dövlət Radarı"
+            >
+              <CircleParking className="w-4 h-4 text-sky-400" />
+              <span className="hidden xl:inline">AzParking</span>
+            </button>
+          )}
+
           {/* EV Charging Network Button */}
           {onOpenEvCharging && (
             <button
