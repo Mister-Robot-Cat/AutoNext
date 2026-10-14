@@ -37,7 +37,8 @@ import {
   AlertTriangle,
   Building2,
   Truck,
-  Zap
+  Zap,
+  Route
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -75,6 +76,7 @@ interface CarDetailModalProps {
   onOpenRoadsideAssistance?: (vehicle: Vehicle) => void;
   onOpenEvCharging?: (vehicle: Vehicle) => void;
   onOpenFuelStations?: (vehicle: Vehicle) => void;
+  onOpenTollRoads?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -102,6 +104,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenRoadsideAssistance,
   onOpenEvCharging,
   onOpenFuelStations,
+  onOpenTollRoads,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -587,6 +590,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Fuel className="w-4 h-4" />
                     <span>SOCAR & Azpetrol Yanacaq Radarı və Səyahət Xərci</span>
+                  </button>
+                )}
+
+                {/* AAYDA M-1 Toll Highway & E-Toll Shortcut */}
+                {onOpenTollRoads && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenTollRoads(vehicle)}
+                    data-testid="toll-roads-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Route className="w-4 h-4" />
+                    <span>AAYDA M-1 Ödənişli Magistral & E-Toll Radarı</span>
                   </button>
                 )}
               </div>

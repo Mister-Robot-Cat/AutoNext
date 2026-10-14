@@ -556,6 +556,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(fuelBtn);
     expect(onOpenFuelStationsMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenTollRoads when toll roads shortcut button is clicked', () => {
+    const onOpenTollRoadsMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenTollRoads={onOpenTollRoadsMock}
+      />
+    );
+
+    const tollBtn = screen.getByTestId('toll-roads-shortcut-btn');
+    expect(tollBtn).toBeInTheDocument();
+    fireEvent.click(tollBtn);
+    expect(onOpenTollRoadsMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
 
 

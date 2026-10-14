@@ -40,6 +40,7 @@ const RoadsideAssistanceModal = React.lazy(() => import('./components/RoadsideAs
 const EvChargingModal = React.lazy(() => import('./components/EvChargingModal').then(m => ({ default: m.EvChargingModal })));
 const AzParkingModal = React.lazy(() => import('./components/AzParkingModal').then(m => ({ default: m.AzParkingModal })));
 const FuelStationModal = React.lazy(() => import('./components/FuelStationModal').then(m => ({ default: m.FuelStationModal })));
+const TollRoadModal = React.lazy(() => import('./components/TollRoadModal').then(m => ({ default: m.TollRoadModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -64,7 +65,8 @@ import {
   Building2,
   Truck,
   CircleParking,
-  Fuel
+  Fuel,
+  Route
 } from 'lucide-react';
 import { useTheme } from './hooks/useTheme';
 
@@ -136,6 +138,8 @@ export function App() {
   const [isParkingModalOpen, setIsParkingModalOpen] = useState(false);
   const [fuelStationTargetCar, setFuelStationTargetCar] = useState<Vehicle | null>(null);
   const [isFuelStationModalOpen, setIsFuelStationModalOpen] = useState(false);
+  const [tollRoadTargetCar, setTollRoadTargetCar] = useState<Vehicle | null>(null);
+  const [isTollRoadModalOpen, setIsTollRoadModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -383,6 +387,19 @@ export function App() {
               <span>SOCAR & Azpetrol Yanacaq Radarı</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
+
+            <button
+              onClick={() => {
+                setTollRoadTargetCar(vehicles[0] || null);
+                setIsTollRoadModalOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-cyan-500/30 hover:border-cyan-500/60 text-cyan-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-cyan-500/10 group cursor-pointer"
+              data-testid="hero-toll-roads-btn"
+            >
+              <Route className="w-4 h-4 text-cyan-400 group-hover:rotate-12 transition-transform" />
+              <span>AAYDA M-1 Ödənişli Magistral Radarı</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </div>
         </div>
       </section>
@@ -558,6 +575,10 @@ export function App() {
           onOpenFuelStations={(car) => {
             setFuelStationTargetCar(car);
             setIsFuelStationModalOpen(true);
+          }}
+          onOpenTollRoads={(car) => {
+            setTollRoadTargetCar(car);
+            setIsTollRoadModalOpen(true);
           }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
@@ -744,6 +765,18 @@ export function App() {
           onClose={() => {
             setIsFuelStationModalOpen(false);
             setFuelStationTargetCar(null);
+          }}
+        />
+
+        {/* AAYDA M-1 Toll Highway & E-Toll FastPass Modal */}
+        <TollRoadModal
+          isOpen={isTollRoadModalOpen || !!tollRoadTargetCar}
+          vehicle={tollRoadTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => {
+            setIsTollRoadModalOpen(false);
+            setTollRoadTargetCar(null);
           }}
         />
 

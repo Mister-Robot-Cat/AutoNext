@@ -234,4 +234,16 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Official electronic fiscal fuel receipt & voucher generator with unique reference code (`SOCAR-AZ-2026-XXXX` / `AZPETROL-AZ-2026-XXXX`), security hash, barcode telemetry, VAT & cashback breakdown, and printable layout
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/fuelStations.test.ts` and `src/components/__tests__/FuelStationModal.test.tsx`) covering calculations, tariffs, multipliers, refunds, cashback, filters, voucher generation, and modal interactions
 
+---
+
+### 🛣️ Milestone 25: Official Motor Toll Highway Network & Electronic Toll Collection System (AAYDA Bakı-Quba M1 Ödənişli Avtomagistralı, E-Toll RFID Transponder & Yol Haqqı Kalkulyatoru) (Completed)
+- [x] Add Official Toll Highway Radar & Smart Trip Fare Calculator Modal (`TollRoadModal.tsx`) with Toll Gate Radar, Smart Trip Calculator, Virtual E-Toll RFID Transponder Simulator, and Official Fiscal Transit Voucher
+- [x] Implement official statutory toll tariff engine (`src/utils/tollRoads.ts`) adhering to AAYDA & Cabinet of Ministers regulations (Category 1: 0.07 AZN/km for passenger cars, Category 2: 0.15 AZN/km for medium trucks/buses, Category 3: 0.25 AZN/km for heavy TIR multi-axle freight) with multi-currency conversions
+- [x] Implement payment method discount structures with 10% RFID FastPass rebate, 5% Mobile QR E-Pass rebate, and automated 50 km/s toll barrier passage simulation
+- [x] Add highway economic benefits calculation engine: 130 km/s speed limit transit times vs 60 km/s congested R-1 road, time savings (up to 70+ minutes), fuel economy savings (~1.4L / 100km), and CO2 emission reductions
+- [x] Add comprehensive mock AAYDA toll plazas database (`src/data/mockTollRoads.ts`) covering 7 authentic toll points along the 147 km tollway (Yaşma km 45, Giləzi km 73, Siyəzən km 103, Qəndob km 130, Quba km 160, Qusar km 178, Samur km 192) with live queue telemetry and amenities
+- [x] Official electronic fiscal toll transit receipt generator with unique reference code (`AAYDA-M1-2026-XXXXX`), security hash, barcode telemetry, vehicle plate, timestamps, and printable layout
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/tollRoads.test.ts` and `src/components/__tests__/TollRoadModal.test.tsx`) covering statutory tariffs, discounts, passage simulation, top-ups, receipts, filters, and modal interactions
+
+
 
