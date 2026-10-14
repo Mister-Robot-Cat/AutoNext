@@ -37,6 +37,7 @@ const TechnicalInspectionModal = React.lazy(() => import('./components/Technical
 const VehicleRegistrationModal = React.lazy(() => import('./components/VehicleRegistrationModal').then(m => ({ default: m.VehicleRegistrationModal })));
 const TrafficFinesModal = React.lazy(() => import('./components/TrafficFinesModal').then(m => ({ default: m.TrafficFinesModal })));
 const RoadsideAssistanceModal = React.lazy(() => import('./components/RoadsideAssistanceModal').then(m => ({ default: m.RoadsideAssistanceModal })));
+const EvChargingModal = React.lazy(() => import('./components/EvChargingModal').then(m => ({ default: m.EvChargingModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -125,6 +126,8 @@ export function App() {
   const [registrationTargetCar, setRegistrationTargetCar] = useState<Vehicle | null>(null);
   const [trafficFinesTargetCar, setTrafficFinesTargetCar] = useState<Vehicle | null>(null);
   const [roadsideTargetCar, setRoadsideTargetCar] = useState<Vehicle | null>(null);
+  const [evChargingTargetCar, setEvChargingTargetCar] = useState<Vehicle | null>(null);
+  const [isEvModalOpen, setIsEvModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -199,6 +202,10 @@ export function App() {
         }}
         onOpenAiAdvisor={() => setIsAiModalOpen(true)}
         onOpenCreateListing={() => setIsCreateListingOpen(true)}
+        onOpenEvCharging={() => {
+          setEvChargingTargetCar(vehicles.find(v => v.fuelType === 'electric') || null);
+          setIsEvModalOpen(true);
+        }}
       />
 
       {/* Hero Section */}
@@ -319,6 +326,19 @@ export function App() {
             >
               <Truck className="w-4 h-4 text-amber-400 group-hover:rotate-12 transition-transform" />
               <span>156 Evakuasiya & Təcili Yol Köməyi</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
+
+            <button
+              onClick={() => {
+                setEvChargingTargetCar(vehicles.find(v => v.fuelType === 'electric') || null);
+                setIsEvModalOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-emerald-500/30 hover:border-emerald-500/60 text-emerald-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-emerald-500/10 group cursor-pointer"
+              data-testid="hero-ev-charging-btn"
+            >
+              <Zap className="w-4 h-4 text-emerald-400 group-hover:rotate-12 transition-transform" />
+              <span>Azərişıq & TokBaku EV Şəbəkəsi</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
           </div>
@@ -489,6 +509,10 @@ export function App() {
           onOpenRoadsideAssistance={(car) => {
             setRoadsideTargetCar(car);
           }}
+          onOpenEvCharging={(car) => {
+            setEvChargingTargetCar(car);
+            setIsEvModalOpen(true);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -639,6 +663,18 @@ export function App() {
           currency={currency}
           lang={lang}
           onClose={() => setRoadsideTargetCar(null)}
+        />
+
+        {/* Azərişıq & TokBaku EV Charging Station Network & Smart Fast-Charge Modal */}
+        <EvChargingModal
+          isOpen={isEvModalOpen || !!evChargingTargetCar}
+          vehicle={evChargingTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => {
+            setIsEvModalOpen(false);
+            setEvChargingTargetCar(null);
+          }}
         />
 
         {/* Car Comparator Modal */}

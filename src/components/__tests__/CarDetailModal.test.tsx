@@ -516,6 +516,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(roadsideBtn);
     expect(onOpenRoadsideAssistanceMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenEvCharging when EV charging shortcut button is clicked', () => {
+    const onOpenEvChargingMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenEvCharging={onOpenEvChargingMock}
+      />
+    );
+
+    const evBtn = screen.getByTestId('ev-charging-shortcut-btn');
+    expect(evBtn).toBeInTheDocument();
+    fireEvent.click(evBtn);
+    expect(onOpenEvChargingMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
 
 

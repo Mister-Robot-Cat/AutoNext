@@ -36,7 +36,8 @@ import {
   BookOpenCheck,
   AlertTriangle,
   Building2,
-  Truck
+  Truck,
+  Zap
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -72,6 +73,7 @@ interface CarDetailModalProps {
   onOpenRegistration?: (vehicle: Vehicle) => void;
   onOpenTrafficFines?: (vehicle: Vehicle) => void;
   onOpenRoadsideAssistance?: (vehicle: Vehicle) => void;
+  onOpenEvCharging?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -97,6 +99,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenRegistration,
   onOpenTrafficFines,
   onOpenRoadsideAssistance,
+  onOpenEvCharging,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -556,6 +559,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Truck className="w-4 h-4" />
                     <span>156 Evakuasiya & Təcili Yol Köməyi (SOS)</span>
+                  </button>
+                )}
+
+                {/* TokBaku & Azərişıq EV Charging Network Shortcut */}
+                {onOpenEvCharging && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenEvCharging(vehicle)}
+                    data-testid="ev-charging-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Zap className="w-4 h-4" />
+                    <span>Azərişıq & TokBaku Elektromobil Doldurma Şəbəkəsi</span>
                   </button>
                 )}
               </div>

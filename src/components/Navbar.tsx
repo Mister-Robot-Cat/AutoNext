@@ -9,7 +9,8 @@ import {
   PlusCircle, 
   Heart,
   Sun,
-  Moon
+  Moon,
+  Zap
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -27,6 +28,7 @@ interface NavbarProps {
   onOpenCalculator: () => void;
   onOpenAiAdvisor: () => void;
   onOpenCreateListing: () => void;
+  onOpenEvCharging?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -44,6 +46,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenCalculator,
   onOpenAiAdvisor,
   onOpenCreateListing,
+  onOpenEvCharging,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -72,6 +75,19 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Feature Actions */}
         <div className="flex items-center gap-2 sm:gap-3">
+          {/* EV Charging Network Button */}
+          {onOpenEvCharging && (
+            <button
+              onClick={onOpenEvCharging}
+              data-testid="navbar-ev-charging-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="Azərişıq & TokBaku EV Şəbəkəsi"
+            >
+              <Zap className="w-4 h-4 text-emerald-400" />
+              <span className="hidden xl:inline">EV Şəbəkə</span>
+            </button>
+          )}
+
           {/* AI Advisor Button */}
           <button
             onClick={onOpenAiAdvisor}
