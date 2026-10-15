@@ -79,6 +79,7 @@ interface CarDetailModalProps {
   onOpenFuelStations?: (vehicle: Vehicle) => void;
   onOpenTollRoads?: (vehicle: Vehicle) => void;
   onOpenWindowTint?: (vehicle: Vehicle) => void;
+  onOpenEuroprotocol?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -108,6 +109,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenFuelStations,
   onOpenTollRoads,
   onOpenWindowTint,
+  onOpenEuroprotocol,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -619,6 +621,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Sun className="w-4 h-4" />
                     <span>BDYP Qanuni Şüşə Plyonka & İcazə Portalı</span>
+                  </button>
+                )}
+
+                {/* ISB Europrotocol Accident Settlement Shortcut */}
+                {onOpenEuroprotocol && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenEuroprotocol(vehicle)}
+                    data-testid="europrotocol-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <FileCheck className="w-4 h-4" />
+                    <span>İSB & BDYP Rəsmi Avroprotokol Qəza Qeydiyyatı</span>
                   </button>
                 )}
               </div>

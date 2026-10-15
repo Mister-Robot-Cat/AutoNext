@@ -12,7 +12,8 @@ import {
   Moon,
   Zap,
   CircleParking,
-  Fuel
+  Fuel,
+  FileCheck
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -33,6 +34,7 @@ interface NavbarProps {
   onOpenEvCharging?: () => void;
   onOpenParking?: () => void;
   onOpenFuelStations?: () => void;
+  onOpenEuroprotocol?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -53,6 +55,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenEvCharging,
   onOpenParking,
   onOpenFuelStations,
+  onOpenEuroprotocol,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -117,6 +120,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Zap className="w-4 h-4 text-emerald-400" />
               <span className="hidden xl:inline">EV Şəbəkə</span>
+            </button>
+          )}
+
+          {/* Europrotocol Portal Button */}
+          {onOpenEuroprotocol && (
+            <button
+              onClick={onOpenEuroprotocol}
+              data-testid="navbar-europrotocol-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-teal-500/10 hover:bg-teal-500/20 text-teal-400 border border-teal-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="İSB & BDYP Rəsmi Avroprotokol Sistemi"
+            >
+              <FileCheck className="w-4 h-4 text-teal-400" />
+              <span className="hidden xl:inline">Avroprotokol</span>
             </button>
           )}
 

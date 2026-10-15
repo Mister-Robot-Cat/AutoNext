@@ -596,6 +596,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(tintBtn);
     expect(onOpenWindowTintMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenEuroprotocol when europrotocol shortcut button is clicked', () => {
+    const onOpenEuroprotocolMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenEuroprotocol={onOpenEuroprotocolMock}
+      />
+    );
+
+    const europrotocolBtn = screen.getByTestId('europrotocol-shortcut-btn');
+    expect(europrotocolBtn).toBeInTheDocument();
+    fireEvent.click(europrotocolBtn);
+    expect(onOpenEuroprotocolMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
 
 

@@ -42,6 +42,7 @@ const AzParkingModal = React.lazy(() => import('./components/AzParkingModal').th
 const FuelStationModal = React.lazy(() => import('./components/FuelStationModal').then(m => ({ default: m.FuelStationModal })));
 const TollRoadModal = React.lazy(() => import('./components/TollRoadModal').then(m => ({ default: m.TollRoadModal })));
 const WindowTintModal = React.lazy(() => import('./components/WindowTintModal').then(m => ({ default: m.WindowTintModal })));
+const EuroprotocolModal = React.lazy(() => import('./components/EuroprotocolModal').then(m => ({ default: m.EuroprotocolModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -68,7 +69,8 @@ import {
   CircleParking,
   Fuel,
   Route,
-  Sun
+  Sun,
+  FileCheck
 } from 'lucide-react';
 import { useTheme } from './hooks/useTheme';
 
@@ -144,6 +146,8 @@ export function App() {
   const [isTollRoadModalOpen, setIsTollRoadModalOpen] = useState(false);
   const [windowTintTargetCar, setWindowTintTargetCar] = useState<Vehicle | null>(null);
   const [isWindowTintModalOpen, setIsWindowTintModalOpen] = useState(false);
+  const [europrotocolTargetCar, setEuroprotocolTargetCar] = useState<Vehicle | null>(null);
+  const [isEuroprotocolModalOpen, setIsEuroprotocolModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -229,6 +233,10 @@ export function App() {
         onOpenFuelStations={() => {
           setFuelStationTargetCar(vehicles[0] || null);
           setIsFuelStationModalOpen(true);
+        }}
+        onOpenEuroprotocol={() => {
+          setEuroprotocolTargetCar(vehicles[0] || null);
+          setIsEuroprotocolModalOpen(true);
         }}
       />
 
@@ -417,6 +425,19 @@ export function App() {
               <span>BDYP Qanuni Şüşə Plyonka İcazəsi</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
+
+            <button
+              onClick={() => {
+                setEuroprotocolTargetCar(vehicles[0] || null);
+                setIsEuroprotocolModalOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-emerald-500/30 hover:border-emerald-500/60 text-emerald-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-emerald-500/10 group cursor-pointer"
+              data-testid="hero-europrotocol-btn"
+            >
+              <FileCheck className="w-4 h-4 text-emerald-400 group-hover:rotate-12 transition-transform" />
+              <span>İSB & BDYP Rəsmi Avroprotokol Sistemi</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </div>
         </div>
       </section>
@@ -600,6 +621,10 @@ export function App() {
           onOpenWindowTint={(car) => {
             setWindowTintTargetCar(car);
             setIsWindowTintModalOpen(true);
+          }}
+          onOpenEuroprotocol={(car) => {
+            setEuroprotocolTargetCar(car);
+            setIsEuroprotocolModalOpen(true);
           }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
@@ -810,6 +835,18 @@ export function App() {
           onClose={() => {
             setIsWindowTintModalOpen(false);
             setWindowTintTargetCar(null);
+          }}
+        />
+
+        {/* ISB & BDYP Official Europrotocol Minor Accident Modal */}
+        <EuroprotocolModal
+          isOpen={isEuroprotocolModalOpen || !!europrotocolTargetCar}
+          vehicle={europrotocolTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => {
+            setIsEuroprotocolModalOpen(false);
+            setEuroprotocolTargetCar(null);
           }}
         />
 

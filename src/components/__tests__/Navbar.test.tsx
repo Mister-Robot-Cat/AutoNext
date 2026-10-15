@@ -128,4 +128,14 @@ describe('Navbar Component', () => {
     fireEvent.click(fuelBtn);
     expect(onOpenFuelStations).toHaveBeenCalledTimes(1);
   });
+
+  it('renders and calls onOpenEuroprotocol when provided', () => {
+    const onOpenEuroprotocol = vi.fn();
+    render(<Navbar {...defaultProps} onOpenEuroprotocol={onOpenEuroprotocol} />);
+
+    const euroBtn = screen.getByTestId('navbar-europrotocol-btn');
+    expect(euroBtn).toBeInTheDocument();
+    fireEvent.click(euroBtn);
+    expect(onOpenEuroprotocol).toHaveBeenCalledTimes(1);
+  });
 });
