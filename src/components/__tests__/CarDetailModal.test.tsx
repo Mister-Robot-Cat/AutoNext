@@ -616,6 +616,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(europrotocolBtn);
     expect(onOpenEuroprotocolMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenPowerOfAttorney when power of attorney shortcut button is clicked', () => {
+    const onOpenPoaMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenPowerOfAttorney={onOpenPoaMock}
+      />
+    );
+
+    const poaBtn = screen.getByTestId('poa-shortcut-btn');
+    expect(poaBtn).toBeInTheDocument();
+    fireEvent.click(poaBtn);
+    expect(onOpenPoaMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
 
 
