@@ -37,6 +37,7 @@ interface NavbarProps {
   onOpenFuelStations?: () => void;
   onOpenEuroprotocol?: () => void;
   onOpenGreenCard?: () => void;
+  onOpenTaxiCompliance?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -59,6 +60,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenFuelStations,
   onOpenEuroprotocol,
   onOpenGreenCard,
+  onOpenTaxiCompliance,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -149,6 +151,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Globe className="w-4 h-4 text-emerald-400" />
               <span className="hidden xl:inline">Yaşıl Kart</span>
+            </button>
+          )}
+
+          {/* AYNA Taxi Compliance Button */}
+          {onOpenTaxiCompliance && (
+            <button
+              onClick={onOpenTaxiCompliance}
+              data-testid="navbar-taxi-compliance-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="AYNA Taksi Buraxılış Portalı & Standartlar"
+            >
+              <Car className="w-4 h-4 text-amber-400" />
+              <span className="hidden xl:inline">AYNA Taksi</span>
             </button>
           )}
 

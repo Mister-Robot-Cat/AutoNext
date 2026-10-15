@@ -656,6 +656,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(greenCardBtn);
     expect(onOpenGreenCardMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenTaxiCompliance when taxi compliance shortcut button is clicked', () => {
+    const onOpenTaxiComplianceMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenTaxiCompliance={onOpenTaxiComplianceMock}
+      />
+    );
+
+    const taxiBtn = screen.getByTestId('taxi-compliance-shortcut-btn');
+    expect(taxiBtn).toBeInTheDocument();
+    fireEvent.click(taxiBtn);
+    expect(onOpenTaxiComplianceMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
 
 

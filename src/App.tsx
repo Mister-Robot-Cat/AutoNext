@@ -45,6 +45,7 @@ const WindowTintModal = React.lazy(() => import('./components/WindowTintModal').
 const EuroprotocolModal = React.lazy(() => import('./components/EuroprotocolModal').then(m => ({ default: m.EuroprotocolModal })));
 const PowerOfAttorneyModal = React.lazy(() => import('./components/PowerOfAttorneyModal').then(m => ({ default: m.PowerOfAttorneyModal })));
 const GreenCardModal = React.lazy(() => import('./components/GreenCardModal').then(m => ({ default: m.GreenCardModal })));
+const TaxiComplianceModal = React.lazy(() => import('./components/TaxiComplianceModal').then(m => ({ default: m.TaxiComplianceModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -156,6 +157,8 @@ export function App() {
   const [isPoaModalOpen, setIsPoaModalOpen] = useState(false);
   const [greenCardTargetCar, setGreenCardTargetCar] = useState<Vehicle | null>(null);
   const [isGreenCardModalOpen, setIsGreenCardModalOpen] = useState(false);
+  const [taxiTargetCar, setTaxiTargetCar] = useState<Vehicle | null>(null);
+  const [isTaxiModalOpen, setIsTaxiModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -249,6 +252,10 @@ export function App() {
         onOpenGreenCard={() => {
           setGreenCardTargetCar(vehicles[0] || null);
           setIsGreenCardModalOpen(true);
+        }}
+        onOpenTaxiCompliance={() => {
+          setTaxiTargetCar(vehicles[0] || null);
+          setIsTaxiModalOpen(true);
         }}
       />
 
@@ -476,6 +483,19 @@ export function App() {
               <span>İSB Yaşıl Kart & Sərhəd Keçid Radarı</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
+
+            <button
+              onClick={() => {
+                setTaxiTargetCar(vehicles[0] || null);
+                setIsTaxiModalOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-amber-500/30 hover:border-amber-500/60 text-amber-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-amber-500/10 group cursor-pointer"
+              data-testid="hero-taxi-compliance-btn"
+            >
+              <Car className="w-4 h-4 text-amber-400 group-hover:rotate-12 transition-transform" />
+              <span>AYNA Taksi Portalı & E-Buraxılış Vərəqəsi</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </div>
         </div>
       </section>
@@ -671,6 +691,10 @@ export function App() {
           onOpenGreenCard={(car) => {
             setGreenCardTargetCar(car);
             setIsGreenCardModalOpen(true);
+          }}
+          onOpenTaxiCompliance={(car) => {
+            setTaxiTargetCar(car);
+            setIsTaxiModalOpen(true);
           }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
@@ -917,6 +941,18 @@ export function App() {
           onClose={() => {
             setIsGreenCardModalOpen(false);
             setGreenCardTargetCar(null);
+          }}
+        />
+
+        {/* Official AYNA Taxi Compliance & Electronic Carrier Pass Modal */}
+        <TaxiComplianceModal
+          isOpen={isTaxiModalOpen || !!taxiTargetCar}
+          vehicle={taxiTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => {
+            setIsTaxiModalOpen(false);
+            setTaxiTargetCar(null);
           }}
         />
 

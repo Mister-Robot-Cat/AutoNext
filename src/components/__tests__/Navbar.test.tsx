@@ -148,4 +148,14 @@ describe('Navbar Component', () => {
     fireEvent.click(gcBtn);
     expect(onOpenGreenCard).toHaveBeenCalledTimes(1);
   });
+
+  it('renders and calls onOpenTaxiCompliance when provided', () => {
+    const onOpenTaxiCompliance = vi.fn();
+    render(<Navbar {...defaultProps} onOpenTaxiCompliance={onOpenTaxiCompliance} />);
+
+    const taxiBtn = screen.getByTestId('navbar-taxi-compliance-btn');
+    expect(taxiBtn).toBeInTheDocument();
+    fireEvent.click(taxiBtn);
+    expect(onOpenTaxiCompliance).toHaveBeenCalledTimes(1);
+  });
 });

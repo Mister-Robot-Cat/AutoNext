@@ -282,4 +282,15 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build authentic international Green Card certificate generator with green-card layout, Council of Bureaux international matrix, policy number (`AZ/ISB-GC-2026-XXXXX`), security hash, barcode telemetry, and DGK electronic border transit declaration (`DGK-TR-2026-XXXXX`)
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/greenCard.test.ts` and `src/components/__tests__/GreenCardModal.test.tsx`) covering statutory tariffs, currency conversions, border readiness scoring, fuel and transit estimates, policy generation, and interactive modal workflows
 
+---
+
+### 🚖 Milestone 30: Official AYNA Taxi Fleet Compliance, Regulatory Standards & Electronic Carrier Pass Portal (AYNA Rəsmi Taksi Buraxılış Portalı, Standartlara Uyğunluq Yoxlaması, E-Buraxılış Vərəqəsi & Aqreqator Gəlir Kalkulyatoru) (Completed)
+- [x] Add Official AYNA Taxi Compliance & Electronic Carrier Pass Modal (`TaxiComplianceModal.tsx`) with Vehicle Compliance Auditor, Ride-Hailing Income Simulator, Regulatory Equipment Checklist, Official E-Buraxılış Vərəqəsi Certificate, and AYNA Training Centers Radar
+- [x] Implement statutory AYNA taxi regulation & financial calculation engine (`src/utils/taxiCompliance.ts`) adhering to Cabinet of Ministers Decision No. 94 and AYNA technical regulations (8-year/15-year age ceiling, Euro-5 standard, mandatory equipment matrix, statutory state duties under Law on State Duties, multi-currency conversions)
+- [x] Build ride-hailing aggregator financial simulator with Bolt, Yango, Uber AZ, and 189 commission rates, daily shifts, fuel/EV consumption, vehicle wear reserve, and net monthly take-home projections in AZN, USD, EUR
+- [x] Add comprehensive mock taxi compliance database (`src/data/mockTaxiData.ts`) covering 8 authorized AYNA inspection & driver training hubs (Baku Heydar Aliyev Ave, Darnagul, Badamdar, Sumgayit, Ganja), regulatory checklists, certified equipment providers, and active licensed taxi fleet registry
+- [x] Build authentic official electronic taxi pass ("AYNA E-Buraxılış Vərəqəsi") generator with unique QR verification code (`AYNA-TX-2026-XXXXX`), Ministry of Digital Development and Transport / AYNA coat of arms, carrier VÖEN, vehicle plate, driver FIN, validity countdown, and printable/copyable layout
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/taxiCompliance.test.ts` and `src/components/__tests__/TaxiComplianceModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`) covering compliance evaluations, age calculations, fee structures, aggregator net income projections, pass generation, and modal interactions
+
+
 
