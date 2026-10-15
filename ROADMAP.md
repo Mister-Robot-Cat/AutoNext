@@ -245,5 +245,16 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Official electronic fiscal toll transit receipt generator with unique reference code (`AAYDA-M1-2026-XXXXX`), security hash, barcode telemetry, vehicle plate, timestamps, and printable layout
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/tollRoads.test.ts` and `src/components/__tests__/TollRoadModal.test.tsx`) covering statutory tariffs, discounts, passage simulation, top-ups, receipts, filters, and modal interactions
 
+---
+
+### 🕶️ Milestone 26: Official Vehicle Window Tinting & Light Transmittance Permit System (BDYP Qanuni Şüşə Tündləşdirmə "Plyonka" İcazəsi, İşıqburaxma Fotometri & E-İcazə Portalı) (Completed)
+- [x] Add Official Window Tinting Legal Standards & Annual Permit Modal (`WindowTintModal.tsx`) with Glass Tint Visualizer, Optical Photometer Simulator, Legal Compliance Checker, and BDYP E-İcazə Certificate
+- [x] Implement statutory light transmittance and annual permit tariff engine (`src/utils/windowTint.ts`) adhering to Article 342.2-2 of the Code of Administrative Offences, Cabinet of Ministers regulations, seasonal curtain rules (1 May - 15 Nov), and multi-currency state duties
+- [x] Build interactive vehicle glass tint simulator with Visible Light Transmission (VLT%) sliders for windshield, front sides, rear sides, and rear glass with real-time compliance diagnostics
+- [x] Add statutory state duty fee matrix (Fiziki şəxs / Hüquqi şəxs, arxa yan şüşələr vs bütün arxa şüşələr, 1-il etibarlılıq müddəti və ASAN xidmət bank komissiyası)
+- [x] Official electronic BDYP window tinting permit certificate generator with unique state registration code (`BDYP-PL-2026-XXXXX`), QR security hash, photometer tolerance stamps, and printable layout
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/windowTint.test.ts` and `src/components/__tests__/WindowTintModal.test.tsx`) covering statutory calculations, VLT compliance checks, photometer measurements, certificate generation, and modal interactions
+
+
 
 

@@ -38,7 +38,8 @@ import {
   Building2,
   Truck,
   Zap,
-  Route
+  Route,
+  Sun
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -77,6 +78,7 @@ interface CarDetailModalProps {
   onOpenEvCharging?: (vehicle: Vehicle) => void;
   onOpenFuelStations?: (vehicle: Vehicle) => void;
   onOpenTollRoads?: (vehicle: Vehicle) => void;
+  onOpenWindowTint?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -105,6 +107,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenEvCharging,
   onOpenFuelStations,
   onOpenTollRoads,
+  onOpenWindowTint,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -603,6 +606,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Route className="w-4 h-4" />
                     <span>AAYDA M-1 Ödənişli Magistral & E-Toll Radarı</span>
+                  </button>
+                )}
+
+                {/* BDYP Window Tint & Legal Permit Shortcut */}
+                {onOpenWindowTint && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenWindowTint(vehicle)}
+                    data-testid="window-tint-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Sun className="w-4 h-4" />
+                    <span>BDYP Qanuni Şüşə Plyonka & İcazə Portalı</span>
                   </button>
                 )}
               </div>

@@ -41,6 +41,7 @@ const EvChargingModal = React.lazy(() => import('./components/EvChargingModal').
 const AzParkingModal = React.lazy(() => import('./components/AzParkingModal').then(m => ({ default: m.AzParkingModal })));
 const FuelStationModal = React.lazy(() => import('./components/FuelStationModal').then(m => ({ default: m.FuelStationModal })));
 const TollRoadModal = React.lazy(() => import('./components/TollRoadModal').then(m => ({ default: m.TollRoadModal })));
+const WindowTintModal = React.lazy(() => import('./components/WindowTintModal').then(m => ({ default: m.WindowTintModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -66,7 +67,8 @@ import {
   Truck,
   CircleParking,
   Fuel,
-  Route
+  Route,
+  Sun
 } from 'lucide-react';
 import { useTheme } from './hooks/useTheme';
 
@@ -140,6 +142,8 @@ export function App() {
   const [isFuelStationModalOpen, setIsFuelStationModalOpen] = useState(false);
   const [tollRoadTargetCar, setTollRoadTargetCar] = useState<Vehicle | null>(null);
   const [isTollRoadModalOpen, setIsTollRoadModalOpen] = useState(false);
+  const [windowTintTargetCar, setWindowTintTargetCar] = useState<Vehicle | null>(null);
+  const [isWindowTintModalOpen, setIsWindowTintModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -400,6 +404,19 @@ export function App() {
               <span>AAYDA M-1 Ödənişli Magistral Radarı</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
+
+            <button
+              onClick={() => {
+                setWindowTintTargetCar(vehicles[0] || null);
+                setIsWindowTintModalOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-amber-500/30 hover:border-amber-500/60 text-amber-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-amber-500/10 group cursor-pointer"
+              data-testid="hero-window-tint-btn"
+            >
+              <Sun className="w-4 h-4 text-amber-400 group-hover:rotate-12 transition-transform" />
+              <span>BDYP Qanuni Şüşə Plyonka İcazəsi</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </div>
         </div>
       </section>
@@ -579,6 +596,10 @@ export function App() {
           onOpenTollRoads={(car) => {
             setTollRoadTargetCar(car);
             setIsTollRoadModalOpen(true);
+          }}
+          onOpenWindowTint={(car) => {
+            setWindowTintTargetCar(car);
+            setIsWindowTintModalOpen(true);
           }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
@@ -777,6 +798,18 @@ export function App() {
           onClose={() => {
             setIsTollRoadModalOpen(false);
             setTollRoadTargetCar(null);
+          }}
+        />
+
+        {/* BDYP Window Tint & Legal Permit Modal */}
+        <WindowTintModal
+          isOpen={isWindowTintModalOpen || !!windowTintTargetCar}
+          vehicle={windowTintTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => {
+            setIsWindowTintModalOpen(false);
+            setWindowTintTargetCar(null);
           }}
         />
 
