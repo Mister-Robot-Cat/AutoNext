@@ -40,7 +40,8 @@ import {
   Zap,
   Route,
   Sun,
-  FileSignature
+  FileSignature,
+  Globe
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -82,6 +83,7 @@ interface CarDetailModalProps {
   onOpenWindowTint?: (vehicle: Vehicle) => void;
   onOpenEuroprotocol?: (vehicle: Vehicle) => void;
   onOpenPowerOfAttorney?: (vehicle: Vehicle) => void;
+  onOpenGreenCard?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -113,6 +115,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenWindowTint,
   onOpenEuroprotocol,
   onOpenPowerOfAttorney,
+  onOpenGreenCard,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -650,6 +653,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <FileSignature className="w-4 h-4" />
                     <span>Elektron Etibarnamə & Notariat Portalı (Ədliyyə)</span>
+                  </button>
+                )}
+
+                {/* Official ISB International Green Card & Border Transit Shortcut */}
+                {onOpenGreenCard && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenGreenCard(vehicle)}
+                    data-testid="green-card-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Globe className="w-4 h-4" />
+                    <span>İSB Beynəlxalq Yaşıl Kart & Sərhəd Keçid Portalı</span>
                   </button>
                 )}
               </div>

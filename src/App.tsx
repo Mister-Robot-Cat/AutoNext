@@ -44,6 +44,7 @@ const TollRoadModal = React.lazy(() => import('./components/TollRoadModal').then
 const WindowTintModal = React.lazy(() => import('./components/WindowTintModal').then(m => ({ default: m.WindowTintModal })));
 const EuroprotocolModal = React.lazy(() => import('./components/EuroprotocolModal').then(m => ({ default: m.EuroprotocolModal })));
 const PowerOfAttorneyModal = React.lazy(() => import('./components/PowerOfAttorneyModal').then(m => ({ default: m.PowerOfAttorneyModal })));
+const GreenCardModal = React.lazy(() => import('./components/GreenCardModal').then(m => ({ default: m.GreenCardModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -72,7 +73,8 @@ import {
   Route,
   Sun,
   FileCheck,
-  FileSignature
+  FileSignature,
+  Globe
 } from 'lucide-react';
 import { useTheme } from './hooks/useTheme';
 
@@ -152,6 +154,8 @@ export function App() {
   const [isEuroprotocolModalOpen, setIsEuroprotocolModalOpen] = useState(false);
   const [poaTargetCar, setPoaTargetCar] = useState<Vehicle | null>(null);
   const [isPoaModalOpen, setIsPoaModalOpen] = useState(false);
+  const [greenCardTargetCar, setGreenCardTargetCar] = useState<Vehicle | null>(null);
+  const [isGreenCardModalOpen, setIsGreenCardModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -241,6 +245,10 @@ export function App() {
         onOpenEuroprotocol={() => {
           setEuroprotocolTargetCar(vehicles[0] || null);
           setIsEuroprotocolModalOpen(true);
+        }}
+        onOpenGreenCard={() => {
+          setGreenCardTargetCar(vehicles[0] || null);
+          setIsGreenCardModalOpen(true);
         }}
       />
 
@@ -455,6 +463,19 @@ export function App() {
               <span>Elektron Etibarnamə & Notariat Sistemi</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
+
+            <button
+              onClick={() => {
+                setGreenCardTargetCar(vehicles[0] || null);
+                setIsGreenCardModalOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-emerald-500/30 hover:border-emerald-500/60 text-emerald-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-emerald-500/10 group cursor-pointer"
+              data-testid="hero-green-card-btn"
+            >
+              <Globe className="w-4 h-4 text-emerald-400 group-hover:rotate-12 transition-transform" />
+              <span>İSB Yaşıl Kart & Sərhəd Keçid Radarı</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </div>
         </div>
       </section>
@@ -646,6 +667,10 @@ export function App() {
           onOpenPowerOfAttorney={(car) => {
             setPoaTargetCar(car);
             setIsPoaModalOpen(true);
+          }}
+          onOpenGreenCard={(car) => {
+            setGreenCardTargetCar(car);
+            setIsGreenCardModalOpen(true);
           }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
@@ -880,6 +905,18 @@ export function App() {
           onClose={() => {
             setIsPoaModalOpen(false);
             setPoaTargetCar(null);
+          }}
+        />
+
+        {/* Official ISB Green Card International Insurance & Border Transit Modal */}
+        <GreenCardModal
+          isOpen={isGreenCardModalOpen || !!greenCardTargetCar}
+          vehicle={greenCardTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => {
+            setIsGreenCardModalOpen(false);
+            setGreenCardTargetCar(null);
           }}
         />
 

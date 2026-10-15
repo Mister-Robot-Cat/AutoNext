@@ -273,3 +273,13 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official electronic notarial certificate generator with Ministry of Justice coat of arms, notary registry serial number (`ETB-NOT-2026-XXXXX`), digital security QR code hash, ASAN Imza / SİMA biometric stamp, and printable layout
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/powerOfAttorney.test.ts` and `src/components/__tests__/PowerOfAttorneyModal.test.tsx`) covering statutory fee calculations, relationship discounts, duration limits, FIN validation, cross-border rules, certificate generation, revocation simulation, and modal interactions
 
+---
+
+### 🌍 Milestone 29: Official International Cross-Border Vehicle Transit & Green Card Insurance Portal (İSB Rəsmi "Yaşıl Kart" / Green Card Beynəlxalq Sığorta Portalı, Dövlət Sərhəd Buraxılış Məntəqələri Radar, Yaşıl Kart Tarif Kalkulyatoru & Elektron Sığorta Polisi) (Completed)
+- [x] Add Official International Cross-Border Vehicle Transit & Green Card Insurance Portal (`GreenCardModal.tsx`) with Statutory Tariff Calculator, Border Checkpoints Radar, Cross-Border Compliance Checklist, Official Digital Green Card Certificate with QR & Barcode, and DGK Electronic Customs Transit Declaration
+- [x] Implement statutory Green Card tariff & currency conversion engine (`src/utils/greenCard.ts`) adhering to Chapter X of the Law of Azerbaijan on Compulsory Insurances and Council of Bureaux (CoB) regulations across 3 official zones (Zone 1: All 47 CoB member countries; Zone 2: Regional 7 countries; Zone 3: Georgia & Turkey corridor), 5 vehicle categories (passenger, motorcycle, minibus, truck, trailer), and 5 duration tiers (15 days to 1 year) with multi-currency conversions (AZN, USD, EUR)
+- [x] Add comprehensive mock Green Card & Border Telemetry database (`src/data/mockGreenCardData.ts`) covering 7 authentic state border checkpoints (Qırmızı Körpü, Samur, Sədərək, Mazımqara, Biləsuvar, Astara, Culfa) with live queue status, lanes, highway corridors, distance from Baku, 6 licensed İSB member insurers (PAŞA, Qala, Atəşgah, Meqa, Xalq, Bakı), and statutory cross-border checklist items
+- [x] Build authentic international Green Card certificate generator with green-card layout, Council of Bureaux international matrix, policy number (`AZ/ISB-GC-2026-XXXXX`), security hash, barcode telemetry, and DGK electronic border transit declaration (`DGK-TR-2026-XXXXX`)
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/greenCard.test.ts` and `src/components/__tests__/GreenCardModal.test.tsx`) covering statutory tariffs, currency conversions, border readiness scoring, fuel and transit estimates, policy generation, and interactive modal workflows
+
+

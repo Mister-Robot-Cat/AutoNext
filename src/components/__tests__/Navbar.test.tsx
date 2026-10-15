@@ -138,4 +138,14 @@ describe('Navbar Component', () => {
     fireEvent.click(euroBtn);
     expect(onOpenEuroprotocol).toHaveBeenCalledTimes(1);
   });
+
+  it('renders and calls onOpenGreenCard when provided', () => {
+    const onOpenGreenCard = vi.fn();
+    render(<Navbar {...defaultProps} onOpenGreenCard={onOpenGreenCard} />);
+
+    const gcBtn = screen.getByTestId('navbar-green-card-btn');
+    expect(gcBtn).toBeInTheDocument();
+    fireEvent.click(gcBtn);
+    expect(onOpenGreenCard).toHaveBeenCalledTimes(1);
+  });
 });

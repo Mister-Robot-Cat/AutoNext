@@ -13,7 +13,8 @@ import {
   Zap,
   CircleParking,
   Fuel,
-  FileCheck
+  FileCheck,
+  Globe
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -35,6 +36,7 @@ interface NavbarProps {
   onOpenParking?: () => void;
   onOpenFuelStations?: () => void;
   onOpenEuroprotocol?: () => void;
+  onOpenGreenCard?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -56,6 +58,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenParking,
   onOpenFuelStations,
   onOpenEuroprotocol,
+  onOpenGreenCard,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -133,6 +136,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <FileCheck className="w-4 h-4 text-teal-400" />
               <span className="hidden xl:inline">Avroprotokol</span>
+            </button>
+          )}
+
+          {/* Green Card & Cross-Border Button */}
+          {onOpenGreenCard && (
+            <button
+              onClick={onOpenGreenCard}
+              data-testid="navbar-green-card-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="İSB Beynəlxalq Yaşıl Kart & Sərhəd Keçid Radarı"
+            >
+              <Globe className="w-4 h-4 text-emerald-400" />
+              <span className="hidden xl:inline">Yaşıl Kart</span>
             </button>
           )}
 

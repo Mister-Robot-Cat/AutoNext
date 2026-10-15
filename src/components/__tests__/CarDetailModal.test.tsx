@@ -636,6 +636,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(poaBtn);
     expect(onOpenPoaMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenGreenCard when green card shortcut button is clicked', () => {
+    const onOpenGreenCardMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenGreenCard={onOpenGreenCardMock}
+      />
+    );
+
+    const greenCardBtn = screen.getByTestId('green-card-shortcut-btn');
+    expect(greenCardBtn).toBeInTheDocument();
+    fireEvent.click(greenCardBtn);
+    expect(onOpenGreenCardMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
 
 
