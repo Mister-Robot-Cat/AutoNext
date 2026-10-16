@@ -320,3 +320,13 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official BDYP & AsanPay Electronic Release Authorization Pass generator (`BDYP-CM-2026-XXXXX`) with 6-digit gate barrier PIN code, QR security hash, and live unified registry lookup
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/impoundLot.test.ts` and `src/components/__tests__/ImpoundLotModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
 
+---
+
+### 🚌 Milestone 34: Official AYNA Dedicated Bus Lanes, Baku Special Traffic Regime & Electronic Entry Permit Portal (AYNA & BDYP Avtobus Zolaqları Radarı — İXM Maddə 327.1-1 Manevr Auditoru, Bakı Şəhərinə Giriş-Çıxış Xüsusi Rejimi, Elektron Tərəzi / Qabarit Nəzarəti və Rəqəmsal Giriş Buraxılış Vərəqəsi Portalı) (Completed)
+- [x] Add Official AYNA Bus Lane, Baku Special Entry Regime & WIM Electronic Scale Modal (`SpecialTrafficRegimeModal.tsx`) with Bus Lane Maneuver Auditor, Baku Bus Lane Corridors Radar, Daytime Entry & WIM Overweight Calculator, and AYNA Electronic Entry Pass Generator
+- [x] Implement statutory bus lane compliance & Baku entry/WIM weight audit engine (`src/utils/specialTrafficRegime.ts`) adhering to YHQ Article 48, İXM Article 327.1-1 (100 AZN fine & 2 penalty points, 1.11 dashed turn pocket exemption, 7.5.4/7.5.2 operating hours), Cabinet of Ministers YHTK Baku daytime truck restriction (`07:00–22:00` summer / `07:00–21:00` winter for >5t GVW), and İXM Article 353 Electronic Scale (WIM) overweight fines (600 / 1,400 / 4,000 AZN)
+- [x] Add comprehensive mock Baku special traffic database (`src/data/mockSpecialTrafficData.ts`) covering 8 authentic AYNA dedicated bus lane corridors (Heydər Əliyev pr., Babək pr., Tbilisi pr., Neftçilər pr., Ziya Bünyadov pr., Mikayıl Müşfiq küç., Rəşid Behbudov küç., Yusif Səfərov küç.), 5 BDYP Baku entry gates with WIM electronic scales, and verifiable AYNA electronic entry passes
+- [x] Build official AYNA Electronic Baku Entry & Transit Pass generator (`AYNA-EB-2026-XXXXX`) with QR security hash, authorized corridor routing, VÖEN/FİN validation, and unified registry lookup
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/specialTrafficRegime.test.ts` and `src/components/__tests__/SpecialTrafficRegimeModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
+
+

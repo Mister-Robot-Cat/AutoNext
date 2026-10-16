@@ -188,4 +188,14 @@ describe('Navbar Component', () => {
     fireEvent.click(impoundBtn);
     expect(onOpenImpoundLot).toHaveBeenCalledTimes(1);
   });
+
+  it('renders and calls onOpenSpecialTraffic when provided', () => {
+    const onOpenSpecialTraffic = vi.fn();
+    render(<Navbar {...defaultProps} onOpenSpecialTraffic={onOpenSpecialTraffic} />);
+
+    const specialTrafficBtn = screen.getByTestId('navbar-special-traffic-btn');
+    expect(specialTrafficBtn).toBeInTheDocument();
+    fireEvent.click(specialTrafficBtn);
+    expect(onOpenSpecialTraffic).toHaveBeenCalledTimes(1);
+  });
 });

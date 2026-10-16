@@ -17,7 +17,8 @@ import {
   Globe,
   Wrench,
   Recycle,
-  ShieldAlert
+  ShieldAlert,
+  Bus
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -44,6 +45,7 @@ interface NavbarProps {
   onOpenTuningCompliance?: () => void;
   onOpenScrappage?: () => void;
   onOpenImpoundLot?: () => void;
+  onOpenSpecialTraffic?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -70,6 +72,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenTuningCompliance,
   onOpenScrappage,
   onOpenImpoundLot,
+  onOpenSpecialTraffic,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -212,6 +215,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <ShieldAlert className="w-4 h-4 text-rose-400" />
               <span className="hidden xl:inline">Cərimə Meydançası</span>
+            </button>
+          )}
+
+          {/* AYNA Bus Lane & Baku Special Traffic Regime Button */}
+          {onOpenSpecialTraffic && (
+            <button
+              onClick={onOpenSpecialTraffic}
+              data-testid="navbar-special-traffic-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-sky-500/10 hover:bg-sky-500/20 text-sky-400 border border-sky-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="AYNA Avtobus Zolağı (İXM 327.1-1) & Bakı Giriş E-Buraxılış Portalı"
+            >
+              <Bus className="w-4 h-4 text-sky-400" />
+              <span className="hidden xl:inline">BUS Zolaq & E-Giriş</span>
             </button>
           )}
 

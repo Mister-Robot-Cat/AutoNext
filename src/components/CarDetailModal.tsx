@@ -44,7 +44,8 @@ import {
   Globe,
   Car,
   Wrench,
-  Recycle
+  Recycle,
+  Bus
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -91,6 +92,7 @@ interface CarDetailModalProps {
   onOpenTuningCompliance?: (vehicle: Vehicle) => void;
   onOpenScrappage?: (vehicle: Vehicle) => void;
   onOpenImpoundLot?: (vehicle: Vehicle) => void;
+  onOpenSpecialTraffic?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -127,6 +129,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenTuningCompliance,
   onOpenScrappage,
   onOpenImpoundLot,
+  onOpenSpecialTraffic,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -729,6 +732,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <ShieldAlert className="w-4 h-4" />
                     <span>BDYP & AYNA Cərimə Meydançası və Evakuasiya Portalı</span>
+                  </button>
+                )}
+
+                {/* AYNA Bus Lane & Baku Special Traffic Entry Regime Shortcut */}
+                {onOpenSpecialTraffic && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenSpecialTraffic(vehicle)}
+                    data-testid="special-traffic-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-sky-500/10 hover:bg-sky-500/20 text-sky-400 border border-sky-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Bus className="w-4 h-4" />
+                    <span>AYNA Avtobus Zolağı (İXM 327.1-1) & Bakı Giriş E-Buraxılış</span>
                   </button>
                 )}
               </div>

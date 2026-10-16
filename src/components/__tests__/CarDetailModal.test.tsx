@@ -736,6 +736,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(impoundBtn);
     expect(onOpenImpoundLotMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenSpecialTraffic when special traffic shortcut button is clicked', () => {
+    const onOpenSpecialTrafficMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenSpecialTraffic={onOpenSpecialTrafficMock}
+      />
+    );
+
+    const specialBtn = screen.getByTestId('special-traffic-shortcut-btn');
+    expect(specialBtn).toBeInTheDocument();
+    fireEvent.click(specialBtn);
+    expect(onOpenSpecialTrafficMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
 
 

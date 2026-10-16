@@ -49,6 +49,7 @@ const TaxiComplianceModal = React.lazy(() => import('./components/TaxiCompliance
 const TuningComplianceModal = React.lazy(() => import('./components/TuningComplianceModal').then(m => ({ default: m.TuningComplianceModal })));
 const VehicleScrappageModal = React.lazy(() => import('./components/VehicleScrappageModal').then(m => ({ default: m.VehicleScrappageModal })));
 const ImpoundLotModal = React.lazy(() => import('./components/ImpoundLotModal').then(m => ({ default: m.ImpoundLotModal })));
+const SpecialTrafficRegimeModal = React.lazy(() => import('./components/SpecialTrafficRegimeModal').then(m => ({ default: m.SpecialTrafficRegimeModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -80,7 +81,8 @@ import {
   FileSignature,
   Globe,
   Wrench,
-  Recycle
+  Recycle,
+  Bus
 } from 'lucide-react';
 import { useTheme } from './hooks/useTheme';
 
@@ -170,6 +172,8 @@ export function App() {
   const [isScrappageModalOpen, setIsScrappageModalOpen] = useState(false);
   const [impoundLotTargetCar, setImpoundLotTargetCar] = useState<Vehicle | null>(null);
   const [isImpoundLotModalOpen, setIsImpoundLotModalOpen] = useState(false);
+  const [specialTrafficTargetCar, setSpecialTrafficTargetCar] = useState<Vehicle | null>(null);
+  const [isSpecialTrafficModalOpen, setIsSpecialTrafficModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -279,6 +283,10 @@ export function App() {
         onOpenImpoundLot={() => {
           setImpoundLotTargetCar(vehicles[0] || null);
           setIsImpoundLotModalOpen(true);
+        }}
+        onOpenSpecialTraffic={() => {
+          setSpecialTrafficTargetCar(vehicles[0] || null);
+          setIsSpecialTrafficModalOpen(true);
         }}
       />
 
@@ -545,6 +553,19 @@ export function App() {
               <span>BDYP & AYNA Cərimə Meydançası və Evakuasiya</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
+
+            <button
+              onClick={() => {
+                setSpecialTrafficTargetCar(vehicles[0] || null);
+                setIsSpecialTrafficModalOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-sky-500/30 hover:border-sky-500/60 text-sky-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-sky-500/10 group cursor-pointer"
+              data-testid="hero-special-traffic-btn"
+            >
+              <Bus className="w-4 h-4 text-sky-400 group-hover:rotate-12 transition-transform" />
+              <span>AYNA Avtobus Zolağı (100 ₼) & Bakı Giriş E-Buraxılış</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </div>
         </div>
       </section>
@@ -756,6 +777,10 @@ export function App() {
           onOpenImpoundLot={(car) => {
             setImpoundLotTargetCar(car);
             setIsImpoundLotModalOpen(true);
+          }}
+          onOpenSpecialTraffic={(car) => {
+            setSpecialTrafficTargetCar(car);
+            setIsSpecialTrafficModalOpen(true);
           }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
@@ -1050,6 +1075,18 @@ export function App() {
           onClose={() => {
             setIsImpoundLotModalOpen(false);
             setImpoundLotTargetCar(null);
+          }}
+        />
+
+        {/* Official AYNA Bus Lane (İXM 327.1-1), Baku Special Entry Regime & WIM Portal Modal */}
+        <SpecialTrafficRegimeModal
+          isOpen={isSpecialTrafficModalOpen || !!specialTrafficTargetCar}
+          vehicle={specialTrafficTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => {
+            setIsSpecialTrafficModalOpen(false);
+            setSpecialTrafficTargetCar(null);
           }}
         />
 
