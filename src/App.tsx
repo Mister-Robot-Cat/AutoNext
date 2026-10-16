@@ -46,6 +46,7 @@ const EuroprotocolModal = React.lazy(() => import('./components/EuroprotocolModa
 const PowerOfAttorneyModal = React.lazy(() => import('./components/PowerOfAttorneyModal').then(m => ({ default: m.PowerOfAttorneyModal })));
 const GreenCardModal = React.lazy(() => import('./components/GreenCardModal').then(m => ({ default: m.GreenCardModal })));
 const TaxiComplianceModal = React.lazy(() => import('./components/TaxiComplianceModal').then(m => ({ default: m.TaxiComplianceModal })));
+const TuningComplianceModal = React.lazy(() => import('./components/TuningComplianceModal').then(m => ({ default: m.TuningComplianceModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -75,7 +76,8 @@ import {
   Sun,
   FileCheck,
   FileSignature,
-  Globe
+  Globe,
+  Wrench
 } from 'lucide-react';
 import { useTheme } from './hooks/useTheme';
 
@@ -159,6 +161,8 @@ export function App() {
   const [isGreenCardModalOpen, setIsGreenCardModalOpen] = useState(false);
   const [taxiTargetCar, setTaxiTargetCar] = useState<Vehicle | null>(null);
   const [isTaxiModalOpen, setIsTaxiModalOpen] = useState(false);
+  const [tuningTargetCar, setTuningTargetCar] = useState<Vehicle | null>(null);
+  const [isTuningModalOpen, setIsTuningModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -256,6 +260,10 @@ export function App() {
         onOpenTaxiCompliance={() => {
           setTaxiTargetCar(vehicles[0] || null);
           setIsTaxiModalOpen(true);
+        }}
+        onOpenTuningCompliance={() => {
+          setTuningTargetCar(vehicles[0] || null);
+          setIsTuningModalOpen(true);
         }}
       />
 
@@ -496,6 +504,19 @@ export function App() {
               <span>AYNA Taksi Portalı & E-Buraxılış Vərəqəsi</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
+
+            <button
+              onClick={() => {
+                setTuningTargetCar(vehicles[0] || null);
+                setIsTuningModalOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-orange-500/30 hover:border-orange-500/60 text-orange-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-orange-500/10 group cursor-pointer"
+              data-testid="hero-tuning-compliance-btn"
+            >
+              <Wrench className="w-4 h-4 text-orange-400 group-hover:rotate-12 transition-transform" />
+              <span>BDYP Tüninq, Qazbalon (LPG/CNG) & AZS İcazə</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </div>
         </div>
       </section>
@@ -695,6 +716,10 @@ export function App() {
           onOpenTaxiCompliance={(car) => {
             setTaxiTargetCar(car);
             setIsTaxiModalOpen(true);
+          }}
+          onOpenTuningCompliance={(car) => {
+            setTuningTargetCar(car);
+            setIsTuningModalOpen(true);
           }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
@@ -953,6 +978,18 @@ export function App() {
           onClose={() => {
             setIsTaxiModalOpen(false);
             setTaxiTargetCar(null);
+          }}
+        />
+
+        {/* Official BDYP & AZS Constructive Modification, Autogas (LPG/CNG) & Tuning Portal Modal */}
+        <TuningComplianceModal
+          isOpen={isTuningModalOpen || !!tuningTargetCar}
+          vehicle={tuningTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => {
+            setIsTuningModalOpen(false);
+            setTuningTargetCar(null);
           }}
         />
 

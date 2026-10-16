@@ -158,4 +158,14 @@ describe('Navbar Component', () => {
     fireEvent.click(taxiBtn);
     expect(onOpenTaxiCompliance).toHaveBeenCalledTimes(1);
   });
+
+  it('renders and calls onOpenTuningCompliance when provided', () => {
+    const onOpenTuningCompliance = vi.fn();
+    render(<Navbar {...defaultProps} onOpenTuningCompliance={onOpenTuningCompliance} />);
+
+    const tuningBtn = screen.getByTestId('navbar-tuning-compliance-btn');
+    expect(tuningBtn).toBeInTheDocument();
+    fireEvent.click(tuningBtn);
+    expect(onOpenTuningCompliance).toHaveBeenCalledTimes(1);
+  });
 });

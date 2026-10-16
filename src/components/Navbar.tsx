@@ -14,7 +14,8 @@ import {
   CircleParking,
   Fuel,
   FileCheck,
-  Globe
+  Globe,
+  Wrench
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -38,6 +39,7 @@ interface NavbarProps {
   onOpenEuroprotocol?: () => void;
   onOpenGreenCard?: () => void;
   onOpenTaxiCompliance?: () => void;
+  onOpenTuningCompliance?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -61,6 +63,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenEuroprotocol,
   onOpenGreenCard,
   onOpenTaxiCompliance,
+  onOpenTuningCompliance,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -164,6 +167,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Car className="w-4 h-4 text-amber-400" />
               <span className="hidden xl:inline">AYNA Taksi</span>
+            </button>
+          )}
+
+          {/* BDYP Constructive Tuning & Autogas Button */}
+          {onOpenTuningCompliance && (
+            <button
+              onClick={onOpenTuningCompliance}
+              data-testid="navbar-tuning-compliance-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 border border-orange-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="BDYP & AZS Tüninq, Qazbalon (LPG/CNG) və Konstruktiv Dəyişiklik Portalı"
+            >
+              <Wrench className="w-4 h-4 text-orange-400" />
+              <span className="hidden xl:inline">Tüninq & Qaz</span>
             </button>
           )}
 

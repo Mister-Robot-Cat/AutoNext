@@ -676,6 +676,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(taxiBtn);
     expect(onOpenTaxiComplianceMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenTuningCompliance when tuning compliance shortcut button is clicked', () => {
+    const onOpenTuningComplianceMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenTuningCompliance={onOpenTuningComplianceMock}
+      />
+    );
+
+    const tuningBtn = screen.getByTestId('tuning-compliance-shortcut-btn');
+    expect(tuningBtn).toBeInTheDocument();
+    fireEvent.click(tuningBtn);
+    expect(onOpenTuningComplianceMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
 
 

@@ -42,7 +42,8 @@ import {
   Sun,
   FileSignature,
   Globe,
-  Car
+  Car,
+  Wrench
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -86,6 +87,7 @@ interface CarDetailModalProps {
   onOpenPowerOfAttorney?: (vehicle: Vehicle) => void;
   onOpenGreenCard?: (vehicle: Vehicle) => void;
   onOpenTaxiCompliance?: (vehicle: Vehicle) => void;
+  onOpenTuningCompliance?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -119,6 +121,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenPowerOfAttorney,
   onOpenGreenCard,
   onOpenTaxiCompliance,
+  onOpenTuningCompliance,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -682,6 +685,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Car className="w-4 h-4" />
                     <span>AYNA Taksi Uyğunluğu & E-Buraxılış Vərəqəsi</span>
+                  </button>
+                )}
+
+                {/* BDYP Constructive Modification, Autogas (LPG/CNG) & Tuning Shortcut */}
+                {onOpenTuningCompliance && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenTuningCompliance(vehicle)}
+                    data-testid="tuning-compliance-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 border border-orange-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Wrench className="w-4 h-4" />
+                    <span>BDYP & AZS Tüninq, Qazbalon (LPG/CNG) & Konstruktiv İcazə</span>
                   </button>
                 )}
               </div>
