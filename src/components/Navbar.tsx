@@ -16,7 +16,8 @@ import {
   FileCheck,
   Globe,
   Wrench,
-  Recycle
+  Recycle,
+  ShieldAlert
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -42,6 +43,7 @@ interface NavbarProps {
   onOpenTaxiCompliance?: () => void;
   onOpenTuningCompliance?: () => void;
   onOpenScrappage?: () => void;
+  onOpenImpoundLot?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -67,6 +69,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenTaxiCompliance,
   onOpenTuningCompliance,
   onOpenScrappage,
+  onOpenImpoundLot,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -196,6 +199,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Recycle className="w-4 h-4 text-emerald-400" />
               <span className="hidden xl:inline">Utilizasiya</span>
+            </button>
+          )}
+
+          {/* BDYP & AYNA Impound Lot & Towing Release Button */}
+          {onOpenImpoundLot && (
+            <button
+              onClick={onOpenImpoundLot}
+              data-testid="navbar-impound-lot-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="BDYP & AYNA Cərimə Meydançası Axtarışı, Evakuasiya Yoxlaması və E-Buraxılış Portalı"
+            >
+              <ShieldAlert className="w-4 h-4 text-rose-400" />
+              <span className="hidden xl:inline">Cərimə Meydançası</span>
             </button>
           )}
 

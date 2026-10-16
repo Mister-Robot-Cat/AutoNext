@@ -90,6 +90,7 @@ interface CarDetailModalProps {
   onOpenTaxiCompliance?: (vehicle: Vehicle) => void;
   onOpenTuningCompliance?: (vehicle: Vehicle) => void;
   onOpenScrappage?: (vehicle: Vehicle) => void;
+  onOpenImpoundLot?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -125,6 +126,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenTaxiCompliance,
   onOpenTuningCompliance,
   onOpenScrappage,
+  onOpenImpoundLot,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -714,6 +716,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Recycle className="w-4 h-4" />
                     <span>"Təmiz Şəhər" Utilizasiya & Güzəşt Vauçeri Portalı</span>
+                  </button>
+                )}
+
+                {/* BDYP & AYNA Impound Lot & Towing Release Shortcut */}
+                {onOpenImpoundLot && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenImpoundLot(vehicle)}
+                    data-testid="impound-lot-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <ShieldAlert className="w-4 h-4" />
+                    <span>BDYP & AYNA Cərimə Meydançası və Evakuasiya Portalı</span>
                   </button>
                 )}
               </div>

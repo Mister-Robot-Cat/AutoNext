@@ -48,6 +48,7 @@ const GreenCardModal = React.lazy(() => import('./components/GreenCardModal').th
 const TaxiComplianceModal = React.lazy(() => import('./components/TaxiComplianceModal').then(m => ({ default: m.TaxiComplianceModal })));
 const TuningComplianceModal = React.lazy(() => import('./components/TuningComplianceModal').then(m => ({ default: m.TuningComplianceModal })));
 const VehicleScrappageModal = React.lazy(() => import('./components/VehicleScrappageModal').then(m => ({ default: m.VehicleScrappageModal })));
+const ImpoundLotModal = React.lazy(() => import('./components/ImpoundLotModal').then(m => ({ default: m.ImpoundLotModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -167,6 +168,8 @@ export function App() {
   const [isTuningModalOpen, setIsTuningModalOpen] = useState(false);
   const [scrappageTargetCar, setScrappageTargetCar] = useState<Vehicle | null>(null);
   const [isScrappageModalOpen, setIsScrappageModalOpen] = useState(false);
+  const [impoundLotTargetCar, setImpoundLotTargetCar] = useState<Vehicle | null>(null);
+  const [isImpoundLotModalOpen, setIsImpoundLotModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -272,6 +275,10 @@ export function App() {
         onOpenScrappage={() => {
           setScrappageTargetCar(vehicles[0] || null);
           setIsScrappageModalOpen(true);
+        }}
+        onOpenImpoundLot={() => {
+          setImpoundLotTargetCar(vehicles[0] || null);
+          setIsImpoundLotModalOpen(true);
         }}
       />
 
@@ -525,6 +532,19 @@ export function App() {
               <span>BDYP Tüninq, Qazbalon (LPG/CNG) & AZS İcazə</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
+
+            <button
+              onClick={() => {
+                setImpoundLotTargetCar(vehicles[0] || null);
+                setIsImpoundLotModalOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-rose-500/30 hover:border-rose-500/60 text-rose-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-rose-500/10 group cursor-pointer"
+              data-testid="hero-impound-lot-btn"
+            >
+              <ShieldAlert className="w-4 h-4 text-rose-400 group-hover:rotate-12 transition-transform" />
+              <span>BDYP & AYNA Cərimə Meydançası və Evakuasiya</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </div>
         </div>
       </section>
@@ -732,6 +752,10 @@ export function App() {
           onOpenScrappage={(car) => {
             setScrappageTargetCar(car);
             setIsScrappageModalOpen(true);
+          }}
+          onOpenImpoundLot={(car) => {
+            setImpoundLotTargetCar(car);
+            setIsImpoundLotModalOpen(true);
           }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
@@ -1014,6 +1038,18 @@ export function App() {
           onClose={() => {
             setIsScrappageModalOpen(false);
             setScrappageTargetCar(null);
+          }}
+        />
+
+        {/* Official BDYP & AYNA Impound Lot, Towing Protocol & Electronic Release Modal */}
+        <ImpoundLotModal
+          isOpen={isImpoundLotModalOpen || !!impoundLotTargetCar}
+          vehicle={impoundLotTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => {
+            setIsImpoundLotModalOpen(false);
+            setImpoundLotTargetCar(null);
           }}
         />
 

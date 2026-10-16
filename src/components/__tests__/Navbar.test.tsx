@@ -178,4 +178,14 @@ describe('Navbar Component', () => {
     fireEvent.click(scrappageBtn);
     expect(onOpenScrappage).toHaveBeenCalledTimes(1);
   });
+
+  it('renders and calls onOpenImpoundLot when provided', () => {
+    const onOpenImpoundLot = vi.fn();
+    render(<Navbar {...defaultProps} onOpenImpoundLot={onOpenImpoundLot} />);
+
+    const impoundBtn = screen.getByTestId('navbar-impound-lot-btn');
+    expect(impoundBtn).toBeInTheDocument();
+    fireEvent.click(impoundBtn);
+    expect(onOpenImpoundLot).toHaveBeenCalledTimes(1);
+  });
 });

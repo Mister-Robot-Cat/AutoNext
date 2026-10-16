@@ -716,6 +716,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(scrappageBtn);
     expect(onOpenScrappageMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenImpoundLot when impound lot shortcut button is clicked', () => {
+    const onOpenImpoundLotMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenImpoundLot={onOpenImpoundLotMock}
+      />
+    );
+
+    const impoundBtn = screen.getByTestId('impound-lot-shortcut-btn');
+    expect(impoundBtn).toBeInTheDocument();
+    fireEvent.click(impoundBtn);
+    expect(onOpenImpoundLotMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
 
 
