@@ -50,6 +50,7 @@ const TuningComplianceModal = React.lazy(() => import('./components/TuningCompli
 const VehicleScrappageModal = React.lazy(() => import('./components/VehicleScrappageModal').then(m => ({ default: m.VehicleScrappageModal })));
 const ImpoundLotModal = React.lazy(() => import('./components/ImpoundLotModal').then(m => ({ default: m.ImpoundLotModal })));
 const SpecialTrafficRegimeModal = React.lazy(() => import('./components/SpecialTrafficRegimeModal').then(m => ({ default: m.SpecialTrafficRegimeModal })));
+const DriverLicenseModal = React.lazy(() => import('./components/DriverLicenseModal').then(m => ({ default: m.DriverLicenseModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -82,7 +83,8 @@ import {
   Globe,
   Wrench,
   Recycle,
-  Bus
+  Bus,
+  Award
 } from 'lucide-react';
 import { useTheme } from './hooks/useTheme';
 
@@ -174,6 +176,8 @@ export function App() {
   const [isImpoundLotModalOpen, setIsImpoundLotModalOpen] = useState(false);
   const [specialTrafficTargetCar, setSpecialTrafficTargetCar] = useState<Vehicle | null>(null);
   const [isSpecialTrafficModalOpen, setIsSpecialTrafficModalOpen] = useState(false);
+  const [driverLicenseTargetCar, setDriverLicenseTargetCar] = useState<Vehicle | null>(null);
+  const [isDriverLicenseModalOpen, setIsDriverLicenseModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -287,6 +291,10 @@ export function App() {
         onOpenSpecialTraffic={() => {
           setSpecialTrafficTargetCar(vehicles[0] || null);
           setIsSpecialTrafficModalOpen(true);
+        }}
+        onOpenDriverLicense={() => {
+          setDriverLicenseTargetCar(vehicles[0] || null);
+          setIsDriverLicenseModalOpen(true);
         }}
       />
 
@@ -782,6 +790,10 @@ export function App() {
             setSpecialTrafficTargetCar(car);
             setIsSpecialTrafficModalOpen(true);
           }}
+          onOpenDriverLicense={(car) => {
+            setDriverLicenseTargetCar(car);
+            setIsDriverLicenseModalOpen(true);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -1087,6 +1099,18 @@ export function App() {
           onClose={() => {
             setIsSpecialTrafficModalOpen(false);
             setSpecialTrafficTargetCar(null);
+          }}
+        />
+
+        {/* Official BDYP & ASAN Driver's License Category (B/BE), Fees & Exam Portal Modal */}
+        <DriverLicenseModal
+          isOpen={isDriverLicenseModalOpen || !!driverLicenseTargetCar}
+          vehicle={driverLicenseTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => {
+            setIsDriverLicenseModalOpen(false);
+            setDriverLicenseTargetCar(null);
           }}
         />
 

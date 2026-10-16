@@ -329,4 +329,15 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official AYNA Electronic Baku Entry & Transit Pass generator (`AYNA-EB-2026-XXXXX`) with QR security hash, authorized corridor routing, VÖEN/FİN validation, and unified registry lookup
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/specialTrafficRegime.test.ts` and `src/components/__tests__/SpecialTrafficRegimeModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
 
+---
+
+### 🪪 Milestone 35: Official BDYP & ASAN Driver's License Category Auditor, Towing (B vs BE) Weight Calculator, International Driving Permit (IDP) & Exam Simulator Portal (BDYP & ASAN Xidmət Sürücülük Vəsiqəsi Portalı — YHQ Maddə 33–35 Kateqoriya Uyğunluğu, Qoşqu B/BE Kalkulyatoru, Dövlət Rüsumu & Nəzəri İmtahan Simulyatoru) (Completed)
+- [x] Add Official BDYP & ASAN Driver's License Category, Towing & Exam Modal (`DriverLicenseModal.tsx`) with Category & Trailer (`B` vs `BE`) Auditor, ASAN State Duty & Validity Calculator, 10-Question BDYP Theoretical Exam Simulator, MERO & ASAN Centers Radar, and Electronic License Extract Generator
+- [x] Implement statutory driver's license category & towing compliance engine (`src/utils/driverLicense.ts`) adhering to YHQ Articles 33–35 (categories `A1`, `A`, `B`, `BE`, `C1`, `C`, `CE`, `D1`, `D`, ≤750 kg light trailer exemption, >750 kg combined >3,500 kg or >curb weight `BE` requirement, `AT` automatic transmission restriction, age/validity rules) and İXM Article 332 fine risk matrix (100 / 200 / 300 AZN)
+- [x] Implement "Law on State Duties" Article 18 fee & validity duration calculator covering first-time issuance (20 + 30 AZN), ASAN expiry renewal (30 AZN), 1968 Vienna Convention International Driving Permit (IDP — 30 AZN, 3-year validity), foreign license exchange, and Forma AZS-083 medical e-certificate rules
+- [x] Add comprehensive mock BDYP driver's license & exam database (`src/data/mockDriverLicenseData.ts`) covering 9 statutory categories, 10 authentic YHQ theoretical exam ticket questions (9/10 pass threshold), 6 BDYP MERO & ASAN centers across Baku, Sumgayit, Ganja, and Lankaran, and verifiable electronic license records
+- [x] Build official BDYP Electronic Driver's License & IDP Extract generator (`AZE-SV-XXXXXX` / `IDP-AZ-2026-XXXXX`) with QR security hash and live unified registry lookup
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/driverLicense.test.ts` and `src/components/__tests__/DriverLicenseModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
+
+
 

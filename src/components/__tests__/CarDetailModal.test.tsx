@@ -756,6 +756,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(specialBtn);
     expect(onOpenSpecialTrafficMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenDriverLicense when driver license shortcut button is clicked', () => {
+    const onOpenDriverLicenseMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenDriverLicense={onOpenDriverLicenseMock}
+      />
+    );
+
+    const licenseBtn = screen.getByTestId('driver-license-shortcut-btn');
+    expect(licenseBtn).toBeInTheDocument();
+    fireEvent.click(licenseBtn);
+    expect(onOpenDriverLicenseMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
 
 

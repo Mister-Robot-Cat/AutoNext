@@ -198,4 +198,14 @@ describe('Navbar Component', () => {
     fireEvent.click(specialTrafficBtn);
     expect(onOpenSpecialTraffic).toHaveBeenCalledTimes(1);
   });
+
+  it('renders and calls onOpenDriverLicense when provided', () => {
+    const onOpenDriverLicense = vi.fn();
+    render(<Navbar {...defaultProps} onOpenDriverLicense={onOpenDriverLicense} />);
+
+    const driverLicenseBtn = screen.getByTestId('navbar-driver-license-btn');
+    expect(driverLicenseBtn).toBeInTheDocument();
+    fireEvent.click(driverLicenseBtn);
+    expect(onOpenDriverLicense).toHaveBeenCalledTimes(1);
+  });
 });

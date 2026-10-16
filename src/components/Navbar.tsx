@@ -18,7 +18,8 @@ import {
   Wrench,
   Recycle,
   ShieldAlert,
-  Bus
+  Bus,
+  Award
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -46,6 +47,7 @@ interface NavbarProps {
   onOpenScrappage?: () => void;
   onOpenImpoundLot?: () => void;
   onOpenSpecialTraffic?: () => void;
+  onOpenDriverLicense?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -73,6 +75,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenScrappage,
   onOpenImpoundLot,
   onOpenSpecialTraffic,
+  onOpenDriverLicense,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -228,6 +231,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Bus className="w-4 h-4 text-sky-400" />
               <span className="hidden xl:inline">BUS Zolaq & E-Giriş</span>
+            </button>
+          )}
+
+          {/* BDYP Driver's License Category (B/BE) & Exam Portal Button */}
+          {onOpenDriverLicense && (
+            <button
+              onClick={onOpenDriverLicense}
+              data-testid="navbar-driver-license-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="BDYP & ASAN Sürücülük Vəsiqəsi, Kateqoriya (B/BE) və İmtahan Portalı"
+            >
+              <Award className="w-4 h-4 text-indigo-400" />
+              <span className="hidden xl:inline">Sürücülük Vəsiqəsi</span>
             </button>
           )}
 
