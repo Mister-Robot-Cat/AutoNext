@@ -15,7 +15,8 @@ import {
   Fuel,
   FileCheck,
   Globe,
-  Wrench
+  Wrench,
+  Recycle
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -40,6 +41,7 @@ interface NavbarProps {
   onOpenGreenCard?: () => void;
   onOpenTaxiCompliance?: () => void;
   onOpenTuningCompliance?: () => void;
+  onOpenScrappage?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -64,6 +66,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenGreenCard,
   onOpenTaxiCompliance,
   onOpenTuningCompliance,
+  onOpenScrappage,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -180,6 +183,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Wrench className="w-4 h-4 text-orange-400" />
               <span className="hidden xl:inline">Tüninq & Qaz</span>
+            </button>
+          )}
+
+          {/* Təmiz Şəhər ASC Vehicle Scrappage & Voucher Button */}
+          {onOpenScrappage && (
+            <button
+              onClick={onOpenScrappage}
+              data-testid="navbar-scrappage-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="Təmiz Şəhər ASC — Köhnə Avtomobillərin Utilizasiyası və Güzəşt Vauçeri Portalı"
+            >
+              <Recycle className="w-4 h-4 text-emerald-400" />
+              <span className="hidden xl:inline">Utilizasiya</span>
             </button>
           )}
 

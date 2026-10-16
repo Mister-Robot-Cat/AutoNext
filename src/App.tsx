@@ -47,6 +47,7 @@ const PowerOfAttorneyModal = React.lazy(() => import('./components/PowerOfAttorn
 const GreenCardModal = React.lazy(() => import('./components/GreenCardModal').then(m => ({ default: m.GreenCardModal })));
 const TaxiComplianceModal = React.lazy(() => import('./components/TaxiComplianceModal').then(m => ({ default: m.TaxiComplianceModal })));
 const TuningComplianceModal = React.lazy(() => import('./components/TuningComplianceModal').then(m => ({ default: m.TuningComplianceModal })));
+const VehicleScrappageModal = React.lazy(() => import('./components/VehicleScrappageModal').then(m => ({ default: m.VehicleScrappageModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -77,7 +78,8 @@ import {
   FileCheck,
   FileSignature,
   Globe,
-  Wrench
+  Wrench,
+  Recycle
 } from 'lucide-react';
 import { useTheme } from './hooks/useTheme';
 
@@ -163,6 +165,8 @@ export function App() {
   const [isTaxiModalOpen, setIsTaxiModalOpen] = useState(false);
   const [tuningTargetCar, setTuningTargetCar] = useState<Vehicle | null>(null);
   const [isTuningModalOpen, setIsTuningModalOpen] = useState(false);
+  const [scrappageTargetCar, setScrappageTargetCar] = useState<Vehicle | null>(null);
+  const [isScrappageModalOpen, setIsScrappageModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -264,6 +268,10 @@ export function App() {
         onOpenTuningCompliance={() => {
           setTuningTargetCar(vehicles[0] || null);
           setIsTuningModalOpen(true);
+        }}
+        onOpenScrappage={() => {
+          setScrappageTargetCar(vehicles[0] || null);
+          setIsScrappageModalOpen(true);
         }}
       />
 
@@ -721,6 +729,10 @@ export function App() {
             setTuningTargetCar(car);
             setIsTuningModalOpen(true);
           }}
+          onOpenScrappage={(car) => {
+            setScrappageTargetCar(car);
+            setIsScrappageModalOpen(true);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -990,6 +1002,18 @@ export function App() {
           onClose={() => {
             setIsTuningModalOpen(false);
             setTuningTargetCar(null);
+          }}
+        />
+
+        {/* Official Təmiz Şəhər ASC Vehicle Scrappage, Utilization Fee & Eco-Voucher Modal */}
+        <VehicleScrappageModal
+          isOpen={isScrappageModalOpen || !!scrappageTargetCar}
+          vehicle={scrappageTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => {
+            setIsScrappageModalOpen(false);
+            setScrappageTargetCar(null);
           }}
         />
 

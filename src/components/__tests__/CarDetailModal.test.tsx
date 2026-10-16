@@ -696,6 +696,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(tuningBtn);
     expect(onOpenTuningComplianceMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenScrappage when scrappage shortcut button is clicked', () => {
+    const onOpenScrappageMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenScrappage={onOpenScrappageMock}
+      />
+    );
+
+    const scrappageBtn = screen.getByTestId('scrappage-shortcut-btn');
+    expect(scrappageBtn).toBeInTheDocument();
+    fireEvent.click(scrappageBtn);
+    expect(onOpenScrappageMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
 
 

@@ -168,4 +168,14 @@ describe('Navbar Component', () => {
     fireEvent.click(tuningBtn);
     expect(onOpenTuningCompliance).toHaveBeenCalledTimes(1);
   });
+
+  it('renders and calls onOpenScrappage when provided', () => {
+    const onOpenScrappage = vi.fn();
+    render(<Navbar {...defaultProps} onOpenScrappage={onOpenScrappage} />);
+
+    const scrappageBtn = screen.getByTestId('navbar-scrappage-btn');
+    expect(scrappageBtn).toBeInTheDocument();
+    fireEvent.click(scrappageBtn);
+    expect(onOpenScrappage).toHaveBeenCalledTimes(1);
+  });
 });

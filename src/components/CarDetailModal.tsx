@@ -43,7 +43,8 @@ import {
   FileSignature,
   Globe,
   Car,
-  Wrench
+  Wrench,
+  Recycle
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -88,6 +89,7 @@ interface CarDetailModalProps {
   onOpenGreenCard?: (vehicle: Vehicle) => void;
   onOpenTaxiCompliance?: (vehicle: Vehicle) => void;
   onOpenTuningCompliance?: (vehicle: Vehicle) => void;
+  onOpenScrappage?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -122,6 +124,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenGreenCard,
   onOpenTaxiCompliance,
   onOpenTuningCompliance,
+  onOpenScrappage,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -698,6 +701,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Wrench className="w-4 h-4" />
                     <span>BDYP & AZS Tüninq, Qazbalon (LPG/CNG) & Konstruktiv İcazə</span>
+                  </button>
+                )}
+
+                {/* Təmiz Şəhər ASC Vehicle Scrappage & Voucher Shortcut */}
+                {onOpenScrappage && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenScrappage(vehicle)}
+                    data-testid="scrappage-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Recycle className="w-4 h-4" />
+                    <span>"Təmiz Şəhər" Utilizasiya & Güzəşt Vauçeri Portalı</span>
                   </button>
                 )}
               </div>
