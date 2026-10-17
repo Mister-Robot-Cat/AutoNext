@@ -836,6 +836,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(safetyBtn);
     expect(onOpenPassengerSafetyMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenEmissionsCompliance when emissions compliance shortcut button is clicked', () => {
+    const onOpenEmissionsComplianceMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenEmissionsCompliance={onOpenEmissionsComplianceMock}
+      />
+    );
+
+    const emissionsBtn = screen.getByTestId('emissions-compliance-shortcut-btn');
+    expect(emissionsBtn).toBeInTheDocument();
+    fireEvent.click(emissionsBtn);
+    expect(onOpenEmissionsComplianceMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
 
 

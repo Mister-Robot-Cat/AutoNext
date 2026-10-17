@@ -49,7 +49,8 @@ import {
   Award,
   Disc,
   Lightbulb,
-  HeartPulse
+  HeartPulse,
+  Wind
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -101,6 +102,7 @@ interface CarDetailModalProps {
   onOpenTireCompliance?: (vehicle: Vehicle) => void;
   onOpenHeadlightCompliance?: (vehicle: Vehicle) => void;
   onOpenPassengerSafety?: (vehicle: Vehicle) => void;
+  onOpenEmissionsCompliance?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -142,6 +144,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenTireCompliance,
   onOpenHeadlightCompliance,
   onOpenPassengerSafety,
+  onOpenEmissionsCompliance,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -809,6 +812,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <HeartPulse className="w-4 h-4" />
                     <span>BDYP & FHN Qəza Təchizatı (Odluq, Tibbi Çanta) & Uşaq Avtokreslosu (İSOFIX)</span>
+                  </button>
+                )}
+
+                {/* BDYP & ETSN Exhaust Emissions, Gas Analyzer & Catalyst/DPF Shortcut */}
+                {onOpenEmissionsCompliance && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenEmissionsCompliance(vehicle)}
+                    data-testid="emissions-compliance-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Wind className="w-4 h-4" />
+                    <span>BDYP & ETSN «Təmiz Hava» Qazanalizator, Katalizator & DPF Portalı</span>
                   </button>
                 )}
               </div>

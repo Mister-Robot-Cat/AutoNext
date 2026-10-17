@@ -54,6 +54,7 @@ const DriverLicenseModal = React.lazy(() => import('./components/DriverLicenseMo
 const TireComplianceModal = React.lazy(() => import('./components/TireComplianceModal').then(m => ({ default: m.TireComplianceModal })));
 const HeadlightComplianceModal = React.lazy(() => import('./components/HeadlightComplianceModal').then(m => ({ default: m.HeadlightComplianceModal })));
 const PassengerSafetyModal = React.lazy(() => import('./components/PassengerSafetyModal').then(m => ({ default: m.PassengerSafetyModal })));
+const EmissionsComplianceModal = React.lazy(() => import('./components/EmissionsComplianceModal').then(m => ({ default: m.EmissionsComplianceModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -90,7 +91,8 @@ import {
   Award,
   Disc,
   Lightbulb,
-  HeartPulse
+  HeartPulse,
+  Wind
 } from 'lucide-react';
 import { useTheme } from './hooks/useTheme';
 
@@ -190,6 +192,8 @@ export function App() {
   const [isHeadlightComplianceModalOpen, setIsHeadlightComplianceModalOpen] = useState(false);
   const [passengerSafetyTargetCar, setPassengerSafetyTargetCar] = useState<Vehicle | null>(null);
   const [isPassengerSafetyModalOpen, setIsPassengerSafetyModalOpen] = useState(false);
+  const [emissionsComplianceTargetCar, setEmissionsComplianceTargetCar] = useState<Vehicle | null>(null);
+  const [isEmissionsComplianceModalOpen, setIsEmissionsComplianceModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -319,6 +323,10 @@ export function App() {
         onOpenPassengerSafety={() => {
           setPassengerSafetyTargetCar(vehicles[0] || null);
           setIsPassengerSafetyModalOpen(true);
+        }}
+        onOpenEmissionsCompliance={() => {
+          setEmissionsComplianceTargetCar(vehicles[0] || null);
+          setIsEmissionsComplianceModalOpen(true);
         }}
       />
 
@@ -637,6 +645,19 @@ export function App() {
               <span>BDYP & FHN Odluq, Tibbi Çanta & Uşaq Avtokreslosu (İSOFIX)</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
+
+            <button
+              onClick={() => {
+                setEmissionsComplianceTargetCar(vehicles[0] || null);
+                setIsEmissionsComplianceModalOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-emerald-500/30 hover:border-emerald-500/60 text-emerald-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-emerald-500/10 group cursor-pointer"
+              data-testid="hero-emissions-compliance-btn"
+            >
+              <Wind className="w-4 h-4 text-emerald-400 group-hover:rotate-12 transition-transform" />
+              <span>BDYP & ETSN «Təmiz Hava» Qazanalizator, Katalizator & DPF</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </div>
         </div>
       </section>
@@ -868,6 +889,10 @@ export function App() {
           onOpenPassengerSafety={(car) => {
             setPassengerSafetyTargetCar(car);
             setIsPassengerSafetyModalOpen(true);
+          }}
+          onOpenEmissionsCompliance={(car) => {
+            setEmissionsComplianceTargetCar(car);
+            setIsEmissionsComplianceModalOpen(true);
           }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
@@ -1220,6 +1245,17 @@ export function App() {
           onClose={() => {
             setIsPassengerSafetyModalOpen(false);
             setPassengerSafetyTargetCar(null);
+          }}
+        />
+
+        {/* Official BDYP & ETSN Exhaust Emissions, Gas Analyzer & Catalyst/DPF Compliance Modal */}
+        <EmissionsComplianceModal
+          isOpen={isEmissionsComplianceModalOpen || !!emissionsComplianceTargetCar}
+          vehicle={emissionsComplianceTargetCar}
+          currency={currency}
+          onClose={() => {
+            setIsEmissionsComplianceModalOpen(false);
+            setEmissionsComplianceTargetCar(null);
           }}
         />
 

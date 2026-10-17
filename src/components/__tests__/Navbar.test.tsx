@@ -238,4 +238,14 @@ describe('Navbar Component', () => {
     fireEvent.click(safetyBtn);
     expect(onOpenPassengerSafety).toHaveBeenCalledTimes(1);
   });
+
+  it('renders and calls onOpenEmissionsCompliance when provided', () => {
+    const onOpenEmissionsCompliance = vi.fn();
+    render(<Navbar {...defaultProps} onOpenEmissionsCompliance={onOpenEmissionsCompliance} />);
+
+    const emissionsBtn = screen.getByTestId('navbar-emissions-compliance-btn');
+    expect(emissionsBtn).toBeInTheDocument();
+    fireEvent.click(emissionsBtn);
+    expect(onOpenEmissionsCompliance).toHaveBeenCalledTimes(1);
+  });
 });
