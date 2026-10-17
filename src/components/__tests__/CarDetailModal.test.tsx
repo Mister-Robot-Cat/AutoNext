@@ -776,6 +776,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(licenseBtn);
     expect(onOpenDriverLicenseMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenTireCompliance when tire compliance shortcut button is clicked', () => {
+    const onOpenTireComplianceMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenTireCompliance={onOpenTireComplianceMock}
+      />
+    );
+
+    const tireBtn = screen.getByTestId('tire-compliance-shortcut-btn');
+    expect(tireBtn).toBeInTheDocument();
+    fireEvent.click(tireBtn);
+    expect(onOpenTireComplianceMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
 
 

@@ -51,6 +51,7 @@ const VehicleScrappageModal = React.lazy(() => import('./components/VehicleScrap
 const ImpoundLotModal = React.lazy(() => import('./components/ImpoundLotModal').then(m => ({ default: m.ImpoundLotModal })));
 const SpecialTrafficRegimeModal = React.lazy(() => import('./components/SpecialTrafficRegimeModal').then(m => ({ default: m.SpecialTrafficRegimeModal })));
 const DriverLicenseModal = React.lazy(() => import('./components/DriverLicenseModal').then(m => ({ default: m.DriverLicenseModal })));
+const TireComplianceModal = React.lazy(() => import('./components/TireComplianceModal').then(m => ({ default: m.TireComplianceModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -84,7 +85,8 @@ import {
   Wrench,
   Recycle,
   Bus,
-  Award
+  Award,
+  Disc
 } from 'lucide-react';
 import { useTheme } from './hooks/useTheme';
 
@@ -178,6 +180,8 @@ export function App() {
   const [isSpecialTrafficModalOpen, setIsSpecialTrafficModalOpen] = useState(false);
   const [driverLicenseTargetCar, setDriverLicenseTargetCar] = useState<Vehicle | null>(null);
   const [isDriverLicenseModalOpen, setIsDriverLicenseModalOpen] = useState(false);
+  const [tireComplianceTargetCar, setTireComplianceTargetCar] = useState<Vehicle | null>(null);
+  const [isTireComplianceModalOpen, setIsTireComplianceModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -295,6 +299,10 @@ export function App() {
         onOpenDriverLicense={() => {
           setDriverLicenseTargetCar(vehicles[0] || null);
           setIsDriverLicenseModalOpen(true);
+        }}
+        onOpenTireCompliance={() => {
+          setTireComplianceTargetCar(vehicles[0] || null);
+          setIsTireComplianceModalOpen(true);
         }}
       />
 
@@ -574,6 +582,19 @@ export function App() {
               <span>AYNA Avtobus Zolağı (100 ₼) & Bakı Giriş E-Buraxılış</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
+
+            <button
+              onClick={() => {
+                setTireComplianceTargetCar(vehicles[0] || null);
+                setIsTireComplianceModalOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-cyan-500/30 hover:border-cyan-500/60 text-cyan-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-cyan-500/10 group cursor-pointer"
+              data-testid="hero-tire-compliance-btn"
+            >
+              <Disc className="w-4 h-4 text-cyan-400 group-hover:rotate-12 transition-transform" />
+              <span>BDYP Şin Standartları (YHQ Əlavə 1) & Qış Dağ Radarı</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </div>
         </div>
       </section>
@@ -793,6 +814,10 @@ export function App() {
           onOpenDriverLicense={(car) => {
             setDriverLicenseTargetCar(car);
             setIsDriverLicenseModalOpen(true);
+          }}
+          onOpenTireCompliance={(car) => {
+            setTireComplianceTargetCar(car);
+            setIsTireComplianceModalOpen(true);
           }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
@@ -1111,6 +1136,18 @@ export function App() {
           onClose={() => {
             setIsDriverLicenseModalOpen(false);
             setDriverLicenseTargetCar(null);
+          }}
+        />
+
+        {/* Official BDYP Tire Standards (YHQ Annex 1), Tread Depth & Mountain Winter Readiness Modal */}
+        <TireComplianceModal
+          isOpen={isTireComplianceModalOpen || !!tireComplianceTargetCar}
+          vehicle={tireComplianceTargetCar}
+          currency={currency}
+          lang={lang}
+          onClose={() => {
+            setIsTireComplianceModalOpen(false);
+            setTireComplianceTargetCar(null);
           }}
         />
 

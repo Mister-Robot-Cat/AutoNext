@@ -339,5 +339,11 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official BDYP Electronic Driver's License & IDP Extract generator (`AZE-SV-XXXXXX` / `IDP-AZ-2026-XXXXX`) with QR security hash and live unified registry lookup
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/driverLicense.test.ts` and `src/components/__tests__/DriverLicenseModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
 
+---
 
-
+### 🛞 Milestone 36: Official BDYP Tire Standards (YHQ Annex 1 Section V), Tread Depth Telemetry Auditor, Rim/Tire Equivalence & Mountain Winter Readiness Portal (BDYP & YHQ Əlavə 1 Rəsmi Şin Standartları, Protektor Dərinliyi Auditoru — İXM Maddə 342.1.5, Şin/Disk Ölçü Ekvivalentliyi & Qış Dağ Aşırımları Radarı) (Completed)
+- [x] Add Official BDYP Tire Standards, Tread Depth & Mountain Winter Readiness Modal (`TireComplianceModal.tsx`) with 4-Wheel Tread Depth Auditor, OEM vs Target Tire/Rim Size Calculator, Azerbaijan Mountain Pass Winter Radar, Tire Service & 3D Alignment / Tire Hotel Calculator, and Electronic Tire Compliance Certificate Generator
+- [x] Implement statutory tire compliance & dimensional equivalence engine (`src/utils/tireCompliance.ts`) adhering to YHQ Annex 1 Section V (1.6 mm M1 passenger, 1.0 mm truck, 2.0 mm bus, 0.8 mm motorcycle minimum tread limits, 4.0 mm mountain winter M+S/3PMSF threshold, mixed axle prohibition, sidewall cord damage, DOT age audit), İXM Article 342.1.5 (50 AZN fine), and İXM Article 342.2-1 (±3.0% outer diameter tolerance / 150 AZN constructive modification risk)
+- [x] Add comprehensive mock tire & mountain pass database (`src/data/mockTireData.ts`) covering 6 authentic Azerbaijan winter mountain corridors (M-4 Ağsu Pass, R-1 Qusar–Şahdağ–Laza, R-19 Toğanalı–Kəlbəcər Murovdağ, R-22 İsmayıllı–Qəbələ Tufandağ, R-25 Şəmkir–Gədəbəy Yasamal Pass, R-48 Lənkəran–Lerik), 6 accredited 3D alignment & Tire Hotel service centers across Baku, Sumgayit, and Ganja, and verifiable compliance certificates
+- [x] Build official BDYP & AZS Electronic Tire Roadworthiness Certificate generator (`BDYP-SHIN-2026-XXXXX`) with QR verification hash and live unified registry lookup
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/tireCompliance.test.ts` and `src/components/__tests__/TireComplianceModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)

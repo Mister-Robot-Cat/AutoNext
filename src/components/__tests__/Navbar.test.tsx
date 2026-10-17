@@ -208,4 +208,14 @@ describe('Navbar Component', () => {
     fireEvent.click(driverLicenseBtn);
     expect(onOpenDriverLicense).toHaveBeenCalledTimes(1);
   });
+
+  it('renders and calls onOpenTireCompliance when provided', () => {
+    const onOpenTireCompliance = vi.fn();
+    render(<Navbar {...defaultProps} onOpenTireCompliance={onOpenTireCompliance} />);
+
+    const tireBtn = screen.getByTestId('navbar-tire-compliance-btn');
+    expect(tireBtn).toBeInTheDocument();
+    fireEvent.click(tireBtn);
+    expect(onOpenTireCompliance).toHaveBeenCalledTimes(1);
+  });
 });

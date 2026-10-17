@@ -46,7 +46,8 @@ import {
   Wrench,
   Recycle,
   Bus,
-  Award
+  Award,
+  Disc
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -95,6 +96,7 @@ interface CarDetailModalProps {
   onOpenImpoundLot?: (vehicle: Vehicle) => void;
   onOpenSpecialTraffic?: (vehicle: Vehicle) => void;
   onOpenDriverLicense?: (vehicle: Vehicle) => void;
+  onOpenTireCompliance?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -133,6 +135,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenImpoundLot,
   onOpenSpecialTraffic,
   onOpenDriverLicense,
+  onOpenTireCompliance,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -761,6 +764,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Award className="w-4 h-4" />
                     <span>BDYP Sürücülük Vəsiqəsi, Kateqoriya (B/BE) & İmtahan Portalı</span>
+                  </button>
+                )}
+
+                {/* BDYP Tire Standards (YHQ Annex 1), Tread Depth & Mountain Winter Readiness Shortcut */}
+                {onOpenTireCompliance && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenTireCompliance(vehicle)}
+                    data-testid="tire-compliance-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Disc className="w-4 h-4" />
+                    <span>BDYP Şin Standartları (YHQ Əlavə 1), Protektor & Qış Dağ Keçidi Portalı</span>
                   </button>
                 )}
               </div>

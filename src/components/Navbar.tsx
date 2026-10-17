@@ -19,7 +19,8 @@ import {
   Recycle,
   ShieldAlert,
   Bus,
-  Award
+  Award,
+  Disc
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -48,6 +49,7 @@ interface NavbarProps {
   onOpenImpoundLot?: () => void;
   onOpenSpecialTraffic?: () => void;
   onOpenDriverLicense?: () => void;
+  onOpenTireCompliance?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -76,6 +78,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenImpoundLot,
   onOpenSpecialTraffic,
   onOpenDriverLicense,
+  onOpenTireCompliance,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -244,6 +247,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Award className="w-4 h-4 text-indigo-400" />
               <span className="hidden xl:inline">Sürücülük Vəsiqəsi</span>
+            </button>
+          )}
+
+          {/* BDYP Tire Standards, Tread Depth & Mountain Winter Readiness Button */}
+          {onOpenTireCompliance && (
+            <button
+              onClick={onOpenTireCompliance}
+              data-testid="navbar-tire-compliance-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="BDYP Şin Standartları (YHQ Əlavə 1), Protektor & Qış Dağ Keçidi Portalı"
+            >
+              <Disc className="w-4 h-4 text-cyan-400" />
+              <span className="hidden xl:inline">Şin & Qış Rejimi</span>
             </button>
           )}
 
