@@ -218,4 +218,14 @@ describe('Navbar Component', () => {
     fireEvent.click(tireBtn);
     expect(onOpenTireCompliance).toHaveBeenCalledTimes(1);
   });
+
+  it('renders and calls onOpenHeadlightCompliance when provided', () => {
+    const onOpenHeadlightCompliance = vi.fn();
+    render(<Navbar {...defaultProps} onOpenHeadlightCompliance={onOpenHeadlightCompliance} />);
+
+    const headlightBtn = screen.getByTestId('navbar-headlight-compliance-btn');
+    expect(headlightBtn).toBeInTheDocument();
+    fireEvent.click(headlightBtn);
+    expect(onOpenHeadlightCompliance).toHaveBeenCalledTimes(1);
+  });
 });

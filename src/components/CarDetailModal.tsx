@@ -47,7 +47,8 @@ import {
   Recycle,
   Bus,
   Award,
-  Disc
+  Disc,
+  Lightbulb
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -97,6 +98,7 @@ interface CarDetailModalProps {
   onOpenSpecialTraffic?: (vehicle: Vehicle) => void;
   onOpenDriverLicense?: (vehicle: Vehicle) => void;
   onOpenTireCompliance?: (vehicle: Vehicle) => void;
+  onOpenHeadlightCompliance?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -136,6 +138,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenSpecialTraffic,
   onOpenDriverLicense,
   onOpenTireCompliance,
+  onOpenHeadlightCompliance,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -777,6 +780,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Disc className="w-4 h-4" />
                     <span>BDYP Şin Standartları (YHQ Əlavə 1), Protektor & Qış Dağ Keçidi Portalı</span>
+                  </button>
+                )}
+
+                {/* BDYP Headlight Standards, Xenon/LED Legality & Optical Regloscope Shortcut */}
+                {onOpenHeadlightCompliance && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenHeadlightCompliance(vehicle)}
+                    data-testid="headlight-compliance-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Lightbulb className="w-4 h-4" />
+                    <span>BDYP Xarici İşıq, Ksenon/LED (İXM 342.2-1) & Fara Reqloskop Stendi</span>
                   </button>
                 )}
               </div>

@@ -52,6 +52,7 @@ const ImpoundLotModal = React.lazy(() => import('./components/ImpoundLotModal').
 const SpecialTrafficRegimeModal = React.lazy(() => import('./components/SpecialTrafficRegimeModal').then(m => ({ default: m.SpecialTrafficRegimeModal })));
 const DriverLicenseModal = React.lazy(() => import('./components/DriverLicenseModal').then(m => ({ default: m.DriverLicenseModal })));
 const TireComplianceModal = React.lazy(() => import('./components/TireComplianceModal').then(m => ({ default: m.TireComplianceModal })));
+const HeadlightComplianceModal = React.lazy(() => import('./components/HeadlightComplianceModal').then(m => ({ default: m.HeadlightComplianceModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -86,7 +87,8 @@ import {
   Recycle,
   Bus,
   Award,
-  Disc
+  Disc,
+  Lightbulb
 } from 'lucide-react';
 import { useTheme } from './hooks/useTheme';
 
@@ -182,6 +184,8 @@ export function App() {
   const [isDriverLicenseModalOpen, setIsDriverLicenseModalOpen] = useState(false);
   const [tireComplianceTargetCar, setTireComplianceTargetCar] = useState<Vehicle | null>(null);
   const [isTireComplianceModalOpen, setIsTireComplianceModalOpen] = useState(false);
+  const [headlightComplianceTargetCar, setHeadlightComplianceTargetCar] = useState<Vehicle | null>(null);
+  const [isHeadlightComplianceModalOpen, setIsHeadlightComplianceModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -303,6 +307,10 @@ export function App() {
         onOpenTireCompliance={() => {
           setTireComplianceTargetCar(vehicles[0] || null);
           setIsTireComplianceModalOpen(true);
+        }}
+        onOpenHeadlightCompliance={() => {
+          setHeadlightComplianceTargetCar(vehicles[0] || null);
+          setIsHeadlightComplianceModalOpen(true);
         }}
       />
 
@@ -595,6 +603,19 @@ export function App() {
               <span>BDYP Şin Standartları (YHQ Əlavə 1) & Qış Dağ Radarı</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
+
+            <button
+              onClick={() => {
+                setHeadlightComplianceTargetCar(vehicles[0] || null);
+                setIsHeadlightComplianceModalOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-amber-500/30 hover:border-amber-500/60 text-amber-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-amber-500/10 group cursor-pointer"
+              data-testid="hero-headlight-compliance-btn"
+            >
+              <Lightbulb className="w-4 h-4 text-amber-400 group-hover:rotate-12 transition-transform" />
+              <span>BDYP Fara, Ksenon/LED (İXM 342.2-1) & Reqloskop Stendi</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </div>
         </div>
       </section>
@@ -818,6 +839,10 @@ export function App() {
           onOpenTireCompliance={(car) => {
             setTireComplianceTargetCar(car);
             setIsTireComplianceModalOpen(true);
+          }}
+          onOpenHeadlightCompliance={(car) => {
+            setHeadlightComplianceTargetCar(car);
+            setIsHeadlightComplianceModalOpen(true);
           }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
@@ -1148,6 +1173,17 @@ export function App() {
           onClose={() => {
             setIsTireComplianceModalOpen(false);
             setTireComplianceTargetCar(null);
+          }}
+        />
+
+        {/* Official BDYP Vehicle Lighting Standards, Xenon/LED Auditor & Optical Regloscope Modal */}
+        <HeadlightComplianceModal
+          isOpen={isHeadlightComplianceModalOpen || !!headlightComplianceTargetCar}
+          vehicle={headlightComplianceTargetCar}
+          currency={currency}
+          onClose={() => {
+            setIsHeadlightComplianceModalOpen(false);
+            setHeadlightComplianceTargetCar(null);
           }}
         />
 

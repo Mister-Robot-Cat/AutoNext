@@ -796,6 +796,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(tireBtn);
     expect(onOpenTireComplianceMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenHeadlightCompliance when headlight compliance shortcut button is clicked', () => {
+    const onOpenHeadlightComplianceMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenHeadlightCompliance={onOpenHeadlightComplianceMock}
+      />
+    );
+
+    const headlightBtn = screen.getByTestId('headlight-compliance-shortcut-btn');
+    expect(headlightBtn).toBeInTheDocument();
+    fireEvent.click(headlightBtn);
+    expect(onOpenHeadlightComplianceMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
 
 

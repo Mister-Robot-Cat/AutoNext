@@ -20,7 +20,8 @@ import {
   ShieldAlert,
   Bus,
   Award,
-  Disc
+  Disc,
+  Lightbulb
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -50,6 +51,7 @@ interface NavbarProps {
   onOpenSpecialTraffic?: () => void;
   onOpenDriverLicense?: () => void;
   onOpenTireCompliance?: () => void;
+  onOpenHeadlightCompliance?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -79,6 +81,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenSpecialTraffic,
   onOpenDriverLicense,
   onOpenTireCompliance,
+  onOpenHeadlightCompliance,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -260,6 +263,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Disc className="w-4 h-4 text-cyan-400" />
               <span className="hidden xl:inline">Şin & Qış Rejimi</span>
+            </button>
+          )}
+
+          {/* BDYP Headlight Standards, Xenon/LED & Regloscope Stand Button */}
+          {onOpenHeadlightCompliance && (
+            <button
+              onClick={onOpenHeadlightCompliance}
+              data-testid="navbar-headlight-compliance-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="BDYP Xarici İşıq Cihazları, Ksenon/LED Qanunilik (İXM 342.2-1) & Fara Reqloskop Stendi"
+            >
+              <Lightbulb className="w-4 h-4 text-amber-400" />
+              <span className="hidden xl:inline">Fara & Ksenon/LED</span>
             </button>
           )}
 
