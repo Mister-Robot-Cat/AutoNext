@@ -21,7 +21,8 @@ import {
   Bus,
   Award,
   Disc,
-  Lightbulb
+  Lightbulb,
+  HeartPulse
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -52,6 +53,7 @@ interface NavbarProps {
   onOpenDriverLicense?: () => void;
   onOpenTireCompliance?: () => void;
   onOpenHeadlightCompliance?: () => void;
+  onOpenPassengerSafety?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -82,6 +84,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenDriverLicense,
   onOpenTireCompliance,
   onOpenHeadlightCompliance,
+  onOpenPassengerSafety,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -276,6 +279,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Lightbulb className="w-4 h-4 text-amber-400" />
               <span className="hidden xl:inline">Fara & Ksenon/LED</span>
+            </button>
+          )}
+
+          {/* BDYP & FHN Emergency Safety Kit, Child Seat (ISOFIX) & Passenger Compliance Button */}
+          {onOpenPassengerSafety && (
+            <button
+              onClick={onOpenPassengerSafety}
+              data-testid="navbar-passenger-safety-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="BDYP & FHN Qəza Təchizatı (Odluq, Tibbi Çanta) və Uşaq Avtokreslosu (İSOFIX) Portalı"
+            >
+              <HeartPulse className="w-4 h-4 text-rose-400" />
+              <span className="hidden xl:inline">Odluq & İSOFIX</span>
             </button>
           )}
 

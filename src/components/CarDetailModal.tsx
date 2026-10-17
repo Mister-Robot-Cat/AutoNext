@@ -48,7 +48,8 @@ import {
   Bus,
   Award,
   Disc,
-  Lightbulb
+  Lightbulb,
+  HeartPulse
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -99,6 +100,7 @@ interface CarDetailModalProps {
   onOpenDriverLicense?: (vehicle: Vehicle) => void;
   onOpenTireCompliance?: (vehicle: Vehicle) => void;
   onOpenHeadlightCompliance?: (vehicle: Vehicle) => void;
+  onOpenPassengerSafety?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -139,6 +141,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenDriverLicense,
   onOpenTireCompliance,
   onOpenHeadlightCompliance,
+  onOpenPassengerSafety,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -793,6 +796,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Lightbulb className="w-4 h-4" />
                     <span>BDYP Xarici İşıq, Ksenon/LED (İXM 342.2-1) & Fara Reqloskop Stendi</span>
+                  </button>
+                )}
+
+                {/* BDYP & FHN Emergency Safety Kit, Child Seat (ISOFIX) & Passenger Compliance Shortcut */}
+                {onOpenPassengerSafety && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenPassengerSafety(vehicle)}
+                    data-testid="passenger-safety-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <HeartPulse className="w-4 h-4" />
+                    <span>BDYP & FHN Qəza Təchizatı (Odluq, Tibbi Çanta) & Uşaq Avtokreslosu (İSOFIX)</span>
                   </button>
                 )}
               </div>

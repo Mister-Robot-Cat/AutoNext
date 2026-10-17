@@ -357,3 +357,13 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official BDYP & AZS Optical Headlight Compliance Certificate generator (`BDYP-FARA-2026-XXXXX`) with QR verification hash and live unified registry lookup
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/headlightCompliance.test.ts` and `src/components/__tests__/HeadlightComplianceModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
 
+---
+
+### 🧯 Milestone 38: Official BDYP & FHN Mandatory Emergency Safety Kit (YHQ Annex 1 Section VII), Child Restraint System (CRS / ISOFIX — YHQ Article 37 & İXM Article 327.2), Cargo/Towing Compliance & Safety Certificate Portal (BDYP & FHN Qəza Təchizatı — Odluq OP-2/OU-2, Səhiyyə Nazirliyi Tibbi Çantası, Qəza Üçbucağı, Uşaq Avtokreslosu İSOFIX & Yük/Yedək Qaydaları Portalı) (Completed)
+- [x] Add Official BDYP & FHN Emergency Safety Kit, Child Restraint (ISOFIX) & Passenger Compliance Modal (`PassengerSafetyModal.tsx`) with Fire Extinguisher & Medical Box Auditor, Child Seat (CRS / i-Size) & Passenger Capacity Calculator, Cargo Overhang / Towing Cable Auditor, FHN Accredited Supply Centers, and Official BDYP-TEH-2026 Certificate Generator
+- [x] Implement statutory emergency safety equipment, child restraint, and cargo/towing compliance engine (`src/utils/passengerSafety.ts`) adhering to YHQ Annex 1 Section VII (Clause 7.7), YHQ Articles 37, 43, 56, and 57, and İXM Articles 342.1.7 (50 AZN fine for missing fire extinguisher, first aid kit, or warning triangle), 327.2 (60 AZN + 3 penalty points for transporting children <12 in front seat without CRS or passenger overload), and 329.1 (40 AZN MMX AI camera seatbelt fine)
+- [x] Add comprehensive mock passenger safety database (`src/data/mockPassengerSafetyData.ts`) covering 5 vehicle regulatory classes (`M1`, `N1`, `M2`, `M3`, `N2/N3`), 6 fire extinguisher options (`OP-1`, `OP-2`, `OU-2 CO2`, `OP-5`, `Aerozol`), 6 mandatory Ministry of Health automotive medical box items, 6 FHN & BDYP accredited supply & ISOFIX centers across Baku, Khirdalan, Sumgayit, and Ganja, and verifiable compliance certificates
+- [x] Build official BDYP & FHN Electronic Safety Equipment & Passenger Compliance Certificate generator (`BDYP-TEH-2026-XXXXX`) with QR verification hash and live unified registry lookup
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/passengerSafety.test.ts` and `src/components/__tests__/PassengerSafetyModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
+
+

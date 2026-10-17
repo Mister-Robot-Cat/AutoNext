@@ -228,4 +228,14 @@ describe('Navbar Component', () => {
     fireEvent.click(headlightBtn);
     expect(onOpenHeadlightCompliance).toHaveBeenCalledTimes(1);
   });
+
+  it('renders and calls onOpenPassengerSafety when provided', () => {
+    const onOpenPassengerSafety = vi.fn();
+    render(<Navbar {...defaultProps} onOpenPassengerSafety={onOpenPassengerSafety} />);
+
+    const safetyBtn = screen.getByTestId('navbar-passenger-safety-btn');
+    expect(safetyBtn).toBeInTheDocument();
+    fireEvent.click(safetyBtn);
+    expect(onOpenPassengerSafety).toHaveBeenCalledTimes(1);
+  });
 });

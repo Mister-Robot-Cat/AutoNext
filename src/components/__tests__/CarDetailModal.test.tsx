@@ -816,6 +816,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(headlightBtn);
     expect(onOpenHeadlightComplianceMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenPassengerSafety when passenger safety shortcut button is clicked', () => {
+    const onOpenPassengerSafetyMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenPassengerSafety={onOpenPassengerSafetyMock}
+      />
+    );
+
+    const safetyBtn = screen.getByTestId('passenger-safety-shortcut-btn');
+    expect(safetyBtn).toBeInTheDocument();
+    fireEvent.click(safetyBtn);
+    expect(onOpenPassengerSafetyMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
 
 
