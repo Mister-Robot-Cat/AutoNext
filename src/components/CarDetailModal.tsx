@@ -103,6 +103,7 @@ interface CarDetailModalProps {
   onOpenHeadlightCompliance?: (vehicle: Vehicle) => void;
   onOpenPassengerSafety?: (vehicle: Vehicle) => void;
   onOpenEmissionsCompliance?: (vehicle: Vehicle) => void;
+  onOpenBrakeSteering?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -145,6 +146,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenHeadlightCompliance,
   onOpenPassengerSafety,
   onOpenEmissionsCompliance,
+  onOpenBrakeSteering,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -825,6 +827,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Wind className="w-4 h-4" />
                     <span>BDYP & ETSN «Təmiz Hava» Qazanalizator, Katalizator & DPF Portalı</span>
+                  </button>
+                )}
+
+                {/* BDYP Braking System & Steering Mechanism Stand Shortcut */}
+                {onOpenBrakeSteering && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenBrakeSteering(vehicle)}
+                    data-testid="brake-steering-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Disc className="w-4 h-4" />
+                    <span>BDYP Tormoz Stendi, Sükan Lüftometri (YHQ Əlavə 1) & DOT-4 Auditoru</span>
                   </button>
                 )}
               </div>

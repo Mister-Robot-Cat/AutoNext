@@ -56,6 +56,7 @@ interface NavbarProps {
   onOpenHeadlightCompliance?: () => void;
   onOpenPassengerSafety?: () => void;
   onOpenEmissionsCompliance?: () => void;
+  onOpenBrakeSteering?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -88,6 +89,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenHeadlightCompliance,
   onOpenPassengerSafety,
   onOpenEmissionsCompliance,
+  onOpenBrakeSteering,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -308,6 +310,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Wind className="w-4 h-4 text-emerald-400" />
               <span className="hidden xl:inline">Təmiz Hava & Katalizator</span>
+            </button>
+          )}
+
+          {/* BDYP Braking System & Steering Mechanism Stand Button */}
+          {onOpenBrakeSteering && (
+            <button
+              onClick={onOpenBrakeSteering}
+              data-testid="navbar-brake-steering-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="BDYP Tormoz Sistemi & Sükan Lüftometr Stendi (YHQ Əlavə 1 Bölmə I-II & İXM 342.2)"
+            >
+              <Disc className="w-4 h-4 text-red-400" />
+              <span className="hidden xl:inline">Tormoz & Sükan</span>
             </button>
           )}
 

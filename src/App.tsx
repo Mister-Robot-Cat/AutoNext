@@ -55,6 +55,7 @@ const TireComplianceModal = React.lazy(() => import('./components/TireCompliance
 const HeadlightComplianceModal = React.lazy(() => import('./components/HeadlightComplianceModal').then(m => ({ default: m.HeadlightComplianceModal })));
 const PassengerSafetyModal = React.lazy(() => import('./components/PassengerSafetyModal').then(m => ({ default: m.PassengerSafetyModal })));
 const EmissionsComplianceModal = React.lazy(() => import('./components/EmissionsComplianceModal').then(m => ({ default: m.EmissionsComplianceModal })));
+const BrakeSteeringModal = React.lazy(() => import('./components/BrakeSteeringModal').then(m => ({ default: m.BrakeSteeringModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -194,6 +195,8 @@ export function App() {
   const [isPassengerSafetyModalOpen, setIsPassengerSafetyModalOpen] = useState(false);
   const [emissionsComplianceTargetCar, setEmissionsComplianceTargetCar] = useState<Vehicle | null>(null);
   const [isEmissionsComplianceModalOpen, setIsEmissionsComplianceModalOpen] = useState(false);
+  const [brakeSteeringTargetCar, setBrakeSteeringTargetCar] = useState<Vehicle | null>(null);
+  const [isBrakeSteeringModalOpen, setIsBrakeSteeringModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -327,6 +330,10 @@ export function App() {
         onOpenEmissionsCompliance={() => {
           setEmissionsComplianceTargetCar(vehicles[0] || null);
           setIsEmissionsComplianceModalOpen(true);
+        }}
+        onOpenBrakeSteering={() => {
+          setBrakeSteeringTargetCar(vehicles[0] || null);
+          setIsBrakeSteeringModalOpen(true);
         }}
       />
 
@@ -658,6 +665,19 @@ export function App() {
               <span>BDYP & ETSN «Təmiz Hava» Qazanalizator, Katalizator & DPF</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
+
+            <button
+              onClick={() => {
+                setBrakeSteeringTargetCar(vehicles[0] || null);
+                setIsBrakeSteeringModalOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-red-500/30 hover:border-red-500/60 text-red-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-red-500/10 group cursor-pointer"
+              data-testid="hero-brake-steering-btn"
+            >
+              <Disc className="w-4 h-4 text-red-400 group-hover:rotate-12 transition-transform" />
+              <span>BDYP Tormoz Stendi, Sükan Lüftometri (YHQ Əlavə 1) & DOT-4</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </div>
         </div>
       </section>
@@ -893,6 +913,10 @@ export function App() {
           onOpenEmissionsCompliance={(car) => {
             setEmissionsComplianceTargetCar(car);
             setIsEmissionsComplianceModalOpen(true);
+          }}
+          onOpenBrakeSteering={(car) => {
+            setBrakeSteeringTargetCar(car);
+            setIsBrakeSteeringModalOpen(true);
           }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
@@ -1256,6 +1280,17 @@ export function App() {
           onClose={() => {
             setIsEmissionsComplianceModalOpen(false);
             setEmissionsComplianceTargetCar(null);
+          }}
+        />
+
+        {/* Official BDYP Braking System & Steering Mechanism Stand Modal */}
+        <BrakeSteeringModal
+          isOpen={isBrakeSteeringModalOpen || !!brakeSteeringTargetCar}
+          vehicle={brakeSteeringTargetCar}
+          currency={currency}
+          onClose={() => {
+            setIsBrakeSteeringModalOpen(false);
+            setBrakeSteeringTargetCar(null);
           }}
         />
 

@@ -248,4 +248,14 @@ describe('Navbar Component', () => {
     fireEvent.click(emissionsBtn);
     expect(onOpenEmissionsCompliance).toHaveBeenCalledTimes(1);
   });
+
+  it('renders and calls onOpenBrakeSteering when provided', () => {
+    const onOpenBrakeSteering = vi.fn();
+    render(<Navbar {...defaultProps} onOpenBrakeSteering={onOpenBrakeSteering} />);
+
+    const brakeBtn = screen.getByTestId('navbar-brake-steering-btn');
+    expect(brakeBtn).toBeInTheDocument();
+    fireEvent.click(brakeBtn);
+    expect(onOpenBrakeSteering).toHaveBeenCalledTimes(1);
+  });
 });

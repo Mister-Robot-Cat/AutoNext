@@ -856,6 +856,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(emissionsBtn);
     expect(onOpenEmissionsComplianceMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenBrakeSteering when brake & steering shortcut button is clicked', () => {
+    const onOpenBrakeSteeringMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenBrakeSteering={onOpenBrakeSteeringMock}
+      />
+    );
+
+    const brakeBtn = screen.getByTestId('brake-steering-shortcut-btn');
+    expect(brakeBtn).toBeInTheDocument();
+    fireEvent.click(brakeBtn);
+    expect(onOpenBrakeSteeringMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
 
 
