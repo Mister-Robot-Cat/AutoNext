@@ -411,6 +411,16 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official BDYP & ADRA Exterior Bodywork & Advertising Compliance Certificate generator (`BDYP-KUZ-2026-XXXXX`) with QR verification hash and live unified registry lookup
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/bodyworkAdvertisingCompliance.test.ts` and `src/components/__tests__/BodyworkAdvertisingModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
 
+---
+
+### ⏱️ Milestone 44: Official AYNA & BDYP Digital Tachograph, Driver Work & Rest Regime (NK Decision No. 73 / AETR — 4.5h / 9h Rules), 24-Month Metrological Calibration & «E-Uğur» Electronic Waybill Portal (AYNA & BDYP Rəqəmsal Taxoqraf, Sürücü İş və İstirahət Rejimi — NK Qərar № 73 / AETR, 24 Aylıq AZS Kalibrasiya Plombu, Reysöncəsi Tibbi Müayinə və «E-Uğur» Elektron Yol Vərəqəsi Portalı) (Completed)
+- [x] Add Official AYNA & BDYP Digital Tachograph, Driver Work/Rest Regime & E-Uğur Waybill Modal (`TachographWorkRestModal.tsx`) with AETR 4.5h/9h/56h Simulator, 24-Month Metrological Seal & Speed Limiter Stand, Seated Passenger & E-Uğur Waybill Auditor, AYNA/AZS Centers Radar, and Official AYNA-TAXO-2026 Certificate Generator
+- [x] Implement statutory driver work/rest regime, digital tachograph calibration, and passenger/freight manifest compliance engine (`src/utils/tachographCompliance.ts`) adhering to Cabinet of Ministers Decision No. 73, International AETR Convention (≤4.5h continuous driving with 45-min break, ≤9h/10h daily, ≤56h weekly / ≤90h biweekly, ≥9h/11h daily rest), YHQ Annex 1 Clause 7.4 (24-month AZS calibration, KITAS sensor plomb, UNECE R89 speed limiter), and İXM Articles 326-1 (80–150 AZN driver fine) & 348 (250–2,000 AZN official/entity dispatch liability)
+- [x] Add comprehensive mock tachograph & commercial transport database (`src/data/mockTachographData.ts`) covering 5 tachograph hardware profiles, 5 passenger/freight manifest violation rules, 5 AYNA driver card & AZS calibration packages, 5 accredited AYNA/AZS calibration centers across Baku, Khirdalan, Sumgayit, and Ganja, and verifiable `AYNA-TAXO-2026-XXXXX` certificates
+- [x] Build official AYNA & AZS Digital Tachograph & AETR Compliance Certificate generator (`AYNA-TAXO-2026-XXXXX`) with Driver Chip Card ID (`AZ-DRV-2026-XXXXXX`), E-Uğur Waybill reference, and live unified registry lookup
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/tachographCompliance.test.ts` and `src/components/__tests__/TachographWorkRestModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
+
+
 
 
 

@@ -936,6 +936,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(bodyworkBtn);
     expect(onOpenBodyworkAdvertisingMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenTachographWorkRest when tachograph & work/rest shortcut button is clicked', () => {
+    const onOpenTachographWorkRestMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenTachographWorkRest={onOpenTachographWorkRestMock}
+      />
+    );
+
+    const tachoBtn = screen.getByTestId('tachograph-work-rest-shortcut-btn');
+    expect(tachoBtn).toBeInTheDocument();
+    fireEvent.click(tachoBtn);
+    expect(onOpenTachographWorkRestMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
 
 

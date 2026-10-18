@@ -288,4 +288,14 @@ describe('Navbar Component', () => {
     fireEvent.click(bodyworkBtn);
     expect(onOpenBodyworkAdvertising).toHaveBeenCalledTimes(1);
   });
+
+  it('renders and calls onOpenTachographWorkRest when provided', () => {
+    const onOpenTachographWorkRest = vi.fn();
+    render(<Navbar {...defaultProps} onOpenTachographWorkRest={onOpenTachographWorkRest} />);
+
+    const tachoBtn = screen.getByTestId('navbar-tachograph-work-rest-btn');
+    expect(tachoBtn).toBeInTheDocument();
+    fireEvent.click(tachoBtn);
+    expect(onOpenTachographWorkRest).toHaveBeenCalledTimes(1);
+  });
 });

@@ -59,6 +59,7 @@ const BrakeSteeringModal = React.lazy(() => import('./components/BrakeSteeringMo
 const VisibilityHornComplianceModal = React.lazy(() => import('./components/VisibilityHornComplianceModal').then(m => ({ default: m.VisibilityHornComplianceModal })));
 const ForensicPlateComplianceModal = React.lazy(() => import('./components/ForensicPlateComplianceModal').then(m => ({ default: m.ForensicPlateComplianceModal })));
 const BodyworkAdvertisingModal = React.lazy(() => import('./components/BodyworkAdvertisingModal').then(m => ({ default: m.BodyworkAdvertisingModal })));
+const TachographWorkRestModal = React.lazy(() => import('./components/TachographWorkRestModal').then(m => ({ default: m.TachographWorkRestModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -99,7 +100,8 @@ import {
   Wind,
   Eye,
   Fingerprint,
-  Palette
+  Palette,
+  Timer
 } from 'lucide-react';
 import { useTheme } from './hooks/useTheme';
 
@@ -209,6 +211,8 @@ export function App() {
   const [isForensicPlateModalOpen, setIsForensicPlateModalOpen] = useState(false);
   const [bodyworkAdvertisingTargetCar, setBodyworkAdvertisingTargetCar] = useState<Vehicle | null>(null);
   const [isBodyworkAdvertisingModalOpen, setIsBodyworkAdvertisingModalOpen] = useState(false);
+  const [tachographWorkRestTargetCar, setTachographWorkRestTargetCar] = useState<Vehicle | null>(null);
+  const [isTachographWorkRestModalOpen, setIsTachographWorkRestModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -358,6 +362,10 @@ export function App() {
         onOpenBodyworkAdvertising={() => {
           setBodyworkAdvertisingTargetCar(vehicles[0] || null);
           setIsBodyworkAdvertisingModalOpen(true);
+        }}
+        onOpenTachographWorkRest={() => {
+          setTachographWorkRestTargetCar(vehicles[0] || null);
+          setIsTachographWorkRestModalOpen(true);
         }}
       />
 
@@ -741,6 +749,19 @@ export function App() {
               <span>BDYP & ADRA Kuzov Rəngi/Vinil (YHQ 27), Reklam & Farkop Portalı</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
+
+            <button
+              onClick={() => {
+                setTachographWorkRestTargetCar(vehicles[0] || null);
+                setIsTachographWorkRestModalOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-indigo-500/30 hover:border-indigo-500/60 text-indigo-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-indigo-500/10 group cursor-pointer"
+              data-testid="hero-tachograph-work-rest-btn"
+            >
+              <Timer className="w-4 h-4 text-indigo-400 group-hover:rotate-12 transition-transform" />
+              <span>AYNA Rəqəmsal Taxoqraf, İş-İstirahət (AETR) & E-Uğur Yol Vərəqəsi</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </div>
         </div>
       </section>
@@ -992,6 +1013,10 @@ export function App() {
           onOpenBodyworkAdvertising={(car) => {
             setBodyworkAdvertisingTargetCar(car);
             setIsBodyworkAdvertisingModalOpen(true);
+          }}
+          onOpenTachographWorkRest={(car) => {
+            setTachographWorkRestTargetCar(car);
+            setIsTachographWorkRestModalOpen(true);
           }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
@@ -1399,6 +1424,17 @@ export function App() {
           onClose={() => {
             setIsBodyworkAdvertisingModalOpen(false);
             setBodyworkAdvertisingTargetCar(null);
+          }}
+        />
+
+        {/* Official AYNA & BDYP Digital Tachograph, Driver Work/Rest Regime (AETR) & E-Ugur Waybill Modal */}
+        <TachographWorkRestModal
+          isOpen={isTachographWorkRestModalOpen || !!tachographWorkRestTargetCar}
+          vehicle={tachographWorkRestTargetCar}
+          currency={currency}
+          onClose={() => {
+            setIsTachographWorkRestModalOpen(false);
+            setTachographWorkRestTargetCar(null);
           }}
         />
 

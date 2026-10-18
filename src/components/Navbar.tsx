@@ -26,7 +26,8 @@ import {
   Wind,
   Eye,
   Fingerprint,
-  Palette
+  Palette,
+  Timer
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -63,6 +64,7 @@ interface NavbarProps {
   onOpenVisibilityHorn?: () => void;
   onOpenForensicPlate?: () => void;
   onOpenBodyworkAdvertising?: () => void;
+  onOpenTachographWorkRest?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -99,6 +101,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenVisibilityHorn,
   onOpenForensicPlate,
   onOpenBodyworkAdvertising,
+  onOpenTachographWorkRest,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -371,6 +374,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Palette className="w-4 h-4 text-fuchsia-400" />
               <span className="hidden xl:inline">Rəng, Vinil & Reklam</span>
+            </button>
+          )}
+
+          {/* AYNA & BDYP Digital Tachograph, Driver Work/Rest Regime (AETR) & E-Ugur Waybill Button */}
+          {onOpenTachographWorkRest && (
+            <button
+              onClick={onOpenTachographWorkRest}
+              data-testid="navbar-tachograph-work-rest-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="AYNA & BDYP Rəqəmsal Taxoqraf, Sürücü İş-İstirahət Rejimi (NK №73 / AETR) & E-Uğur Yol Vərəqəsi Portalı"
+            >
+              <Timer className="w-4 h-4 text-indigo-400" />
+              <span className="hidden xl:inline">Taxoqraf & AETR</span>
             </button>
           )}
 
