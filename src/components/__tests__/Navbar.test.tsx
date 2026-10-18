@@ -258,4 +258,14 @@ describe('Navbar Component', () => {
     fireEvent.click(brakeBtn);
     expect(onOpenBrakeSteering).toHaveBeenCalledTimes(1);
   });
+
+  it('renders and calls onOpenVisibilityHorn when provided', () => {
+    const onOpenVisibilityHorn = vi.fn();
+    render(<Navbar {...defaultProps} onOpenVisibilityHorn={onOpenVisibilityHorn} />);
+
+    const visBtn = screen.getByTestId('navbar-visibility-horn-btn');
+    expect(visBtn).toBeInTheDocument();
+    fireEvent.click(visBtn);
+    expect(onOpenVisibilityHorn).toHaveBeenCalledTimes(1);
+  });
 });

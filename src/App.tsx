@@ -56,6 +56,7 @@ const HeadlightComplianceModal = React.lazy(() => import('./components/Headlight
 const PassengerSafetyModal = React.lazy(() => import('./components/PassengerSafetyModal').then(m => ({ default: m.PassengerSafetyModal })));
 const EmissionsComplianceModal = React.lazy(() => import('./components/EmissionsComplianceModal').then(m => ({ default: m.EmissionsComplianceModal })));
 const BrakeSteeringModal = React.lazy(() => import('./components/BrakeSteeringModal').then(m => ({ default: m.BrakeSteeringModal })));
+const VisibilityHornComplianceModal = React.lazy(() => import('./components/VisibilityHornComplianceModal').then(m => ({ default: m.VisibilityHornComplianceModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -93,7 +94,8 @@ import {
   Disc,
   Lightbulb,
   HeartPulse,
-  Wind
+  Wind,
+  Eye
 } from 'lucide-react';
 import { useTheme } from './hooks/useTheme';
 
@@ -197,6 +199,8 @@ export function App() {
   const [isEmissionsComplianceModalOpen, setIsEmissionsComplianceModalOpen] = useState(false);
   const [brakeSteeringTargetCar, setBrakeSteeringTargetCar] = useState<Vehicle | null>(null);
   const [isBrakeSteeringModalOpen, setIsBrakeSteeringModalOpen] = useState(false);
+  const [visibilityHornTargetCar, setVisibilityHornTargetCar] = useState<Vehicle | null>(null);
+  const [isVisibilityHornModalOpen, setIsVisibilityHornModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -334,6 +338,10 @@ export function App() {
         onOpenBrakeSteering={() => {
           setBrakeSteeringTargetCar(vehicles[0] || null);
           setIsBrakeSteeringModalOpen(true);
+        }}
+        onOpenVisibilityHorn={() => {
+          setVisibilityHornTargetCar(vehicles[0] || null);
+          setIsVisibilityHornModalOpen(true);
         }}
       />
 
@@ -678,6 +686,19 @@ export function App() {
               <span>BDYP Tormoz Stendi, Sükan Lüftometri (YHQ Əlavə 1) & DOT-4</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
+
+            <button
+              onClick={() => {
+                setVisibilityHornTargetCar(vehicles[0] || null);
+                setIsVisibilityHornModalOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-sky-500/30 hover:border-sky-500/60 text-sky-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-sky-500/10 group cursor-pointer"
+              data-testid="hero-visibility-horn-btn"
+            >
+              <Eye className="w-4 h-4 text-sky-400 group-hover:rotate-12 transition-transform" />
+              <span>BDYP Alın Şüşəsi, Şüşəsilən & FİFA Siqnal Auditoru</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </div>
         </div>
       </section>
@@ -917,6 +938,10 @@ export function App() {
           onOpenBrakeSteering={(car) => {
             setBrakeSteeringTargetCar(car);
             setIsBrakeSteeringModalOpen(true);
+          }}
+          onOpenVisibilityHorn={(car) => {
+            setVisibilityHornTargetCar(car);
+            setIsVisibilityHornModalOpen(true);
           }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
@@ -1291,6 +1316,17 @@ export function App() {
           onClose={() => {
             setIsBrakeSteeringModalOpen(false);
             setBrakeSteeringTargetCar(null);
+          }}
+        />
+
+        {/* Official BDYP Driver Visibility, Windshield, Wipers & Acoustic Horn ("FIFA") Modal */}
+        <VisibilityHornComplianceModal
+          isOpen={isVisibilityHornModalOpen || !!visibilityHornTargetCar}
+          vehicle={visibilityHornTargetCar}
+          currency={currency}
+          onClose={() => {
+            setIsVisibilityHornModalOpen(false);
+            setVisibilityHornTargetCar(null);
           }}
         />
 

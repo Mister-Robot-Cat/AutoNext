@@ -876,6 +876,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(brakeBtn);
     expect(onOpenBrakeSteeringMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenVisibilityHorn when visibility & horn shortcut button is clicked', () => {
+    const onOpenVisibilityHornMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenVisibilityHorn={onOpenVisibilityHornMock}
+      />
+    );
+
+    const visBtn = screen.getByTestId('visibility-horn-shortcut-btn');
+    expect(visBtn).toBeInTheDocument();
+    fireEvent.click(visBtn);
+    expect(onOpenVisibilityHornMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
 
 

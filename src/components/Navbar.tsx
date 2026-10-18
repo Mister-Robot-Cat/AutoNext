@@ -23,7 +23,8 @@ import {
   Disc,
   Lightbulb,
   HeartPulse,
-  Wind
+  Wind,
+  Eye
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -57,6 +58,7 @@ interface NavbarProps {
   onOpenPassengerSafety?: () => void;
   onOpenEmissionsCompliance?: () => void;
   onOpenBrakeSteering?: () => void;
+  onOpenVisibilityHorn?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -90,6 +92,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenPassengerSafety,
   onOpenEmissionsCompliance,
   onOpenBrakeSteering,
+  onOpenVisibilityHorn,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -323,6 +326,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Disc className="w-4 h-4 text-red-400" />
               <span className="hidden xl:inline">Tormoz & Sükan</span>
+            </button>
+          )}
+
+          {/* BDYP Driver Visibility, Windshield, Wipers & Acoustic Horn ("FIFA") Button */}
+          {onOpenVisibilityHorn && (
+            <button
+              onClick={onOpenVisibilityHorn}
+              data-testid="navbar-visibility-horn-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-sky-500/10 hover:bg-sky-500/20 text-sky-400 border border-sky-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="BDYP Görünüş, Alın Şüşəsi, Şüşəsilən & Akustik Siqnal (FİFA Qadağası — YHQ Əlavə 1 Bölmə IV/VII)"
+            >
+              <Eye className="w-4 h-4 text-sky-400" />
+              <span className="hidden xl:inline">Şüşə & FİFA Siqnal</span>
             </button>
           )}
 

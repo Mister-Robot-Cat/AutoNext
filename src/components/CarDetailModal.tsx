@@ -50,7 +50,8 @@ import {
   Disc,
   Lightbulb,
   HeartPulse,
-  Wind
+  Wind,
+  Eye
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -104,6 +105,7 @@ interface CarDetailModalProps {
   onOpenPassengerSafety?: (vehicle: Vehicle) => void;
   onOpenEmissionsCompliance?: (vehicle: Vehicle) => void;
   onOpenBrakeSteering?: (vehicle: Vehicle) => void;
+  onOpenVisibilityHorn?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -147,6 +149,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenPassengerSafety,
   onOpenEmissionsCompliance,
   onOpenBrakeSteering,
+  onOpenVisibilityHorn,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -840,6 +843,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Disc className="w-4 h-4" />
                     <span>BDYP Tormoz Stendi, Sükan Lüftometri (YHQ Əlavə 1) & DOT-4 Auditoru</span>
+                  </button>
+                )}
+
+                {/* BDYP Driver Visibility, Windshield, Wipers & Acoustic Horn ("FIFA") Shortcut */}
+                {onOpenVisibilityHorn && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenVisibilityHorn(vehicle)}
+                    data-testid="visibility-horn-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-sky-500/10 hover:bg-sky-500/20 text-sky-400 border border-sky-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Eye className="w-4 h-4" />
+                    <span>BDYP Görünüş, Alın Şüşəsi, Şüşəsilən & Akustik Siqnal (FİFA) Portalı</span>
                   </button>
                 )}
               </div>

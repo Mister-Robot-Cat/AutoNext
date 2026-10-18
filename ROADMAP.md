@@ -384,3 +384,13 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official BDYP & AZS Electronic Brake & Steering Stand Certificate generator (`BDYP-TRM-2026-XXXXX`) with QR security hash and live unified registry lookup
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/brakeSteeringCompliance.test.ts` and `src/components/__tests__/BrakeSteeringModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
 
+---
+
+### 👁️ Milestone 41: Official BDYP Driver Visibility, Windshield Integrity, Wipers & Acoustic Horn ("FİFA" Prohibition) Compliance Portal (YHQ Annex 1 Sections IV & VII — Alın Şüşəsi Zona-A Çat Ekspertizası, Şüşəsilən Tezlik Stendi, Qış Şüşəyuyan Donma Testi, UNECE R28 Səs Siqnalı / Polifonik "FİFA" & SGU Qadağası — İXM Maddə 342.2-1 / 342.9 / 96.1.4 və Taxoqraf Plomb Nəzarəti) (Completed)
+- [x] Add Official BDYP Driver Visibility, Windshield, Wipers & Acoustic Horn Modal (`VisibilityHornComplianceModal.tsx`) with Windshield Zone-A Crack Auditor, Wiper Frequency & Winter Washer Freeze Simulator, UNECE R28 Acoustic Horn ("FİFA" / SGU) & Tachograph Auditor, Restoration Cost Calculator, Accredited BDYP/AZS Centers Radar, and Official BDYP-GOR-2026 Certificate Generator
+- [x] Implement statutory visibility, wiper, and acoustic horn compliance engine (`src/utils/visibilityHornCompliance.ts`) adhering to YHQ Annex 1 Section IV (Clauses 4.1–4.2: ≥35 cpm wiper frequency, working washer pump & winter freeze protection, İXM Article 96.1.4 immediate operation prohibition if driver wiper fails during rain/snow) and Section VII (Clauses 7.1–7.5: Zone-A driver sweep windshield crack ban, UNECE R28 93–112 dBA horn sound pressure, İXM 342.2-1 150 AZN fine for polyphonic "FİFA" horns, İXM 342.9 800 AZN + confiscation for unauthorized SGU sirens, İXM 329.3 30 AZN unnecessary residential honking, digital tachograph seal, and rear mudguards)
+- [x] Add comprehensive mock visibility, glass & acoustic database (`src/data/mockVisibilityHornData.ts`) covering 4 windshield inspection zones, 6 acoustic horn specifications, 4 seasonal washer fluid grades, 6 restoration packages, 6 accredited BDYP & AZS glass/acoustic/tachograph centers across Baku, Sumgayit, and Ganja, and verifiable certificates
+- [x] Build official BDYP & AZS Electronic Visibility & Acoustic Compliance Certificate generator (`BDYP-GOR-2026-XXXXX`) with QR security hash and live unified registry lookup
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/visibilityHornCompliance.test.ts` and `src/components/__tests__/VisibilityHornComplianceModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
+
+
