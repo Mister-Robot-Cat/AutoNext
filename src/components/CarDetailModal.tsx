@@ -51,7 +51,8 @@ import {
   Lightbulb,
   HeartPulse,
   Wind,
-  Eye
+  Eye,
+  Fingerprint
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -106,6 +107,7 @@ interface CarDetailModalProps {
   onOpenEmissionsCompliance?: (vehicle: Vehicle) => void;
   onOpenBrakeSteering?: (vehicle: Vehicle) => void;
   onOpenVisibilityHorn?: (vehicle: Vehicle) => void;
+  onOpenForensicPlate?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -150,6 +152,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenEmissionsCompliance,
   onOpenBrakeSteering,
   onOpenVisibilityHorn,
+  onOpenForensicPlate,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -856,6 +859,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Eye className="w-4 h-4" />
                     <span>BDYP Görünüş, Alın Şüşəsi, Şüşəsilən & Akustik Siqnal (FİFA) Portalı</span>
+                  </button>
+                )}
+
+                {/* BDYP Engine/VIN Forensic, DQN Readability (IXM 342.7) & SRS Airbag Shortcut */}
+                {onOpenForensicPlate && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenForensicPlate(vehicle)}
+                    data-testid="forensic-plate-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Fingerprint className="w-4 h-4" />
+                    <span>BDYP Mühərrik/VIN Kriminalistik Ekspertiza, DQN (İXM 342.7) & SRS Stendi</span>
                   </button>
                 )}
               </div>

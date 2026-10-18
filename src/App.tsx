@@ -57,6 +57,7 @@ const PassengerSafetyModal = React.lazy(() => import('./components/PassengerSafe
 const EmissionsComplianceModal = React.lazy(() => import('./components/EmissionsComplianceModal').then(m => ({ default: m.EmissionsComplianceModal })));
 const BrakeSteeringModal = React.lazy(() => import('./components/BrakeSteeringModal').then(m => ({ default: m.BrakeSteeringModal })));
 const VisibilityHornComplianceModal = React.lazy(() => import('./components/VisibilityHornComplianceModal').then(m => ({ default: m.VisibilityHornComplianceModal })));
+const ForensicPlateComplianceModal = React.lazy(() => import('./components/ForensicPlateComplianceModal').then(m => ({ default: m.ForensicPlateComplianceModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -95,7 +96,8 @@ import {
   Lightbulb,
   HeartPulse,
   Wind,
-  Eye
+  Eye,
+  Fingerprint
 } from 'lucide-react';
 import { useTheme } from './hooks/useTheme';
 
@@ -201,6 +203,8 @@ export function App() {
   const [isBrakeSteeringModalOpen, setIsBrakeSteeringModalOpen] = useState(false);
   const [visibilityHornTargetCar, setVisibilityHornTargetCar] = useState<Vehicle | null>(null);
   const [isVisibilityHornModalOpen, setIsVisibilityHornModalOpen] = useState(false);
+  const [forensicPlateTargetCar, setForensicPlateTargetCar] = useState<Vehicle | null>(null);
+  const [isForensicPlateModalOpen, setIsForensicPlateModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -342,6 +346,10 @@ export function App() {
         onOpenVisibilityHorn={() => {
           setVisibilityHornTargetCar(vehicles[0] || null);
           setIsVisibilityHornModalOpen(true);
+        }}
+        onOpenForensicPlate={() => {
+          setForensicPlateTargetCar(vehicles[0] || null);
+          setIsForensicPlateModalOpen(true);
         }}
       />
 
@@ -699,6 +707,19 @@ export function App() {
               <span>BDYP Alın Şüşəsi, Şüşəsilən & FİFA Siqnal Auditoru</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
+
+            <button
+              onClick={() => {
+                setForensicPlateTargetCar(vehicles[0] || null);
+                setIsForensicPlateModalOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-indigo-500/30 hover:border-indigo-500/60 text-indigo-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-indigo-500/10 group cursor-pointer"
+              data-testid="hero-forensic-plate-btn"
+            >
+              <Fingerprint className="w-4 h-4 text-indigo-400 group-hover:rotate-12 transition-transform" />
+              <span>BDYP Mühərrik № Ekspertiza, DQN (İXM 342.7) & SRS Stendi</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </div>
         </div>
       </section>
@@ -942,6 +963,10 @@ export function App() {
           onOpenVisibilityHorn={(car) => {
             setVisibilityHornTargetCar(car);
             setIsVisibilityHornModalOpen(true);
+          }}
+          onOpenForensicPlate={(car) => {
+            setForensicPlateTargetCar(car);
+            setIsForensicPlateModalOpen(true);
           }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
@@ -1327,6 +1352,17 @@ export function App() {
           onClose={() => {
             setIsVisibilityHornModalOpen(false);
             setVisibilityHornTargetCar(null);
+          }}
+        />
+
+        {/* Official BDYP Engine/VIN Forensic, DQN Readability (IXM 342.7) & SRS Airbag Modal */}
+        <ForensicPlateComplianceModal
+          isOpen={isForensicPlateModalOpen || !!forensicPlateTargetCar}
+          vehicle={forensicPlateTargetCar}
+          currency={currency}
+          onClose={() => {
+            setIsForensicPlateModalOpen(false);
+            setForensicPlateTargetCar(null);
           }}
         />
 

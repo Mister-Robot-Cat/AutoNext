@@ -24,7 +24,8 @@ import {
   Lightbulb,
   HeartPulse,
   Wind,
-  Eye
+  Eye,
+  Fingerprint
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -59,6 +60,7 @@ interface NavbarProps {
   onOpenEmissionsCompliance?: () => void;
   onOpenBrakeSteering?: () => void;
   onOpenVisibilityHorn?: () => void;
+  onOpenForensicPlate?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -93,6 +95,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenEmissionsCompliance,
   onOpenBrakeSteering,
   onOpenVisibilityHorn,
+  onOpenForensicPlate,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -339,6 +342,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Eye className="w-4 h-4 text-sky-400" />
               <span className="hidden xl:inline">Şüşə & FİFA Siqnal</span>
+            </button>
+          )}
+
+          {/* BDYP Engine/VIN Forensic, DQN Readability (IXM 342.7) & SRS Airbag Button */}
+          {onOpenForensicPlate && (
+            <button
+              onClick={onOpenForensicPlate}
+              data-testid="navbar-forensic-plate-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="BDYP Mühərrik/VIN Kriminalistik Ekspertiza, DQN 20m Oxunuş (İXM 342.7) & SRS Airbag Stendi"
+            >
+              <Fingerprint className="w-4 h-4 text-indigo-400" />
+              <span className="hidden xl:inline">Mühərrik № & DQN</span>
             </button>
           )}
 

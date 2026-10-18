@@ -393,4 +393,14 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official BDYP & AZS Electronic Visibility & Acoustic Compliance Certificate generator (`BDYP-GOR-2026-XXXXX`) with QR security hash and live unified registry lookup
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/visibilityHornCompliance.test.ts` and `src/components/__tests__/VisibilityHornComplianceModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
 
+---
+
+### 🔍 Milestone 42: Official BDYP Engine/VIN Criminalistic Forensic Stand, License Plate Optical Readability (İXM Maddə 342.1.3 vs 342.7 Anti-Radar/Curtain Frame Auditor), SRS Airbag "Obmanka" (2.2 Ω Resistor) Detector & Fluid Hermeticity Portal (BDYP Mühərrik Nömrəsi Texpasport Ekspertizası — YHQ Maddə 27 / Əlavə 1 Bənd 7.15, DQN 20m Oxunuş & Kvadrat Nömrə Tip-2 / RFID Çip Stendi, SRS Piropatron Saxtakarlığı və Yanacaq/Yağ Sızması Portalı) (Completed)
+- [x] Add Official BDYP Engine/VIN Forensic, License Plate Readability & SRS Airbag Modal (`ForensicPlateComplianceModal.tsx`) with Texpasport vs Engine Block Serial Auditor, DQN 20m/40m Visibility & İXM 342.7 Anti-Radar/Curtain Frame Auditor, SRS Airbag 2.2 Ω "Obmanka" Resistor Fraud & Fluid Hermeticity Stand, Meyvəli MERO & Justice Forensic Centers Radar, and Official BDYP-EKS-2026 Certificate Generator
+- [x] Implement statutory engine/VIN forensic, license plate optical readability, and SRS/fluid hermeticity compliance engine (`src/utils/forensicPlateCompliance.ts`) adhering to YHQ Article 27 & Annex 1 Clauses 6.1, 7.2, 7.8, and 7.15, AZS 598, Criminal Code Article 320, and İXM Articles 342.1.3 (40 AZN dirty/unlit plate or bent Type-1 plate in US/JDM square recess), 342.2-1 (150 AZN undeclared engine swap), and 342.7 (500–800 AZN + 4 penalty points for IR anti-radar film, remote magnetic/curtain frames, or missing plates)
+- [x] Add comprehensive mock forensic, license plate, and SRS/fluid database (`src/data/mockForensicPlateData.ts`) covering 5 engine forensic profiles, 6 license plate condition specs, 6 statutory fee & restoration packages, 6 accredited BDYP MERO & Ministry of Justice forensic laboratories across Baku, Khirdalan, Sumgayit, and Ganja, and verifiable `BDYP-EKS-2026-XXXXX` certificates
+- [x] Build official BDYP Criminalistic Forensic & DQN Compliance Certificate generator (`BDYP-EKS-2026-XXXXX`) with UHF RFID Tag UID, QR security hash, and live unified registry lookup
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/forensicPlateCompliance.test.ts` and `src/components/__tests__/ForensicPlateComplianceModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
+
+
 

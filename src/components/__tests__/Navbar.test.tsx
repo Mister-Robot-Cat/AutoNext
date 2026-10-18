@@ -268,4 +268,14 @@ describe('Navbar Component', () => {
     fireEvent.click(visBtn);
     expect(onOpenVisibilityHorn).toHaveBeenCalledTimes(1);
   });
+
+  it('renders and calls onOpenForensicPlate when provided', () => {
+    const onOpenForensicPlate = vi.fn();
+    render(<Navbar {...defaultProps} onOpenForensicPlate={onOpenForensicPlate} />);
+
+    const forensicBtn = screen.getByTestId('navbar-forensic-plate-btn');
+    expect(forensicBtn).toBeInTheDocument();
+    fireEvent.click(forensicBtn);
+    expect(onOpenForensicPlate).toHaveBeenCalledTimes(1);
+  });
 });

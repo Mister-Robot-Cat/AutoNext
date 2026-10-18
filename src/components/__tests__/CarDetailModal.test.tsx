@@ -896,6 +896,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(visBtn);
     expect(onOpenVisibilityHornMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenForensicPlate when forensic & plate shortcut button is clicked', () => {
+    const onOpenForensicPlateMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenForensicPlate={onOpenForensicPlateMock}
+      />
+    );
+
+    const forensicBtn = screen.getByTestId('forensic-plate-shortcut-btn');
+    expect(forensicBtn).toBeInTheDocument();
+    fireEvent.click(forensicBtn);
+    expect(onOpenForensicPlateMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
 
 
