@@ -58,6 +58,7 @@ const EmissionsComplianceModal = React.lazy(() => import('./components/Emissions
 const BrakeSteeringModal = React.lazy(() => import('./components/BrakeSteeringModal').then(m => ({ default: m.BrakeSteeringModal })));
 const VisibilityHornComplianceModal = React.lazy(() => import('./components/VisibilityHornComplianceModal').then(m => ({ default: m.VisibilityHornComplianceModal })));
 const ForensicPlateComplianceModal = React.lazy(() => import('./components/ForensicPlateComplianceModal').then(m => ({ default: m.ForensicPlateComplianceModal })));
+const BodyworkAdvertisingModal = React.lazy(() => import('./components/BodyworkAdvertisingModal').then(m => ({ default: m.BodyworkAdvertisingModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -97,7 +98,8 @@ import {
   HeartPulse,
   Wind,
   Eye,
-  Fingerprint
+  Fingerprint,
+  Palette
 } from 'lucide-react';
 import { useTheme } from './hooks/useTheme';
 
@@ -205,6 +207,8 @@ export function App() {
   const [isVisibilityHornModalOpen, setIsVisibilityHornModalOpen] = useState(false);
   const [forensicPlateTargetCar, setForensicPlateTargetCar] = useState<Vehicle | null>(null);
   const [isForensicPlateModalOpen, setIsForensicPlateModalOpen] = useState(false);
+  const [bodyworkAdvertisingTargetCar, setBodyworkAdvertisingTargetCar] = useState<Vehicle | null>(null);
+  const [isBodyworkAdvertisingModalOpen, setIsBodyworkAdvertisingModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -350,6 +354,10 @@ export function App() {
         onOpenForensicPlate={() => {
           setForensicPlateTargetCar(vehicles[0] || null);
           setIsForensicPlateModalOpen(true);
+        }}
+        onOpenBodyworkAdvertising={() => {
+          setBodyworkAdvertisingTargetCar(vehicles[0] || null);
+          setIsBodyworkAdvertisingModalOpen(true);
         }}
       />
 
@@ -720,6 +728,19 @@ export function App() {
               <span>BDYP Mühərrik № Ekspertiza, DQN (İXM 342.7) & SRS Stendi</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
+
+            <button
+              onClick={() => {
+                setBodyworkAdvertisingTargetCar(vehicles[0] || null);
+                setIsBodyworkAdvertisingModalOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-fuchsia-500/30 hover:border-fuchsia-500/60 text-fuchsia-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-fuchsia-500/10 group cursor-pointer"
+              data-testid="hero-bodywork-advertising-btn"
+            >
+              <Palette className="w-4 h-4 text-fuchsia-400 group-hover:rotate-12 transition-transform" />
+              <span>BDYP & ADRA Kuzov Rəngi/Vinil (YHQ 27), Reklam & Farkop Portalı</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </div>
         </div>
       </section>
@@ -967,6 +988,10 @@ export function App() {
           onOpenForensicPlate={(car) => {
             setForensicPlateTargetCar(car);
             setIsForensicPlateModalOpen(true);
+          }}
+          onOpenBodyworkAdvertising={(car) => {
+            setBodyworkAdvertisingTargetCar(car);
+            setIsBodyworkAdvertisingModalOpen(true);
           }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
@@ -1363,6 +1388,17 @@ export function App() {
           onClose={() => {
             setIsForensicPlateModalOpen(false);
             setForensicPlateTargetCar(null);
+          }}
+        />
+
+        {/* Official BDYP & ADRA Exterior Bodywork, Vinyl Wrap, Advertising & Farkop Modal */}
+        <BodyworkAdvertisingModal
+          isOpen={isBodyworkAdvertisingModalOpen || !!bodyworkAdvertisingTargetCar}
+          vehicle={bodyworkAdvertisingTargetCar}
+          currency={currency}
+          onClose={() => {
+            setIsBodyworkAdvertisingModalOpen(false);
+            setBodyworkAdvertisingTargetCar(null);
           }}
         />
 

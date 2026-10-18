@@ -278,4 +278,14 @@ describe('Navbar Component', () => {
     fireEvent.click(forensicBtn);
     expect(onOpenForensicPlate).toHaveBeenCalledTimes(1);
   });
+
+  it('renders and calls onOpenBodyworkAdvertising when provided', () => {
+    const onOpenBodyworkAdvertising = vi.fn();
+    render(<Navbar {...defaultProps} onOpenBodyworkAdvertising={onOpenBodyworkAdvertising} />);
+
+    const bodyworkBtn = screen.getByTestId('navbar-bodywork-advertising-btn');
+    expect(bodyworkBtn).toBeInTheDocument();
+    fireEvent.click(bodyworkBtn);
+    expect(onOpenBodyworkAdvertising).toHaveBeenCalledTimes(1);
+  });
 });

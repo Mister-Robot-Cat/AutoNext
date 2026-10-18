@@ -402,5 +402,15 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official BDYP Criminalistic Forensic & DQN Compliance Certificate generator (`BDYP-EKS-2026-XXXXX`) with UHF RFID Tag UID, QR security hash, and live unified registry lookup
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/forensicPlateCompliance.test.ts` and `src/components/__tests__/ForensicPlateComplianceModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
 
+---
+
+### 🎨 Milestone 43: Official BDYP & ADRA Exterior Bodywork, Vinyl Wrap Color Endorsement (YHQ Article 27 — >30% Surface / 10-Day Rule), Vehicle Advertising (Law on Advertising Art. 26 & İXM Art. 342.1.8) & Tow Hitch ("Farkop") / Bullbar ("Kenguryatnik") Compliance Portal (BDYP & ADRA Kuzov Rəng Dəyişikliyi, Tutqun/Xameleon Vinil Plonka Qeydiyyatı, Nəqliyyat Üzərində Reklam Ekspertizası, Farkop / Kenguryatnik / Dam Baqajı Normativləri və Rəsmi BDYP-KUZ-2026 Sertifikatı) (Completed)
+- [x] Add Official BDYP & ADRA Exterior Bodywork, Vinyl Wrap, Advertising & Farkop Modal (`BodyworkAdvertisingModal.tsx`) with >30% Surface & 10-Day MERO Color Endorsement Auditor, ADRA Vehicle Advertising Auditor, Farkop/Kenguryatnik/Roof Cargo Stand, MERO & ADRA Centers Radar, and Official BDYP-KUZ-2026 Certificate Generator
+- [x] Implement statutory bodywork color/wrap, advertising, and exterior hardware compliance engine (`src/utils/bodyworkAdvertisingCompliance.ts`) adhering to YHQ Article 27 (>30% color/matte wrap 10-day Texpasport endorsement & Clear PPF exemption), YHQ Annex 1 Clauses 6.1, 7.6, 7.11, and 7.14, Law on Advertising Article 26, and İXM Articles 342.1.3 (40 AZN plate-blocking farkop), 342.1.8 (50 AZN / 150–300 AZN vehicle advertising violation), 342.2-1 (150 AZN undeclared color/wrap or steel kenguryatnik), and 342.9 (800 AZN prohibited operative police/ambulance livery)
+- [x] Add comprehensive mock bodywork, vinyl wrap, ADRA advertising, and farkop database (`src/data/mockBodyworkAdvertisingData.ts`) covering 6 body wrap profiles, 5 advertising regulation profiles, 5 exterior hardware profiles, 5 service packages, 6 accredited BDYP MERO, ADRA & AZS centers across Baku, Khirdalan, Sumgayit, and Ganja, and verifiable `BDYP-KUZ-2026-XXXXX` certificates
+- [x] Build official BDYP & ADRA Exterior Bodywork & Advertising Compliance Certificate generator (`BDYP-KUZ-2026-XXXXX`) with QR verification hash and live unified registry lookup
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/bodyworkAdvertisingCompliance.test.ts` and `src/components/__tests__/BodyworkAdvertisingModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
+
+
 
 

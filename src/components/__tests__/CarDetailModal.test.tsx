@@ -916,6 +916,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(forensicBtn);
     expect(onOpenForensicPlateMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenBodyworkAdvertising when bodywork & advertising shortcut button is clicked', () => {
+    const onOpenBodyworkAdvertisingMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenBodyworkAdvertising={onOpenBodyworkAdvertisingMock}
+      />
+    );
+
+    const bodyworkBtn = screen.getByTestId('bodywork-advertising-shortcut-btn');
+    expect(bodyworkBtn).toBeInTheDocument();
+    fireEvent.click(bodyworkBtn);
+    expect(onOpenBodyworkAdvertisingMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
 
 

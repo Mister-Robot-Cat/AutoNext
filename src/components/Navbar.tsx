@@ -25,7 +25,8 @@ import {
   HeartPulse,
   Wind,
   Eye,
-  Fingerprint
+  Fingerprint,
+  Palette
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -61,6 +62,7 @@ interface NavbarProps {
   onOpenBrakeSteering?: () => void;
   onOpenVisibilityHorn?: () => void;
   onOpenForensicPlate?: () => void;
+  onOpenBodyworkAdvertising?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -96,6 +98,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenBrakeSteering,
   onOpenVisibilityHorn,
   onOpenForensicPlate,
+  onOpenBodyworkAdvertising,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -355,6 +358,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Fingerprint className="w-4 h-4 text-indigo-400" />
               <span className="hidden xl:inline">Mühərrik № & DQN</span>
+            </button>
+          )}
+
+          {/* BDYP & ADRA Exterior Bodywork, Vinyl Wrap, Advertising & Farkop Button */}
+          {onOpenBodyworkAdvertising && (
+            <button
+              onClick={onOpenBodyworkAdvertising}
+              data-testid="navbar-bodywork-advertising-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-fuchsia-500/10 hover:bg-fuchsia-500/20 text-fuchsia-400 border border-fuchsia-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="BDYP & ADRA Kuzov Rəngi/Vinil (YHQ Maddə 27), Nəqliyyat Reklamı (İXM 342.1.8) & Farkop/Bufer Portalı"
+            >
+              <Palette className="w-4 h-4 text-fuchsia-400" />
+              <span className="hidden xl:inline">Rəng, Vinil & Reklam</span>
             </button>
           )}
 

@@ -52,7 +52,8 @@ import {
   HeartPulse,
   Wind,
   Eye,
-  Fingerprint
+  Fingerprint,
+  Palette
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -108,6 +109,7 @@ interface CarDetailModalProps {
   onOpenBrakeSteering?: (vehicle: Vehicle) => void;
   onOpenVisibilityHorn?: (vehicle: Vehicle) => void;
   onOpenForensicPlate?: (vehicle: Vehicle) => void;
+  onOpenBodyworkAdvertising?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -153,6 +155,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenBrakeSteering,
   onOpenVisibilityHorn,
   onOpenForensicPlate,
+  onOpenBodyworkAdvertising,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -872,6 +875,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Fingerprint className="w-4 h-4" />
                     <span>BDYP Mühərrik/VIN Kriminalistik Ekspertiza, DQN (İXM 342.7) & SRS Stendi</span>
+                  </button>
+                )}
+
+                {/* BDYP & ADRA Exterior Bodywork, Vinyl Wrap, Advertising & Farkop Shortcut */}
+                {onOpenBodyworkAdvertising && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenBodyworkAdvertising(vehicle)}
+                    data-testid="bodywork-advertising-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-fuchsia-500/10 hover:bg-fuchsia-500/20 text-fuchsia-400 border border-fuchsia-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Palette className="w-4 h-4" />
+                    <span>BDYP & ADRA Kuzov Rəngi/Vinil (YHQ 27), Reklam (İXM 342.1.8) & Farkop Portalı</span>
                   </button>
                 )}
               </div>
