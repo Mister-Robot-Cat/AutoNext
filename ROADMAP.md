@@ -420,6 +420,16 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official AYNA & AZS Digital Tachograph & AETR Compliance Certificate generator (`AYNA-TAXO-2026-XXXXX`) with Driver Chip Card ID (`AZ-DRV-2026-XXXXXX`), E-Uğur Waybill reference, and live unified registry lookup
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/tachographCompliance.test.ts` and `src/components/__tests__/TachographWorkRestModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
 
+---
+
+### 🔋 Milestone 45: Official AZS, BDYP & FHN Electric & Hybrid High-Voltage Safety (UNECE R100 — ≥500 Ω/V Insulation Resistance), Battery SOH% & Cell Delta (mV) Telemetry Stand, UNECE R138 AVAS Pedestrian Alert & AMB Green Credit Portal (AZS, BDYP & FHN Elektromobil və Hibrid Yüksək Gərginlik Təhlükəsizlik Stendi — UNECE R100 İzolyasiya Müqaviməti ≥500 Ω/V, Batareya SOH% & Özək Disbalansı ΔmV, UNECE R138 AVAS Piyada Səsi, Vergi Məcəlləsi Maddə 164.1.41 və AMB Yaşıl Avtokredit Portalı) (Completed)
+- [x] Add Official AZS, BDYP & FHN Electric & Hybrid High-Voltage Safety, SOH% & Green Privilege Modal (`HvBatterySafetyModal.tsx`) with 1000V Megohmmeter Insulation Stand, SOH% & Cell Delta (mV) Telemetry Auditor, UNECE R138 AVAS & AMB Green Loan Calculator, Accredited HV Centers Radar, and Official AZS-HV-2026 Certificate Generator
+- [x] Implement statutory HV insulation resistance, battery health, AVAS, and fiscal/prudential privilege engine (`src/utils/hvBatteryCompliance.ts`) adhering to UNECE R100 (≥500 Ω/V AC/DC bus insulation resistance, HVIL loop, Pyro-fuse, P0AA6 leak prohibition), FHN thermal runaway rules (>55°C), UNECE R138 AVAS (56–75 dBA at 0–20 km/h, İXM Art. 342.2-1 150 AZN fine), Tax Code Art. 164.1.41 (0% VAT / 0% Customs Duty for ≤3 yr EV/HEV), and CBAR (AMB) 10%/20% Green Down Payment rules
+- [x] Add comprehensive mock HV battery database (`src/data/mockHvBatteryData.ts`) covering 5 battery chemistries (`LFP_Blade_400V`, `NMC_400V`, `NMC_800V`, `NiMH_HEV_245V`, `PHEV_EREV_350V`), 5 HV fault profiles (`P0AA6`, `P0A80`, `U0111/HVIL`, `Pyro-Fuse`), 4 HV service & cell-balancing packages, 6 accredited AZS/BDYP/FHN HV laboratories across Baku, Sumgayit, and Ganja, and verifiable `AZS-HV-2026-XXXXX` certificates
+- [x] Build official AZS & BDYP High-Voltage Safety & Battery SOH% Certificate generator (`AZS-HV-2026-XXXXX`) with QR security hash and live unified registry lookup
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/hvBatteryCompliance.test.ts` and `src/components/__tests__/HvBatterySafetyModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
+
+
 
 
 

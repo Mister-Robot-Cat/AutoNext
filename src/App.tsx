@@ -60,6 +60,7 @@ const VisibilityHornComplianceModal = React.lazy(() => import('./components/Visi
 const ForensicPlateComplianceModal = React.lazy(() => import('./components/ForensicPlateComplianceModal').then(m => ({ default: m.ForensicPlateComplianceModal })));
 const BodyworkAdvertisingModal = React.lazy(() => import('./components/BodyworkAdvertisingModal').then(m => ({ default: m.BodyworkAdvertisingModal })));
 const TachographWorkRestModal = React.lazy(() => import('./components/TachographWorkRestModal').then(m => ({ default: m.TachographWorkRestModal })));
+const HvBatterySafetyModal = React.lazy(() => import('./components/HvBatterySafetyModal').then(m => ({ default: m.HvBatterySafetyModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -101,7 +102,8 @@ import {
   Eye,
   Fingerprint,
   Palette,
-  Timer
+  Timer,
+  BatteryCharging
 } from 'lucide-react';
 import { useTheme } from './hooks/useTheme';
 
@@ -213,6 +215,8 @@ export function App() {
   const [isBodyworkAdvertisingModalOpen, setIsBodyworkAdvertisingModalOpen] = useState(false);
   const [tachographWorkRestTargetCar, setTachographWorkRestTargetCar] = useState<Vehicle | null>(null);
   const [isTachographWorkRestModalOpen, setIsTachographWorkRestModalOpen] = useState(false);
+  const [hvBatteryTargetCar, setHvBatteryTargetCar] = useState<Vehicle | null>(null);
+  const [isHvBatteryModalOpen, setIsHvBatteryModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -366,6 +370,10 @@ export function App() {
         onOpenTachographWorkRest={() => {
           setTachographWorkRestTargetCar(vehicles[0] || null);
           setIsTachographWorkRestModalOpen(true);
+        }}
+        onOpenHvBatterySafety={() => {
+          setHvBatteryTargetCar(vehicles.find(v => v.fuelType === 'electric' || v.fuelType === 'hybrid') || vehicles[0] || null);
+          setIsHvBatteryModalOpen(true);
         }}
       />
 
@@ -762,6 +770,19 @@ export function App() {
               <span>AYNA Rəqəmsal Taxoqraf, İş-İstirahət (AETR) & E-Uğur Yol Vərəqəsi</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
+
+            <button
+              onClick={() => {
+                setHvBatteryTargetCar(vehicles.find(v => v.fuelType === 'electric' || v.fuelType === 'hybrid') || vehicles[0] || null);
+                setIsHvBatteryModalOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-teal-500/30 hover:border-teal-500/60 text-teal-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-teal-500/10 group cursor-pointer"
+              data-testid="hero-hv-battery-safety-btn"
+            >
+              <BatteryCharging className="w-4 h-4 text-teal-400 group-hover:rotate-12 transition-transform" />
+              <span>AZS & BDYP Elektromobil/Hibrid HV İzolyasiya (R100), SOH% & Yaşıl Kredit</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
           </div>
         </div>
       </section>
@@ -1017,6 +1038,10 @@ export function App() {
           onOpenTachographWorkRest={(car) => {
             setTachographWorkRestTargetCar(car);
             setIsTachographWorkRestModalOpen(true);
+          }}
+          onOpenHvBatterySafety={(car) => {
+            setHvBatteryTargetCar(car);
+            setIsHvBatteryModalOpen(true);
           }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
@@ -1435,6 +1460,17 @@ export function App() {
           onClose={() => {
             setIsTachographWorkRestModalOpen(false);
             setTachographWorkRestTargetCar(null);
+          }}
+        />
+
+        {/* Official AZS, BDYP & FHN EV/Hybrid High-Voltage Insulation (R100), SOH% & Green Privilege Modal */}
+        <HvBatterySafetyModal
+          isOpen={isHvBatteryModalOpen || !!hvBatteryTargetCar}
+          vehicle={hvBatteryTargetCar}
+          currency={currency}
+          onClose={() => {
+            setIsHvBatteryModalOpen(false);
+            setHvBatteryTargetCar(null);
           }}
         />
 

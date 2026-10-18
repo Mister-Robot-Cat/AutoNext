@@ -298,4 +298,14 @@ describe('Navbar Component', () => {
     fireEvent.click(tachoBtn);
     expect(onOpenTachographWorkRest).toHaveBeenCalledTimes(1);
   });
+
+  it('renders and calls onOpenHvBatterySafety when provided', () => {
+    const onOpenHvBatterySafety = vi.fn();
+    render(<Navbar {...defaultProps} onOpenHvBatterySafety={onOpenHvBatterySafety} />);
+
+    const hvBtn = screen.getByTestId('navbar-hv-battery-safety-btn');
+    expect(hvBtn).toBeInTheDocument();
+    fireEvent.click(hvBtn);
+    expect(onOpenHvBatterySafety).toHaveBeenCalledTimes(1);
+  });
 });

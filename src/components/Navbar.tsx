@@ -27,7 +27,8 @@ import {
   Eye,
   Fingerprint,
   Palette,
-  Timer
+  Timer,
+  BatteryCharging
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -65,6 +66,7 @@ interface NavbarProps {
   onOpenForensicPlate?: () => void;
   onOpenBodyworkAdvertising?: () => void;
   onOpenTachographWorkRest?: () => void;
+  onOpenHvBatterySafety?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -102,6 +104,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenForensicPlate,
   onOpenBodyworkAdvertising,
   onOpenTachographWorkRest,
+  onOpenHvBatterySafety,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -387,6 +390,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Timer className="w-4 h-4 text-indigo-400" />
               <span className="hidden xl:inline">Taxoqraf & AETR</span>
+            </button>
+          )}
+
+          {/* AZS, BDYP & FHN EV/Hybrid High-Voltage Insulation (R100), SOH% & Green Privilege Button */}
+          {onOpenHvBatterySafety && (
+            <button
+              onClick={onOpenHvBatterySafety}
+              data-testid="navbar-hv-battery-safety-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-teal-500/10 hover:bg-teal-500/20 text-teal-400 border border-teal-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="AZS, BDYP & FHN Elektromobil/Hibrid Yüksək Gərginlik (UNECE R100 ≥500 Ω/V), Batareya SOH% & AMB Yaşıl Kredit Portalı"
+            >
+              <BatteryCharging className="w-4 h-4 text-teal-400" />
+              <span className="hidden xl:inline">HV SOH% & R100</span>
             </button>
           )}
 

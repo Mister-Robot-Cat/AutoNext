@@ -54,7 +54,8 @@ import {
   Eye,
   Fingerprint,
   Palette,
-  Timer
+  Timer,
+  BatteryCharging
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -112,6 +113,7 @@ interface CarDetailModalProps {
   onOpenForensicPlate?: (vehicle: Vehicle) => void;
   onOpenBodyworkAdvertising?: (vehicle: Vehicle) => void;
   onOpenTachographWorkRest?: (vehicle: Vehicle) => void;
+  onOpenHvBatterySafety?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -159,6 +161,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenForensicPlate,
   onOpenBodyworkAdvertising,
   onOpenTachographWorkRest,
+  onOpenHvBatterySafety,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -904,6 +907,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Timer className="w-4 h-4" />
                     <span>AYNA Rəqəmsal Taxoqraf, İş-İstirahət (AETR / NK №73) & E-Uğur Yol Vərəqəsi</span>
+                  </button>
+                )}
+
+                {/* AZS, BDYP & FHN EV/Hybrid High-Voltage Insulation (R100), SOH% & Green Privilege Shortcut */}
+                {onOpenHvBatterySafety && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenHvBatterySafety(vehicle)}
+                    data-testid="hv-battery-safety-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-teal-500/10 hover:bg-teal-500/20 text-teal-400 border border-teal-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <BatteryCharging className="w-4 h-4" />
+                    <span>AZS & BDYP Elektromobil/Hibrid HV İzolyasiya (R100), SOH% & AMB Yaşıl Kredit</span>
                   </button>
                 )}
               </div>

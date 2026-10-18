@@ -956,6 +956,26 @@ describe('CarDetailModal', () => {
     fireEvent.click(tachoBtn);
     expect(onOpenTachographWorkRestMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenHvBatterySafety when HV battery & SOH% shortcut button is clicked', () => {
+    const onOpenHvBatterySafetyMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenHvBatterySafety={onOpenHvBatterySafetyMock}
+      />
+    );
+
+    const hvBtn = screen.getByTestId('hv-battery-safety-shortcut-btn');
+    expect(hvBtn).toBeInTheDocument();
+    fireEvent.click(hvBtn);
+    expect(onOpenHvBatterySafetyMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
 
 
