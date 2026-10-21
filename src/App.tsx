@@ -62,6 +62,7 @@ const BodyworkAdvertisingModal = React.lazy(() => import('./components/BodyworkA
 const TachographWorkRestModal = React.lazy(() => import('./components/TachographWorkRestModal').then(m => ({ default: m.TachographWorkRestModal })));
 const HvBatterySafetyModal = React.lazy(() => import('./components/HvBatterySafetyModal').then(m => ({ default: m.HvBatterySafetyModal })));
 const SuspensionChassisModal = React.lazy(() => import('./components/SuspensionChassisModal').then(m => ({ default: m.SuspensionChassisModal })));
+const DriverMedicalModal = React.lazy(() => import('./components/DriverMedicalModal').then(m => ({ default: m.DriverMedicalModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -221,6 +222,8 @@ export function App() {
   const [isHvBatteryModalOpen, setIsHvBatteryModalOpen] = useState(false);
   const [suspensionTargetCar, setSuspensionTargetCar] = useState<Vehicle | null>(null);
   const [isSuspensionModalOpen, setIsSuspensionModalOpen] = useState(false);
+  const [driverMedicalTargetCar, setDriverMedicalTargetCar] = useState<Vehicle | null>(null);
+  const [isDriverMedicalModalOpen, setIsDriverMedicalModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -382,6 +385,10 @@ export function App() {
         onOpenSuspensionChassis={() => {
           setSuspensionTargetCar(vehicles[0] || null);
           setIsSuspensionModalOpen(true);
+        }}
+        onOpenDriverMedical={() => {
+          setDriverMedicalTargetCar(vehicles[0] || null);
+          setIsDriverMedicalModalOpen(true);
         }}
       />
 
@@ -1068,6 +1075,10 @@ export function App() {
             setSuspensionTargetCar(car);
             setIsSuspensionModalOpen(true);
           }}
+          onOpenDriverMedical={(car) => {
+            setDriverMedicalTargetCar(car);
+            setIsDriverMedicalModalOpen(true);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -1495,6 +1506,17 @@ export function App() {
           onClose={() => {
             setIsSuspensionModalOpen(false);
             setSuspensionTargetCar(null);
+          }}
+        />
+
+        {/* Official Səhiyyə Nazirliyi & BDYP Driver Medical Examination (Forma AZS-083/e) Modal */}
+        <DriverMedicalModal
+          isOpen={isDriverMedicalModalOpen || !!driverMedicalTargetCar}
+          vehicle={driverMedicalTargetCar}
+          currency={currency}
+          onClose={() => {
+            setIsDriverMedicalModalOpen(false);
+            setDriverMedicalTargetCar(null);
           }}
         />
 

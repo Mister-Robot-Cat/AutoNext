@@ -318,4 +318,14 @@ describe('Navbar Component', () => {
     fireEvent.click(btn);
     expect(onOpenSuspensionChassis).toHaveBeenCalledTimes(1);
   });
+
+  it('renders and calls onOpenDriverMedical when provided', () => {
+    const onOpenDriverMedical = vi.fn();
+    render(<Navbar {...defaultProps} onOpenDriverMedical={onOpenDriverMedical} />);
+
+    const btn = screen.getByTestId('navbar-driver-medical-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenDriverMedical).toHaveBeenCalledTimes(1);
+  });
 });

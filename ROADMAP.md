@@ -438,6 +438,16 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official BDYP & AZS Electronic Suspension & 3D Chassis Geometry Certificate generator (`BDYP-ASQ-2026-XXXXX`) with QR security hash and live unified registry lookup
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/suspensionChassisCompliance.test.ts` and `src/components/__tests__/SuspensionChassisModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
 
+---
+
+### 🩺 Milestone 47: Official Ministry of Health (Səhiyyə Nazirliyi), BDYP & ASAN Driver Medical Examination & Electronic Health Certificate Portal (Forma AZS-083/e Rəqəmsal Tibbi Arayış, Rabkin Polixromatik Rəng Korluğu Testi, Snellen/Sivtsev Görmə İtiyi (Visus ≥0.6), Psixonevroloji & Narkoloji Dispanser Təsdiqi, Sərxoşluq Alkotest / Toksikologiya — İXM Maddə 333 / 334 və Rəsmi SN-TIB-2026 Sertifikatı) (Completed)
+- [x] Add Official Ministry of Health & BDYP Driver Medical Examination & Electronic Certificate Modal (`DriverMedicalModal.tsx`) with Forma AZS-083/e Eligibility Auditor, Rabkin Polychromatic Color Vision Test Stand, BAC/Breath Sobriety & Dispensary Query Simulator, Accredited Polyclinics Radar & Booking Simulator, and Official SN-TIB-2026 Certificate Generator
+- [x] Implement statutory driver medical eligibility, Rabkin color blindness, and toxicology audit engine (`src/utils/driverMedicalCompliance.ts`) adhering to Ministry of Health & YHQ Articles 33–35 standards (Amateur Visus ≥0.6/≥0.2 vs Professional Visus ≥0.8/≥0.4, 01.01 eyeglasses endorsement, 10-year / 2-year / 1-year age-based validity, Rabkin polychromatic plate diagnostics for protanopia/deuteranopia/total color blindness, and İXM Articles 333 & 334 sobriety scale: ≤0.28 ‰ sober, 0.28–0.50 ‰ mild intoxication [400 ₼ / 6-12 mo], 0.50–1.00 ‰ moderate intoxication [700 ₼ / 1-2 yr], >1.00 ‰ severe intoxication [700 ₼ or 15-30 days detention + 2 yr suspension], and test refusal)
+- [x] Add comprehensive mock driver medical database (`src/data/mockDriverMedicalData.ts`) covering 6 Rabkin polychromatic test plates, 4 central dispensary records, 6 accredited polyclinics and diagnostic centers across Baku, Sumgayit, and Ganja, 4 medical commission service packages, and verifiable `SN-TIB-2026-XXXXX` certificates
+- [x] Build official Səhiyyə Nazirliyi & BDYP Electronic Driver Medical Certificate generator (`SN-TIB-2026-XXXXX`) with SİMA Digital Signature UID, QR security hash, blood type classification, allowed categories matrix, and live unified registry lookup
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/driverMedicalCompliance.test.ts` and `src/components/__tests__/DriverMedicalModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
+
+
 
 
 

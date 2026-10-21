@@ -29,7 +29,8 @@ import {
   Palette,
   Timer,
   BatteryCharging,
-  Activity
+  Activity,
+  Stethoscope
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -69,6 +70,7 @@ interface NavbarProps {
   onOpenTachographWorkRest?: () => void;
   onOpenHvBatterySafety?: () => void;
   onOpenSuspensionChassis?: () => void;
+  onOpenDriverMedical?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -108,6 +110,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenTachographWorkRest,
   onOpenHvBatterySafety,
   onOpenSuspensionChassis,
+  onOpenDriverMedical,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -419,6 +422,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Activity className="w-4 h-4 text-amber-400" />
               <span className="hidden xl:inline">Asqı & Şassi</span>
+            </button>
+          )}
+
+          {/* Səhiyyə Nazirliyi & BDYP Driver Medical Examination Button */}
+          {onOpenDriverMedical && (
+            <button
+              onClick={onOpenDriverMedical}
+              data-testid="navbar-driver-medical-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="Səhiyyə Nazirliyi, BDYP & ASAN Sürücülük Tibbi Müayinəsi (Forma AZS-083/e), Rabkin Rəng Korluğu & Alkotest Toksikologiya Portalı"
+            >
+              <Stethoscope className="w-4 h-4 text-emerald-400" />
+              <span className="hidden xl:inline">Tibbi Arayış 083/e</span>
             </button>
           )}
 

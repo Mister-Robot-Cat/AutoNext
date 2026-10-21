@@ -995,4 +995,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(btn);
     expect(onOpenSuspensionChassisMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenDriverMedical when driver medical shortcut button is clicked', () => {
+    const onOpenDriverMedicalMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenDriverMedical={onOpenDriverMedicalMock}
+      />
+    );
+
+    const btn = screen.getByTestId('driver-medical-shortcut-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenDriverMedicalMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });

@@ -56,7 +56,8 @@ import {
   Palette,
   Timer,
   BatteryCharging,
-  Activity
+  Activity,
+  Stethoscope
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -116,6 +117,7 @@ interface CarDetailModalProps {
   onOpenTachographWorkRest?: (vehicle: Vehicle) => void;
   onOpenHvBatterySafety?: (vehicle: Vehicle) => void;
   onOpenSuspensionChassis?: (vehicle: Vehicle) => void;
+  onOpenDriverMedical?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -165,6 +167,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenTachographWorkRest,
   onOpenHvBatterySafety,
   onOpenSuspensionChassis,
+  onOpenDriverMedical,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -922,6 +925,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Activity className="w-4 h-4" />
                     <span>BDYP & AZS Asqı, Amortizator (EUSAMA), Peredok & Hunter 3D Razval</span>
+                  </button>
+                )}
+
+                {/* Səhiyyə Nazirliyi & BDYP Driver Medical Examination (Forma AZS-083/e) Shortcut */}
+                {onOpenDriverMedical && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenDriverMedical(vehicle)}
+                    data-testid="driver-medical-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Stethoscope className="w-4 h-4" />
+                    <span>Səhiyyə Nazirliyi & BDYP Sürücülük Tibbi Müayinəsi (Forma AZS-083/e)</span>
                   </button>
                 )}
 
