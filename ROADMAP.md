@@ -429,6 +429,16 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official AZS & BDYP High-Voltage Safety & Battery SOH% Certificate generator (`AZS-HV-2026-XXXXX`) with QR security hash and live unified registry lookup
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/hvBatteryCompliance.test.ts` and `src/components/__tests__/HvBatterySafetyModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
 
+---
+
+### 🚗 Milestone 46: Official BDYP & AZS Suspension, Shock Absorber (EUSAMA Test Bench) & Chassis Roadworthiness Portal (YHQ Annex 1 Clauses 5.4, 5.5, 7.3, 7.12 — EUSAMA ≥40% Adhesion & ≤15% Imbalance, Kəsilmiş Yaylar / Qanunsuz "Peredok" Qaldırma — İXM Maddə 342.2-1 & Maddə 96.1.4, Qeyri-Standart Təkər Araqatı / Flans "Spacers" və Celette 3D Kuzov Həndəsəsi Portalı) (Completed)
+- [x] Add Official BDYP & AZS Suspension, Shock Absorber, "Peredok" & 3D Chassis Modal (`SuspensionChassisModal.tsx`) with MAHA FWT-1 EUSAMA Vibrostend Simulator, "Peredok" & Cut Springs Legal Auditor, Hunter 3D Laser Alignment & Celette Frame Stand, Chassis Repair Packages, Accredited Centers Radar, and Official BDYP-ASQ-2026 Certificate Generator
+- [x] Implement statutory suspension compliance, EUSAMA damping balance, and 3D chassis geometry engine (`src/utils/suspensionChassisCompliance.ts`) adhering to YHQ Annex 1 Clauses 5.4 (missing lug bolts), 5.5 (cracked/welded rims), 7.3 & 7.12 (anti-roll stabilizer bar integrity), and İXM Articles 342.1.5 (50 AZN fine), 342.2-1 (150 AZN fine for "Peredok" lift >35mm or cut springs / spacers), and 96.1.4 (immediate impound towing)
+- [x] Add comprehensive mock suspension, chassis & 3D geometry database (`src/data/mockSuspensionChassisData.ts`) covering 6 suspension modification profiles, 5 wheel fastener/rim conditions, 5 chassis service & 3D alignment packages, 6 accredited BDYP & AZS chassis laboratories across Baku, Khirdalan, Sumgayit, and Ganja, and verifiable `BDYP-ASQ-2026-XXXXX` certificates
+- [x] Build official BDYP & AZS Electronic Suspension & 3D Chassis Geometry Certificate generator (`BDYP-ASQ-2026-XXXXX`) with QR security hash and live unified registry lookup
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/suspensionChassisCompliance.test.ts` and `src/components/__tests__/SuspensionChassisModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
+
+
 
 
 

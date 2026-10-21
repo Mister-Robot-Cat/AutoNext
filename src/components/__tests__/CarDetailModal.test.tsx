@@ -976,7 +976,23 @@ describe('CarDetailModal', () => {
     fireEvent.click(hvBtn);
     expect(onOpenHvBatterySafetyMock).toHaveBeenCalledWith(mockVehicle);
   });
+  it('triggers onOpenSuspensionChassis when suspension & chassis shortcut button is clicked', () => {
+    const onOpenSuspensionChassisMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenSuspensionChassis={onOpenSuspensionChassisMock}
+      />
+    );
+
+    const btn = screen.getByTestId('suspension-chassis-shortcut-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenSuspensionChassisMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
-
-
-

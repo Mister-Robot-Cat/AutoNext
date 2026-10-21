@@ -17,5 +17,5 @@ $logFile = "$repoPath\scripts\logs\run_$dateStr.log"
 New-Item -Path "$repoPath\scripts\logs" -ItemType Directory -Force | Out-Null
 
 Write-Host "Starting autonomous agy execution at $(Get-Date)..."
-agy --print $prompt --dangerously-skip-permissions > $logFile 2>&1
+agy --model gemini-3.8-flash-medium --print $prompt --dangerously-skip-permissions > $logFile 2>&1
 Write-Host "Execution finished. Logs at $logFile"

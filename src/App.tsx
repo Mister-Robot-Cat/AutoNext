@@ -61,6 +61,7 @@ const ForensicPlateComplianceModal = React.lazy(() => import('./components/Foren
 const BodyworkAdvertisingModal = React.lazy(() => import('./components/BodyworkAdvertisingModal').then(m => ({ default: m.BodyworkAdvertisingModal })));
 const TachographWorkRestModal = React.lazy(() => import('./components/TachographWorkRestModal').then(m => ({ default: m.TachographWorkRestModal })));
 const HvBatterySafetyModal = React.lazy(() => import('./components/HvBatterySafetyModal').then(m => ({ default: m.HvBatterySafetyModal })));
+const SuspensionChassisModal = React.lazy(() => import('./components/SuspensionChassisModal').then(m => ({ default: m.SuspensionChassisModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -103,7 +104,8 @@ import {
   Fingerprint,
   Palette,
   Timer,
-  BatteryCharging
+  BatteryCharging,
+  Activity
 } from 'lucide-react';
 import { useTheme } from './hooks/useTheme';
 
@@ -217,6 +219,8 @@ export function App() {
   const [isTachographWorkRestModalOpen, setIsTachographWorkRestModalOpen] = useState(false);
   const [hvBatteryTargetCar, setHvBatteryTargetCar] = useState<Vehicle | null>(null);
   const [isHvBatteryModalOpen, setIsHvBatteryModalOpen] = useState(false);
+  const [suspensionTargetCar, setSuspensionTargetCar] = useState<Vehicle | null>(null);
+  const [isSuspensionModalOpen, setIsSuspensionModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -374,6 +378,10 @@ export function App() {
         onOpenHvBatterySafety={() => {
           setHvBatteryTargetCar(vehicles.find(v => v.fuelType === 'electric' || v.fuelType === 'hybrid') || vehicles[0] || null);
           setIsHvBatteryModalOpen(true);
+        }}
+        onOpenSuspensionChassis={() => {
+          setSuspensionTargetCar(vehicles[0] || null);
+          setIsSuspensionModalOpen(true);
         }}
       />
 
@@ -770,6 +778,19 @@ export function App() {
               <span>AYNA Rəqəmsal Taxoqraf, İş-İstirahət (AETR) & E-Uğur Yol Vərəqəsi</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </button>
+            <button
+              onClick={() => {
+                setSuspensionTargetCar(vehicles[0] || null);
+                setIsSuspensionModalOpen(true);
+              }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-amber-500/30 hover:border-amber-500/60 text-amber-300 text-xs sm:text-sm font-semibold transition-all shadow-lg shadow-amber-500/10 group cursor-pointer"
+              data-testid="hero-suspension-chassis-btn"
+            >
+              <Activity className="w-4 h-4 text-amber-400 group-hover:rotate-12 transition-transform" />
+              <span>BDYP & AZS Asqı, EUSAMA, Peredok & Hunter 3D Razval</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
+
 
             <button
               onClick={() => {
@@ -1042,6 +1063,10 @@ export function App() {
           onOpenHvBatterySafety={(car) => {
             setHvBatteryTargetCar(car);
             setIsHvBatteryModalOpen(true);
+          }}
+          onOpenSuspensionChassis={(car) => {
+            setSuspensionTargetCar(car);
+            setIsSuspensionModalOpen(true);
           }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
@@ -1462,6 +1487,18 @@ export function App() {
             setTachographWorkRestTargetCar(null);
           }}
         />
+        {/* Official BDYP & AZS Suspension, Shock Absorber (EUSAMA), Peredok & Chassis 3D Alignment Modal */}
+        <SuspensionChassisModal
+          isOpen={isSuspensionModalOpen || !!suspensionTargetCar}
+          vehicle={suspensionTargetCar}
+          currency={currency}
+          onClose={() => {
+            setIsSuspensionModalOpen(false);
+            setSuspensionTargetCar(null);
+          }}
+        />
+
+
 
         {/* Official AZS, BDYP & FHN EV/Hybrid High-Voltage Insulation (R100), SOH% & Green Privilege Modal */}
         <HvBatterySafetyModal

@@ -308,4 +308,14 @@ describe('Navbar Component', () => {
     fireEvent.click(hvBtn);
     expect(onOpenHvBatterySafety).toHaveBeenCalledTimes(1);
   });
+
+  it('renders and calls onOpenSuspensionChassis when provided', () => {
+    const onOpenSuspensionChassis = vi.fn();
+    render(<Navbar {...defaultProps} onOpenSuspensionChassis={onOpenSuspensionChassis} />);
+
+    const btn = screen.getByTestId('navbar-suspension-chassis-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenSuspensionChassis).toHaveBeenCalledTimes(1);
+  });
 });

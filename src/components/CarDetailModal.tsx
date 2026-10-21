@@ -55,7 +55,8 @@ import {
   Fingerprint,
   Palette,
   Timer,
-  BatteryCharging
+  BatteryCharging,
+  Activity
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -114,6 +115,7 @@ interface CarDetailModalProps {
   onOpenBodyworkAdvertising?: (vehicle: Vehicle) => void;
   onOpenTachographWorkRest?: (vehicle: Vehicle) => void;
   onOpenHvBatterySafety?: (vehicle: Vehicle) => void;
+  onOpenSuspensionChassis?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -162,6 +164,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenBodyworkAdvertising,
   onOpenTachographWorkRest,
   onOpenHvBatterySafety,
+  onOpenSuspensionChassis,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -909,6 +912,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                     <span>AYNA Rəqəmsal Taxoqraf, İş-İstirahət (AETR / NK №73) & E-Uğur Yol Vərəqəsi</span>
                   </button>
                 )}
+                {/* BDYP & AZS Suspension, EUSAMA & Chassis 3D Alignment Shortcut */}
+                {onOpenSuspensionChassis && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenSuspensionChassis(vehicle)}
+                    data-testid="suspension-chassis-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Activity className="w-4 h-4" />
+                    <span>BDYP & AZS Asqı, Amortizator (EUSAMA), Peredok & Hunter 3D Razval</span>
+                  </button>
+                )}
+
 
                 {/* AZS, BDYP & FHN EV/Hybrid High-Voltage Insulation (R100), SOH% & Green Privilege Shortcut */}
                 {onOpenHvBatterySafety && (
