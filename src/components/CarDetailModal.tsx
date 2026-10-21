@@ -57,7 +57,8 @@ import {
   Timer,
   BatteryCharging,
   Activity,
-  Stethoscope
+  Stethoscope,
+  GraduationCap
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -118,6 +119,7 @@ interface CarDetailModalProps {
   onOpenHvBatterySafety?: (vehicle: Vehicle) => void;
   onOpenSuspensionChassis?: (vehicle: Vehicle) => void;
   onOpenDriverMedical?: (vehicle: Vehicle) => void;
+  onOpenDrivingSchool?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -168,6 +170,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenHvBatterySafety,
   onOpenSuspensionChassis,
   onOpenDriverMedical,
+  onOpenDrivingSchool,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -938,6 +941,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Stethoscope className="w-4 h-4" />
                     <span>Səhiyyə Nazirliyi & BDYP Sürücülük Tibbi Müayinəsi (Forma AZS-083/e)</span>
+                  </button>
+                )}
+
+                {/* BDYP & Elm Nazirliyi Driving School & Practical Exam Shortcut */}
+                {onOpenDrivingSchool && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenDrivingSchool(vehicle)}
+                    data-testid="driving-school-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border border-blue-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <GraduationCap className="w-4 h-4" />
+                    <span>BDYP & Elm Nazirliyi Avtoməktəb & Praktiki İmtahan Portalı</span>
                   </button>
                 )}
 

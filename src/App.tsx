@@ -63,6 +63,7 @@ const TachographWorkRestModal = React.lazy(() => import('./components/Tachograph
 const HvBatterySafetyModal = React.lazy(() => import('./components/HvBatterySafetyModal').then(m => ({ default: m.HvBatterySafetyModal })));
 const SuspensionChassisModal = React.lazy(() => import('./components/SuspensionChassisModal').then(m => ({ default: m.SuspensionChassisModal })));
 const DriverMedicalModal = React.lazy(() => import('./components/DriverMedicalModal').then(m => ({ default: m.DriverMedicalModal })));
+const DrivingSchoolModal = React.lazy(() => import('./components/DrivingSchoolModal').then(m => ({ default: m.DrivingSchoolModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -224,6 +225,8 @@ export function App() {
   const [isSuspensionModalOpen, setIsSuspensionModalOpen] = useState(false);
   const [driverMedicalTargetCar, setDriverMedicalTargetCar] = useState<Vehicle | null>(null);
   const [isDriverMedicalModalOpen, setIsDriverMedicalModalOpen] = useState(false);
+  const [drivingSchoolTargetCar, setDrivingSchoolTargetCar] = useState<Vehicle | null>(null);
+  const [isDrivingSchoolModalOpen, setIsDrivingSchoolModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -389,6 +392,10 @@ export function App() {
         onOpenDriverMedical={() => {
           setDriverMedicalTargetCar(vehicles[0] || null);
           setIsDriverMedicalModalOpen(true);
+        }}
+        onOpenDrivingSchool={() => {
+          setDrivingSchoolTargetCar(vehicles[0] || null);
+          setIsDrivingSchoolModalOpen(true);
         }}
       />
 
@@ -1079,6 +1086,10 @@ export function App() {
             setDriverMedicalTargetCar(car);
             setIsDriverMedicalModalOpen(true);
           }}
+          onOpenDrivingSchool={(car) => {
+            setDrivingSchoolTargetCar(car);
+            setIsDrivingSchoolModalOpen(true);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -1517,6 +1528,17 @@ export function App() {
           onClose={() => {
             setIsDriverMedicalModalOpen(false);
             setDriverMedicalTargetCar(null);
+          }}
+        />
+
+        {/* Official BDYP & Elm Nazirliyi Driving School & Practical Exam Modal */}
+        <DrivingSchoolModal
+          isOpen={isDrivingSchoolModalOpen || !!drivingSchoolTargetCar}
+          vehicle={drivingSchoolTargetCar}
+          currency={currency}
+          onClose={() => {
+            setIsDrivingSchoolModalOpen(false);
+            setDrivingSchoolTargetCar(null);
           }}
         />
 

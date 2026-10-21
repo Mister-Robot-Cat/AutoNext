@@ -447,6 +447,16 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official Səhiyyə Nazirliyi & BDYP Electronic Driver Medical Certificate generator (`SN-TIB-2026-XXXXX`) with SİMA Digital Signature UID, QR security hash, blood type classification, allowed categories matrix, and live unified registry lookup
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/driverMedicalCompliance.test.ts` and `src/components/__tests__/DriverMedicalModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
 
+---
+
+### 🎓 Milestone 48: Official BDYP, DİN & Elm və Təhsil Nazirliyi Driving School ("Avtoməktəb") Accreditation, Practical Autodrome Exam Simulator (Estakada, Parallel Parking, 90° Box Reverse), City Route Penalty Scale & "U" Dual-Pedal Training Vehicle Compliance Portal (BDYP & DİN Rəsmi Sürücülük Məktəbləri Reyestri, 5-Mərhələli İmtahan Avtodromu Simulyatoru — Estakada ≤20sm Sürüşmə, Elektron Şəhər İmtahanı Cərimə Balları / 100 Bal Şkalası, Tədris Avtomobili "U" / İkili Pedal Qanuniliyi və Rəsmi BDYP-AVM-2026 Kurs Şəhadətnaməsi) (Completed)
+- [x] Add Official BDYP & Elm Nazirliyi Driving School Accreditation & Practical Autodrome Exam Modal (`DrivingSchoolModal.tsx`) with 5-Exercise Autodrome Simulator (Estakada, Parallel Parking, 90° Box Reverse, Slalom, 3-Point Turn), City Driving Route 100-Point Error Telemetry Stand, "Tədris Avtomobili" & "U" Dual-Pedal Regulatory Auditor, Accredited Driving Schools Radar, and Official BDYP-AVM-2026 Certificate Generator
+- [x] Implement statutory autodrome tolerances, city exam penalty scale, and dual-pedal vehicle compliance engine (`src/utils/drivingSchoolCompliance.ts`) adhering to YHQ Articles 33–35, YHQ Annex 2 (dual clutch/brake pedals, illuminated rooftop "U" sign, instructor rear-view mirrors, examiner 2-way dashcam, and Texpasport special endorsement), BDYP Autodrome rules (Estakada ≤20 cm rollback, curb offset 10–30 cm), and BDYP City Driving Route 100-point rubric (Passing threshold ≥80 pts and 0 critical violations)
+- [x] Add comprehensive mock driving school database (`src/data/mockDrivingSchoolData.ts`) covering 5 autodrome exercises with sensory tolerances, 10 city exam error items with legal citations, 6 accredited driving schools across Baku, Sumgayit, and Ganja, 4 tuition packages (Category B Standard, Intensive, BC Commercial, BE Towing), and sample verifiable `BDYP-AVM-2026-XXXXX` certificates
+- [x] Build official BDYP & Elm və Təhsil Nazirliyi Electronic Driving School Graduation Certificate generator (`BDYP-AVM-2026-XXXXX`) with security QR checksum hash, student FIN, total theory/practical log hours, and live unified registry lookup
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/drivingSchoolCompliance.test.ts` and `src/components/__tests__/DrivingSchoolModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
+
+
 
 
 

@@ -1015,4 +1015,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(btn);
     expect(onOpenDriverMedicalMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenDrivingSchool when clicking driving school shortcut button', () => {
+    const onOpenDrivingSchoolMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenDrivingSchool={onOpenDrivingSchoolMock}
+      />
+    );
+
+    const btn = screen.getByTestId('driving-school-shortcut-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenDrivingSchoolMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });

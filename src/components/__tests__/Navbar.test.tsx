@@ -328,4 +328,14 @@ describe('Navbar Component', () => {
     fireEvent.click(btn);
     expect(onOpenDriverMedical).toHaveBeenCalledTimes(1);
   });
+
+  it('renders driving school button and calls onOpenDrivingSchool when clicked', () => {
+    const onOpenDrivingSchool = vi.fn();
+    render(<Navbar {...defaultProps} onOpenDrivingSchool={onOpenDrivingSchool} />);
+
+    const btn = screen.getByTestId('navbar-driving-school-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenDrivingSchool).toHaveBeenCalledTimes(1);
+  });
 });

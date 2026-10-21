@@ -30,7 +30,8 @@ import {
   Timer,
   BatteryCharging,
   Activity,
-  Stethoscope
+  Stethoscope,
+  GraduationCap
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -71,6 +72,7 @@ interface NavbarProps {
   onOpenHvBatterySafety?: () => void;
   onOpenSuspensionChassis?: () => void;
   onOpenDriverMedical?: () => void;
+  onOpenDrivingSchool?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -111,6 +113,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenHvBatterySafety,
   onOpenSuspensionChassis,
   onOpenDriverMedical,
+  onOpenDrivingSchool,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -435,6 +438,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Stethoscope className="w-4 h-4 text-emerald-400" />
               <span className="hidden xl:inline">Tibbi Arayış 083/e</span>
+            </button>
+          )}
+
+          {/* BDYP & Elm Nazirliyi Driving School & Practical Exam Button */}
+          {onOpenDrivingSchool && (
+            <button
+              onClick={onOpenDrivingSchool}
+              data-testid="navbar-driving-school-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border border-blue-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="BDYP & Elm və Təhsil Nazirliyi Sürücülük Məktəbləri Reyestri, Avtodrom (Estakada) & 100-Bal Şəhər İmtahanı Portalı"
+            >
+              <GraduationCap className="w-4 h-4 text-blue-400" />
+              <span className="hidden xl:inline">Avtoməktəb & İmtahan</span>
             </button>
           )}
 
