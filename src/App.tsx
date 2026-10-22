@@ -69,6 +69,7 @@ const OversizePermitModal = React.lazy(() => import('./components/OversizePermit
 const AccidentForensicsModal = React.lazy(() => import('./components/AccidentForensicsModal').then(m => ({ default: m.AccidentForensicsModal })));
 const SpecialSignalModal = React.lazy(() => import('./components/SpecialSignalModal').then(m => ({ default: m.SpecialSignalModal })));
 const VehicleAuctionModal = React.lazy(() => import('./components/VehicleAuctionModal').then(m => ({ default: m.VehicleAuctionModal })));
+const CustomsTransitModal = React.lazy(() => import('./components/CustomsTransitModal').then(m => ({ default: m.CustomsTransitModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -241,6 +242,8 @@ export function App() {
   const [specialSignalTargetCar, setSpecialSignalTargetCar] = useState<Vehicle | null>(null);
   const [isSpecialSignalModalOpen, setIsSpecialSignalModalOpen] = useState(false);
   const [isVehicleAuctionModalOpen, setIsVehicleAuctionModalOpen] = useState(false);
+  const [customsTransitTargetCar, setCustomsTransitTargetCar] = useState<Vehicle | null>(null);
+  const [isCustomsTransitModalOpen, setIsCustomsTransitModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -429,6 +432,10 @@ export function App() {
         }}
         onOpenVehicleAuction={() => {
           setIsVehicleAuctionModalOpen(true);
+        }}
+        onOpenCustomsTransit={() => {
+          setCustomsTransitTargetCar(vehicles[0] || null);
+          setIsCustomsTransitModalOpen(true);
         }}
       />
 
@@ -1142,6 +1149,10 @@ export function App() {
           onOpenVehicleAuction={() => {
             setIsVehicleAuctionModalOpen(true);
           }}
+          onOpenCustomsTransit={(car) => {
+            setCustomsTransitTargetCar(car);
+            setIsCustomsTransitModalOpen(true);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -1649,6 +1660,22 @@ export function App() {
         <VehicleAuctionModal
           isOpen={isVehicleAuctionModalOpen}
           onClose={() => setIsVehicleAuctionModalOpen(false)}
+        />
+
+        {/* State Customs Committee (DGK) & BDYP Foreign-Registered Vehicle Temporary Import & Transit Modal */}
+        <CustomsTransitModal
+          isOpen={isCustomsTransitModalOpen}
+          initialVehicle={customsTransitTargetCar ? {
+            makeModel: `${customsTransitTargetCar.make} ${customsTransitTargetCar.model}`,
+            engineCc: Math.round(customsTransitTargetCar.engineVolumeLiters * 1000),
+            year: customsTransitTargetCar.year,
+            vin: customsTransitTargetCar.vin,
+            valueAzn: customsTransitTargetCar.priceAzn,
+          } : undefined}
+          onClose={() => {
+            setIsCustomsTransitModalOpen(false);
+            setCustomsTransitTargetCar(null);
+          }}
         />
 
 

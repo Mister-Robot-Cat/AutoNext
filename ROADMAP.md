@@ -501,6 +501,16 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official State Property Issues Service Electronic Auction Winner Protocol generator (`ƏMLAK-HRC-2026-XXXXX`) with cryptographic security checksum, QR verification hash, BDYP police re-registration instruction note, and printable/copyable layout
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/vehicleAuction.test.ts` and `src/components/__tests__/VehicleAuctionModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
 
+---
+
+### 🌐 Milestone 54: Official State Customs Committee (DGK) & BDYP Foreign-Registered Vehicle Temporary Import, Customs Deposit & 90-Day Transit Regime Portal (Xarici Qeydiyyatlı Nəqliyyat Vasitələrinin Rəsmi Müvəqqəti İdxal & Tranzit Portalı — Gömrük Məcəlləsi Maddə 258/259, 90 Günlük Rejim Countdown, Rezident Gömrük Təminatı / Depozit Kalkulyatoru, Yol Vergisi & Rəsmiləşdirmə Rüsumu, İXM Maddə 499 Cərimə Qaydaları, Sərhəd Buraxılış Məntəqələri Radarı və Rəsmi DGK-MVI-2026 Elektron Müvəqqəti İdxal İcazəsi Portalı) (Completed)
+- [x] Add Official State Customs Committee & BDYP Foreign Vehicle Temporary Import & Transit Modal (`CustomsTransitModal.tsx`) with Interactive Calculator & Deposit Estimator, 90-Day Regime & İXM 499 Sanctions Stand, Border Checkpoints Radar, Active Foreign Permits Registry, and Official DGK-MVI-2026 Electronic Permit Certificate Generator
+- [x] Implement statutory temporary import, refundable guarantee deposit, and administrative sanctions engine (`src/utils/customsTransit.ts`) adhering to Customs Code (Articles 258, 259, 260 — non-resident 90-day personal use exemption, resident full customs duty/excise/VAT security deposit in treasury), Tax Code (Articles 209-211 Road Tax / Yol Vergisi), Law on State Duties (Article 33 clearance fees), and Code of Administrative Offences (İXM Article 499.1 [100 AZN], 499.2 [300 AZN], and 499.3 [50-100% vehicle value or confiscation]) with multi-currency support (AZN, USD, EUR)
+- [x] Add comprehensive mock foreign vehicle & border checkpoints database (`src/data/mockCustomsTransitData.ts`) covering 6 strategic border posts (Qırmızı Körpü, Samur, Astara, Biləsuvar, Mazımqara, Ələt Ro-Ro Port) with coordinates, contact phones, wait times, daily capacity, and live queues, 6 authentic foreign-registered vehicles (`GE`, `RU`, `TR`, `IR`, `KZ`, `DE`), and sample verifiable `DGK-MVI-2026-XXXXX` permits
+- [x] Build official State Customs Committee Electronic Temporary Import Certificate generator (`DGK-MVI-2026-XXXXX`) with national coat of arms header, SHA256 security checksum, foreign plate visualizer, inspector ID, permitted exit deadline countdown, and printable/copyable layout
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/customsTransit.test.ts` and `src/components/__tests__/CustomsTransitModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
+
+
 
 
 

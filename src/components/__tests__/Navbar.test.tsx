@@ -388,4 +388,14 @@ describe('Navbar Component', () => {
     fireEvent.click(btn);
     expect(onOpenVehicleAuction).toHaveBeenCalledTimes(1);
   });
+
+  it('renders customs transit button and calls onOpenCustomsTransit when clicked', () => {
+    const onOpenCustomsTransit = vi.fn();
+    render(<Navbar {...defaultProps} onOpenCustomsTransit={onOpenCustomsTransit} />);
+
+    const btn = screen.getByTestId('navbar-customs-transit-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenCustomsTransit).toHaveBeenCalledTimes(1);
+  });
 });

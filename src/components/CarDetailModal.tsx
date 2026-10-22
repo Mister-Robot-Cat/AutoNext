@@ -129,6 +129,7 @@ interface CarDetailModalProps {
   onOpenAccidentForensics?: (vehicle: Vehicle) => void;
   onOpenSpecialSignal?: (vehicle: Vehicle) => void;
   onOpenVehicleAuction?: (vehicle: Vehicle) => void;
+  onOpenCustomsTransit?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -185,6 +186,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenAccidentForensics,
   onOpenSpecialSignal,
   onOpenVehicleAuction,
+  onOpenCustomsTransit,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -1033,6 +1035,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Gavel className="w-4 h-4 text-amber-400" />
                     <span>Dövlət Əmlakı və Müsadirə Olunmuş Nəqliyyat Hərracı (e-herrac)</span>
+                  </button>
+                )}
+
+                {/* DGK & BDYP Foreign-Registered Vehicle Temporary Import & Transit Shortcut */}
+                {onOpenCustomsTransit && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenCustomsTransit(vehicle)}
+                    data-testid="customs-transit-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Globe className="w-4 h-4 text-emerald-400" />
+                    <span>DGK Xarici Nəqliyyat Müvəqqəti İdxal & 90 Günlük Rejim Portalı</span>
                   </button>
                 )}
 

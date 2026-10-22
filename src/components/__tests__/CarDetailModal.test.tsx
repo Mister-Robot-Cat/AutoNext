@@ -1135,4 +1135,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(btn);
     expect(onOpenVehicleAuctionMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('renders customs transit shortcut button and calls onOpenCustomsTransit when clicked', () => {
+    const onOpenCustomsTransitMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenCustomsTransit={onOpenCustomsTransitMock}
+      />
+    );
+
+    const btn = screen.getByTestId('customs-transit-shortcut-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenCustomsTransitMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });

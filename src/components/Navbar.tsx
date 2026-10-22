@@ -83,6 +83,7 @@ interface NavbarProps {
   onOpenAccidentForensics?: () => void;
   onOpenSpecialSignal?: () => void;
   onOpenVehicleAuction?: () => void;
+  onOpenCustomsTransit?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -129,6 +130,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenAccidentForensics,
   onOpenSpecialSignal,
   onOpenVehicleAuction,
+  onOpenCustomsTransit,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -531,6 +533,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Gavel className="w-4 h-4 text-amber-400" />
               <span className="hidden xl:inline">Dövlət Hərracı</span>
+            </button>
+          )}
+
+          {/* DGK & BDYP Müvəqqəti İdxal & Tranzit Button */}
+          {onOpenCustomsTransit && (
+            <button
+              onClick={onOpenCustomsTransit}
+              data-testid="navbar-customs-transit-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="Dövlət Gömrük Komitəsi & BDYP Xarici Qeydiyyatlı Avtomobillərin Müvəqqəti İdxal & Tranzit Portalı (Gömrük Məcəlləsi Maddə 258/259)"
+            >
+              <Globe className="w-4 h-4 text-emerald-400" />
+              <span className="hidden xl:inline">Müvəqqəti İdxal (DGK)</span>
             </button>
           )}
 
