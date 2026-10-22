@@ -67,6 +67,7 @@ const DrivingSchoolModal = React.lazy(() => import('./components/DrivingSchoolMo
 const AdrComplianceModal = React.lazy(() => import('./components/AdrComplianceModal').then(m => ({ default: m.AdrComplianceModal })));
 const OversizePermitModal = React.lazy(() => import('./components/OversizePermitModal').then(m => ({ default: m.OversizePermitModal })));
 const AccidentForensicsModal = React.lazy(() => import('./components/AccidentForensicsModal').then(m => ({ default: m.AccidentForensicsModal })));
+const SpecialSignalModal = React.lazy(() => import('./components/SpecialSignalModal').then(m => ({ default: m.SpecialSignalModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -236,6 +237,8 @@ export function App() {
   const [isOversizeModalOpen, setIsOversizeModalOpen] = useState(false);
   const [accidentForensicsTargetCar, setAccidentForensicsTargetCar] = useState<Vehicle | null>(null);
   const [isAccidentForensicsModalOpen, setIsAccidentForensicsModalOpen] = useState(false);
+  const [specialSignalTargetCar, setSpecialSignalTargetCar] = useState<Vehicle | null>(null);
+  const [isSpecialSignalModalOpen, setIsSpecialSignalModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -417,6 +420,10 @@ export function App() {
         onOpenAccidentForensics={() => {
           setAccidentForensicsTargetCar(vehicles[0] || null);
           setIsAccidentForensicsModalOpen(true);
+        }}
+        onOpenSpecialSignal={() => {
+          setSpecialSignalTargetCar(vehicles[0] || null);
+          setIsSpecialSignalModalOpen(true);
         }}
       />
 
@@ -1123,6 +1130,10 @@ export function App() {
             setAccidentForensicsTargetCar(car);
             setIsAccidentForensicsModalOpen(true);
           }}
+          onOpenSpecialSignal={(car) => {
+            setSpecialSignalTargetCar(car);
+            setIsSpecialSignalModalOpen(true);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -1607,6 +1618,22 @@ export function App() {
           onClose={() => {
             setIsAccidentForensicsModalOpen(false);
             setAccidentForensicsTargetCar(null);
+          }}
+        />
+
+        {/* Official DİN & BDYP Xüsusi Sayrışan Mayak və Siren («Miqalka») Qanunilik Portalı Modal */}
+        <SpecialSignalModal
+          isOpen={isSpecialSignalModalOpen || !!specialSignalTargetCar}
+          initialVehicle={specialSignalTargetCar ? {
+            make: specialSignalTargetCar.make,
+            model: specialSignalTargetCar.model,
+            year: specialSignalTargetCar.year,
+            vin: specialSignalTargetCar.vin,
+            plateNumber: specialSignalTargetCar.plateNumber,
+          } : undefined}
+          onClose={() => {
+            setIsSpecialSignalModalOpen(false);
+            setSpecialSignalTargetCar(null);
           }}
         />
 

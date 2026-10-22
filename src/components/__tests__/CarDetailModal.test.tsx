@@ -1095,4 +1095,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(btn);
     expect(onOpenAccidentForensicsMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('renders special signal & siren shortcut button and invokes callback', () => {
+    const onOpenSpecialSignalMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenSpecialSignal={onOpenSpecialSignalMock}
+      />
+    );
+
+    const btn = screen.getByTestId('special-signal-shortcut-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenSpecialSignalMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });

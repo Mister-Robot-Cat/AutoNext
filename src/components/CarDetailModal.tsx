@@ -60,7 +60,8 @@ import {
   Activity,
   Stethoscope,
   GraduationCap,
-  Flame
+  Flame,
+  Siren
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -125,6 +126,7 @@ interface CarDetailModalProps {
   onOpenAdrCompliance?: (vehicle: Vehicle) => void;
   onOpenOversizePermit?: (vehicle: Vehicle) => void;
   onOpenAccidentForensics?: (vehicle: Vehicle) => void;
+  onOpenSpecialSignal?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -179,6 +181,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenAdrCompliance,
   onOpenOversizePermit,
   onOpenAccidentForensics,
+  onOpenSpecialSignal,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -1001,6 +1004,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Crosshair className="w-4 h-4" />
                     <span>BDYP & Ədliyyə Nazirliyi YNH Məhkəmə Avtotexniki Ekspertizası (v=√(254·μ·S))</span>
+                  </button>
+                )}
+
+                {/* DİN & BDYP Xüsusi Sayrışan Mayak və Siren («Miqalka») Shortcut */}
+                {onOpenSpecialSignal && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenSpecialSignal(vehicle)}
+                    data-testid="special-signal-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border border-blue-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Siren className="w-4 h-4 text-blue-400" />
+                    <span>DİN & BDYP Xüsusi Sayrışan Mayak («Miqalka») & Siren Qanuniliyi</span>
                   </button>
                 )}
 

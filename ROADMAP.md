@@ -483,6 +483,16 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official Ministry of Justice Forensic Center Electronic Technical Expertise Conclusion generator (`MEM-YNH-2026-XXXXX`) with SİMA digital signature hash, QR verification checksum, lead expert credentials, itemized forensic formula telemetry, and printable layout
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/accidentForensics.test.ts` and `src/components/__tests__/AccidentForensicsModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
 
+---
+
+### 🚨 Milestone 52: Official DİN (Daxili İşlər Nazirliyi) & BDYP Emergency Flashing Beacons, Multi-Tone Siren Systems ("Miqalka" & Siren) Regulatory Compliance, Acoustic Decibel Norms & Operative Priority Vehicle Portal (DİN & BDYP Xüsusi Sayrışan Mayak və Çoxavazlı Səs Siqnalları («Miqalka» / Siren) Qanuniliyi — YHQ Maddə 48 & Əlavə 1 Bənd 7.16, Operativ Nəqliyyat Kateqoriyaları: Göy-Qırmızı DİN/BDYP, Göy Təcili Yardım 103 / FHN 112, Sarı/Narıncı AAYDA Evakuator / İnkassasiya; İXM Maddə 342.9 Cərimə Matrisi: 500–800 AZN + Cihazın Müsadirəsi & Maddə 96 Duracaq; Web Audio API Sintetik Səs Siqnalı Simulyatoru: Wail, Yelp, Hi-Lo, Horn / 110–124 dBA; Canlı Sayrışan Mayak Vizualizatoru və Rəsmi DİN-OPR-2026 Xüsusi İcazə Portalı) (Completed)
+- [x] Add Official DİN & BDYP Emergency Beacon, Siren & Operative Priority Modal (`SpecialSignalModal.tsx`) with Statutory Audit & Sanctions Stand, Animated Strobe Lightbar Visualizer (Blue-Red, Blue, Amber, White), Web Audio API Synthetic Siren Controller (Wail, Yelp, Hi-Lo, Horn), Traffic Priority & Yielding Simulator (İXM Art. 327.3: 100 AZN + 3 points), Accredited DİN & AZS Acoustic Laboratories Radar, and Official DİN-OPR-2026 Certificate Generator
+- [x] Implement statutory special signal legality, sanction calculation, and synthetic tone engine (`src/utils/specialSignalCompliance.ts`) adhering to Law on Road Traffic (YHQ Article 48 & Annex 1 Clause 7.16), Code of Administrative Offences (İXM Articles 342.9 [500–800 AZN fine + equipment confiscation], 327.3 [100 AZN + 3 points for failure to yield], and 96.1.4 [impoundment]), AZS Acoustic standard (≤124 dBA at 2m), and Web Audio API tone synthesis configs
+- [x] Add comprehensive mock special signal, siren hardware, and operative database (`src/data/mockSpecialSignalData.ts`) covering 6 vehicle profiles (BDYP YPX patrol, 103 Ambulance, 112 Fire engine, AAYDA recovery tow truck, armored bank cash transit, unauthorized civilian flasher), 5 siren models (Federal Signal PA300, Whelen 295SL100, Premier Hazard, Standby Pintsch), 4 yielding traffic scenarios, 4 service packages, 5 accredited DİN/AZS testing stations across Baku, Sumgayit, and Ganja, and verifiable sample `DIN-OPR-2026-XXXXX` permits
+- [x] Build official Ministry of Internal Affairs (DİN) & BDYP Electronic Special Operative Vehicle Permit generator (`DIN-OPR-2026-XXXXX`) with cryptographic security hash, hologram UID, QR security strip, authorized signal colors, agency credentials, and printable layout
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/specialSignalCompliance.test.ts` and `src/components/__tests__/SpecialSignalModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
+
+
 
 
 

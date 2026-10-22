@@ -368,4 +368,14 @@ describe('Navbar Component', () => {
     fireEvent.click(btn);
     expect(onOpenAccidentForensics).toHaveBeenCalledTimes(1);
   });
+
+  it('renders special signal & siren button and calls onOpenSpecialSignal when clicked', () => {
+    const onOpenSpecialSignal = vi.fn();
+    render(<Navbar {...defaultProps} onOpenSpecialSignal={onOpenSpecialSignal} />);
+
+    const btn = screen.getByTestId('navbar-special-signal-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenSpecialSignal).toHaveBeenCalledTimes(1);
+  });
 });
