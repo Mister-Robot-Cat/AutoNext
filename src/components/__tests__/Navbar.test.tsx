@@ -338,4 +338,14 @@ describe('Navbar Component', () => {
     fireEvent.click(btn);
     expect(onOpenDrivingSchool).toHaveBeenCalledTimes(1);
   });
+
+  it('renders ADR compliance button and calls onOpenAdrCompliance when clicked', () => {
+    const onOpenAdrCompliance = vi.fn();
+    render(<Navbar {...defaultProps} onOpenAdrCompliance={onOpenAdrCompliance} />);
+
+    const btn = screen.getByTestId('navbar-adr-compliance-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenAdrCompliance).toHaveBeenCalledTimes(1);
+  });
 });

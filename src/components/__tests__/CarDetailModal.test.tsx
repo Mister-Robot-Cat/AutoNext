@@ -1035,4 +1035,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(btn);
     expect(onOpenDrivingSchoolMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenAdrCompliance when clicking ADR compliance shortcut button', () => {
+    const onOpenAdrComplianceMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenAdrCompliance={onOpenAdrComplianceMock}
+      />
+    );
+
+    const btn = screen.getByTestId('adr-compliance-shortcut-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenAdrComplianceMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });

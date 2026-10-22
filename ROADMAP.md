@@ -456,6 +456,16 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official BDYP & Elm və Təhsil Nazirliyi Electronic Driving School Graduation Certificate generator (`BDYP-AVM-2026-XXXXX`) with security QR checksum hash, student FIN, total theory/practical log hours, and live unified registry lookup
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/drivingSchoolCompliance.test.ts` and `src/components/__tests__/DrivingSchoolModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
 
+---
+
+### ☣️ Milestone 49: Official FHN (Fövqəladə Hallar Nazirliyi), BDYP & AZS Dangerous Goods Road Transport (ADR) Portal (FHN & BDYP Rəsmi Təhlükəli Yüklərin Avtomobillə Daşınması Portalı — ADR / YHQ Əlavə 1 Bənd 7.9, BMT (UN) & Narıncı Kemler Lövhəsi Standartı, EX/II, EX/III, FL, AT Sistern və Nəqliyyat Təchizatı Auditoru, ADR Sürücü Şəhadətnaməsi & Rəsmi FHN-ADR-2026 Xüsusi İcazə Portalı) (Completed)
+- [x] Add Official FHN & BDYP Dangerous Goods Road Transport (ADR) Modal (`AdrComplianceModal.tsx`) with Interactive Retro-reflective Orange Kemler Plate Generator (400x300mm), Tanker & Vehicle Safety Equipment Stand (FL/AT/EX), Azerbaijan Highway Transit Corridors (M-1, M-2, M-3, Baku Ring Bypass), and Official FHN-ADR-2026 Special Permit Generator
+- [x] Implement statutory ADR compliance, Kemler HIN interpretation, and transit permit fee engine (`src/utils/adrCompliance.ts`) adhering to UNECE ADR 2023/2025, Law on Road Traffic (YHQ Article 58 & Annex 1 Clause 7.9), and Code of Administrative Offences (İXM Article 354: 200–500 AZN driver / 1,500–2,500 AZN official / 3,000–5,000 AZN legal entity fines, and Article 96.1.4 impound towing)
+- [x] Add comprehensive mock ADR database (`src/data/mockAdrData.ts`) covering 8 BMT (UN) dangerous substances (Benzin Aİ-92/95 UN 1203, Dizel UN 1202, LPG Propane UN 1965, Sulfuric Acid UN 1830, Oleum UN 1831, Chlorine Gas UN 1017, Gunpowder UN 0027, Lithium-ion batteries UN 3480), 11 mandatory UNECE 8.1.5 emergency kit items, 4 transit corridors, and 4 accredited FHN & BDYP technical inspection centers
+- [x] Build official FHN State Industrial Safety Agency Electronic Special Transport Permit generator (`FHN-ADR-2026-XXXXX`) with QR security verification checksum, carrier VÖEN, vehicle plate, UN code, and live unified registry lookup
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/adrCompliance.test.ts` and `src/components/__tests__/AdrComplianceModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
+
+
 
 
 

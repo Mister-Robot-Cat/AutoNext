@@ -64,6 +64,7 @@ const HvBatterySafetyModal = React.lazy(() => import('./components/HvBatterySafe
 const SuspensionChassisModal = React.lazy(() => import('./components/SuspensionChassisModal').then(m => ({ default: m.SuspensionChassisModal })));
 const DriverMedicalModal = React.lazy(() => import('./components/DriverMedicalModal').then(m => ({ default: m.DriverMedicalModal })));
 const DrivingSchoolModal = React.lazy(() => import('./components/DrivingSchoolModal').then(m => ({ default: m.DrivingSchoolModal })));
+const AdrComplianceModal = React.lazy(() => import('./components/AdrComplianceModal').then(m => ({ default: m.AdrComplianceModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -227,6 +228,8 @@ export function App() {
   const [isDriverMedicalModalOpen, setIsDriverMedicalModalOpen] = useState(false);
   const [drivingSchoolTargetCar, setDrivingSchoolTargetCar] = useState<Vehicle | null>(null);
   const [isDrivingSchoolModalOpen, setIsDrivingSchoolModalOpen] = useState(false);
+  const [adrTargetCar, setAdrTargetCar] = useState<Vehicle | null>(null);
+  const [isAdrModalOpen, setIsAdrModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -396,6 +399,10 @@ export function App() {
         onOpenDrivingSchool={() => {
           setDrivingSchoolTargetCar(vehicles[0] || null);
           setIsDrivingSchoolModalOpen(true);
+        }}
+        onOpenAdrCompliance={() => {
+          setAdrTargetCar(vehicles[0] || null);
+          setIsAdrModalOpen(true);
         }}
       />
 
@@ -1090,6 +1097,10 @@ export function App() {
             setDrivingSchoolTargetCar(car);
             setIsDrivingSchoolModalOpen(true);
           }}
+          onOpenAdrCompliance={(car) => {
+            setAdrTargetCar(car);
+            setIsAdrModalOpen(true);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -1539,6 +1550,18 @@ export function App() {
           onClose={() => {
             setIsDrivingSchoolModalOpen(false);
             setDrivingSchoolTargetCar(null);
+          }}
+        />
+
+        {/* Official FHN & BDYP Dangerous Goods Road Transport (ADR) Modal */}
+        <AdrComplianceModal
+          isOpen={isAdrModalOpen || !!adrTargetCar}
+          currency={currency}
+          initialPlate={adrTargetCar?.plateNumber || '99-JH-120'}
+          initialVehicleModel={adrTargetCar ? `${adrTargetCar.make} ${adrTargetCar.model}` : 'Mercedes-Benz Actros 1845 ADR (FL)'}
+          onClose={() => {
+            setIsAdrModalOpen(false);
+            setAdrTargetCar(null);
           }}
         />
 

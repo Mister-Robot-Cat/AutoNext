@@ -31,7 +31,8 @@ import {
   BatteryCharging,
   Activity,
   Stethoscope,
-  GraduationCap
+  GraduationCap,
+  Flame
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -73,6 +74,7 @@ interface NavbarProps {
   onOpenSuspensionChassis?: () => void;
   onOpenDriverMedical?: () => void;
   onOpenDrivingSchool?: () => void;
+  onOpenAdrCompliance?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -114,6 +116,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenSuspensionChassis,
   onOpenDriverMedical,
   onOpenDrivingSchool,
+  onOpenAdrCompliance,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -451,6 +454,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <GraduationCap className="w-4 h-4 text-blue-400" />
               <span className="hidden xl:inline">Avtoməktəb & İmtahan</span>
+            </button>
+          )}
+
+          {/* FHN & BDYP ADR Dangerous Goods Transport Button */}
+          {onOpenAdrCompliance && (
+            <button
+              onClick={onOpenAdrCompliance}
+              data-testid="navbar-adr-compliance-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="FHN, BDYP & AZS Təhlükəli Yüklərin Daşınması (ADR), Narıncı Kemler Lövhəsi & Rəsmi Xüsusi İcazə Portalı"
+            >
+              <Flame className="w-4 h-4 text-amber-400" />
+              <span className="hidden xl:inline">ADR Təhlükəli Yüklər</span>
             </button>
           )}
 

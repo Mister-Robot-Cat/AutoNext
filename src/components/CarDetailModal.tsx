@@ -58,7 +58,8 @@ import {
   BatteryCharging,
   Activity,
   Stethoscope,
-  GraduationCap
+  GraduationCap,
+  Flame
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -120,6 +121,7 @@ interface CarDetailModalProps {
   onOpenSuspensionChassis?: (vehicle: Vehicle) => void;
   onOpenDriverMedical?: (vehicle: Vehicle) => void;
   onOpenDrivingSchool?: (vehicle: Vehicle) => void;
+  onOpenAdrCompliance?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -171,6 +173,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenSuspensionChassis,
   onOpenDriverMedical,
   onOpenDrivingSchool,
+  onOpenAdrCompliance,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -954,6 +957,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <GraduationCap className="w-4 h-4" />
                     <span>BDYP & Elm Nazirliyi Avtoməktəb & Praktiki İmtahan Portalı</span>
+                  </button>
+                )}
+
+                {/* FHN & BDYP ADR Dangerous Goods Road Transport Shortcut */}
+                {onOpenAdrCompliance && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenAdrCompliance(vehicle)}
+                    data-testid="adr-compliance-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Flame className="w-4 h-4" />
+                    <span>FHN & BDYP ADR Təhlükəli Yüklərin Daşınması & Narıncı Kemler Standartı</span>
                   </button>
                 )}
 
