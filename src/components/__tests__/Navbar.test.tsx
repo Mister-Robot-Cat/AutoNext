@@ -348,4 +348,14 @@ describe('Navbar Component', () => {
     fireEvent.click(btn);
     expect(onOpenAdrCompliance).toHaveBeenCalledTimes(1);
   });
+
+  it('renders oversize cargo permit button and calls onOpenOversizePermit when clicked', () => {
+    const onOpenOversizePermit = vi.fn();
+    render(<Navbar {...defaultProps} onOpenOversizePermit={onOpenOversizePermit} />);
+
+    const btn = screen.getByTestId('navbar-oversize-permit-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenOversizePermit).toHaveBeenCalledTimes(1);
+  });
 });

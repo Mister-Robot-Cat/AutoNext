@@ -122,6 +122,7 @@ interface CarDetailModalProps {
   onOpenDriverMedical?: (vehicle: Vehicle) => void;
   onOpenDrivingSchool?: (vehicle: Vehicle) => void;
   onOpenAdrCompliance?: (vehicle: Vehicle) => void;
+  onOpenOversizePermit?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -174,6 +175,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenDriverMedical,
   onOpenDrivingSchool,
   onOpenAdrCompliance,
+  onOpenOversizePermit,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -970,6 +972,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Flame className="w-4 h-4" />
                     <span>FHN & BDYP ADR Təhlükəli Yüklərin Daşınması & Narıncı Kemler Standartı</span>
+                  </button>
+                )}
+
+                {/* AAYDA & BDYP Oversize & Heavy Axle Transport Permitting Shortcut */}
+                {onOpenOversizePermit && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenOversizePermit(vehicle)}
+                    data-testid="oversize-permit-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 border border-orange-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Truck className="w-4 h-4" />
+                    <span>AAYDA & BDYP İriqabaritli və Ağırçəkili Yük Daşınması (NK № 104) & Xüsusi İcazə</span>
                   </button>
                 )}
 

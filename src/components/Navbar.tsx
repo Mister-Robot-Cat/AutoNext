@@ -32,7 +32,8 @@ import {
   Activity,
   Stethoscope,
   GraduationCap,
-  Flame
+  Flame,
+  Truck
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -75,6 +76,7 @@ interface NavbarProps {
   onOpenDriverMedical?: () => void;
   onOpenDrivingSchool?: () => void;
   onOpenAdrCompliance?: () => void;
+  onOpenOversizePermit?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -117,6 +119,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenDriverMedical,
   onOpenDrivingSchool,
   onOpenAdrCompliance,
+  onOpenOversizePermit,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -467,6 +470,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Flame className="w-4 h-4 text-amber-400" />
               <span className="hidden xl:inline">ADR Təhlükəli Yüklər</span>
+            </button>
+          )}
+
+          {/* AAYDA & BDYP Oversize and Heavy Axle Transport Permitting Button */}
+          {onOpenOversizePermit && (
+            <button
+              onClick={onOpenOversizePermit}
+              data-testid="navbar-oversize-permit-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 border border-orange-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="AAYDA & BDYP İriqabaritli və Ağırçəkili Yüklərin Daşınması (NK № 104), Körpü Mühəndisliyi & Elektron Xüsusi İcazə Portalı"
+            >
+              <Truck className="w-4 h-4 text-orange-400" />
+              <span className="hidden xl:inline">İriqabaritli Yüklər</span>
             </button>
           )}
 

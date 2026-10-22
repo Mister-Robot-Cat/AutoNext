@@ -1055,4 +1055,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(btn);
     expect(onOpenAdrComplianceMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenOversizePermit when clicking oversize cargo permit shortcut button', () => {
+    const onOpenOversizePermitMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenOversizePermit={onOpenOversizePermitMock}
+      />
+    );
+
+    const btn = screen.getByTestId('oversize-permit-shortcut-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenOversizePermitMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });

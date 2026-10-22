@@ -465,6 +465,16 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official FHN State Industrial Safety Agency Electronic Special Transport Permit generator (`FHN-ADR-2026-XXXXX`) with QR security verification checksum, carrier VÖEN, vehicle plate, UN code, and live unified registry lookup
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/adrCompliance.test.ts` and `src/components/__tests__/AdrComplianceModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
 
+---
+
+### 🚛 Milestone 50: Official AAYDA & BDYP Heavy Axle Load & Oversize Cargo Road Transport Permitting Portal (İriqabaritli və Ağırçəkili Yüklərin Daşınması — AAYDA & BDYP Rəsmi Xüsusi İcazə Portalı, Ox Yükü / Qabarit Standartları — YHQ Maddə 57 & NK Qərar № 104, İXM Maddə 353 Cərimə Matrisi, Eskort/Müşayiət Avtomobili Qaydaları, Yola Dəyən Ziyan Rüsumu & Elektron Xüsusi Yol Marşrut İcazəsi Portalı) (Completed)
+- [x] Add Official AAYDA & BDYP Heavy Axle Load & Oversize Cargo Transport Modal (`OversizePermitModal.tsx`) with Dimension & Axle Load Auditor, Azerbaijan Highway Corridors & Bridge Clearance Radar (M-1, M-2, M-3, M-4, Alat Hub), Pilot/Police Escort Protocol, Official Electronic Special Route Permit Generator, and Unified Permit Registry Lookup
+- [x] Implement statutory oversize compliance, axle load distribution, escort tier determination, and AAYDA road wear damage engine (`src/utils/oversizePermitCompliance.ts`) adhering to Cabinet of Ministers Decision No. 104, Law on Road Traffic (YHQ Article 57), Law on State Duties (Article 33 base duty), and Code of Administrative Offences (İXM Article 353: 600–800 AZN driver / 1,400–2,000 AZN official / 4,000–7,000 AZN legal entity fines, and impound towing)
+- [x] Add comprehensive mock heavy transport database (`src/data/mockOversizeData.ts`) covering 7 cargo presets (CAT 336 excavator, 55m wind turbine blade, oilfield drilling mud tank, 80t electrical transformer, Liebherr LTM mobile crane, 40ft container with intermodal 44t exemption), 5 Azerbaijan transit corridors with bridge clearances & WIM scales, and verifiable sample `AAYDA-OVS-2026-XXXXX` permits
+- [x] Build official AAYDA & BDYP Electronic Special Route Permit generator (`AAYDA-OVS-2026-XXXXX`) with SHA256 security checksum, QR verification hash, carrier VÖEN, tractor/trailer plates, approved corridor, transit distance, itemized road wear damage fees, and printable layout
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/oversizePermitCompliance.test.ts` and `src/components/__tests__/OversizePermitModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
+
+
 
 
 

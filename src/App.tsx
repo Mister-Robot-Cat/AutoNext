@@ -65,6 +65,7 @@ const SuspensionChassisModal = React.lazy(() => import('./components/SuspensionC
 const DriverMedicalModal = React.lazy(() => import('./components/DriverMedicalModal').then(m => ({ default: m.DriverMedicalModal })));
 const DrivingSchoolModal = React.lazy(() => import('./components/DrivingSchoolModal').then(m => ({ default: m.DrivingSchoolModal })));
 const AdrComplianceModal = React.lazy(() => import('./components/AdrComplianceModal').then(m => ({ default: m.AdrComplianceModal })));
+const OversizePermitModal = React.lazy(() => import('./components/OversizePermitModal').then(m => ({ default: m.OversizePermitModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -230,6 +231,8 @@ export function App() {
   const [isDrivingSchoolModalOpen, setIsDrivingSchoolModalOpen] = useState(false);
   const [adrTargetCar, setAdrTargetCar] = useState<Vehicle | null>(null);
   const [isAdrModalOpen, setIsAdrModalOpen] = useState(false);
+  const [oversizeTargetCar, setOversizeTargetCar] = useState<Vehicle | null>(null);
+  const [isOversizeModalOpen, setIsOversizeModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -403,6 +406,10 @@ export function App() {
         onOpenAdrCompliance={() => {
           setAdrTargetCar(vehicles[0] || null);
           setIsAdrModalOpen(true);
+        }}
+        onOpenOversizePermit={() => {
+          setOversizeTargetCar(vehicles[0] || null);
+          setIsOversizeModalOpen(true);
         }}
       />
 
@@ -1101,6 +1108,10 @@ export function App() {
             setAdrTargetCar(car);
             setIsAdrModalOpen(true);
           }}
+          onOpenOversizePermit={(car) => {
+            setOversizeTargetCar(car);
+            setIsOversizeModalOpen(true);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -1562,6 +1573,17 @@ export function App() {
           onClose={() => {
             setIsAdrModalOpen(false);
             setAdrTargetCar(null);
+          }}
+        />
+
+        {/* Official AAYDA & BDYP Heavy Axle Load & Oversize Cargo Road Transport Modal */}
+        <OversizePermitModal
+          isOpen={isOversizeModalOpen || !!oversizeTargetCar}
+          currency={currency}
+          initialPlate={oversizeTargetCar?.plateNumber || '99-JH-840'}
+          onClose={() => {
+            setIsOversizeModalOpen(false);
+            setOversizeTargetCar(null);
           }}
         />
 
