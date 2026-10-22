@@ -1115,4 +1115,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(btn);
     expect(onOpenSpecialSignalMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('renders vehicle auction shortcut button and calls onOpenVehicleAuction when clicked', () => {
+    const onOpenVehicleAuctionMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenVehicleAuction={onOpenVehicleAuctionMock}
+      />
+    );
+
+    const btn = screen.getByTestId('vehicle-auction-shortcut-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenVehicleAuctionMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });

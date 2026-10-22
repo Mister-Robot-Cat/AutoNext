@@ -61,7 +61,8 @@ import {
   Stethoscope,
   GraduationCap,
   Flame,
-  Siren
+  Siren,
+  Gavel
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -127,6 +128,7 @@ interface CarDetailModalProps {
   onOpenOversizePermit?: (vehicle: Vehicle) => void;
   onOpenAccidentForensics?: (vehicle: Vehicle) => void;
   onOpenSpecialSignal?: (vehicle: Vehicle) => void;
+  onOpenVehicleAuction?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -182,6 +184,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenOversizePermit,
   onOpenAccidentForensics,
   onOpenSpecialSignal,
+  onOpenVehicleAuction,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -1017,6 +1020,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Siren className="w-4 h-4 text-blue-400" />
                     <span>DİN & BDYP Xüsusi Sayrışan Mayak («Miqalka») & Siren Qanuniliyi</span>
+                  </button>
+                )}
+
+                {/* Əmlak Məsələləri Dövlət Xidməti & Məhkəmə İcraçıları Dövlət Hərracı Shortcut */}
+                {onOpenVehicleAuction && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenVehicleAuction(vehicle)}
+                    data-testid="vehicle-auction-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Gavel className="w-4 h-4 text-amber-400" />
+                    <span>Dövlət Əmlakı və Müsadirə Olunmuş Nəqliyyat Hərracı (e-herrac)</span>
                   </button>
                 )}
 

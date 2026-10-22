@@ -35,7 +35,8 @@ import {
   Flame,
   Truck,
   Crosshair,
-  Siren
+  Siren,
+  Gavel
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -81,6 +82,7 @@ interface NavbarProps {
   onOpenOversizePermit?: () => void;
   onOpenAccidentForensics?: () => void;
   onOpenSpecialSignal?: () => void;
+  onOpenVehicleAuction?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -126,6 +128,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenOversizePermit,
   onOpenAccidentForensics,
   onOpenSpecialSignal,
+  onOpenVehicleAuction,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -515,6 +518,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Siren className="w-4 h-4 text-blue-400" />
               <span className="hidden xl:inline">Sayrışan Mayak & Siren</span>
+            </button>
+          )}
+
+          {/* Əmlak Məsələləri Dövlət Xidməti & Məhkəmə İcraçıları Dövlət Hərracı Button */}
+          {onOpenVehicleAuction && (
+            <button
+              onClick={onOpenVehicleAuction}
+              data-testid="navbar-vehicle-auction-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="Dövlət Əmlakı və Müsadirə Olunmuş Nəqliyyat Vasitələrinin Rəsmi Elektron Hərrac Portalı (e-herrac.emlak.gov.az)"
+            >
+              <Gavel className="w-4 h-4 text-amber-400" />
+              <span className="hidden xl:inline">Dövlət Hərracı</span>
             </button>
           )}
 

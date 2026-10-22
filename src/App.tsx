@@ -68,6 +68,7 @@ const AdrComplianceModal = React.lazy(() => import('./components/AdrComplianceMo
 const OversizePermitModal = React.lazy(() => import('./components/OversizePermitModal').then(m => ({ default: m.OversizePermitModal })));
 const AccidentForensicsModal = React.lazy(() => import('./components/AccidentForensicsModal').then(m => ({ default: m.AccidentForensicsModal })));
 const SpecialSignalModal = React.lazy(() => import('./components/SpecialSignalModal').then(m => ({ default: m.SpecialSignalModal })));
+const VehicleAuctionModal = React.lazy(() => import('./components/VehicleAuctionModal').then(m => ({ default: m.VehicleAuctionModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -239,6 +240,7 @@ export function App() {
   const [isAccidentForensicsModalOpen, setIsAccidentForensicsModalOpen] = useState(false);
   const [specialSignalTargetCar, setSpecialSignalTargetCar] = useState<Vehicle | null>(null);
   const [isSpecialSignalModalOpen, setIsSpecialSignalModalOpen] = useState(false);
+  const [isVehicleAuctionModalOpen, setIsVehicleAuctionModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -424,6 +426,9 @@ export function App() {
         onOpenSpecialSignal={() => {
           setSpecialSignalTargetCar(vehicles[0] || null);
           setIsSpecialSignalModalOpen(true);
+        }}
+        onOpenVehicleAuction={() => {
+          setIsVehicleAuctionModalOpen(true);
         }}
       />
 
@@ -1134,6 +1139,9 @@ export function App() {
             setSpecialSignalTargetCar(car);
             setIsSpecialSignalModalOpen(true);
           }}
+          onOpenVehicleAuction={() => {
+            setIsVehicleAuctionModalOpen(true);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -1635,6 +1643,12 @@ export function App() {
             setIsSpecialSignalModalOpen(false);
             setSpecialSignalTargetCar(null);
           }}
+        />
+
+        {/* State Property & Confiscated Vehicle Auction Modal */}
+        <VehicleAuctionModal
+          isOpen={isVehicleAuctionModalOpen}
+          onClose={() => setIsVehicleAuctionModalOpen(false)}
         />
 
 

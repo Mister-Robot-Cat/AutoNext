@@ -378,4 +378,14 @@ describe('Navbar Component', () => {
     fireEvent.click(btn);
     expect(onOpenSpecialSignal).toHaveBeenCalledTimes(1);
   });
+
+  it('renders vehicle auction button and calls onOpenVehicleAuction when clicked', () => {
+    const onOpenVehicleAuction = vi.fn();
+    render(<Navbar {...defaultProps} onOpenVehicleAuction={onOpenVehicleAuction} />);
+
+    const btn = screen.getByTestId('navbar-vehicle-auction-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenVehicleAuction).toHaveBeenCalledTimes(1);
+  });
 });
