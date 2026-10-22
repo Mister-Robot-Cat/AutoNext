@@ -474,6 +474,16 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official AAYDA & BDYP Electronic Special Route Permit generator (`AAYDA-OVS-2026-XXXXX`) with SHA256 security checksum, QR verification hash, carrier VÖEN, tractor/trailer plates, approved corridor, transit distance, itemized road wear damage fees, and printable layout
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/oversizePermitCompliance.test.ts` and `src/components/__tests__/OversizePermitModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
 
+---
+
+### 💥 Milestone 51: Official BDYP, Ədliyyə Nazirliyi & İSB Traffic Accident (YNH) Investigation, Skid Mark Speed Telemetry ($v = \sqrt{254 \cdot \mu \cdot S}$) & Forensic Crash Reconstruction Portal (BDYP & Ədliyyə Nazirliyi Məhkəmə Ekspertizası Mərkəzi — Yol-Nəqliyyat Hadisəsi (YNH) Avtotexniki Ekspertizası, Tormoz İzi ilə Qəza Sürətinin Hesablanması $v = \sqrt{254 \cdot \mu \cdot S}$, Piyada Vurma Reaksiya/Dayanma Zonası, İXM Maddə 327 / CM Maddə 263 Məsuliyyət Matrisi, İSB Sığorta Zərəri və Rəsmi MEM-YNH-2026 Ekspertiza Rəyi Portalı) (Completed)
+- [x] Add Official BDYP & Ədliyyə Nazirliyi Traffic Accident Forensics & Reconstruction Modal (`AccidentForensicsModal.tsx`) with Skid Mark Speed Telemetry ($v = \sqrt{254 \cdot \mu \cdot S}$), Pedestrian Hazard Avoidance Auditor, Criminal Code Art. 263 vs İXM Art. 327 Legal Liability Classifier, İSB Compulsory & KASKO Damage Settlement, and Official MEM-YNH-2026 Certificate Generator
+- [x] Implement statutory forensic crash calculation & legal liability engine (`src/utils/accidentForensics.ts`) adhering to Forensic Auto-Technical Calculation Standards ($v = \sqrt{254 \cdot (\mu \pm 0.01 \cdot i) \cdot \eta \cdot S}$), Azerbaijan Criminal Code (Cinayət Məcəlləsi Articles 263, 263-1, 264), Code of Administrative Offences (İXM Articles 327.1, 327.3, 327.8, 333.1), and Compulsory Insurance Bureau (İSB) claims calculation rules
+- [x] Add comprehensive mock accident forensics database (`src/data/mockAccidentForensicsData.ts`) covering 4 authentic collision scenarios (Heydar Aliyev Ave pedestrian impact, Tbilisi Ave wet intersection, M-1 Sumgayit high-speed rollover, M-4 Shamakhi black ice), 5 accredited forensic institutions across Baku, Ganja, and Sheki, and verifiable sample `MEM-YNH-2026-XXXXX` conclusion reports
+- [x] Build official Ministry of Justice Forensic Center Electronic Technical Expertise Conclusion generator (`MEM-YNH-2026-XXXXX`) with SİMA digital signature hash, QR verification checksum, lead expert credentials, itemized forensic formula telemetry, and printable layout
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/accidentForensics.test.ts` and `src/components/__tests__/AccidentForensicsModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
+
+
 
 
 

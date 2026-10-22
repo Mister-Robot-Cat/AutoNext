@@ -33,7 +33,8 @@ import {
   Stethoscope,
   GraduationCap,
   Flame,
-  Truck
+  Truck,
+  Crosshair
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -77,6 +78,7 @@ interface NavbarProps {
   onOpenDrivingSchool?: () => void;
   onOpenAdrCompliance?: () => void;
   onOpenOversizePermit?: () => void;
+  onOpenAccidentForensics?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -120,6 +122,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenDrivingSchool,
   onOpenAdrCompliance,
   onOpenOversizePermit,
+  onOpenAccidentForensics,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -483,6 +486,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Truck className="w-4 h-4 text-orange-400" />
               <span className="hidden xl:inline">İriqabaritli Yüklər</span>
+            </button>
+          )}
+
+          {/* BDYP & Ədliyyə Nazirliyi YNH Məhkəmə Avtotexniki Ekspertizası Button */}
+          {onOpenAccidentForensics && (
+            <button
+              onClick={onOpenAccidentForensics}
+              data-testid="navbar-accident-forensics-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="BDYP & Ədliyyə Nazirliyi YNH Məhkəmə Avtotexniki Ekspertizası (v=√(254·μ·S)), Qəza Tormoz İzi və Məsuliyyət Portalı"
+            >
+              <Crosshair className="w-4 h-4 text-red-400" />
+              <span className="hidden xl:inline">YNH Ekspertizası</span>
             </button>
           )}
 

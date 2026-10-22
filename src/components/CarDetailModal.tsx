@@ -37,6 +37,7 @@ import {
   AlertTriangle,
   Building2,
   Truck,
+  Crosshair,
   Zap,
   Route,
   Sun,
@@ -123,6 +124,7 @@ interface CarDetailModalProps {
   onOpenDrivingSchool?: (vehicle: Vehicle) => void;
   onOpenAdrCompliance?: (vehicle: Vehicle) => void;
   onOpenOversizePermit?: (vehicle: Vehicle) => void;
+  onOpenAccidentForensics?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -176,6 +178,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenDrivingSchool,
   onOpenAdrCompliance,
   onOpenOversizePermit,
+  onOpenAccidentForensics,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -985,6 +988,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Truck className="w-4 h-4" />
                     <span>AAYDA & BDYP İriqabaritli və Ağırçəkili Yük Daşınması (NK № 104) & Xüsusi İcazə</span>
+                  </button>
+                )}
+
+                {/* BDYP & Ədliyyə Nazirliyi YNH Məhkəmə Avtotexniki Ekspertizası Shortcut */}
+                {onOpenAccidentForensics && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenAccidentForensics(vehicle)}
+                    data-testid="accident-forensics-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Crosshair className="w-4 h-4" />
+                    <span>BDYP & Ədliyyə Nazirliyi YNH Məhkəmə Avtotexniki Ekspertizası (v=√(254·μ·S))</span>
                   </button>
                 )}
 

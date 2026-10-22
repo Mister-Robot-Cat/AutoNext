@@ -1075,4 +1075,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(btn);
     expect(onOpenOversizePermitMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenAccidentForensics when clicking accident forensics shortcut button', () => {
+    const onOpenAccidentForensicsMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenAccidentForensics={onOpenAccidentForensicsMock}
+      />
+    );
+
+    const btn = screen.getByTestId('accident-forensics-shortcut-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenAccidentForensicsMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });

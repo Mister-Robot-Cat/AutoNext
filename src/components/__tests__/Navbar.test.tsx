@@ -358,4 +358,14 @@ describe('Navbar Component', () => {
     fireEvent.click(btn);
     expect(onOpenOversizePermit).toHaveBeenCalledTimes(1);
   });
+
+  it('renders accident forensics button and calls onOpenAccidentForensics when clicked', () => {
+    const onOpenAccidentForensics = vi.fn();
+    render(<Navbar {...defaultProps} onOpenAccidentForensics={onOpenAccidentForensics} />);
+
+    const btn = screen.getByTestId('navbar-accident-forensics-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenAccidentForensics).toHaveBeenCalledTimes(1);
+  });
 });

@@ -66,6 +66,7 @@ const DriverMedicalModal = React.lazy(() => import('./components/DriverMedicalMo
 const DrivingSchoolModal = React.lazy(() => import('./components/DrivingSchoolModal').then(m => ({ default: m.DrivingSchoolModal })));
 const AdrComplianceModal = React.lazy(() => import('./components/AdrComplianceModal').then(m => ({ default: m.AdrComplianceModal })));
 const OversizePermitModal = React.lazy(() => import('./components/OversizePermitModal').then(m => ({ default: m.OversizePermitModal })));
+const AccidentForensicsModal = React.lazy(() => import('./components/AccidentForensicsModal').then(m => ({ default: m.AccidentForensicsModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -233,6 +234,8 @@ export function App() {
   const [isAdrModalOpen, setIsAdrModalOpen] = useState(false);
   const [oversizeTargetCar, setOversizeTargetCar] = useState<Vehicle | null>(null);
   const [isOversizeModalOpen, setIsOversizeModalOpen] = useState(false);
+  const [accidentForensicsTargetCar, setAccidentForensicsTargetCar] = useState<Vehicle | null>(null);
+  const [isAccidentForensicsModalOpen, setIsAccidentForensicsModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -410,6 +413,10 @@ export function App() {
         onOpenOversizePermit={() => {
           setOversizeTargetCar(vehicles[0] || null);
           setIsOversizeModalOpen(true);
+        }}
+        onOpenAccidentForensics={() => {
+          setAccidentForensicsTargetCar(vehicles[0] || null);
+          setIsAccidentForensicsModalOpen(true);
         }}
       />
 
@@ -1112,6 +1119,10 @@ export function App() {
             setOversizeTargetCar(car);
             setIsOversizeModalOpen(true);
           }}
+          onOpenAccidentForensics={(car) => {
+            setAccidentForensicsTargetCar(car);
+            setIsAccidentForensicsModalOpen(true);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -1584,6 +1595,18 @@ export function App() {
           onClose={() => {
             setIsOversizeModalOpen(false);
             setOversizeTargetCar(null);
+          }}
+        />
+
+        {/* Official BDYP & Ədliyyə Nazirliyi YNH Məhkəmə Avtotexniki Ekspertizası Modal */}
+        <AccidentForensicsModal
+          isOpen={isAccidentForensicsModalOpen || !!accidentForensicsTargetCar}
+          currency={currency}
+          initialPlate={accidentForensicsTargetCar?.plateNumber || '90-OX-404'}
+          initialVehicleModel={accidentForensicsTargetCar ? `${accidentForensicsTargetCar.make} ${accidentForensicsTargetCar.model}` : 'BMW 530i (G30)'}
+          onClose={() => {
+            setIsAccidentForensicsModalOpen(false);
+            setAccidentForensicsTargetCar(null);
           }}
         />
 
