@@ -37,7 +37,8 @@ import {
   Crosshair,
   Siren,
   Gavel,
-  Compass
+  Compass,
+  ReceiptText
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -86,6 +87,7 @@ interface NavbarProps {
   onOpenVehicleAuction?: () => void;
   onOpenCustomsTransit?: () => void;
   onOpenKarabakhPermit?: () => void;
+  onOpenVehicleTax?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -134,6 +136,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenVehicleAuction,
   onOpenCustomsTransit,
   onOpenKarabakhPermit,
+  onOpenVehicleTax,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -562,6 +565,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Compass className="w-4 h-4 text-teal-400" />
               <span className="hidden xl:inline">Yolumuz Qarabağa</span>
+            </button>
+          )}
+
+          {/* DVX Avtomobil Vergi Portalı & E-Qaimə Button */}
+          {onOpenVehicleTax && (
+            <button
+              onClick={onOpenVehicleTax}
+              data-testid="navbar-vehicle-tax-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-600/10 hover:bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="Dövlət Vergi Xidməti (DVX) Avtomobil Vergi Portalı, Yol Vergisi & E-Qaimə Sistemi"
+            >
+              <ReceiptText className="w-4 h-4 text-emerald-400" />
+              <span className="hidden xl:inline">DVX Vergi & E-Qaimə</span>
             </button>
           )}
 

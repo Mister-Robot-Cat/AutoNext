@@ -519,6 +519,15 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official Electronic Travel Permit Voucher generator (`QARABAG-EYOL-2026-XXXXX`) with Ministry of Digital Development and Transport (RİNN), DİN, ANAMA & BDYP credentials, SHA256 security checksum, QR verification visualizer, NBM ANPR barcode, passenger roster, and printable/copyable layout
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/karabakhPermit.test.ts` and `src/components/__tests__/KarabakhPermitModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
 
+---
+
+### 💼 Milestone 56: Official State Tax Service (İqtisadiyyat Nazirliyi yanında Dövlət Vergi Xidməti — DVX) Automotive Tax, Annual Road Tax (Yol Vergisi — Vergi Məcəlləsi Maddə 209–211), Dealership Trade-In Margin VAT (18% ƏDV), Corporate Fleet Depreciation (25%) & Electronic Tax Invoice («E-Qaimə-Faktura») Portal (Completed)
+- [x] Add Official State Tax Service (DVX) Automotive Tax, Road Tax, Trade-in VAT & E-Invoice Modal (`VehicleTaxModal.tsx`) with Annual Road Tax Engine, Trade-in Margin Calculator, Corporate Fleet 25% Depreciation Schedule, Regional Tax Offices & ASAN Radar, and Official DVX-AVT-2026 Electronic Tax Invoice Generator
+- [x] Implement statutory annual road tax, dealership trade-in margin VAT, and corporate fleet asset depreciation calculation engine (`src/utils/vehicleTax.ts`) adhering to Tax Code Articles 209-211 (tiered engine displacement rates 0.02-0.06 AZN/cm³, EV zero-tax exemption, bus & truck tonnage formulas), Articles 159 & 164 (18% VAT levied strictly on positive trade-in margin vs 2% simplified turnover tax), Article 114.3.4 (25% annual vehicle depreciation), and Articles 196-202 (1% corporate property tax on average residual value)
+- [x] Add comprehensive mock vehicle taxation database (`src/data/mockVehicleTaxData.ts`) covering 8 vehicle model presets, 6 strategic DVX regional headquarters and ASAN Xidmət tax centers across Baku, Sumgayit, and Ganja with live service window capacities and wait times, and verifiable sample `DVX-AVT-2026-XXXXX` electronic tax invoices
+- [x] Build official DVX Electronic Tax Invoice («E-Qaimə-Faktura») generator (`DVX-AVT-2026-XXXXX`) with AVİS integration status, SHA256 security checksum, SİMA digital signature UID, QR verification link, and printable/copyable layout
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/vehicleTax.test.ts` and `src/components/__tests__/VehicleTaxModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
+
 
 
 

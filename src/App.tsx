@@ -71,6 +71,7 @@ const SpecialSignalModal = React.lazy(() => import('./components/SpecialSignalMo
 const VehicleAuctionModal = React.lazy(() => import('./components/VehicleAuctionModal').then(m => ({ default: m.VehicleAuctionModal })));
 const CustomsTransitModal = React.lazy(() => import('./components/CustomsTransitModal').then(m => ({ default: m.CustomsTransitModal })));
 const KarabakhPermitModal = React.lazy(() => import('./components/KarabakhPermitModal').then(m => ({ default: m.KarabakhPermitModal })));
+const VehicleTaxModal = React.lazy(() => import('./components/VehicleTaxModal').then(m => ({ default: m.VehicleTaxModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -247,6 +248,8 @@ export function App() {
   const [isCustomsTransitModalOpen, setIsCustomsTransitModalOpen] = useState(false);
   const [karabakhPermitTargetCar, setKarabakhPermitTargetCar] = useState<Vehicle | null>(null);
   const [isKarabakhPermitModalOpen, setIsKarabakhPermitModalOpen] = useState(false);
+  const [vehicleTaxTargetCar, setVehicleTaxTargetCar] = useState<Vehicle | null>(null);
+  const [isVehicleTaxModalOpen, setIsVehicleTaxModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -443,6 +446,10 @@ export function App() {
         onOpenKarabakhPermit={() => {
           setKarabakhPermitTargetCar(vehicles[0] || null);
           setIsKarabakhPermitModalOpen(true);
+        }}
+        onOpenVehicleTax={() => {
+          setVehicleTaxTargetCar(vehicles[0] || null);
+          setIsVehicleTaxModalOpen(true);
         }}
       />
 
@@ -1164,6 +1171,10 @@ export function App() {
             setKarabakhPermitTargetCar(car);
             setIsKarabakhPermitModalOpen(true);
           }}
+          onOpenVehicleTax={(car) => {
+            setVehicleTaxTargetCar(car);
+            setIsVehicleTaxModalOpen(true);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -1700,6 +1711,23 @@ export function App() {
           onClose={() => {
             setIsKarabakhPermitModalOpen(false);
             setKarabakhPermitTargetCar(null);
+          }}
+        />
+
+        {/* Official State Tax Service (DVX) Automotive Tax, Road Tax, Trade-in VAT & E-Invoice Modal */}
+        <VehicleTaxModal
+          isOpen={isVehicleTaxModalOpen}
+          initialVehicle={vehicleTaxTargetCar ? {
+            makeModel: `${vehicleTaxTargetCar.make} ${vehicleTaxTargetCar.model}`,
+            vin: vehicleTaxTargetCar.vin,
+            plate: vehicleTaxTargetCar.plateNumber || '99-TX-101',
+            price: vehicleTaxTargetCar.priceAzn,
+            isElectric: vehicleTaxTargetCar.fuelType?.toLowerCase().includes('electric'),
+            engineCc: Math.round(vehicleTaxTargetCar.engineVolumeLiters * 1000) || 1998,
+          } : undefined}
+          onClose={() => {
+            setIsVehicleTaxModalOpen(false);
+            setVehicleTaxTargetCar(null);
           }}
         />
 

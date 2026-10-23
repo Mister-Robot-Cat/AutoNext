@@ -43,6 +43,7 @@ import {
   Sun,
   FileSignature,
   Globe,
+  ReceiptText,
   Car,
   Wrench,
   Recycle,
@@ -131,6 +132,7 @@ interface CarDetailModalProps {
   onOpenVehicleAuction?: (vehicle: Vehicle) => void;
   onOpenCustomsTransit?: (vehicle: Vehicle) => void;
   onOpenKarabakhPermit?: (vehicle: Vehicle) => void;
+  onOpenVehicleTax?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -189,6 +191,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenVehicleAuction,
   onOpenCustomsTransit,
   onOpenKarabakhPermit,
+  onOpenVehicleTax,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -1063,6 +1066,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Compass className="w-4 h-4 text-teal-400" />
                     <span>Yolumuz Qarabağa (e-yol.az) Elektron Giriş İcazəsi Portalı</span>
+                  </button>
+                )}
+
+                {/* DVX Avtomobil Vergi Portalı, İllik Yol Vergisi & E-Qaimə Shortcut */}
+                {onOpenVehicleTax && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenVehicleTax(vehicle)}
+                    data-testid="vehicle-tax-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-emerald-600/10 hover:bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <ReceiptText className="w-4 h-4 text-emerald-400" />
+                    <span>Dövlət Vergi Xidməti (DVX) Yol Vergisi, 18% ƏDV & E-Qaimə Portalı</span>
                   </button>
                 )}
 

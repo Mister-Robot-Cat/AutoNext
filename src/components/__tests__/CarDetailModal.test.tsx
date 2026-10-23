@@ -1175,4 +1175,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(btn);
     expect(onOpenKarabakhPermitMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('renders DVX vehicle tax shortcut button and calls onOpenVehicleTax when clicked', () => {
+    const onOpenVehicleTaxMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenVehicleTax={onOpenVehicleTaxMock}
+      />
+    );
+
+    const btn = screen.getByTestId('vehicle-tax-shortcut-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenVehicleTaxMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });

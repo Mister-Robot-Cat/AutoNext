@@ -408,4 +408,14 @@ describe('Navbar Component', () => {
     fireEvent.click(btn);
     expect(onOpenKarabakhPermit).toHaveBeenCalledTimes(1);
   });
+
+  it('renders DVX vehicle tax button and calls onOpenVehicleTax when clicked', () => {
+    const onOpenVehicleTax = vi.fn();
+    render(<Navbar {...defaultProps} onOpenVehicleTax={onOpenVehicleTax} />);
+
+    const btn = screen.getByTestId('navbar-vehicle-tax-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenVehicleTax).toHaveBeenCalledTimes(1);
+  });
 });
