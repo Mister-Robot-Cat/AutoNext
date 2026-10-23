@@ -418,4 +418,14 @@ describe('Navbar Component', () => {
     fireEvent.click(btn);
     expect(onOpenVehicleTax).toHaveBeenCalledTimes(1);
   });
+
+  it('renders AMB & İSB Bonus-Malus button and calls onOpenBonusMalus when clicked', () => {
+    const onOpenBonusMalus = vi.fn();
+    render(<Navbar {...defaultProps} onOpenBonusMalus={onOpenBonusMalus} />);
+
+    const btn = screen.getByTestId('navbar-bonus-malus-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenBonusMalus).toHaveBeenCalledTimes(1);
+  });
 });

@@ -1195,4 +1195,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(btn);
     expect(onOpenVehicleTaxMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('renders AMB & İSB Bonus-Malus shortcut button and calls onOpenBonusMalus when clicked', () => {
+    const onOpenBonusMalusMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenBonusMalus={onOpenBonusMalusMock}
+      />
+    );
+
+    const btn = screen.getByTestId('bonus-malus-shortcut-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenBonusMalusMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });

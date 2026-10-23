@@ -528,6 +528,16 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official DVX Electronic Tax Invoice («E-Qaimə-Faktura») generator (`DVX-AVT-2026-XXXXX`) with AVİS integration status, SHA256 security checksum, SİMA digital signature UID, QR verification link, and printable/copyable layout
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/vehicleTax.test.ts` and `src/components/__tests__/VehicleTaxModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
 
+---
+
+### 🛡️ Milestone 57: Official Central Bank of Azerbaijan (AMB), Compulsory Insurance Bureau (İSB) & ASA Driver Bonus-Malus Registry, Claims History & Statutory Premium Calculator Portal (AMB & İSB Rəsmi İcbari Avtomobil Sığortası Bonus-Malus Reyestri — Mərkəzi Bank Qaydaları, 14 Sinifli (BM 1–14) Əmsal Şkalası 0.45x–1.60x, İSB İnsident və Qəza Zərərlilik Tarixçəsi, Risk Profili Hesablayıcısı və Rəsmi AMB-BMS-2026 Sığorta Arayışı Portalı) (Completed)
+- [x] Add Official Central Bank of Azerbaijan (AMB) & İSB Compulsory Insurance Bonus-Malus Registry Modal (`BonusMalusModal.tsx`) with 14-Class Progression Matrix, Statutory Premium Calculator, İSB Unified Registry Driver Dossier Search, Accredited Insurers Radar, and Official Electronic Certificate Generator
+- [x] Implement statutory Bonus-Malus coefficient engine, 14-tier transition matrix, and multi-factor premium calculator (`src/utils/bonusMalus.ts`) adhering to Law on Compulsory Insurances (Chapter X) and AMB Regulations (BM 1-14 classes 0.45x to 1.60x, engine displacement multipliers km 1.0-5.0x, territory multipliers kt 0.95-1.10x, driver experience multipliers ks 1.0-1.35x, statutory 5,000 AZN property/health limits, and multi-currency conversions)
+- [x] Add comprehensive mock Bonus-Malus and claims history database (`src/data/mockBonusMalusData.ts`) covering 8 authentic driver dossiers with verified FIN codes, license credentials, and accident telemetry records, 6 accredited Azerbaijani insurance companies (PAŞA Sığorta, Qala, Atəşgah, Meqa, Xalq, Bakı) with market shares, 24/7 emergency hotlines, and claims payout solvency ratios, and 6 popular vehicle model presets
+- [x] Build official AMB & İSB Electronic Bonus-Malus Certificate generator (`AMB-BMS-2026-XXXXX`) with cryptographic SHA-256 verification hash, SİMA digital signature integration, QR verification link, and printable/copyable layout
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/bonusMalus.test.ts` and `src/components/__tests__/BonusMalusModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
+
+
 
 
 

@@ -133,6 +133,7 @@ interface CarDetailModalProps {
   onOpenCustomsTransit?: (vehicle: Vehicle) => void;
   onOpenKarabakhPermit?: (vehicle: Vehicle) => void;
   onOpenVehicleTax?: (vehicle: Vehicle) => void;
+  onOpenBonusMalus?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -192,6 +193,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenCustomsTransit,
   onOpenKarabakhPermit,
   onOpenVehicleTax,
+  onOpenBonusMalus,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -1079,6 +1081,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <ReceiptText className="w-4 h-4 text-emerald-400" />
                     <span>Dövlət Vergi Xidməti (DVX) Yol Vergisi, 18% ƏDV & E-Qaimə Portalı</span>
+                  </button>
+                )}
+
+                {/* AMB & İSB İcbari Sığorta 14 Sinifli Bonus-Malus Reyestri Shortcut */}
+                {onOpenBonusMalus && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenBonusMalus(vehicle)}
+                    data-testid="bonus-malus-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 border border-blue-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <ShieldCheck className="w-4 h-4 text-blue-400" />
+                    <span>AMB & İSB İcbari Sığorta Bonus-Malus Reyestri və Qəza Zərərlilik Portalı</span>
                   </button>
                 )}
 

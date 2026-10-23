@@ -72,6 +72,7 @@ const VehicleAuctionModal = React.lazy(() => import('./components/VehicleAuction
 const CustomsTransitModal = React.lazy(() => import('./components/CustomsTransitModal').then(m => ({ default: m.CustomsTransitModal })));
 const KarabakhPermitModal = React.lazy(() => import('./components/KarabakhPermitModal').then(m => ({ default: m.KarabakhPermitModal })));
 const VehicleTaxModal = React.lazy(() => import('./components/VehicleTaxModal').then(m => ({ default: m.VehicleTaxModal })));
+const BonusMalusModal = React.lazy(() => import('./components/BonusMalusModal').then(m => ({ default: m.BonusMalusModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -250,6 +251,8 @@ export function App() {
   const [isKarabakhPermitModalOpen, setIsKarabakhPermitModalOpen] = useState(false);
   const [vehicleTaxTargetCar, setVehicleTaxTargetCar] = useState<Vehicle | null>(null);
   const [isVehicleTaxModalOpen, setIsVehicleTaxModalOpen] = useState(false);
+  const [bonusMalusTargetCar, setBonusMalusTargetCar] = useState<Vehicle | null>(null);
+  const [isBonusMalusModalOpen, setIsBonusMalusModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -450,6 +453,10 @@ export function App() {
         onOpenVehicleTax={() => {
           setVehicleTaxTargetCar(vehicles[0] || null);
           setIsVehicleTaxModalOpen(true);
+        }}
+        onOpenBonusMalus={() => {
+          setBonusMalusTargetCar(vehicles[0] || null);
+          setIsBonusMalusModalOpen(true);
         }}
       />
 
@@ -1175,6 +1182,10 @@ export function App() {
             setVehicleTaxTargetCar(car);
             setIsVehicleTaxModalOpen(true);
           }}
+          onOpenBonusMalus={(car) => {
+            setBonusMalusTargetCar(car);
+            setIsBonusMalusModalOpen(true);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -1728,6 +1739,21 @@ export function App() {
           onClose={() => {
             setIsVehicleTaxModalOpen(false);
             setVehicleTaxTargetCar(null);
+          }}
+        />
+
+        {/* Official Central Bank of Azerbaijan (AMB) & İSB Compulsory Insurance Bonus-Malus Registry Modal */}
+        <BonusMalusModal
+          isOpen={isBonusMalusModalOpen}
+          initialVehicle={bonusMalusTargetCar ? {
+            makeModel: `${bonusMalusTargetCar.make} ${bonusMalusTargetCar.model}`,
+            plate: bonusMalusTargetCar.plateNumber || '90-AA-104',
+            isElectric: bonusMalusTargetCar.fuelType?.toLowerCase().includes('electric'),
+            engineCc: Math.round(bonusMalusTargetCar.engineVolumeLiters * 1000) || 1998,
+          } : undefined}
+          onClose={() => {
+            setIsBonusMalusModalOpen(false);
+            setBonusMalusTargetCar(null);
           }}
         />
 

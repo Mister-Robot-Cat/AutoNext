@@ -38,7 +38,8 @@ import {
   Siren,
   Gavel,
   Compass,
-  ReceiptText
+  ReceiptText,
+  ShieldCheck
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -88,6 +89,7 @@ interface NavbarProps {
   onOpenCustomsTransit?: () => void;
   onOpenKarabakhPermit?: () => void;
   onOpenVehicleTax?: () => void;
+  onOpenBonusMalus?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -137,6 +139,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenCustomsTransit,
   onOpenKarabakhPermit,
   onOpenVehicleTax,
+  onOpenBonusMalus,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -578,6 +581,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <ReceiptText className="w-4 h-4 text-emerald-400" />
               <span className="hidden xl:inline">DVX Vergi & E-Qaimə</span>
+            </button>
+          )}
+
+          {/* AMB & İSB Bonus-Malus Reyestri Button */}
+          {onOpenBonusMalus && (
+            <button
+              onClick={onOpenBonusMalus}
+              data-testid="navbar-bonus-malus-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 border border-blue-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="AMB & İSB İcbari Sığorta 14 Sinifli Bonus-Malus Reyestri və Qəza Tarixçəsi Portalı"
+            >
+              <ShieldCheck className="w-4 h-4 text-blue-400" />
+              <span className="hidden xl:inline">Bonus-Malus İSB</span>
             </button>
           )}
 
