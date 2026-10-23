@@ -75,6 +75,7 @@ const VehicleTaxModal = React.lazy(() => import('./components/VehicleTaxModal').
 const BonusMalusModal = React.lazy(() => import('./components/BonusMalusModal').then(m => ({ default: m.BonusMalusModal })));
 const EcoStickerModal = React.lazy(() => import('./components/EcoStickerModal').then(m => ({ default: m.EcoStickerModal })));
 const LeasingModal = React.lazy(() => import('./components/LeasingModal').then(m => ({ default: m.LeasingModal })));
+const RentalModal = React.lazy(() => import('./components/RentalModal').then(m => ({ default: m.RentalModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -259,6 +260,8 @@ export function App() {
   const [isEcoStickerModalOpen, setIsEcoStickerModalOpen] = useState(false);
   const [leasingTargetCar, setLeasingTargetCar] = useState<Vehicle | null>(null);
   const [isLeasingModalOpen, setIsLeasingModalOpen] = useState(false);
+  const [rentalTargetCar, setRentalTargetCar] = useState<Vehicle | null>(null);
+  const [isRentalModalOpen, setIsRentalModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -471,6 +474,10 @@ export function App() {
         onOpenLeasing={() => {
           setLeasingTargetCar(vehicles[0] || null);
           setIsLeasingModalOpen(true);
+        }}
+        onOpenRental={() => {
+          setRentalTargetCar(vehicles[0] || null);
+          setIsRentalModalOpen(true);
         }}
       />
 
@@ -1208,6 +1215,10 @@ export function App() {
             setLeasingTargetCar(car);
             setIsLeasingModalOpen(true);
           }}
+          onOpenRental={(car) => {
+            setRentalTargetCar(car);
+            setIsRentalModalOpen(true);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -1807,6 +1818,17 @@ export function App() {
           onClose={() => {
             setIsLeasingModalOpen(false);
             setLeasingTargetCar(null);
+          }}
+        />
+
+        {/* Official Azerbaijan Car Rental & Tourist Mobility Modal */}
+        <RentalModal
+          isOpen={isRentalModalOpen}
+          initialVehicle={rentalTargetCar}
+          currency={currency}
+          onClose={() => {
+            setIsRentalModalOpen(false);
+            setRentalTargetCar(null);
           }}
         />
 

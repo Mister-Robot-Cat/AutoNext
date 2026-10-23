@@ -1255,4 +1255,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(btn);
     expect(onOpenLeasingMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('renders ACRA & BDYP Car Rental portal shortcut and triggers onOpenRental callback', () => {
+    const onOpenRentalMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenRental={onOpenRentalMock}
+      />
+    );
+
+    const btn = screen.getByTestId('rental-shortcut-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenRentalMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });

@@ -555,6 +555,16 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official AMB & Azerbaijan Leasing Association Electronic Lease Approval Certificate generator (`AMB-LZG-2026-XXXXX`) with cryptographic verification checksum, QR code visualizer, itemized financial terms, tax exemptions, and printable/copyable layout
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/vehicleLeasing.test.ts` and `src/components/__tests__/LeasingModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`) covering financial and operational calculations, balloon amortization, corporate fiscal deductions, company filtering, and interactive modal workflows
 
+---
+
+### 🚗 Milestone 60: Official Azerbaijan Car Rental, Tourist Mobility & Short-Term Vehicle Fleet Lease Portal (Dövlət Turizm Agentliyi, BDYP & ACRA Rəsmi "Rent-a-Car" və Avtomobil İcarəsi Portalı — AR Mülki Məcəllə Maddə 700–710 İcarə Müqaviləsi, Təhlükəsizlik Depoziti (Françiza / KASKO Bloklanması), Yaş və Sürücülük Təcrübəsi Kriteriyaları, Məsafə Rejimi (Limitsiz vs 250 km/gün), Hava Limanı & Şəhər Təhvil Məntəqələri Radarı, BDYP Cərimə Qarantiyası və Rəsmi CAR-RNT-2026 Elektron İcarə Müqaviləsi) (Completed)
+- [x] Add Official Azerbaijan Car Rental, Tourist Mobility & Short-Term Lease Modal (`RentalModal.tsx`) with Interactive Fleet Selector, Duration Discounts (-10% to -25%), Standard vs Unlimited Mileage, Insurance Tiers (Basic, Super CDW, Zero Deductible), Add-ons, Driver Age/Experience Eligibility Auditor, Pickup/Drop-off Stations Radar, and Official CAR-RNT-2026 Electronic Agreement Generator
+- [x] Implement statutory car rental pricing, franchise deposit calculation, and eligibility engine (`src/utils/vehicleRental.ts`) adhering to Civil Code of Azerbaijan (Articles 700–710), duration discounts (1-3 days 0%, 4-7 days 10%, 8-14 days 18%, 15+ days 25%), airport surcharge (15 AZN), intercity one-way fees (60-80 AZN), 18% VAT, and multi-currency conversions (AZN, USD, EUR)
+- [x] Add comprehensive mock rental database (`src/data/mockRentalData.ts`) covering 8 authentic fleet vehicles across economy, crossover, business, luxury, EV, and minivan classes, 6 strategic stations (GYD Airport, Nizami St, Port Baku, White City, Ganja Airport, Gabala Hub), 6 accredited rental agencies (Hertz, Avis, Enterprise, Europcar, Ram Servis, Aznur), and verified active rental contracts
+- [x] Build official ACRA & BDYP Electronic Rental Agreement generator (`CAR-RNT-2026-XXXXX`) with cryptographic verification checksum, QR code visualizer, itemized financial terms, deposit refund terms, and printable/copyable layout
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/vehicleRental.test.ts` and `src/components/__tests__/RentalModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`) covering pricing formulas, discount brackets, one-way fees, insurance tiers, eligibility gates, tabs navigation, contract generation, print and copy actions
+
+
 
 
 

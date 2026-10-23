@@ -41,7 +41,8 @@ import {
   ReceiptText,
   ShieldCheck,
   Leaf,
-  Briefcase
+  Briefcase,
+  KeyRound
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -94,6 +95,7 @@ interface NavbarProps {
   onOpenBonusMalus?: () => void;
   onOpenEcoSticker?: () => void;
   onOpenLeasing?: () => void;
+  onOpenRental?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -146,6 +148,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenBonusMalus,
   onOpenEcoSticker,
   onOpenLeasing,
+  onOpenRental,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -626,6 +629,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Briefcase className="w-4 h-4 text-teal-400" />
               <span className="hidden xl:inline">Lizinq Portalı</span>
+            </button>
+          )}
+
+          {/* ACRA & BDYP Avtomobil İcarəsi və Rent-a-Car Portalı Button */}
+          {onOpenRental && (
+            <button
+              onClick={onOpenRental}
+              data-testid="navbar-rental-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-sky-600/10 hover:bg-sky-600/20 text-sky-400 border border-sky-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="Dövlət Turizm Agentliyi & BDYP Rəsmi Rent-a-Car və Avtomobil İcarəsi Portalı"
+            >
+              <KeyRound className="w-4 h-4 text-sky-400" />
+              <span className="hidden xl:inline">Rent-a-Car</span>
             </button>
           )}
 

@@ -448,4 +448,14 @@ describe('Navbar Component', () => {
     fireEvent.click(btn);
     expect(onOpenLeasing).toHaveBeenCalledTimes(1);
   });
+
+  it('renders ACRA & BDYP Car Rental button and calls onOpenRental when clicked', () => {
+    const onOpenRental = vi.fn();
+    render(<Navbar {...defaultProps} onOpenRental={onOpenRental} />);
+
+    const btn = screen.getByTestId('navbar-rental-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenRental).toHaveBeenCalledTimes(1);
+  });
 });

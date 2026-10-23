@@ -65,7 +65,8 @@ import {
   GraduationCap,
   Flame,
   Siren,
-  Gavel
+  Gavel,
+  KeyRound
 } from 'lucide-react';
 import { Gauge } from './Gauge';
 import { BarChart, generateVehiclePriceDistribution } from './BarChart';
@@ -138,6 +139,7 @@ interface CarDetailModalProps {
   onOpenBonusMalus?: (vehicle: Vehicle) => void;
   onOpenEcoSticker?: (vehicle: Vehicle) => void;
   onOpenLeasing?: (vehicle: Vehicle) => void;
+  onOpenRental?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -200,6 +202,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenBonusMalus,
   onOpenEcoSticker,
   onOpenLeasing,
+  onOpenRental,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -1126,6 +1129,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Briefcase className="w-4 h-4 text-teal-400" />
                     <span>AMB & ALA Rəsmi Avtomobil Lizinqi & Maliyyə İcarəsi Portalı</span>
+                  </button>
+                )}
+
+                {/* ACRA & BDYP Avtomobil İcarəsi və Rent-a-Car Shortcut */}
+                {onOpenRental && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenRental(vehicle)}
+                    data-testid="rental-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-sky-600/10 hover:bg-sky-600/20 text-sky-400 border border-sky-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <KeyRound className="w-4 h-4 text-sky-400" />
+                    <span>Dövlət Turizm Agentliyi & BDYP Rəsmi Rent-a-Car və İcarə Portalı</span>
                   </button>
                 )}
 
