@@ -510,6 +510,16 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official State Customs Committee Electronic Temporary Import Certificate generator (`DGK-MVI-2026-XXXXX`) with national coat of arms header, SHA256 security checksum, foreign plate visualizer, inspector ID, permitted exit deadline countdown, and printable/copyable layout
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/customsTransit.test.ts` and `src/components/__tests__/CustomsTransitModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
 
+---
+
+### 🏔️ Milestone 55: Official RİNN, DİN, ANAMA & BDYP "Yolumuz Qarabağa" Electronic Travel & Vehicle Entry Permit Portal ("Yolumuz Qarabağa" / e-yol.az Rəsmi Portalı — Qarabağ və Şərqi Zəngəzur İqtisadi Rayonlarına Fərdi Avtomobillə Səfər İcazəsi, Nəzarət-Buraxılış Məntəqələri (NBM) Radarı, ANAMA Mina Təhlükəsizliyi Qaydaları, Zəfər Yolu & Şuşa-Laçın-Kəlbəcər Marşrutları, FİN/DQN Uyğunluq Auditoru və Rəsmi QARABAG-EYOL-2026 Elektron Giriş İcazəsi Portalı) (Completed)
+- [x] Add Official RİNN, DİN, ANAMA & BDYP "Yolumuz Qarabağa" Electronic Travel & Vehicle Entry Permit Modal (`KarabakhPermitModal.tsx`) with Interactive Destination & Route Configurator, Duration & Hotel Booking Validator, Technical & Insurance Roadworthiness Auditor, Dynamic Passenger List Management, NBM Checkpoints Radar, ANAMA Mine Safety Education Stand, Unified E-Permit Registry, and Official QARABAG-EYOL-2026 Electronic Permit Voucher
+- [x] Implement statutory Karabakh travel permit eligibility, quota tracking, and compliance audit engine (`src/utils/karabakhPermit.ts`) adhering to Special Travel Regimes on Liberated Territories (Şuşa, Ağdam, Füzuli, Laçın, Kəlbəcər, Zəngilan, Cəbrayıl, Xankəndi), ANAMA mandatory safety protocol verification, Texpasport/Inspection/Insurance compliance, mountain pass tire safety thresholds (≥4.0mm for Murovdağ & Zəfər Yolu), and multi-currency cost estimates (AZN, USD, EUR)
+- [x] Add comprehensive mock Karabakh checkpoints database (`src/data/mockKarabakhData.ts`) covering 7 strategic Police & Border Checkpoints (Füzuli Zəfər Yolu NBM, Bərdə-Ağdam NBM, Qubadlı-Laçın Həkəri NBM, Toğanalı-Kəlbəcər Murovdağ NBM, Horadiz-Cəbrayıl NBM, Zəngilan Ağalı NBM, Ağdam-Xankəndi NBM) with coordinates, queue telemetry, inspection speeds, 5 ANAMA safety rules, and verifiable sample `QARABAG-EYOL-2026-XXXXX` electronic travel permits
+- [x] Build official Electronic Travel Permit Voucher generator (`QARABAG-EYOL-2026-XXXXX`) with Ministry of Digital Development and Transport (RİNN), DİN, ANAMA & BDYP credentials, SHA256 security checksum, QR verification visualizer, NBM ANPR barcode, passenger roster, and printable/copyable layout
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/karabakhPermit.test.ts` and `src/components/__tests__/KarabakhPermitModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
+
+
 
 
 

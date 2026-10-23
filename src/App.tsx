@@ -70,6 +70,7 @@ const AccidentForensicsModal = React.lazy(() => import('./components/AccidentFor
 const SpecialSignalModal = React.lazy(() => import('./components/SpecialSignalModal').then(m => ({ default: m.SpecialSignalModal })));
 const VehicleAuctionModal = React.lazy(() => import('./components/VehicleAuctionModal').then(m => ({ default: m.VehicleAuctionModal })));
 const CustomsTransitModal = React.lazy(() => import('./components/CustomsTransitModal').then(m => ({ default: m.CustomsTransitModal })));
+const KarabakhPermitModal = React.lazy(() => import('./components/KarabakhPermitModal').then(m => ({ default: m.KarabakhPermitModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -244,6 +245,8 @@ export function App() {
   const [isVehicleAuctionModalOpen, setIsVehicleAuctionModalOpen] = useState(false);
   const [customsTransitTargetCar, setCustomsTransitTargetCar] = useState<Vehicle | null>(null);
   const [isCustomsTransitModalOpen, setIsCustomsTransitModalOpen] = useState(false);
+  const [karabakhPermitTargetCar, setKarabakhPermitTargetCar] = useState<Vehicle | null>(null);
+  const [isKarabakhPermitModalOpen, setIsKarabakhPermitModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -436,6 +439,10 @@ export function App() {
         onOpenCustomsTransit={() => {
           setCustomsTransitTargetCar(vehicles[0] || null);
           setIsCustomsTransitModalOpen(true);
+        }}
+        onOpenKarabakhPermit={() => {
+          setKarabakhPermitTargetCar(vehicles[0] || null);
+          setIsKarabakhPermitModalOpen(true);
         }}
       />
 
@@ -1153,6 +1160,10 @@ export function App() {
             setCustomsTransitTargetCar(car);
             setIsCustomsTransitModalOpen(true);
           }}
+          onOpenKarabakhPermit={(car) => {
+            setKarabakhPermitTargetCar(car);
+            setIsKarabakhPermitModalOpen(true);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -1675,6 +1686,20 @@ export function App() {
           onClose={() => {
             setIsCustomsTransitModalOpen(false);
             setCustomsTransitTargetCar(null);
+          }}
+        />
+
+        {/* RİNN, DİN, ANAMA & BDYP "Yolumuz Qarabağa" (e-yol.az) Electronic Permit Modal */}
+        <KarabakhPermitModal
+          isOpen={isKarabakhPermitModalOpen}
+          initialVehicle={karabakhPermitTargetCar ? {
+            makeModel: `${karabakhPermitTargetCar.make} ${karabakhPermitTargetCar.model}`,
+            vin: karabakhPermitTargetCar.vin,
+            plate: '99-XX-700',
+          } : undefined}
+          onClose={() => {
+            setIsKarabakhPermitModalOpen(false);
+            setKarabakhPermitTargetCar(null);
           }}
         />
 

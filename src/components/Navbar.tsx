@@ -36,7 +36,8 @@ import {
   Truck,
   Crosshair,
   Siren,
-  Gavel
+  Gavel,
+  Compass
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -84,6 +85,7 @@ interface NavbarProps {
   onOpenSpecialSignal?: () => void;
   onOpenVehicleAuction?: () => void;
   onOpenCustomsTransit?: () => void;
+  onOpenKarabakhPermit?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -131,6 +133,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenSpecialSignal,
   onOpenVehicleAuction,
   onOpenCustomsTransit,
+  onOpenKarabakhPermit,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -546,6 +549,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Globe className="w-4 h-4 text-emerald-400" />
               <span className="hidden xl:inline">Müvəqqəti İdxal (DGK)</span>
+            </button>
+          )}
+
+          {/* RİNN, DİN & ANAMA Yolumuz Qarabağa (e-yol.az) Button */}
+          {onOpenKarabakhPermit && (
+            <button
+              onClick={onOpenKarabakhPermit}
+              data-testid="navbar-karabakh-permit-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-teal-500/10 hover:bg-teal-500/20 text-teal-400 border border-teal-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="Yolumuz Qarabağa (e-yol.az) Fərdi Avtomobillə Səfər İcazəsi Portalı"
+            >
+              <Compass className="w-4 h-4 text-teal-400" />
+              <span className="hidden xl:inline">Yolumuz Qarabağa</span>
             </button>
           )}
 

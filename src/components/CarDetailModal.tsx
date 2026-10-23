@@ -130,6 +130,7 @@ interface CarDetailModalProps {
   onOpenSpecialSignal?: (vehicle: Vehicle) => void;
   onOpenVehicleAuction?: (vehicle: Vehicle) => void;
   onOpenCustomsTransit?: (vehicle: Vehicle) => void;
+  onOpenKarabakhPermit?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -187,6 +188,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenSpecialSignal,
   onOpenVehicleAuction,
   onOpenCustomsTransit,
+  onOpenKarabakhPermit,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -1048,6 +1050,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Globe className="w-4 h-4 text-emerald-400" />
                     <span>DGK Xarici Nəqliyyat Müvəqqəti İdxal & 90 Günlük Rejim Portalı</span>
+                  </button>
+                )}
+
+                {/* RİNN, DİN & ANAMA Yolumuz Qarabağa (e-yol.az) Electronic Permit Shortcut */}
+                {onOpenKarabakhPermit && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenKarabakhPermit(vehicle)}
+                    data-testid="karabakh-permit-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-teal-500/10 hover:bg-teal-500/20 text-teal-400 border border-teal-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Compass className="w-4 h-4 text-teal-400" />
+                    <span>Yolumuz Qarabağa (e-yol.az) Elektron Giriş İcazəsi Portalı</span>
                   </button>
                 )}
 

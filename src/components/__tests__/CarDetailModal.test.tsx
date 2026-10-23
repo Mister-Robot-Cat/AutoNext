@@ -1155,4 +1155,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(btn);
     expect(onOpenCustomsTransitMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('renders Yolumuz Qarabağa shortcut button and calls onOpenKarabakhPermit when clicked', () => {
+    const onOpenKarabakhPermitMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenKarabakhPermit={onOpenKarabakhPermitMock}
+      />
+    );
+
+    const btn = screen.getByTestId('karabakh-permit-shortcut-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenKarabakhPermitMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });

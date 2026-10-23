@@ -398,4 +398,14 @@ describe('Navbar Component', () => {
     fireEvent.click(btn);
     expect(onOpenCustomsTransit).toHaveBeenCalledTimes(1);
   });
+
+  it('renders Yolumuz Qarabağa button and calls onOpenKarabakhPermit when clicked', () => {
+    const onOpenKarabakhPermit = vi.fn();
+    render(<Navbar {...defaultProps} onOpenKarabakhPermit={onOpenKarabakhPermit} />);
+
+    const btn = screen.getByTestId('navbar-karabakh-permit-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenKarabakhPermit).toHaveBeenCalledTimes(1);
+  });
 });
