@@ -46,6 +46,7 @@ import {
   ReceiptText,
   Car,
   Leaf,
+  Briefcase,
   Wrench,
   Recycle,
   Bus,
@@ -136,6 +137,7 @@ interface CarDetailModalProps {
   onOpenVehicleTax?: (vehicle: Vehicle) => void;
   onOpenBonusMalus?: (vehicle: Vehicle) => void;
   onOpenEcoSticker?: (vehicle: Vehicle) => void;
+  onOpenLeasing?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -197,6 +199,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenVehicleTax,
   onOpenBonusMalus,
   onOpenEcoSticker,
+  onOpenLeasing,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -1110,6 +1113,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Leaf className="w-4 h-4 text-emerald-400" />
                     <span>ETSN & BDYP "Yaşıl Bakı" Aşağı Emissiyalı Ekoloji Zonalar (LEZ) & Eko-Stiker Portalı</span>
+                  </button>
+                )}
+
+                {/* AMB & ALA Avtomobil Lizinqi & Maliyyə İcarəsi Shortcut */}
+                {onOpenLeasing && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenLeasing(vehicle)}
+                    data-testid="leasing-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-teal-600/10 hover:bg-teal-600/20 text-teal-400 border border-teal-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Briefcase className="w-4 h-4 text-teal-400" />
+                    <span>AMB & ALA Rəsmi Avtomobil Lizinqi & Maliyyə İcarəsi Portalı</span>
                   </button>
                 )}
 

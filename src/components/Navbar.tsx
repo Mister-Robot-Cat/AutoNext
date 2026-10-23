@@ -40,7 +40,8 @@ import {
   Compass,
   ReceiptText,
   ShieldCheck,
-  Leaf
+  Leaf,
+  Briefcase
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -92,6 +93,7 @@ interface NavbarProps {
   onOpenVehicleTax?: () => void;
   onOpenBonusMalus?: () => void;
   onOpenEcoSticker?: () => void;
+  onOpenLeasing?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -143,6 +145,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenVehicleTax,
   onOpenBonusMalus,
   onOpenEcoSticker,
+  onOpenLeasing,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -610,6 +613,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Leaf className="w-4 h-4 text-emerald-400" />
               <span className="hidden xl:inline">Eko-Stiker LEZ</span>
+            </button>
+          )}
+
+          {/* AMB & ALA Avtomobil Lizinqi & Maliyyə İcarəsi Portalı Button */}
+          {onOpenLeasing && (
+            <button
+              onClick={onOpenLeasing}
+              data-testid="navbar-leasing-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-teal-600/10 hover:bg-teal-600/20 text-teal-400 border border-teal-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="AMB & ALA Rəsmi Avtomobil Lizinqi və Maliyyə İcarəsi Portalı"
+            >
+              <Briefcase className="w-4 h-4 text-teal-400" />
+              <span className="hidden xl:inline">Lizinq Portalı</span>
             </button>
           )}
 

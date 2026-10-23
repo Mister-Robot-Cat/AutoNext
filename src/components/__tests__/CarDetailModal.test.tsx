@@ -1235,4 +1235,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(btn);
     expect(onOpenEcoStickerMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('renders AMB & ALA Leasing portal shortcut and triggers onOpenLeasing callback', () => {
+    const onOpenLeasingMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenLeasing={onOpenLeasingMock}
+      />
+    );
+
+    const btn = screen.getByTestId('leasing-shortcut-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenLeasingMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });

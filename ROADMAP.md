@@ -546,6 +546,15 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official ETSN & BDYP Electronic Eco-Sticker Certificate generator (`ETSN-LEZ-2026-XXXXX`) with RFID Tag UID (`AZ-RFID-LEZ-XXXX`), national coat of arms header, SHA-256 security hash, permitted zones roster, QR verification link, and printable/copyable layout
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/ecoStickerCompliance.test.ts` and `src/components/__tests__/EcoStickerModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
 
+---
+
+### 💼 Milestone 59: Official Central Bank of Azerbaijan (AMB) & Leasing Association Automobile Financial Leasing, Corporate Fleet Lease & Tax Incentive Portal (AMB & ALA Rəsmi Avtomobil Lizinqi və Maliyyə İcarəsi Portalı — "Lizinq haqqında" AR Qanunu & Mülki Məcəllə Maddə 747–759, Maliyyə vs Əməliyyat Lizinqi, İlkin Ödəniş (15%–40%), İllik Faiz (12%–22%), Balon Ödəniş (0%–30%), 18% ƏDV Əvəzləşdirilməsi & 20% Mənfəət Vergisi Qənaəti, 6 Rəsmi Lizing Şirkəti Radarı və Rəsmi AMB-LZG-2026 Elektron Lizinq Şəhadətnaməsi Portalı) (Completed)
+- [x] Add Official Central Bank of Azerbaijan (AMB) & ALA Vehicle Leasing & Tax Incentive Modal (`LeasingModal.tsx`) with Interactive Financial & Operational Lease Calculator, 18% VAT & 20% Corporate Profit Tax Optimization Engine, 36-Month Amortization Schedule with CSV export, Accredited Leasing Companies Radar with Live Partner Selection, Unified Lease Contract Registry Lookup, and Official Electronic Lease Approval Certificate Generator
+- [x] Implement statutory financial and operational leasing calculation engine (`src/utils/vehicleLeasing.ts`) adhering to the Law of the Republic of Azerbaijan "On Leasing", Civil Code (Articles 747-759), Tax Code (Articles 140, 114, 159 & 164), balloon/residual payment formulas, full-service maintenance & KASKO packages, bank auto loan comparative metrics, and multi-currency conversions (AZN, USD, EUR)
+- [x] Add comprehensive mock leasing database (`src/data/mockLeasingData.ts`) covering 6 accredited Azerbaijani leasing institutions (PAŞA Lizinq ASC, UniLeasing QSC, Prior Leasing ASC, Express Lizinq QSC, Günay Lizinq ASC, Muğan Lizinq QSC) with license numbers, VÖENs, minimum down payment limits, portfolios, and branches, 6 popular vehicle leasing presets, and verified active lease contracts registry
+- [x] Build official AMB & Azerbaijan Leasing Association Electronic Lease Approval Certificate generator (`AMB-LZG-2026-XXXXX`) with cryptographic verification checksum, QR code visualizer, itemized financial terms, tax exemptions, and printable/copyable layout
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/vehicleLeasing.test.ts` and `src/components/__tests__/LeasingModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`) covering financial and operational calculations, balloon amortization, corporate fiscal deductions, company filtering, and interactive modal workflows
+
 
 
 

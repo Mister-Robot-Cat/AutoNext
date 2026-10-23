@@ -438,4 +438,14 @@ describe('Navbar Component', () => {
     fireEvent.click(btn);
     expect(onOpenEcoSticker).toHaveBeenCalledTimes(1);
   });
+
+  it('renders AMB & ALA Leasing button and calls onOpenLeasing when clicked', () => {
+    const onOpenLeasing = vi.fn();
+    render(<Navbar {...defaultProps} onOpenLeasing={onOpenLeasing} />);
+
+    const btn = screen.getByTestId('navbar-leasing-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenLeasing).toHaveBeenCalledTimes(1);
+  });
 });

@@ -74,6 +74,7 @@ const KarabakhPermitModal = React.lazy(() => import('./components/KarabakhPermit
 const VehicleTaxModal = React.lazy(() => import('./components/VehicleTaxModal').then(m => ({ default: m.VehicleTaxModal })));
 const BonusMalusModal = React.lazy(() => import('./components/BonusMalusModal').then(m => ({ default: m.BonusMalusModal })));
 const EcoStickerModal = React.lazy(() => import('./components/EcoStickerModal').then(m => ({ default: m.EcoStickerModal })));
+const LeasingModal = React.lazy(() => import('./components/LeasingModal').then(m => ({ default: m.LeasingModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -256,6 +257,8 @@ export function App() {
   const [isBonusMalusModalOpen, setIsBonusMalusModalOpen] = useState(false);
   const [ecoStickerTargetCar, setEcoStickerTargetCar] = useState<Vehicle | null>(null);
   const [isEcoStickerModalOpen, setIsEcoStickerModalOpen] = useState(false);
+  const [leasingTargetCar, setLeasingTargetCar] = useState<Vehicle | null>(null);
+  const [isLeasingModalOpen, setIsLeasingModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -464,6 +467,10 @@ export function App() {
         onOpenEcoSticker={() => {
           setEcoStickerTargetCar(vehicles[0] || null);
           setIsEcoStickerModalOpen(true);
+        }}
+        onOpenLeasing={() => {
+          setLeasingTargetCar(vehicles[0] || null);
+          setIsLeasingModalOpen(true);
         }}
       />
 
@@ -1197,6 +1204,10 @@ export function App() {
             setEcoStickerTargetCar(car);
             setIsEcoStickerModalOpen(true);
           }}
+          onOpenLeasing={(car) => {
+            setLeasingTargetCar(car);
+            setIsLeasingModalOpen(true);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -1785,6 +1796,17 @@ export function App() {
           onClose={() => {
             setIsEcoStickerModalOpen(false);
             setEcoStickerTargetCar(null);
+          }}
+        />
+
+        {/* Official Central Bank of Azerbaijan (AMB) & ALA Vehicle Leasing & Tax Incentive Modal */}
+        <LeasingModal
+          isOpen={isLeasingModalOpen}
+          vehicle={leasingTargetCar}
+          currency={currency}
+          onClose={() => {
+            setIsLeasingModalOpen(false);
+            setLeasingTargetCar(null);
           }}
         />
 
