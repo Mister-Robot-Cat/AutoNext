@@ -537,6 +537,15 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official AMB & İSB Electronic Bonus-Malus Certificate generator (`AMB-BMS-2026-XXXXX`) with cryptographic SHA-256 verification hash, SİMA digital signature integration, QR verification link, and printable/copyable layout
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/bonusMalus.test.ts` and `src/components/__tests__/BonusMalusModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
 
+---
+
+### 🌿 Milestone 58: Official Ministry of Ecology and Natural Resources (ETSN), RİNN & BDYP "Yaşıl Bakı" Low Emission Zones (LEZ), Eco-Sticker Classification & Urban Congestion Charge Portal (ETSN, RİNN & BDYP "Yaşıl Bakı" Aşağı Emissiyalı Ekoloji Zonalar (LEZ), Euro Ekoloji Sinif Şkalası (Yaşıl 1 / Mavi 2 / Sarı 3 / Boz 4 Eko-Stiker), Mərkəzi Şəhər Giriş Rüsumu, Canlı AQI Hava Keyfiyyəti Radarı və Rəsmi ETSN-LEZ-2026 Ekoloji Buraxılış Portalı) (Completed)
+- [x] Add Official Ministry of Ecology (ETSN) & BDYP "Yaşıl Bakı" Low Emission Zones (LEZ) & Eco-Sticker Portal Modal (`EcoStickerModal.tsx`) with 4-Tier Visual Windshield Sticker Decal Simulator, Statutory Congestion Tariff Calculator, Real-time AQI Air Quality Telemetry Stand across 5 Baku stations, Accredited Diagnostic Centers Radar with Live Queue Booking, and Official Electronic Certificate Generator
+- [x] Implement statutory eco-compliance, Euro-emission standard evaluation, and congestion tariff calculation engine (`src/utils/ecoStickerCompliance.ts`) adhering to COP29 climate commitments, Baku SUMP mobility plan, Law on Environmental Protection, and Code of Administrative Offences (İXM Article 342.5: 50 AZN illegal inner zone fine, 100% exemption for inner-city residents and drivers with disabilities, commercial vehicle 1.5x factor, and multi-currency conversions in AZN, USD, EUR)
+- [x] Add comprehensive mock eco-sticker and air quality database (`src/data/mockEcoStickerData.ts`) covering 5 real-time AQI telemetry stations (Səbail İçərişəhər, Nəsimi 28 May, Yasamal Tbilisi Ave, Nərimanov Heydər Əliyev Centre, Xətai Ağ Şəhər) with PM2.5, PM10, NO₂, CO metrics, 6 accredited ETSN & BDYP diagnostic centers across Baku, Zabrat, Sumgayit, and Khirdalan, and authentic vehicle test presets
+- [x] Build official ETSN & BDYP Electronic Eco-Sticker Certificate generator (`ETSN-LEZ-2026-XXXXX`) with RFID Tag UID (`AZ-RFID-LEZ-XXXX`), national coat of arms header, SHA-256 security hash, permitted zones roster, QR verification link, and printable/copyable layout
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/ecoStickerCompliance.test.ts` and `src/components/__tests__/EcoStickerModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`)
+
 
 
 

@@ -73,6 +73,7 @@ const CustomsTransitModal = React.lazy(() => import('./components/CustomsTransit
 const KarabakhPermitModal = React.lazy(() => import('./components/KarabakhPermitModal').then(m => ({ default: m.KarabakhPermitModal })));
 const VehicleTaxModal = React.lazy(() => import('./components/VehicleTaxModal').then(m => ({ default: m.VehicleTaxModal })));
 const BonusMalusModal = React.lazy(() => import('./components/BonusMalusModal').then(m => ({ default: m.BonusMalusModal })));
+const EcoStickerModal = React.lazy(() => import('./components/EcoStickerModal').then(m => ({ default: m.EcoStickerModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -253,6 +254,8 @@ export function App() {
   const [isVehicleTaxModalOpen, setIsVehicleTaxModalOpen] = useState(false);
   const [bonusMalusTargetCar, setBonusMalusTargetCar] = useState<Vehicle | null>(null);
   const [isBonusMalusModalOpen, setIsBonusMalusModalOpen] = useState(false);
+  const [ecoStickerTargetCar, setEcoStickerTargetCar] = useState<Vehicle | null>(null);
+  const [isEcoStickerModalOpen, setIsEcoStickerModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -457,6 +460,10 @@ export function App() {
         onOpenBonusMalus={() => {
           setBonusMalusTargetCar(vehicles[0] || null);
           setIsBonusMalusModalOpen(true);
+        }}
+        onOpenEcoSticker={() => {
+          setEcoStickerTargetCar(vehicles[0] || null);
+          setIsEcoStickerModalOpen(true);
         }}
       />
 
@@ -1186,6 +1193,10 @@ export function App() {
             setBonusMalusTargetCar(car);
             setIsBonusMalusModalOpen(true);
           }}
+          onOpenEcoSticker={(car) => {
+            setEcoStickerTargetCar(car);
+            setIsEcoStickerModalOpen(true);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -1754,6 +1765,26 @@ export function App() {
           onClose={() => {
             setIsBonusMalusModalOpen(false);
             setBonusMalusTargetCar(null);
+          }}
+        />
+
+        {/* Official Ministry of Ecology (ETSN) & BDYP Yaşıl Bakı LEZ & Eco-Sticker Modal */}
+        <EcoStickerModal
+          isOpen={isEcoStickerModalOpen}
+          initialVehicle={ecoStickerTargetCar ? {
+            makeModel: `${ecoStickerTargetCar.make} ${ecoStickerTargetCar.model}`,
+            plate: ecoStickerTargetCar.plateNumber || '90-AA-104',
+            vin: ecoStickerTargetCar.vin,
+            year: ecoStickerTargetCar.year,
+            fuelType: ecoStickerTargetCar.fuelType,
+            engineCc: Math.round(ecoStickerTargetCar.engineVolumeLiters * 1000) || 1998,
+            hasCatalystOrDpf: true,
+          } : undefined}
+          currency={currency}
+          lang={lang}
+          onClose={() => {
+            setIsEcoStickerModalOpen(false);
+            setEcoStickerTargetCar(null);
           }}
         />
 

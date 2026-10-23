@@ -45,6 +45,7 @@ import {
   Globe,
   ReceiptText,
   Car,
+  Leaf,
   Wrench,
   Recycle,
   Bus,
@@ -134,6 +135,7 @@ interface CarDetailModalProps {
   onOpenKarabakhPermit?: (vehicle: Vehicle) => void;
   onOpenVehicleTax?: (vehicle: Vehicle) => void;
   onOpenBonusMalus?: (vehicle: Vehicle) => void;
+  onOpenEcoSticker?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -194,6 +196,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenKarabakhPermit,
   onOpenVehicleTax,
   onOpenBonusMalus,
+  onOpenEcoSticker,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -1094,6 +1097,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <ShieldCheck className="w-4 h-4 text-blue-400" />
                     <span>AMB & İSB İcbari Sığorta Bonus-Malus Reyestri və Qəza Zərərlilik Portalı</span>
+                  </button>
+                )}
+
+                {/* ETSN & BDYP Yaşıl Bakı LEZ & Eko-Stiker Shortcut */}
+                {onOpenEcoSticker && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenEcoSticker(vehicle)}
+                    data-testid="eco-sticker-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-emerald-600/10 hover:bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Leaf className="w-4 h-4 text-emerald-400" />
+                    <span>ETSN & BDYP "Yaşıl Bakı" Aşağı Emissiyalı Ekoloji Zonalar (LEZ) & Eko-Stiker Portalı</span>
                   </button>
                 )}
 

@@ -39,7 +39,8 @@ import {
   Gavel,
   Compass,
   ReceiptText,
-  ShieldCheck
+  ShieldCheck,
+  Leaf
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -90,6 +91,7 @@ interface NavbarProps {
   onOpenKarabakhPermit?: () => void;
   onOpenVehicleTax?: () => void;
   onOpenBonusMalus?: () => void;
+  onOpenEcoSticker?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -140,6 +142,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenKarabakhPermit,
   onOpenVehicleTax,
   onOpenBonusMalus,
+  onOpenEcoSticker,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -594,6 +597,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <ShieldCheck className="w-4 h-4 text-blue-400" />
               <span className="hidden xl:inline">Bonus-Malus İSB</span>
+            </button>
+          )}
+
+          {/* ETSN & BDYP Yaşıl Bakı LEZ & Eko-Stiker Portalı Button */}
+          {onOpenEcoSticker && (
+            <button
+              onClick={onOpenEcoSticker}
+              data-testid="navbar-eco-sticker-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-600/10 hover:bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="ETSN & BDYP 'Yaşıl Bakı' Aşağı Emissiyalı Ekoloji Zonalar (LEZ) & Eko-Stiker Portalı"
+            >
+              <Leaf className="w-4 h-4 text-emerald-400" />
+              <span className="hidden xl:inline">Eko-Stiker LEZ</span>
             </button>
           )}
 

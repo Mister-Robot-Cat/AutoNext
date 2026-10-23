@@ -428,4 +428,14 @@ describe('Navbar Component', () => {
     fireEvent.click(btn);
     expect(onOpenBonusMalus).toHaveBeenCalledTimes(1);
   });
+
+  it('renders ETSN & BDYP Eco-Sticker LEZ button and calls onOpenEcoSticker when clicked', () => {
+    const onOpenEcoSticker = vi.fn();
+    render(<Navbar {...defaultProps} onOpenEcoSticker={onOpenEcoSticker} />);
+
+    const btn = screen.getByTestId('navbar-eco-sticker-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenEcoSticker).toHaveBeenCalledTimes(1);
+  });
 });

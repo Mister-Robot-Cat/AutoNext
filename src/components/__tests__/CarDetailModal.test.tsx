@@ -1215,4 +1215,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(btn);
     expect(onOpenBonusMalusMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('triggers onOpenEcoSticker when eco sticker shortcut button is clicked', () => {
+    const onOpenEcoStickerMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenEcoSticker={onOpenEcoStickerMock}
+      />
+    );
+
+    const btn = screen.getByTestId('eco-sticker-shortcut-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenEcoStickerMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });
