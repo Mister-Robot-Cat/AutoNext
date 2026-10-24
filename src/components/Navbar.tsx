@@ -99,6 +99,7 @@ interface NavbarProps {
   onOpenAdas?: () => void;
   onOpenSalvage?: () => void;
   onOpenFreight?: () => void;
+  onOpenIntercityBus?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -155,6 +156,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenAdas,
   onOpenSalvage,
   onOpenFreight,
+  onOpenIntercityBus,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -687,6 +689,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <Truck className="w-4 h-4 text-indigo-400" />
               <span className="hidden xl:inline">Beynəlxalq Daşıma (E-CMR)</span>
+            </button>
+          )}
+
+          {/* AYNA & BBIQ Şəhərlərarası Sərnişin Daşımaları & E-Bilet Button */}
+          {onOpenIntercityBus && (
+            <button
+              onClick={onOpenIntercityBus}
+              data-testid="navbar-intercity-bus-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-600/10 hover:bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="AYNA & BBIQ Rəsmi Şəhərlərarası Sərnişin Daşımaları, Marşrut Pasportu & E-Bilet Portalı"
+            >
+              <Bus className="w-4 h-4 text-indigo-400" />
+              <span className="hidden xl:inline">Şəhərlərarası Bilet (BBIQ)</span>
             </button>
           )}
 

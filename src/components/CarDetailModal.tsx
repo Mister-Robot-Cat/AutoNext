@@ -143,6 +143,7 @@ interface CarDetailModalProps {
   onOpenAdas?: (vehicle: Vehicle) => void;
   onOpenSalvage?: (vehicle: Vehicle) => void;
   onOpenFreight?: (vehicle: Vehicle) => void;
+  onOpenIntercityBus?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -209,6 +210,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenAdas,
   onOpenSalvage,
   onOpenFreight,
+  onOpenIntercityBus,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -1187,6 +1189,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Truck className="w-4 h-4 text-indigo-400" />
                     <span>RİNN, AYNA & ABADA Beynəlxalq Yük Daşımaları & E-CMR Portalı</span>
+                  </button>
+                )}
+
+                {/* AYNA & BBIQ Şəhərlərarası Sərnişin Daşımaları & E-Bilet Shortcut */}
+                {onOpenIntercityBus && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenIntercityBus(vehicle)}
+                    data-testid="intercity-bus-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-indigo-600/10 hover:bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Bus className="w-4 h-4 text-indigo-400" />
+                    <span>AYNA & BBIQ Şəhərlərarası Sərnişin Daşımaları, Marşrut Pasportu & E-Bilet</span>
                   </button>
                 )}
 

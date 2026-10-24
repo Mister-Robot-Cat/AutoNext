@@ -79,6 +79,7 @@ const RentalModal = React.lazy(() => import('./components/RentalModal').then(m =
 const AdasCalibrationModal = React.lazy(() => import('./components/AdasCalibrationModal').then(m => ({ default: m.AdasCalibrationModal })));
 const SalvageComplianceModal = React.lazy(() => import('./components/SalvageComplianceModal').then(m => ({ default: m.SalvageComplianceModal })));
 const InternationalFreightModal = React.lazy(() => import('./components/InternationalFreightModal').then(m => ({ default: m.InternationalFreightModal })));
+const IntercityBusModal = React.lazy(() => import('./components/IntercityBusModal').then(m => ({ default: m.IntercityBusModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -271,6 +272,8 @@ export function App() {
   const [isSalvageModalOpen, setIsSalvageModalOpen] = useState(false);
   const [freightTargetCar, setFreightTargetCar] = useState<Vehicle | null>(null);
   const [isFreightModalOpen, setIsFreightModalOpen] = useState(false);
+  const [intercityBusTargetCar, setIntercityBusTargetCar] = useState<Vehicle | null>(null);
+  const [isIntercityBusModalOpen, setIsIntercityBusModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -499,6 +502,10 @@ export function App() {
         onOpenFreight={() => {
           setFreightTargetCar(vehicles[0] || null);
           setIsFreightModalOpen(true);
+        }}
+        onOpenIntercityBus={() => {
+          setIntercityBusTargetCar(vehicles[0] || null);
+          setIsIntercityBusModalOpen(true);
         }}
       />
 
@@ -1252,6 +1259,10 @@ export function App() {
             setFreightTargetCar(car);
             setIsFreightModalOpen(true);
           }}
+          onOpenIntercityBus={(car) => {
+            setIntercityBusTargetCar(car);
+            setIsIntercityBusModalOpen(true);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -1895,6 +1906,17 @@ export function App() {
           onClose={() => {
             setIsFreightModalOpen(false);
             setFreightTargetCar(null);
+          }}
+        />
+
+        {/* AYNA & BBIQ Rəsmi Şəhərlərarası Sərnişin Daşımaları & E-Bilet Portalı Modal */}
+        <IntercityBusModal
+          isOpen={isIntercityBusModalOpen}
+          vehicle={intercityBusTargetCar}
+          currency={currency}
+          onClose={() => {
+            setIsIntercityBusModalOpen(false);
+            setIntercityBusTargetCar(null);
           }}
         />
 

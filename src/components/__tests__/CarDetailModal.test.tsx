@@ -1335,4 +1335,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(btn);
     expect(onOpenFreightMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('renders AYNA & BBIQ Intercity Bus shortcut and triggers onOpenIntercityBus callback', () => {
+    const onOpenIntercityBusMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenIntercityBus={onOpenIntercityBusMock}
+      />
+    );
+
+    const btn = screen.getByTestId('intercity-bus-shortcut-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenIntercityBusMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });

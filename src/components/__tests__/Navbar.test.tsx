@@ -488,4 +488,14 @@ describe('Navbar Component', () => {
     fireEvent.click(btn);
     expect(onOpenFreight).toHaveBeenCalledTimes(1);
   });
+
+  it('renders AYNA & BBIQ Intercity Bus button and calls onOpenIntercityBus when clicked', () => {
+    const onOpenIntercityBus = vi.fn();
+    render(<Navbar {...defaultProps} onOpenIntercityBus={onOpenIntercityBus} />);
+
+    const btn = screen.getByTestId('navbar-intercity-bus-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenIntercityBus).toHaveBeenCalledTimes(1);
+  });
 });
