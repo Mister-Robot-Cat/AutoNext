@@ -1275,4 +1275,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(btn);
     expect(onOpenRentalMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('renders RİNN, AYNA, AZS & BDYP ADAS Calibration shortcut and triggers onOpenAdas callback', () => {
+    const onOpenAdasMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenAdas={onOpenAdasMock}
+      />
+    );
+
+    const btn = screen.getByTestId('adas-shortcut-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenAdasMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });

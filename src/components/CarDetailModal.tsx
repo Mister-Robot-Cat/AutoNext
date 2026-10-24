@@ -140,6 +140,7 @@ interface CarDetailModalProps {
   onOpenEcoSticker?: (vehicle: Vehicle) => void;
   onOpenLeasing?: (vehicle: Vehicle) => void;
   onOpenRental?: (vehicle: Vehicle) => void;
+  onOpenAdas?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -203,6 +204,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenEcoSticker,
   onOpenLeasing,
   onOpenRental,
+  onOpenAdas,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -1142,6 +1144,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <KeyRound className="w-4 h-4 text-sky-400" />
                     <span>Dövlət Turizm Agentliyi & BDYP Rəsmi Rent-a-Car və İcarə Portalı</span>
+                  </button>
+                )}
+
+                {/* RİNN, AYNA, AZS & BDYP Rəsmi ADAS Sensor & Kamera Kalibrasiyası Shortcut */}
+                {onOpenAdas && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenAdas(vehicle)}
+                    data-testid="adas-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 border border-blue-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Crosshair className="w-4 h-4 text-blue-400" />
+                    <span>RİNN, AYNA, AZS & BDYP Rəsmi ADAS Sensor & Kamera Kalibrasiyası</span>
                   </button>
                 )}
 

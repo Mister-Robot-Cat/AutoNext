@@ -96,6 +96,7 @@ interface NavbarProps {
   onOpenEcoSticker?: () => void;
   onOpenLeasing?: () => void;
   onOpenRental?: () => void;
+  onOpenAdas?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -149,6 +150,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenEcoSticker,
   onOpenLeasing,
   onOpenRental,
+  onOpenAdas,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -642,6 +644,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <KeyRound className="w-4 h-4 text-sky-400" />
               <span className="hidden xl:inline">Rent-a-Car</span>
+            </button>
+          )}
+
+          {/* RİNN, AYNA, AZS & BDYP Rəsmi ADAS Sensor & Kamera Kalibrasiyası Portalı Button */}
+          {onOpenAdas && (
+            <button
+              onClick={onOpenAdas}
+              data-testid="navbar-adas-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 border border-blue-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="RİNN, AYNA, AZS & BDYP Rəsmi ADAS Sensor & Kamera Kalibrasiyası Portalı"
+            >
+              <Crosshair className="w-4 h-4 text-blue-400" />
+              <span className="hidden xl:inline">ADAS Kalibrasiya</span>
             </button>
           )}
 

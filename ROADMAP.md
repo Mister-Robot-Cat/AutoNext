@@ -564,6 +564,16 @@ This backlog is actively maintained and executed by the **GitHub Growth Agent** 
 - [x] Build official ACRA & BDYP Electronic Rental Agreement generator (`CAR-RNT-2026-XXXXX`) with cryptographic verification checksum, QR code visualizer, itemized financial terms, deposit refund terms, and printable/copyable layout
 - [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/vehicleRental.test.ts` and `src/components/__tests__/RentalModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`) covering pricing formulas, discount brackets, one-way fees, insurance tiers, eligibility gates, tabs navigation, contract generation, print and copy actions
 
+---
+
+### 🎯 Milestone 61: Official RİNN, AYNA, AZS & BDYP Advanced Driver Assistance Systems (ADAS) Calibration, Radar & Camera Target Alignment Portal (RİNN, AYNA, AZS & BDYP Rəsmi Sürücüyə Dəstək Sistemləri (ADAS) Kalibrasiyası və Sensor Tənzimləmə Portalı — UNECE R152 / R157, Ön Şüşə Dəyişimi / Bamper Zədəsi Sonrası Statik Lazer Hədəf Panelləri & Dinamik Yol Öyrənməsi, 77 GHz Radar / Mono-Stereo Kamera, AEB / LKA / ACC / BSM Diaqnostikası, 6 Rəsmi Akkreditə Kalibrasiya Mərkəzi və Rəsmi AZS-ADAS-2026 Kalibrasiya Sertifikatı Portalı) (Completed)
+- [x] Add Official RİNN, AYNA, AZS & BDYP ADAS Sensor & Camera Calibration Modal (`AdasCalibrationModal.tsx`) with Diagnostic Trigger Selector (windshield replacement, bumper collision, suspension alignment, DTC fault, quarter collision, annual audit), Interactive Laser & Target Board Simulator (distance, centerline offset, pitch/yaw angles, live SVG/Canvas visualizer), Dynamic Road Test Simulator (15 km motorway learn drive), ADAS Systems Matrix (AEB, ACC, LKA, BSM, TSR, 360° AVM, Night Vision), Accredited Diagnostic Centers Radar with Live Queue Booking, and Official Electronic Certificate Generator
+- [x] Implement statutory ADAS calibration telemetry, tolerance evaluation, and multi-currency pricing engine (`src/utils/adasCalibration.ts`) adhering to UNECE R152 / R157 standards, ISO 15622 / 17387, Law on Road Traffic (Article 30), and Code of Administrative Offences (İXM Article 342.2-1), with multi-currency pricing in AZN, USD, EUR and 18% VAT
+- [x] Add comprehensive mock ADAS database (`src/data/mockAdasData.ts`) covering 7 ADAS system profiles, 6 calibration trigger rules, 5 diagnostic packages, 5 authentic OBD-II DTC codes (`C1A00`, `C1A14`, `C1290`, `B124B`, `U0100`), 6 accredited testing stations across Baku, Khirdalan, Sumgayit, and Ganja (Autel MaxiSys, Bosch DAS 3000, Texa RCCS 3), and verifiable active certificate records
+- [x] Build official AZS & BDYP Electronic ADAS Calibration Certificate generator (`AZS-ADAS-2026-XXXXX`) with cryptographic SHA256 security hash, QR verification visualizer, itemized sensor telemetry protocol, lead metrology technician credentials, and printable/copyable layout
+- [x] Comprehensive Vitest unit test suites (`src/utils/__tests__/adasCalibration.test.ts` and `src/components/__tests__/AdasCalibrationModal.test.tsx`, plus integrations in `Navbar.test.tsx` and `CarDetailModal.test.tsx`) covering angular tolerances, statutory triggers, pricing formulas, center filters, certificate lookup, and interactive modal workflows
+
+
 
 
 

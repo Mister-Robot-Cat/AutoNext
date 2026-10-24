@@ -76,6 +76,7 @@ const BonusMalusModal = React.lazy(() => import('./components/BonusMalusModal').
 const EcoStickerModal = React.lazy(() => import('./components/EcoStickerModal').then(m => ({ default: m.EcoStickerModal })));
 const LeasingModal = React.lazy(() => import('./components/LeasingModal').then(m => ({ default: m.LeasingModal })));
 const RentalModal = React.lazy(() => import('./components/RentalModal').then(m => ({ default: m.RentalModal })));
+const AdasCalibrationModal = React.lazy(() => import('./components/AdasCalibrationModal').then(m => ({ default: m.AdasCalibrationModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -262,6 +263,8 @@ export function App() {
   const [isLeasingModalOpen, setIsLeasingModalOpen] = useState(false);
   const [rentalTargetCar, setRentalTargetCar] = useState<Vehicle | null>(null);
   const [isRentalModalOpen, setIsRentalModalOpen] = useState(false);
+  const [adasTargetCar, setAdasTargetCar] = useState<Vehicle | null>(null);
+  const [isAdasModalOpen, setIsAdasModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -478,6 +481,10 @@ export function App() {
         onOpenRental={() => {
           setRentalTargetCar(vehicles[0] || null);
           setIsRentalModalOpen(true);
+        }}
+        onOpenAdas={() => {
+          setAdasTargetCar(vehicles[0] || null);
+          setIsAdasModalOpen(true);
         }}
       />
 
@@ -1219,6 +1226,10 @@ export function App() {
             setRentalTargetCar(car);
             setIsRentalModalOpen(true);
           }}
+          onOpenAdas={(car) => {
+            setAdasTargetCar(car);
+            setIsAdasModalOpen(true);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -1829,6 +1840,17 @@ export function App() {
           onClose={() => {
             setIsRentalModalOpen(false);
             setRentalTargetCar(null);
+          }}
+        />
+
+        {/* RİNN, AYNA, AZS & BDYP Rəsmi ADAS Sensor & Kamera Kalibrasiyası Portalı Modal */}
+        <AdasCalibrationModal
+          isOpen={isAdasModalOpen}
+          vehicle={adasTargetCar}
+          currency={currency}
+          onClose={() => {
+            setIsAdasModalOpen(false);
+            setAdasTargetCar(null);
           }}
         />
 

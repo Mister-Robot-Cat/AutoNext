@@ -458,4 +458,14 @@ describe('Navbar Component', () => {
     fireEvent.click(btn);
     expect(onOpenRental).toHaveBeenCalledTimes(1);
   });
+
+  it('renders RİNN, AYNA, AZS & BDYP ADAS Calibration button and calls onOpenAdas when clicked', () => {
+    const onOpenAdas = vi.fn();
+    render(<Navbar {...defaultProps} onOpenAdas={onOpenAdas} />);
+
+    const btn = screen.getByTestId('navbar-adas-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenAdas).toHaveBeenCalledTimes(1);
+  });
 });
