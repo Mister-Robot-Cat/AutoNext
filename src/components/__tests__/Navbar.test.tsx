@@ -478,4 +478,14 @@ describe('Navbar Component', () => {
     fireEvent.click(btn);
     expect(onOpenSalvage).toHaveBeenCalledTimes(1);
   });
+
+  it('renders RİNN, AYNA & ABADA International Freight button and calls onOpenFreight when clicked', () => {
+    const onOpenFreight = vi.fn();
+    render(<Navbar {...defaultProps} onOpenFreight={onOpenFreight} />);
+
+    const btn = screen.getByTestId('navbar-freight-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenFreight).toHaveBeenCalledTimes(1);
+  });
 });

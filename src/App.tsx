@@ -78,6 +78,7 @@ const LeasingModal = React.lazy(() => import('./components/LeasingModal').then(m
 const RentalModal = React.lazy(() => import('./components/RentalModal').then(m => ({ default: m.RentalModal })));
 const AdasCalibrationModal = React.lazy(() => import('./components/AdasCalibrationModal').then(m => ({ default: m.AdasCalibrationModal })));
 const SalvageComplianceModal = React.lazy(() => import('./components/SalvageComplianceModal').then(m => ({ default: m.SalvageComplianceModal })));
+const InternationalFreightModal = React.lazy(() => import('./components/InternationalFreightModal').then(m => ({ default: m.InternationalFreightModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -268,6 +269,8 @@ export function App() {
   const [isAdasModalOpen, setIsAdasModalOpen] = useState(false);
   const [salvageTargetCar, setSalvageTargetCar] = useState<Vehicle | null>(null);
   const [isSalvageModalOpen, setIsSalvageModalOpen] = useState(false);
+  const [freightTargetCar, setFreightTargetCar] = useState<Vehicle | null>(null);
+  const [isFreightModalOpen, setIsFreightModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -492,6 +495,10 @@ export function App() {
         onOpenSalvage={() => {
           setSalvageTargetCar(vehicles[0] || null);
           setIsSalvageModalOpen(true);
+        }}
+        onOpenFreight={() => {
+          setFreightTargetCar(vehicles[0] || null);
+          setIsFreightModalOpen(true);
         }}
       />
 
@@ -1241,6 +1248,10 @@ export function App() {
             setSalvageTargetCar(car);
             setIsSalvageModalOpen(true);
           }}
+          onOpenFreight={(car) => {
+            setFreightTargetCar(car);
+            setIsFreightModalOpen(true);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -1873,6 +1884,17 @@ export function App() {
           onClose={() => {
             setIsSalvageModalOpen(false);
             setSalvageTargetCar(null);
+          }}
+        />
+
+        {/* RİNN, AYNA & ABADA Rəsmi Beynəlxalq Yük Daşımaları & E-CMR Portalı Modal */}
+        <InternationalFreightModal
+          isOpen={isFreightModalOpen}
+          vehicle={freightTargetCar}
+          currency={currency}
+          onClose={() => {
+            setIsFreightModalOpen(false);
+            setFreightTargetCar(null);
           }}
         />
 

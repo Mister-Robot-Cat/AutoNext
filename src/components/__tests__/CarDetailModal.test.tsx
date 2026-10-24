@@ -1315,4 +1315,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(btn);
     expect(onOpenSalvageMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('renders RİNN, AYNA & ABADA International Freight shortcut and triggers onOpenFreight callback', () => {
+    const onOpenFreightMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenFreight={onOpenFreightMock}
+      />
+    );
+
+    const btn = screen.getByTestId('freight-shortcut-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenFreightMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });

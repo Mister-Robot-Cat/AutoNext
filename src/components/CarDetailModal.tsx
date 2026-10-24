@@ -142,6 +142,7 @@ interface CarDetailModalProps {
   onOpenRental?: (vehicle: Vehicle) => void;
   onOpenAdas?: (vehicle: Vehicle) => void;
   onOpenSalvage?: (vehicle: Vehicle) => void;
+  onOpenFreight?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -207,6 +208,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenRental,
   onOpenAdas,
   onOpenSalvage,
+  onOpenFreight,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -1172,6 +1174,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <ShieldAlert className="w-4 h-4 text-rose-400" />
                     <span>AMB, İSB & BDYP Konstruktiv Məhv («Total Loss») & Salvage Bərpa Portalı</span>
+                  </button>
+                )}
+
+                {/* RİNN, AYNA & ABADA Beynəlxalq Yük Daşımaları & E-CMR Shortcut */}
+                {onOpenFreight && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenFreight(vehicle)}
+                    data-testid="freight-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-indigo-600/10 hover:bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Truck className="w-4 h-4 text-indigo-400" />
+                    <span>RİNN, AYNA & ABADA Beynəlxalq Yük Daşımaları & E-CMR Portalı</span>
                   </button>
                 )}
 

@@ -98,6 +98,7 @@ interface NavbarProps {
   onOpenRental?: () => void;
   onOpenAdas?: () => void;
   onOpenSalvage?: () => void;
+  onOpenFreight?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -153,6 +154,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenRental,
   onOpenAdas,
   onOpenSalvage,
+  onOpenFreight,
 }) => {
   const t = TRANSLATIONS[lang];
 
@@ -672,6 +674,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             >
               <ShieldAlert className="w-4 h-4 text-rose-400" />
               <span className="hidden xl:inline">Total Loss / Salvage</span>
+            </button>
+          )}
+
+          {/* RİNN, AYNA & ABADA Beynəlxalq Yük Daşımaları & E-CMR Portalı Button */}
+          {onOpenFreight && (
+            <button
+              onClick={onOpenFreight}
+              data-testid="navbar-freight-btn"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-indigo-600/10 hover:bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 text-xs sm:text-sm font-medium transition-all cursor-pointer shadow-sm"
+              title="RİNN, AYNA & ABADA Beynəlxalq Yük Daşımaları & E-CMR Portalı"
+            >
+              <Truck className="w-4 h-4 text-indigo-400" />
+              <span className="hidden xl:inline">Beynəlxalq Daşıma (E-CMR)</span>
             </button>
           )}
 
