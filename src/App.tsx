@@ -77,6 +77,7 @@ const EcoStickerModal = React.lazy(() => import('./components/EcoStickerModal').
 const LeasingModal = React.lazy(() => import('./components/LeasingModal').then(m => ({ default: m.LeasingModal })));
 const RentalModal = React.lazy(() => import('./components/RentalModal').then(m => ({ default: m.RentalModal })));
 const AdasCalibrationModal = React.lazy(() => import('./components/AdasCalibrationModal').then(m => ({ default: m.AdasCalibrationModal })));
+const SalvageComplianceModal = React.lazy(() => import('./components/SalvageComplianceModal').then(m => ({ default: m.SalvageComplianceModal })));
 import { 
   Sparkles, 
   Layers, 
@@ -265,6 +266,8 @@ export function App() {
   const [isRentalModalOpen, setIsRentalModalOpen] = useState(false);
   const [adasTargetCar, setAdasTargetCar] = useState<Vehicle | null>(null);
   const [isAdasModalOpen, setIsAdasModalOpen] = useState(false);
+  const [salvageTargetCar, setSalvageTargetCar] = useState<Vehicle | null>(null);
+  const [isSalvageModalOpen, setIsSalvageModalOpen] = useState(false);
   const [isAiModalOpen, setIsAiModalOpen] = useState(false);
   const [isCreateListingOpen, setIsCreateListingOpen] = useState(false);
 
@@ -485,6 +488,10 @@ export function App() {
         onOpenAdas={() => {
           setAdasTargetCar(vehicles[0] || null);
           setIsAdasModalOpen(true);
+        }}
+        onOpenSalvage={() => {
+          setSalvageTargetCar(vehicles[0] || null);
+          setIsSalvageModalOpen(true);
         }}
       />
 
@@ -1230,6 +1237,10 @@ export function App() {
             setAdasTargetCar(car);
             setIsAdasModalOpen(true);
           }}
+          onOpenSalvage={(car) => {
+            setSalvageTargetCar(car);
+            setIsSalvageModalOpen(true);
+          }}
           onOpenDealership={(seller) => {
             setDealershipTarget(seller);
           }}
@@ -1851,6 +1862,17 @@ export function App() {
           onClose={() => {
             setIsAdasModalOpen(false);
             setAdasTargetCar(null);
+          }}
+        />
+
+        {/* AMB, İSB & BDYP Rəsmi Konstruktiv Məhv («Total Loss») & Salvage Bərpa Portalı Modal */}
+        <SalvageComplianceModal
+          isOpen={isSalvageModalOpen}
+          vehicle={salvageTargetCar}
+          currency={currency}
+          onClose={() => {
+            setIsSalvageModalOpen(false);
+            setSalvageTargetCar(null);
           }}
         />
 

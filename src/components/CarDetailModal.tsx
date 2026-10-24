@@ -141,6 +141,7 @@ interface CarDetailModalProps {
   onOpenLeasing?: (vehicle: Vehicle) => void;
   onOpenRental?: (vehicle: Vehicle) => void;
   onOpenAdas?: (vehicle: Vehicle) => void;
+  onOpenSalvage?: (vehicle: Vehicle) => void;
 }
 
 export const CarDetailModal: React.FC<CarDetailModalProps> = ({
@@ -205,6 +206,7 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
   onOpenLeasing,
   onOpenRental,
   onOpenAdas,
+  onOpenSalvage,
 }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [selectedDamagePart, setSelectedDamagePart] = useState<string | null>(null);
@@ -1157,6 +1159,19 @@ export const CarDetailModal: React.FC<CarDetailModalProps> = ({
                   >
                     <Crosshair className="w-4 h-4 text-blue-400" />
                     <span>RİNN, AYNA, AZS & BDYP Rəsmi ADAS Sensor & Kamera Kalibrasiyası</span>
+                  </button>
+                )}
+
+                {/* AMB, İSB & BDYP Rəsmi Konstruktiv Məhv («Total Loss») & Salvage Bərpa Shortcut */}
+                {onOpenSalvage && (
+                  <button
+                    type="button"
+                    onClick={() => onOpenSalvage(vehicle)}
+                    data-testid="salvage-shortcut-btn"
+                    className="w-full py-2.5 px-4 rounded-xl bg-rose-600/10 hover:bg-rose-600/20 text-rose-400 border border-rose-500/30 text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <ShieldAlert className="w-4 h-4 text-rose-400" />
+                    <span>AMB, İSB & BDYP Konstruktiv Məhv («Total Loss») & Salvage Bərpa Portalı</span>
                   </button>
                 )}
 

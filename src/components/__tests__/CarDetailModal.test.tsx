@@ -1295,4 +1295,24 @@ describe('CarDetailModal', () => {
     fireEvent.click(btn);
     expect(onOpenAdasMock).toHaveBeenCalledWith(mockVehicle);
   });
+
+  it('renders AMB, İSB & BDYP Total Loss / Salvage shortcut and triggers onOpenSalvage callback', () => {
+    const onOpenSalvageMock = vi.fn();
+    render(
+      <CarDetailModal
+        vehicle={mockVehicle}
+        currency="AZN"
+        lang="az"
+        onClose={onCloseMock}
+        onOpenLoanForCar={onOpenLoanForCarMock}
+        onOpenVinHistory={onOpenVinHistoryMock}
+        onOpenSalvage={onOpenSalvageMock}
+      />
+    );
+
+    const btn = screen.getByTestId('salvage-shortcut-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenSalvageMock).toHaveBeenCalledWith(mockVehicle);
+  });
 });

@@ -468,4 +468,14 @@ describe('Navbar Component', () => {
     fireEvent.click(btn);
     expect(onOpenAdas).toHaveBeenCalledTimes(1);
   });
+
+  it('renders AMB, İSB & BDYP Total Loss / Salvage button and calls onOpenSalvage when clicked', () => {
+    const onOpenSalvage = vi.fn();
+    render(<Navbar {...defaultProps} onOpenSalvage={onOpenSalvage} />);
+
+    const btn = screen.getByTestId('navbar-salvage-btn');
+    expect(btn).toBeInTheDocument();
+    fireEvent.click(btn);
+    expect(onOpenSalvage).toHaveBeenCalledTimes(1);
+  });
 });
